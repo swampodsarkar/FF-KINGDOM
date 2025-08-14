@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Free Fire Tournaments – Player</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary:   #F8FAFC;
+      --bg-secondary: #E2E8F0;
+      --text-dark:    #1E293B;
+      --accent-blue:  #2563EB;
+      --accent-gold:  #FBBF24;
+      --accent-red:   #DC2626;
+      --border:       #CBD5E1;
+      --radius: 14px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body, #root { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg-primary);
+      color: var(--text-dark);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Russo One', system-ui, sans-serif; letter-spacing: 0.2px; margin: 0; }
+
+    .container {
+      padding: 16px;
+      padding-bottom: 96px; /* space for bottom nav */
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      background: linear-gradient(135deg, #ffffff 0%, #EFF6FF 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .hero-graphic {
+      width: 92px; height: 92px; flex: none;
+      display: grid; place-items: center;
+      border-radius: 16px;
+      background: #E0EAFF;
+      border: 1px solid var(--border);
+    }
+    .hero-title { font-size: 22px; line-height: 1.2; }
+    .sub { color: #475569; font-size: 14px; margin-top: 6px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--accent-blue);
+      color: #fff; border: none; border-radius: 12px; font-weight: 600;
+      transition: transform .1s ease, background .2s ease, box-shadow .2s ease;
+      cursor: pointer; text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); opacity: 0.9; }
+
+    .btn-outline {
+      background: transparent; color: var(--text-dark);
+      border: 1px solid var(--border);
+    }
+
+    .grid { display: grid; gap: 12px; }
+    @media (min-width: 560px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 880px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .row-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+      font-size: 12px; background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 999px; color: #334155;
+    }
+
+    .tabs {
+      display: inline-flex; padding: 4px; background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 999px; gap: 4px;
+    }
+    .tab {
+      padding: 8px 12px; border-radius: 999px; font-weight: 600; cursor: pointer; border: 0; background: transparent;
+    }
+    .tab.active { background: #fff; border: 1px solid var(--border); }
+
+    .stat {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 12px; display: grid; gap: 6px; min-width: 120px;
+    }
+    .stat .label { color: #64748B; font-size: 12px; }
+    .stat .value { font-family: 'Russo One', system-ui, sans-serif; font-size: 20px; }
+
+    .input, select {
+      width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border);
+      background: #fff; font-size: 14px;
+    }
+
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: grid; place-items: center; z-index: 50;
+    }
+    .modal {
+      width: min(560px, calc(100vw - 24px)); background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 14px;
+      animation: pop .2s ease;
+    }
+    @keyframes pop { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .divider { height: 1px; background: var(--border); margin: 10px 0; }
+
+    .bottom-nav {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: #fff;
+      border-top: 1px solid var(--border);
+    }
+    .bottom-nav-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .nav-btn {
+      appearance: none; border: 0; background: transparent; padding: 10px; display: grid; place-items: center; gap: 6px; color: #475569; font-weight: 700;
+    }
+    .nav-btn.active { color: var(--accent-blue); }
+
+    .sr-only { position: absolute; clip: rect(1px, 1px, 1px, 1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden; }
+
+    .pulse-success {
+      width: 64px; height: 64px; border-radius: 999px; background: rgba(16,185,129,0.1); display: grid; place-items: center; animation: pulse 1.2s ease infinite;
+    }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.06);} 100% { transform: scale(1);} }
+
+    .copy {
+      font-size: 12px; color: #475569;
+    }
+
+    .empty {
+      background: #fff; border: 1px dashed var(--border); border-radius: var(--radius);
+      padding: 18px; text-align: center; color: #64748B;
+    }
+
+    a.inline-link { color: var(--accent-blue); text-decoration: none; font-weight: 600; }
+
+    /* Minimal focus ring */
+    :focus-visible { outline: 3px solid rgba(37,99,235,.35); outline-offset: 2px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React and Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Optional Razorpay (loaded on demand in code) -->
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useRef } = React;
+
+    function Icon({ name, size = 22 }) {
+      const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' };
+      switch (name) {
+        case 'home':
+          return (<svg {...common}><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/></svg>);
+        case 'trophy':
+          return (<svg {...common}><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M5 5h2v2a3 3 0 0 1-3 3H3V7a2 2 0 0 1 2-2Z"/><path d="M17 5h2a2 2 0 0 1 2 2v3h-1a3 3 0 0 1-3-3z"/></svg>);
+        case 'user':
+          return (<svg {...common}><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>);
+        case 'wallet':
+          return (<svg {...common}><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M16 10h.01"/></svg>);
+        case 'clock':
+          return (<svg {...common}><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>);
+        case 'map':
+          return (<svg {...common}><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg>);
+        case 'users':
+          return (<svg {...common}><path d="M16 21a4 4 0 0 0-8 0"/><circle cx="12" cy="7" r="4"/></svg>);
+        case 'coin':
+          return (<svg {...common}><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/><path d="M10 9h4M10 15h4"/></svg>);
+        case 'share':
+          return (<svg {...common}><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>);
+        case 'check':
+          return (<svg {...common} stroke="none" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.2 13.4-3.6-3.6 1.4-1.4 2.2 2.2 4.8-4.8 1.4 1.4-6.2 6.2Z"/></svg>);
+        case 'copy':
+          return (<svg {...common}><rect x="9" y="9" width="13" height="13" rx="2"/><rect x="2" y="2" width="13" height="13" rx="2"/></svg>);
+        case 'search':
+          return (<svg {...common}><circle cx="11" cy="11" r="7"/><path d="m21 21-3.5-3.5"/></svg>);
+        case 'whatsapp':
+          return (<svg {...common}><path d="M20 11.5A8.5 8.5 0 1 1 11.5 3a8.5 8.5 0 0 1 8.5 8.5Z"/><path d="M8 9c0 3 3 6 6 6l2-2"/></svg>);
+        case 'telegram':
+          return (<svg {...common}><path d="M22 2 16 22l-4-7-7-4Z"/></svg>);
+        default:
+          return null;
+      }
+    }
+
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
+    }
+
+    function useLocalStorage(key, initialValue) {
+      const [value, setValue] = useState(() => {
+        try {
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : initialValue;
+        } catch {
+          return initialValue;
+        }
+      });
+      useEffect(() => { localStorage.setItem(key, JSON.stringify(value)); }, [key, value]);
+      return [value, setValue];
+    }
+
+    async function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        if (document.querySelector(`script[src="${src}"]`)) return resolve(true);
+        const script = document.createElement('script');
+        script.src = src; script.onload = () => resolve(true); script.onerror = () => reject(new Error('Failed to load'));
+        document.body.appendChild(script);
+      });
+    }
+
+    function Section({ title, subtitle, action, children }) {
+      return (
+        <section className="container" aria-label={title}>
+          <div className="row" style={{marginBottom: 12}}>
+            <div>
+              <h2 style={{fontSize: 20}}>{title}</h2>
+              {subtitle && <div className="sub">{subtitle}</div>}
+            </div>
+            {action}
+          </div>
+          {children}
+        </section>
+      );
+    }
+
+    function Hero({ onPlayNow }) {
+      return (
+        <section className="container" aria-label="Home">
+          <div className="hero">
+            <div className="hero-graphic" aria-hidden="true">
+              <Icon name="trophy" size={36} />
+            </div>
+            <div style={{flex: 1}}>
+              <h1 className="hero-title">Free Fire Tournaments</h1>
+              <div className="sub">Compete, win prizes, and climb the leaderboard.</div>
+              <div style={{marginTop: 10}}>
+                <button className="btn" onClick={onPlayNow}><Icon name="trophy" /> Play Now</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function TournamentCard({ t, onJoin }) {
+      const joinedCount = t.registrations.length;
+      return (
+        <div className="card" role="article">
+          <div className="row">
+            <div style={{display:'grid', gap: 4}}>
+              <strong style={{fontSize: 16}}>{t.title}</strong>
+              <div className="row-wrap" aria-label="details">
+                <span className="chip"><Icon name="clock" size={16}/> {new Date(t.matchTime).toLocaleString()}</span>
+                <span className="chip"><Icon name="map" size={16}/> {t.map}</span>
+                <span className="chip"><Icon name="coin" size={16}/> {formatCurrency(t.prize)} prize</span>
+              </div>
+            </div>
+            <div style={{textAlign:'right'}}>
+              <div style={{fontSize: 12, color:'#64748B'}}>Players</div>
+              <div style={{fontWeight: 800}}>{joinedCount} / {t.maxPlayers}</div>
+            </div>
+          </div>
+          <div className="divider" />
+          <div className="row">
+            <div className="row-wrap">
+              <span className="chip">Entry: {formatCurrency(t.entryFee)}</span>
+              <span className="chip" style={{background:'#FFF7ED', borderColor:'#FDE68A'}}>
+                <span style={{color:'#B45309'}}>Room ID/Pass after join</span>
+              </span>
+            </div>
+            <button className="btn" onClick={() => onJoin(t)}>Join</button>
+          </div>
+        </div>
+      );
+    }
+
+    function RegistrationModal({ tournament, onClose, onConfirm, defaultName, defaultUid }) {
+      const [name, setName] = useState(defaultName || '');
+      const [uid, setUid] = useState(defaultUid || '');
+      return (
+        <div className="modal-backdrop" role="dialog" aria-modal="true">
+          <div className="modal">
+            <div className="row">
+              <h3 style={{fontSize:18}}>Join Tournament</h3>
+              <button className="btn btn-outline" onClick={onClose}>Close</button>
+            </div>
+            <div className="sub" style={{marginTop: 6}}>{tournament.title}</div>
+            <div className="divider" />
+            <div style={{display:'grid', gap:10}}>
+              <div>
+                <label className="sub" htmlFor="name">In-game Name</label>
+                <input id="name" className="input" value={name} onChange={e=>setName(e.target.value)} placeholder="Your player name" />
+              </div>
+              <div>
+                <label className="sub" htmlFor="uid">Free Fire UID</label>
+                <input id="uid" className="input" value={uid} onChange={e=>setUid(e.target.value)} placeholder="e.g. 123456789" />
+              </div>
+              <div className="row">
+                <div className="sub">Entry Fee</div>
+                <strong>{formatCurrency(tournament.entryFee)}</strong>
+              </div>
+            </div>
+            <div className="divider" />
+            <div className="row">
+              <button className="btn btn-outline" onClick={onClose}>Cancel</button>
+              <button className="btn" onClick={() => onConfirm({ name, uid })}><Icon name="wallet"/> Pay & Join</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function PaymentSheet({ amount, onClose, onSuccess, title = 'Add Balance' }) {
+      const [processing, setProcessing] = useState(false);
+      async function handlePay() {
+        setProcessing(true);
+        try {
+          // Try Razorpay first if available; otherwise, simulate success.
+          const razorpayKey = window.__APP_CONFIG__?.razorpayKeyId;
+          if (razorpayKey) {
+            await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+            if (window.Razorpay) {
+              await new Promise((resolve, reject) => {
+                const rzp = new window.Razorpay({
+                  key: razorpayKey,
+                  amount: amount * 100,
+                  currency: 'INR',
+                  name: 'Tournament Top-up',
+                  handler: function () { resolve(true); },
+                  modal: { ondismiss: function() { reject(new Error('dismiss')); } }
+                });
+                rzp.open();
+              });
+            }
+          } else if (window.Stripe) {
+            // Placeholder for Stripe
+            await new Promise(res => setTimeout(res, 1200));
+          } else {
+            await new Promise(res => setTimeout(res, 800));
+          }
+          onSuccess();
+        } catch (e) {
+          // do nothing on dismiss
+        } finally {
+          setProcessing(false);
+        }
+      }
+      return (
+        <div className="modal-backdrop" role="dialog" aria-modal="true">
+          <div className="modal">
+            <div className="row">
+              <h3 style={{fontSize:18}}>{title}</h3>
+              <button className="btn btn-outline" onClick={onClose}>Close</button>
+            </div>
+            <div className="divider" />
+            <div style={{display:'grid', gap:10}}>
+              <div className="row">
+                <div className="sub">Amount</div>
+                <strong>{formatCurrency(amount)}</strong>
+              </div>
+              <div className="empty">This is a demo payment sheet. Integrate Razorpay/Stripe using keys in Settings.</div>
+            </div>
+            <div className="divider" />
+            <div className="row">
+              <button className="btn btn-outline" onClick={onClose}>Cancel</button>
+              <button className="btn" onClick={handlePay} disabled={processing}>{processing ? 'Processing…' : 'Pay Now'}</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function useDemoData() {
+      const now = Date.now();
+      const day = 24*60*60*1000;
+      const tournaments = useMemo(() => ([
+        { id:'t1', title:'July Clash Qualifier', matchTime: new Date(now + 2*hour()).toISOString(), map:'Bermuda', prize: 1000, entryFee: 50, maxPlayers: 100, status:'live', registrations: [] },
+        { id:'t2', title:'Bermuda Blitz', matchTime: new Date(now + 2*day).toISOString(), map:'Bermuda', prize: 3000, entryFee: 79, maxPlayers: 200, status:'upcoming', registrations: [] },
+        { id:'t3', title:'Kalahari Kings', matchTime: new Date(now - 3*day).toISOString(), map:'Kalahari', prize: 2000, entryFee: 49, maxPlayers: 150, status:'past', registrations: [{userId:'demo'}] },
+      ]), []);
+      function hour() { return 60*60*1000; }
+      return { tournaments: useState(tournaments) };
+    }
+
+    function Refer({ user, onCopy, credits }) {
+      const shareLink = `${location.origin}${location.pathname}?ref=${encodeURIComponent(user.id)}`;
+      function nativeShare() {
+        if (navigator.share) {
+          navigator.share({ title: 'Join me on Free Fire Tourneys', text: 'Use my referral link to earn bonus credits!', url: shareLink });
+        } else {
+          onCopy(shareLink);
+        }
+      }
+      function openWhatsApp() {
+        const text = encodeURIComponent(`Join Free Fire tourneys and win! ${shareLink}`);
+        location.href = `https://wa.me/?text=${text}`;
+      }
+      function openTelegram() {
+        const text = encodeURIComponent(`Join Free Fire tourneys and win! ${shareLink}`);
+        location.href = `https://t.me/share/url?url=${encodeURIComponent(shareLink)}&text=${text}`;
+      }
+      return (
+        <div className="card">
+          <div className="row" style={{marginBottom:10}}>
+            <div>
+              <div className="sub">Your Referral Code</div>
+              <div style={{fontWeight:800, fontSize:18}}>{user.refCode}</div>
+            </div>
+            <div className="stat">
+              <div className="label">Credits Earned</div>
+              <div className="value" style={{color:'#16A34A'}}>{formatCurrency(credits)}</div>
+            </div>
+          </div>
+          <div className="row-wrap" role="group" aria-label="Share options">
+            <button className="btn btn-outline" onClick={nativeShare}><Icon name="share"/> Share</button>
+            <button className="btn btn-outline" onClick={openWhatsApp}><Icon name="whatsapp"/> WhatsApp</button>
+            <button className="btn btn-outline" onClick={openTelegram}><Icon name="telegram"/> Telegram</button>
+            <button className="btn" onClick={() => onCopy(shareLink)}><Icon name="copy"/> Copy Link</button>
+          </div>
+          <div className="copy" style={{marginTop:8}}>Referral bonus applies to new sign-ups only.</div>
+        </div>
+      );
+    }
+
+    function Profile({ user, onTopUp, registrations }) {
+      return (
+        <div className="card">
+          <div className="row">
+            <div className="row" style={{gap:10}}>
+              <div style={{width:52, height:52, borderRadius:12, background:'#E2E8F0', border:'1px solid var(--border)', display:'grid', placeItems:'center'}} aria-hidden="true">
+                <Icon name="user" />
+              </div>
+              <div>
+                <div style={{fontWeight:800}}>{user.name || 'Player'}</div>
+                <div className="sub">FF UID: {user.uid || '—'}</div>
+              </div>
+            </div>
+            <div className="stat">
+              <div className="label">Wallet Balance</div>
+              <div className="value" style={{color:'#0EA5E9'}}>{formatCurrency(user.walletBalance)}</div>
+            </div>
+          </div>
+          <div className="divider" />
+          <div className="row">
+            <button className="btn" onClick={onTopUp}><Icon name="wallet"/> Top-up</button>
+            <div className="sub">Auto-deducts on join</div>
+          </div>
+          <div className="divider" />
+          <div style={{fontWeight:800, marginBottom:8}}>My Registrations</div>
+          {registrations.length === 0 ? (
+            <div className="empty">No registrations yet. Join a tournament to see it here.</div>
+          ) : (
+            <div className="grid">
+              {registrations.map(r => (
+                <div key={r.id} className="card" style={{padding:10}}>
+                  <div style={{fontWeight:700}}>{r.title}</div>
+                  <div className="sub">{new Date(r.matchTime).toLocaleString()} • {r.map}</div>
+                  <div className="row" style={{marginTop:8}}>
+                    <span className="chip">Status: {r.status || 'Registered'}</span>
+                    <a className="inline-link" href="#" onClick={(e)=>e.preventDefault()}>Cancel</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function SuccessToast({ text }) {
+      return (
+        <div className="modal-backdrop" style={{background:'rgba(0,0,0,0.2)'}}>
+          <div className="card" style={{display:'grid', placeItems:'center', gap:10, padding:20}}>
+            <div className="pulse-success"><Icon name="check"/></div>
+            <div style={{fontWeight:800}}>{text}</div>
+          </div>
+        </div>
+      );
+    }
+
+    function BottomNav({ active, onChange }) {
+      const items = [
+        { key:'home', label:'Home', icon:'home' },
+        { key:'tournaments', label:'Tournaments', icon:'trophy' },
+        { key:'refer', label:'Refer', icon:'share' },
+        { key:'profile', label:'Profile', icon:'user' },
+      ];
+      return (
+        <nav className="bottom-nav">
+          <div className="bottom-nav-inner">
+            {items.map(it => (
+              <button key={it.key} className={"nav-btn" + (active===it.key?" active":"")} onClick={() => onChange(it.key)}>
+                <Icon name={it.icon} />
+                <div style={{fontSize:12}}>{it.label}</div>
+              </button>
+            ))}
+          </div>
+        </nav>
+      );
+    }
+
+    function App() {
+      const [active, setActive] = useState('home');
+      const [tournaments, setTournaments] = useDemoData().tournaments;
+      const [user, setUser] = useLocalStorage('app:user', {
+        id: 'user-' + Math.random().toString(36).slice(2,8),
+        name: 'Rohan',
+        uid: '987654321',
+        walletBalance: 500,
+        refCode: 'FF' + Math.random().toString(36).slice(2,6).toUpperCase(),
+        referrer: null
+      });
+      const [referralCredits, setReferralCredits] = useLocalStorage('app:refCredits', 100);
+      const [joinModal, setJoinModal] = useState(null);
+      const [paymentSheet, setPaymentSheet] = useState(null);
+      const [toast, setToast] = useState(null);
+
+      useEffect(() => {
+        const url = new URL(window.location.href);
+        const ref = url.searchParams.get('ref');
+        if (ref && !user.referrer) {
+          setUser({ ...user, referrer: ref });
+          setReferralCredits(c => c + 50);
+        }
+      }, []);
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          setToast('Link copied to clipboard');
+          setTimeout(() => setToast(null), 1400);
+        });
+      }
+
+      function openRegistration(t) { setJoinModal(t); }
+
+      function ensureFundsAndJoin(t, profile) {
+        if (user.walletBalance < t.entryFee) {
+          setPaymentSheet({ amount: Math.max(100, t.entryFee - user.walletBalance), reason: 'join', tournament: t, profile });
+          return;
+        }
+        completeJoin(t, profile);
+      }
+
+      function completeJoin(t, profile) {
+        setUser(u => ({ ...u, name: profile.name, uid: profile.uid, walletBalance: u.walletBalance - t.entryFee }));
+        setTournaments(list => list.map(x => x.id === t.id ? { ...x, registrations: [...x.registrations, { userId: user.id, timestamp: Date.now() }] } : x));
+        setJoinModal(null);
+        setToast('Joined successfully');
+        setTimeout(() => setToast(null), 1400);
+      }
+
+      function handleTopUp() {
+        setPaymentSheet({ amount: 199, reason: 'topup' });
+      }
+
+      function onPaymentSuccess() {
+        if (paymentSheet?.reason === 'join' && paymentSheet?.tournament) {
+          setUser(u => ({ ...u, walletBalance: u.walletBalance + paymentSheet.amount }));
+          // Auto-deduct and join
+          ensureFundsAndJoin(paymentSheet.tournament, paymentSheet.profile || { name: user.name, uid: user.uid });
+        } else {
+          setUser(u => ({ ...u, walletBalance: u.walletBalance + (paymentSheet?.amount || 0) }));
+          setToast('Payment successful');
+          setTimeout(() => setToast(null), 1400);
+        }
+        setPaymentSheet(null);
+      }
+
+      const registrations = useMemo(() => {
+        return tournaments
+          .filter(t => t.registrations.some(r => r.userId === user.id))
+          .map(t => ({ id: t.id, title: t.title, matchTime: t.matchTime, map: t.map, status: t.status }));
+      }, [tournaments, user.id]);
+
+      const [tab, setTab] = useState('live');
+      const filtered = tournaments.filter(t => t.status === tab);
+
+      return (
+        <div>
+          {active === 'home' && (
+            <>
+              <Hero onPlayNow={() => { setActive('tournaments'); setTab('live'); }} />
+              <Section title="Why Play Here?" subtitle="Fast payouts • Fair matches • Active community">
+                <div className="grid">
+                  <div className="stat"><div className="label">Total Prize</div><div className="value" style={{color:'#CA8A04'}}>{formatCurrency(250000)}</div></div>
+                  <div className="stat"><div className="label">Players</div><div className="value">12,430</div></div>
+                  <div className="stat"><div className="label">Matches</div><div className="value">742</div></div>
+                </div>
+              </Section>
+            </>
+          )}
+
+          {active === 'tournaments' && (
+            <Section
+              title="Tournaments"
+              subtitle="Join live games or register early for upcoming matches"
+              action={(
+                <div className="tabs" role="tablist" aria-label="tournament filters">
+                  {['live','upcoming','past'].map(k => (
+                    <button key={k} role="tab" aria-selected={tab===k} className={"tab" + (tab===k?" active":"")} onClick={()=>setTab(k)} style={{textTransform:'capitalize'}}>{k}</button>
+                  ))}
+                </div>
+              )}
+            >
+              {filtered.length === 0 ? (
+                <div className="empty">No {tab} tournaments right now.</div>
+              ) : (
+                <div className="grid">
+                  {filtered.map(t => (
+                    <TournamentCard key={t.id} t={t} onJoin={openRegistration} />
+                  ))}
+                </div>
+              )}
+            </Section>
+          )}
+
+          {active === 'refer' && (
+            <Section title="Refer & Earn" subtitle="Invite friends and earn bonus credits">
+              <Refer user={user} onCopy={copyToClipboard} credits={referralCredits} />
+            </Section>
+          )}
+
+          {active === 'profile' && (
+            <Section title="Profile" subtitle="Manage your details and wallet">
+              <Profile user={user} onTopUp={handleTopUp} registrations={registrations} />
+            </Section>
+          )}
+
+          <BottomNav active={active} onChange={setActive} />
+
+          {joinModal && (
+            <RegistrationModal
+              tournament={joinModal}
+              defaultName={user.name}
+              defaultUid={user.uid}
+              onClose={() => setJoinModal(null)}
+              onConfirm={(profile) => ensureFundsAndJoin(joinModal, profile)}
+            />
+          )}
+
+          {paymentSheet && (
+            <PaymentSheet
+              amount={paymentSheet.amount}
+              onClose={() => setPaymentSheet(null)}
+              onSuccess={onPaymentSuccess}
+              title={paymentSheet.reason === 'topup' ? 'Add Balance' : 'Pay & Join'}
+            />
+          )}
+
+          {toast && (<SuccessToast text={toast} />)}
+        </div>
+      );
+    }
+
+    // Firebase / Firestore placeholders
+    window.firebase = window.firebase || {
+      initializeApp: function() {},
+      firestore: function() { return { collection: function() { return { doc: function() { return { set: async function(){}, update: async function(){}, collection: function(){ return { add: async function(){} } } } } } } },
+      auth: function() { return { onAuthStateChanged: function(){} } }
+    };
+    window.__APP_CONFIG__ = { razorpayKeyId: '' /* put your Razorpay key id here to enable live checkout */ };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
