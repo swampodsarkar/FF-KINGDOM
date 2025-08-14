@@ -374,6 +374,165 @@ body {
   transform: translateY(-3px) scale(1.1);
   box-shadow: 0 8px 25px rgba(67, 97, 238, 0.5);
 }
+
+/* Notification System */
+.notification-badge {
+  position: relative;
+  margin-right: 15px;
+}
+
+.notification-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--danger);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 350px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: none;
+}
+
+.notification-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s;
+}
+
+.notification-item:hover {
+  background: #f8f9fa;
+}
+
+.notification-item.unread {
+  background: #f0f7ff;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.notification-time {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.notification-category {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-right: 5px;
+}
+
+.category-info {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.category-warning {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.category-success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.category-danger {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Tournament Image Preview */
+.tournament-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* Wallet Transaction History */
+.transaction-history {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.transaction-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-amount {
+  font-weight: 600;
+}
+
+.transaction-amount.positive {
+  color: #28a745;
+}
+
+.transaction-amount.negative {
+  color: #dc3545;
+}
+
+.transaction-details {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .navbar-nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+  
+  .navbar-nav.show {
+    display: block;
+  }
+}
+
+/* Emoji Styles */
+.emoji {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
 </style>
 </head>
 <body>
@@ -407,7 +566,29 @@ body {
     <a class="navbar-brand brand" href="#">
       <i class="fas fa-fire"></i> FreeFire Arena
     </a>
+    
+    <button class="mobile-menu-btn d-lg-none btn btn-outline-primary">
+      <i class="fas fa-bars"></i>
+    </button>
+    
     <div class="ms-auto d-flex align-items-center">
+      <!-- Notification Bell -->
+      <div class="notification-badge me-3 d-none" id="notification-bell">
+        <i class="fas fa-bell fa-lg"></i>
+        <span class="notification-count d-none">0</span>
+        <div class="notification-dropdown" id="notification-dropdown">
+          <div class="notification-header p-3 border-bottom">
+            <h5 class="mb-0">Notifications</h5>
+          </div>
+          <div id="notification-list">
+            <!-- Notifications will be loaded here -->
+          </div>
+          <div class="notification-footer p-2 text-center">
+            <a href="#" id="mark-all-read">Mark all as read</a>
+          </div>
+        </div>
+      </div>
+      
       <button id="btn-login-show" class="btn btn-outline-primary me-2">
         <i class="fas fa-sign-in-alt"></i> Login/Register
       </button>
@@ -533,6 +714,18 @@ body {
         </div>
       </div>
 
+      <!-- Wallet Transaction History -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-history me-2"></i> ট্রানজেকশন হিস্ট্রি
+        </div>
+        <div class="card-body p-0">
+          <div class="transaction-history" id="transaction-history">
+            <!-- Transactions will be loaded here -->
+          </div>
+        </div>
+      </div>
+
       <!-- Player Tournaments Section -->
       <div class="card">
         <div class="card-header bg-primary text-white">
@@ -590,7 +783,7 @@ body {
       </div>
 
       <!-- Create Tournament Section -->
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header bg-primary text-white">
           <i class="fas fa-plus-circle me-2"></i> নতুন টুর্নামেন্ট তৈরি করুন
         </div>
@@ -602,6 +795,11 @@ body {
           <div class="mb-3">
             <label for="t-fee" class="form-label">এন্ট্রি ফি (৳)</label>
             <input id="t-fee" type="number" class="form-control" placeholder="টুর্নামেন্টের এন্ট্রি ফি"/>
+          </div>
+          <div class="mb-3">
+            <label for="t-image" class="form-label">টুর্নামেন্ট ইমেজ URL</label>
+            <input id="t-image" type="url" class="form-control" placeholder="https://example.com/image.jpg"/>
+            <small class="text-muted">একটি আকর্ষণীয় ইমেজ URL প্রদান করুন</small>
           </div>
           <div class="row mb-3">
             <div class="col-md-6">
@@ -624,6 +822,30 @@ body {
           <button id="btn-create-t" class="btn btn-primary w-100">
             <i class="fas fa-check-circle me-2"></i> টুর্নামেন্ট তৈরি করুন
           </button>
+        </div>
+      </div>
+
+      <!-- Organizer Tournaments Section -->
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-list-alt me-2"></i> আপনার টুর্নামেন্টসমূহ
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead>
+                <tr>
+                  <th>নাম</th>
+                  <th>স্ট্যাটাস</th>
+                  <th>প্লেয়ার</th>
+                  <th>অ্যাকশন</th>
+                </tr>
+              </thead>
+              <tbody id="organizer-tournaments-body">
+                <!-- Organizer tournaments will be loaded here -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -678,6 +900,13 @@ const filterFee = document.getElementById('filter-fee');
 const bannedScreen = document.getElementById('banned-screen');
 const btnLogoutBanned = document.getElementById('btn-logout-banned');
 const btnScrollTop = document.getElementById('btn-scroll-top');
+const notificationBell = document.getElementById('notification-bell');
+const notificationDropdown = document.getElementById('notification-dropdown');
+const notificationList = document.getElementById('notification-list');
+const notificationCount = document.querySelector('.notification-count');
+const markAllRead = document.getElementById('mark-all-read');
+const transactionHistory = document.getElementById('transaction-history');
+const organizerTournamentsBody = document.getElementById('organizer-tournaments-body');
 
 // Payment method selection
 document.querySelectorAll('.payment-method').forEach(btn => {
@@ -701,6 +930,93 @@ window.addEventListener('click', (e) => {
     authModal.style.display = 'none';
   }
 });
+
+// Notification system
+notificationBell.addEventListener('click', (e) => {
+  e.stopPropagation();
+  notificationDropdown.style.display = notificationDropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close notification dropdown when clicking outside
+document.addEventListener('click', () => {
+  notificationDropdown.style.display = 'none';
+});
+
+markAllRead.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const uid = auth.currentUser.uid;
+  try {
+    const notifications = await db.ref(`users/${uid}/notifications`).once('value');
+    const updates = {};
+    notifications.forEach(notification => {
+      if (!notification.val().read) {
+        updates[`users/${uid}/notifications/${notification.key}/read`] = true;
+      }
+    });
+    await db.ref().update(updates);
+    loadNotifications(uid);
+  } catch (err) {
+    console.error("Error marking notifications as read:", err);
+  }
+});
+
+function loadNotifications(uid) {
+  db.ref(`users/${uid}/notifications`).orderByChild('timestamp').limitToLast(20).on('value', snap => {
+    const notifications = snap.val() || {};
+    notificationList.innerHTML = '';
+    let unreadCount = 0;
+    
+    Object.entries(notifications).reverse().forEach(([nid, n]) => {
+      const emoji = getEmojiForCategory(n.category);
+      const notificationItem = document.createElement('div');
+      notificationItem.className = `notification-item ${n.read ? '' : 'unread'}`;
+      notificationItem.innerHTML = `
+        <div class="d-flex justify-content-between">
+          <span class="notification-category category-${n.category}">
+            ${emoji} ${n.category}
+          </span>
+          <span class="notification-time">${formatTime(n.timestamp)}</span>
+        </div>
+        <div class="notification-title">${n.title}</div>
+        <div class="notification-message">${n.message}</div>
+      `;
+      notificationList.appendChild(notificationItem);
+      
+      if (!n.read) unreadCount++;
+    });
+    
+    // Update badge count
+    if (unreadCount > 0) {
+      notificationCount.textContent = unreadCount > 9 ? '9+' : unreadCount;
+      notificationCount.classList.remove('d-none');
+    } else {
+      notificationCount.classList.add('d-none');
+    }
+  });
+}
+
+function getEmojiForCategory(category) {
+  switch(category) {
+    case 'info': return 'ℹ️';
+    case 'warning': return '⚠️';
+    case 'success': return '✅';
+    case 'danger': return '❌';
+    case 'payment': return '💳';
+    case 'tournament': return '🏆';
+    default: return '🔔';
+  }
+}
+
+function sendNotification(uid, title, message, category = 'info') {
+  const notificationId = db.ref().child(`users/${uid}/notifications`).push().key;
+  db.ref(`users/${uid}/notifications/${notificationId}`).set({
+    title,
+    message,
+    category,
+    read: false,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  });
+}
 
 // Scroll to top button
 btnScrollTop.addEventListener('click', () => {
@@ -736,6 +1052,14 @@ btnRegister.addEventListener('click', async () => {
       ban: false,
       createdAt: firebase.database.ServerValue.TIMESTAMP
     });
+    
+    // Send welcome notification
+    sendNotification(cred.user.uid, 
+      'স্বাগতম!', 
+      `আপনি সফলভাবে ${role} হিসেবে রেজিস্টার করেছেন। FreeFire Arena এ অংশগ্রহণের জন্য আপনাকে ধন্যবাদ!`,
+      'success'
+    );
+    
     alert('রেজিস্ট্রেশন সফল!');
     authModal.style.display = 'none';
   } catch (err) {
@@ -776,6 +1100,7 @@ auth.onAuthStateChanged(user => {
         homeDash.style.display = 'none';
         btnLogoutDash.classList.remove('d-none');
         btnLoginShow.classList.add('d-none');
+        notificationBell.classList.remove('d-none');
         loadUserData(user.uid);
       }
     });
@@ -785,6 +1110,7 @@ auth.onAuthStateChanged(user => {
     homeDash.style.display = 'block';
     btnLogoutDash.classList.add('d-none');
     btnLoginShow.classList.remove('d-none');
+    notificationBell.classList.add('d-none');
     loadHomeTournaments();
   }
 });
@@ -801,12 +1127,42 @@ function loadUserData(uid) {
     playerView.style.display = u.role === 'player' ? 'block' : 'none';
     organizerView.style.display = u.role === 'organizer' ? 'block' : 'none';
     
+    // Load notifications
+    loadNotifications(uid);
+    
     // Load appropriate data based on role
     if (u.role === 'player') {
       loadPlayerTournaments(uid);
+      loadTransactionHistory(uid);
     } else if (u.role === 'organizer') {
       loadOrganizerTournaments(uid);
     }
+  });
+}
+
+// LOAD TRANSACTION HISTORY
+function loadTransactionHistory(uid) {
+  db.ref(`transactions/${uid}`).orderByChild('timestamp').limitToLast(20).on('value', snap => {
+    const transactions = snap.val() || {};
+    transactionHistory.innerHTML = '';
+    
+    Object.entries(transactions).reverse().forEach(([tid, t]) => {
+      const transactionItem = document.createElement('div');
+      transactionItem.className = 'transaction-item';
+      
+      const emoji = t.type === 'deposit' ? '⬆️' : '⬇️';
+      const amountClass = t.type === 'deposit' ? 'positive' : 'negative';
+      
+      transactionItem.innerHTML = `
+        <div>
+          <div class="transaction-details">${emoji} ${t.description || 'Transaction'}</div>
+          <small class="text-muted">${formatTime(t.timestamp)}</small>
+        </div>
+        <div class="transaction-amount ${amountClass}">${t.type === 'deposit' ? '+' : '-'}${t.amount}৳</div>
+      `;
+      
+      transactionHistory.appendChild(transactionItem);
+    });
   });
 }
 
@@ -861,6 +1217,29 @@ function loadPlayerTournaments(uid) {
             await db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee);
             await db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
             
+            // Record transaction
+            const transactionId = db.ref().child(`transactions/${uid}`).push().key;
+            await db.ref(`transactions/${uid}/${transactionId}`).set({
+              type: 'withdraw',
+              amount: fee,
+              description: `Joined tournament: ${t.name}`,
+              timestamp: firebase.database.ServerValue.TIMESTAMP
+            });
+            
+            // Send notification to organizer
+            sendNotification(t.organizer, 
+              'নতুন প্লেয়ার যোগ দিয়েছে', 
+              `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
+              'tournament'
+            );
+            
+            // Send notification to player
+            sendNotification(uid,
+              'টুর্নামেন্টে যোগদান সফল',
+              `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`,
+              'success'
+            );
+            
             alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
           } catch (err) {
             alert('ত্রুটি: ' + err.message);
@@ -873,8 +1252,126 @@ function loadPlayerTournaments(uid) {
 
 // LOAD ORGANIZER TOURNAMENTS
 function loadOrganizerTournaments(uid) {
-  // Similar to player tournaments but with organizer-specific actions
-  // Implement as needed
+  db.ref('tournaments').orderByChild('organizer').equalTo(uid).on('value', snap => {
+    const tournaments = snap.val() || {};
+    organizerTournamentsBody.innerHTML = '';
+    
+    Object.entries(tournaments).forEach(([tid, t]) => {
+      // Count players
+      const playerCount = t.players ? Object.keys(t.players).length : 0;
+      
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${t.name}</td>
+        <td>
+          <span class="badge ${getStatusBadgeClass(t.status)}">
+            ${t.status}
+          </span>
+        </td>
+        <td>${playerCount}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary view-tournament" data-tid="${tid}">
+            View
+          </button>
+        </td>
+      `;
+      
+      organizerTournamentsBody.appendChild(tr);
+      
+      // Add view tournament event
+      tr.querySelector('.view-tournament').addEventListener('click', function() {
+        const tournamentId = this.getAttribute('data-tid');
+        viewTournamentDetails(tournamentId, tournaments[tournamentId]);
+      });
+    });
+  });
+}
+
+function getStatusBadgeClass(status) {
+  switch(status) {
+    case 'approved': return 'bg-success';
+    case 'pending': return 'bg-warning';
+    case 'rejected': return 'bg-danger';
+    default: return 'bg-secondary';
+  }
+}
+
+function viewTournamentDetails(tid, tournament) {
+  // Create a modal to show tournament details
+  const modal = document.createElement('div');
+  modal.className = 'modal fade';
+  modal.id = 'tournamentModal';
+  modal.innerHTML = `
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">${tournament.name}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ${tournament.image ? `<img src="${tournament.image}" class="img-fluid mb-3 rounded" alt="Tournament Image">` : ''}
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Entry Fee:</strong> ${tournament.fee}৳</p>
+              <p><strong>Date:</strong> ${formatDate(tournament.date)}</p>
+              <p><strong>Time:</strong> ${tournament.time}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Status:</strong> <span class="badge ${getStatusBadgeClass(tournament.status)}">${tournament.status}</span></p>
+              <p><strong>Players Joined:</strong> ${tournament.players ? Object.keys(tournament.players).length : 0}</p>
+              <p><strong>Total Earnings:</strong> ${tournament.players ? Object.keys(tournament.players).length * tournament.fee : 0}৳</p>
+            </div>
+          </div>
+          ${tournament.prize ? `<div class="mb-3"><strong>Prize:</strong><br>${tournament.prize}</div>` : ''}
+          
+          <h5 class="mt-4 mb-3">Joined Players</h5>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>UID</th>
+                </tr>
+              </thead>
+              <tbody id="tournamentPlayersList">
+                <!-- Players will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Load Bootstrap modal
+  const modalInstance = new bootstrap.Modal(document.getElementById('tournamentModal'));
+  modalInstance.show();
+  
+  // Load players list
+  const playersList = document.getElementById('tournamentPlayersList');
+  if (tournament.players) {
+    Object.keys(tournament.players).forEach(playerId => {
+      db.ref(`users/${playerId}`).once('value').then(snap => {
+        const player = snap.val();
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${player.name}</td>
+          <td>${playerId}</td>
+        `;
+        playersList.appendChild(tr);
+      });
+    });
+  }
+  
+  // Remove modal when closed
+  document.getElementById('tournamentModal').addEventListener('hidden.bs.modal', function() {
+    this.remove();
+  });
 }
 
 // LOAD HOME TOURNAMENTS (Grid View)
@@ -899,6 +1396,7 @@ function loadHomeTournaments() {
               <span>${t.name}</span>
               <span class="${isPremium ? 'premium-badge' : 'fee-badge'}">${t.fee}৳</span>
             </div>
+            ${t.image ? `<img src="${t.image}" class="tournament-image" alt="${t.name}">` : ''}
             <div class="card-body">
               <div class="d-flex justify-content-between mb-2">
                 <div>
@@ -912,7 +1410,7 @@ function loadHomeTournaments() {
                 ${formatDate(t.date)} at ${t.time}
               </div>
               ${t.prize ? `<div class="mb-3"><strong>Prize:</strong> ${t.prize}</div>` : ''}
-              <button class="btn btn-primary w-100 join-tournament-btn" data-tid="${tid}">
+              <button class="btn btn-primary w-100 join-tournament-btn" data-tid="${tid}" data-fee="${t.fee}">
                 ${auth.currentUser ? 'Join Tournament' : 'Login to Join'}
               </button>
             </div>
@@ -926,8 +1424,65 @@ function loadHomeTournaments() {
           if (!auth.currentUser) {
             authModal.style.display = 'flex';
           } else {
-            // Handle join tournament
-            alert('Join tournament functionality will be implemented here');
+            const tournamentId = this.getAttribute('data-tid');
+            const fee = parseInt(this.getAttribute('data-fee'));
+            
+            // Check wallet balance
+            db.ref('users/' + auth.currentUser.uid).once('value').then(snap => {
+              const user = snap.val();
+              
+              if (user.wallet < fee) {
+                alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।');
+                return;
+              }
+              
+              // Check if already joined
+              db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).once('value').then(joinedSnap => {
+                if (joinedSnap.exists()) {
+                  alert('আপনি ইতিমধ্যে এই টুর্নামেন্টে যোগ দিয়েছেন!');
+                  return;
+                }
+                
+                // Deduct fee and join tournament
+                db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).set(true)
+                  .then(() => {
+                    return db.ref(`users/${auth.currentUser.uid}/wallet`).transaction(current => (current || 0) - fee);
+                  })
+                  .then(() => {
+                    return db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
+                  })
+                  .then(() => {
+                    // Record transaction
+                    const transactionId = db.ref().child(`transactions/${auth.currentUser.uid}`).push().key;
+                    return db.ref(`transactions/${auth.currentUser.uid}/${transactionId}`).set({
+                      type: 'withdraw',
+                      amount: fee,
+                      description: `Joined tournament: ${t.name}`,
+                      timestamp: firebase.database.ServerValue.TIMESTAMP
+                    });
+                  })
+                  .then(() => {
+                    // Send notification to organizer
+                    sendNotification(t.organizer, 
+                      'নতুন প্লেয়ার যোগ দিয়েছে', 
+                      `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
+                      'tournament'
+                    );
+                    
+                    // Send notification to player
+                    sendNotification(auth.currentUser.uid,
+                      'টুর্নামেন্টে যোগদান সফল',
+                      `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`,
+                      'success'
+                    );
+                    
+                    alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
+                  })
+                  .catch(err => {
+                    alert('ত্রুটি: ' + err.message);
+                  });
+              });
+            });
           }
         });
       });
@@ -945,6 +1500,12 @@ function loadHomeTournaments() {
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-US', options);
+}
+
+// Format time to display nicely
+function formatTime(timestamp) {
+  const options = { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' };
+  return new Date(timestamp).toLocaleDateString('en-US', options);
 }
 
 // Initialize the page
@@ -1014,6 +1575,16 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: firebase.database.ServerValue.TIMESTAMP
       });
       
+      // Send notification to admin (simulated)
+      // In a real app, you would have admin users listening for these requests
+      
+      // Send notification to user
+      sendNotification(uid,
+        'ব্যালেন্স রিকোয়েস্ট জমা হয়েছে',
+        `আপনার ${amount}৳ ব্যালেন্স যোগের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।`,
+        'payment'
+      );
+      
       alert('আপনার রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।');
       document.getElementById('add-amount').value = '';
       document.getElementById('add-number').value = '';
@@ -1057,6 +1628,15 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: firebase.database.ServerValue.TIMESTAMP
       });
       
+      // Send notification to admin (simulated)
+      
+      // Send notification to user
+      sendNotification(uid,
+        'উত্তোলনের রিকোয়েস্ট জমা হয়েছে',
+        `আপনার ${amount}৳ উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।`,
+        'payment'
+      );
+      
       alert('আপনার উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।');
       document.getElementById('withdraw-amount').value = '';
       document.getElementById('withdraw-number').value = '';
@@ -1069,6 +1649,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-create-t').addEventListener('click', async () => {
     const name = document.getElementById('t-name').value.trim();
     const fee = parseInt(document.getElementById('t-fee').value);
+    const image = document.getElementById('t-image').value.trim();
     const date = document.getElementById('t-date').value;
     const time = document.getElementById('t-time').value;
     const prize = document.getElementById('t-prize').value.trim();
@@ -1086,6 +1667,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await db.ref(`tournaments/${tournamentId}`).set({
         name,
         fee,
+        image,
         date,
         time,
         prize: prize || '',
@@ -1095,9 +1677,19 @@ document.addEventListener('DOMContentLoaded', () => {
         createdAt: firebase.database.ServerValue.TIMESTAMP
       });
       
+      // Send notification to admin (simulated)
+      
+      // Send notification to organizer
+      sendNotification(uid,
+        'টুর্নামেন্ট তৈরি হয়েছে',
+        `আপনার "${name}" টুর্নামেন্ট তৈরি হয়েছে। এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।`,
+        'tournament'
+      );
+      
       alert('আপনার টুর্নামেন্ট তৈরি হয়েছে! এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।');
       document.getElementById('t-name').value = '';
       document.getElementById('t-fee').value = '';
+      document.getElementById('t-image').value = '';
       document.getElementById('t-date').value = '';
       document.getElementById('t-time').value = '';
       document.getElementById('t-prize').value = '';
@@ -1105,6 +1697,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       alert('ত্রুটি: ' + err.message);
     }
+  });
+  
+  // Mobile menu toggle
+  document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+    document.querySelector('.navbar-nav').classList.toggle('show');
   });
 });
 </script>
