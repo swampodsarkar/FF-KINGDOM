@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Fire Tournament - বাংলাদেশ</title>
+<title>Free Fire Tournament</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --primary: #4361ee;
@@ -28,14 +28,8 @@
 body {
   background: var(--body-bg);
   color: var(--text-dark);
-  font-family: 'Hind Siliguri', sans-serif;
-  padding-bottom: 80px;
-}
-
-/* বাংলা ফন্ট অপ্টিমাইজেশন */
-.bn-font {
-  font-family: 'Hind Siliguri', sans-serif;
-  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 80px; /* Space for mobile bottom nav */
 }
 
 .navbar {
@@ -50,6 +44,7 @@ body {
   color: var(--primary);
   font-weight: 800;
   font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn-primary {
@@ -64,6 +59,16 @@ body {
   background: var(--secondary);
   transform: translateY(-1px);
   box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary);
+  color: white;
 }
 
 /* Tournament Cards */
@@ -83,216 +88,690 @@ body {
   box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
-/* Team Management Styles */
-.team-card {
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-  background: white;
+.tournament-card.premium {
+  border: 2px solid var(--warning);
+  background: linear-gradient(135deg, #fff9e6 0%, #ffefc2 100%);
 }
 
-.team-member {
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
+.tournament-card.premium .card-header {
+  background: linear-gradient(135deg, var(--warning), #ff9500);
 }
 
-.team-member:last-child {
-  border-bottom: none;
-}
-
-.team-member-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background-color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.captain-badge {
-  background-color: var(--warning);
+.card-header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.7rem;
-  margin-left: 10px;
+  font-weight: 600;
+  padding: 12px 15px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Leaderboard Styles */
-.leaderboard {
+.card-header::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
   width: 100%;
-  border-collapse: collapse;
+  height: 200%;
+  background: rgba(255,255,255,0.1);
+  transform: rotate(30deg);
+  pointer-events: none;
 }
 
-.leaderboard th {
-  background-color: var(--primary);
-  color: white;
-  padding: 10px;
-  text-align: left;
+.card-body {
+  padding: 20px;
 }
 
-.leaderboard tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
-.leaderboard tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Support Chat Styles */
-.support-chat {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 350px;
-  max-height: 500px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  z-index: 1000;
-  display: none;
-  flex-direction: column;
-}
-
-.chat-header {
-  background: var(--primary);
-  color: white;
-  padding: 10px 15px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-messages {
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
-  max-height: 300px;
-}
-
-.chat-input {
-  padding: 10px;
-  border-top: 1px solid #eee;
-  display: flex;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  margin-right: 10px;
-}
-
-/* Mobile responsive styles */
-@media (max-width: 768px) {
-  .support-chat {
-    width: 90%;
-    right: 5%;
-    bottom: 80px;
-  }
-  
-  .chat-messages {
-    max-height: 200px;
-  }
-}
-
-/* Existing styles remain the same... */
-/* [Previous CSS styles from your original code remain unchanged] */
-/* I've kept all your original styles and just added new ones for the features */
-
-/* Bracket visualization */
-.tournament-bracket {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow-x: auto;
-}
-
-.round {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
-.match {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 5px 0;
-  background: white;
-}
-
-.match-team {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-}
-
-.match-team.winner {
-  font-weight: bold;
-  color: var(--success);
-}
-
-.match-score {
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-/* OTP Verification Styles */
-.otp-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.otp-input {
-  width: 40px;
-  height: 40px;
-  margin: 0 5px;
-  text-align: center;
-  font-size: 1.2rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-/* Offline Support Badge */
-.offline-badge {
-  background-color: #6c757d;
-  color: white;
-  padding: 3px 8px;
-  border-radius: 10px;
-  font-size: 0.7rem;
+.verified-badge {
+  color: var(--verified-badge);
   margin-left: 5px;
 }
 
-/* PWA Install Prompt */
-.pwa-install-prompt {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: none;
-  max-width: 90%;
+.fee-badge {
+  background: var(--success);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-/* [Rest of your existing CSS remains unchanged] */
+.premium-badge {
+  background: var(--warning);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.date-time {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* Auth Modal */
+.auth-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.auth-card {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transform: scale(0.95);
+  opacity: 0;
+  animation: modalEnter 0.3s forwards;
+}
+
+@keyframes modalEnter {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: all 0.2s;
+}
+
+.close-modal:hover {
+  color: var(--danger);
+  transform: rotate(90deg);
+}
+
+/* Dashboard */
+.wallet-card {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.wallet-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wallet-amount {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Utility */
+.pill {
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  display: inline-block;
+  background: rgba(67, 97, 238, 0.1);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Banned User Screen */
+.banned-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--banned-bg);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  display: none;
+}
+
+.banned-icon {
+  font-size: 5rem;
+  color: var(--banned-text);
+  margin-bottom: 20px;
+  animation: shake 0.5s infinite alternate;
+}
+
+@keyframes shake {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(10deg);
+  }
+}
+
+.contact-support {
+  margin-top: 30px;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.support-sticker {
+  font-size: 2rem;
+  margin: 0 5px;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Hide elements initially */
+#dash, #home-dash, #auth-modal {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .auth-card {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .wallet-amount {
+    font-size: 1.5rem;
+  }
+  
+  .tournament-card {
+    margin-bottom: 15px;
+  }
+  
+  .navbar-nav {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block !important;
+  }
+  
+  .tournament-image {
+    height: 120px;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .wallet-card {
+    padding: 15px;
+  }
+}
+
+/* Premium Animations */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(244, 180, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 180, 0, 0);
+  }
+}
+
+/* Floating action button */
+.fab {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0 5px 20px rgba(67, 97, 238, 0.4);
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s;
+}
+
+.fab:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.5);
+}
+
+/* Notification System */
+.notification-badge {
+  position: relative;
+  margin-right: 15px;
+}
+
+.notification-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--danger);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 350px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: none;
+}
+
+.notification-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s;
+}
+
+.notification-item:hover {
+  background: #f8f9fa;
+}
+
+.notification-item.unread {
+  background: #f0f7ff;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.notification-time {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.notification-category {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-right: 5px;
+}
+
+.category-info {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.category-warning {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.category-success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.category-danger {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Tournament Image Preview */
+.tournament-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* Wallet Transaction History */
+.transaction-history {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.transaction-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-amount {
+  font-weight: 600;
+}
+
+.transaction-amount.positive {
+  color: #28a745;
+}
+
+.transaction-amount.negative {
+  color: #dc3545;
+}
+
+.transaction-details {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 1000;
+}
+
+.mobile-bottom-nav-item {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.mobile-bottom-nav-item.active {
+  color: var(--primary);
+}
+
+.mobile-bottom-nav-item i {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.mobile-bottom-nav-item:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+  }
+  
+  main {
+    padding-bottom: 70px;
+  }
+  
+  .fab {
+    bottom: 80px;
+  }
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: none;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  z-index: 1100;
+  transition: all 0.3s;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.mobile-menu.show {
+  left: 0;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
+  display: none;
+}
+
+.mobile-menu-overlay.show {
+  display: block;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-menu-close {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--danger);
+}
+
+.mobile-menu-item {
+  display: block;
+  padding: 12px 0;
+  color: var(--text-dark);
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s;
+}
+
+.mobile-menu-item i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.mobile-menu-item:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
+
+/* Form inputs */
+.form-control, .form-select {
+  border-radius: 8px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  transition: all 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+/* Payment method buttons */
+.payment-method {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.payment-method img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 5px;
+}
+
+.payment-method.active {
+  border-color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+/* Table responsive */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Emoji Styles */
+.emoji {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-light);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+/* Swipeable tabs for mobile */
+.swipe-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.swipe-tab {
+  padding: 10px 15px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  color: var(--text-light);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.swipe-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Touch feedback */
+.btn, .mobile-bottom-nav-item, .mobile-menu-item {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent zoom on input focus */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select:focus, textarea:focus, input:focus {
+    font-size: 16px;
+  }
+}
 </style>
 </head>
-<body class="bn-font">
+<body>
 
 <!-- Banned User Screen -->
 <div id="banned-screen" class="banned-screen">
@@ -337,17 +816,11 @@ body {
     <a href="#" class="mobile-menu-item" data-section="tournaments">
       <i class="fas fa-trophy"></i> টুর্নামেন্ট
     </a>
-    <a href="#" class="mobile-menu-item" data-section="teams">
-      <i class="fas fa-users"></i> টিম
-    </a>
     <a href="#" class="mobile-menu-item" data-section="wallet">
       <i class="fas fa-wallet"></i> ওয়ালেট
     </a>
     <a href="#" class="mobile-menu-item" data-section="profile">
       <i class="fas fa-user"></i> প্রোফাইল
-    </a>
-    <a href="#" class="mobile-menu-item" data-section="leaderboard">
-      <i class="fas fa-medal"></i> লিডারবোর্ড
     </a>
     <a href="#" class="mobile-menu-item" data-section="notifications">
       <i class="fas fa-bell"></i> নোটিফিকেশন
@@ -358,46 +831,6 @@ body {
     <a href="#" class="mobile-menu-item text-danger" id="mobile-menu-logout">
       <i class="fas fa-sign-out-alt"></i> লগআউট
     </a>
-  </div>
-</div>
-
-<!-- Support Chat -->
-<div class="support-chat" id="support-chat">
-  <div class="chat-header">
-    <h6 class="mb-0">সাপোর্ট টিমের সাথে চ্যাট করুন</h6>
-    <button id="close-chat" class="btn btn-sm btn-light">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
-  <div class="chat-messages" id="chat-messages">
-    <div class="alert alert-info">
-      সাপোর্ট টিমের সাথে সরাসরি চ্যাট করুন। আপনার প্রশ্নের উত্তর দ্রুত পাবেন।
-    </div>
-  </div>
-  <div class="chat-input">
-    <input type="text" id="chat-input" placeholder="আপনার বার্তা লিখুন...">
-    <button id="send-message" class="btn btn-primary btn-sm">
-      <i class="fas fa-paper-plane"></i>
-    </button>
-  </div>
-</div>
-
-<!-- PWA Install Prompt -->
-<div class="pwa-install-prompt" id="pwa-install-prompt">
-  <div class="d-flex align-items-center">
-    <i class="fas fa-download me-3 text-primary" style="font-size: 1.5rem;"></i>
-    <div>
-      <h6 class="mb-1">Free Fire Arena অ্যাপ ইন্সটল করুন</h6>
-      <p class="mb-0 small">হোম স্ক্রিনে যোগ করুন দ্রুত এক্সেসের জন্য</p>
-    </div>
-  </div>
-  <div class="d-flex justify-content-end mt-2">
-    <button class="btn btn-sm btn-outline-secondary me-2" id="cancel-install">
-      পরে
-    </button>
-    <button class="btn btn-sm btn-primary" id="install-app">
-      ইন্সটল করুন
-    </button>
   </div>
 </div>
 
@@ -418,25 +851,22 @@ body {
         <span class="notification-count d-none">0</span>
         <div class="notification-dropdown" id="notification-dropdown">
           <div class="notification-header p-3 border-bottom">
-            <h5 class="mb-0">নোটিফিকেশন</h5>
+            <h5 class="mb-0">Notifications</h5>
           </div>
           <div id="notification-list">
             <!-- Notifications will be loaded here -->
           </div>
           <div class="notification-footer p-2 text-center">
-            <a href="#" id="mark-all-read">সবগুলো পড়া হিসেবে মার্ক করুন</a>
+            <a href="#" id="mark-all-read">Mark all as read</a>
           </div>
         </div>
       </div>
       
       <button id="btn-login-show" class="btn btn-outline-primary me-2">
-        <i class="fas fa-sign-in-alt"></i> <span class="d-none d-md-inline">লগইন/রেজিস্টার</span>
+        <i class="fas fa-sign-in-alt"></i> <span class="d-none d-md-inline">Login/Register</span>
       </button>
       <button id="btn-logout-dash" class="btn btn-outline-secondary d-none">
-        <i class="fas fa-sign-out-alt"></i> <span class="d-none d-md-inline">লগআউট</span>
-      </button>
-      <button id="btn-support-chat" class="btn btn-success btn-sm ms-2 d-none">
-        <i class="fas fa-headset"></i> <span class="d-none d-md-inline">সাপোর্ট</span>
+        <i class="fas fa-sign-out-alt"></i> <span class="d-none d-md-inline">Logout</span>
       </button>
     </div>
   </div>
@@ -447,24 +877,24 @@ body {
 <!-- HOME PAGE TOURNAMENT GRID -->
 <div id="home-dash">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="mb-0">আসন্ন টুর্নামেন্টসমূহ</h3>
+    <h3 class="mb-0">Upcoming Tournaments</h3>
     <div class="d-flex">
-      <input type="text" id="search-tournaments" class="form-control me-2" placeholder="টুর্নামেন্ট খুঁজুন...">
+      <input type="text" id="search-tournaments" class="form-control me-2" placeholder="Search tournaments...">
       <select id="filter-fee" class="form-select d-none d-md-block" style="width: 120px;">
-        <option value="all">সব ফি</option>
-        <option value="0-100">০-১০০৳</option>
-        <option value="101-500">১০১-৫০০৳</option>
-        <option value="501+">৫০১+৳</option>
+        <option value="all">All Fees</option>
+        <option value="0-100">0-100৳</option>
+        <option value="101-500">101-500৳</option>
+        <option value="501+">501+৳</option>
       </select>
     </div>
   </div>
   
   <!-- Mobile filter tabs -->
   <div class="swipe-tabs d-md-none mb-3">
-    <div class="swipe-tab active" data-filter="all">সব</div>
-    <div class="swipe-tab" data-filter="0-100">০-১০০৳</div>
-    <div class="swipe-tab" data-filter="101-500">১০১-৫০০৳</div>
-    <div class="swipe-tab" data-filter="501+">৫০১+৳</div>
+    <div class="swipe-tab active" data-filter="all">All</div>
+    <div class="swipe-tab" data-filter="0-100">0-100৳</div>
+    <div class="swipe-tab" data-filter="101-500">101-500৳</div>
+    <div class="swipe-tab" data-filter="501+">501+৳</div>
   </div>
   
   <div class="row" id="tournaments-grid">
@@ -474,322 +904,43 @@ body {
   <!-- Loading indicator -->
   <div id="tournaments-loading" class="text-center py-4">
     <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">লোড হচ্ছে...</span>
+      <span class="visually-hidden">Loading...</span>
     </div>
-    <p class="mt-2">টুর্নামেন্ট লোড হচ্ছে...</p>
+    <p class="mt-2">Loading tournaments...</p>
   </div>
 </div>
 
-<!-- TEAM MANAGEMENT SECTION -->
-<div id="teams-section" class="d-none">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="mb-0">আপনার টিমসমূহ</h3>
-    <button id="btn-create-team" class="btn btn-primary">
-      <i class="fas fa-plus me-2"></i> নতুন টিম তৈরি করুন
-    </button>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-header bg-primary text-white">
-          <i class="fas fa-users me-2"></i> আপনার টিম
-        </div>
-        <div class="card-body" id="user-teams">
-          <!-- Teams will be loaded here -->
-          <div class="empty-state">
-            <i class="fas fa-users text-muted mb-3" style="font-size: 2rem;"></i>
-            <p>আপনি এখনও কোন টিম তৈরি করেননি</p>
-            <button id="btn-create-team-empty" class="btn btn-primary mt-2">
-              টিম তৈরি করুন
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header bg-primary text-white">
-          <i class="fas fa-user-plus me-2"></i> টিম আমন্ত্রণ
-        </div>
-        <div class="card-body" id="team-invitations">
-          <!-- Team invitations will be loaded here -->
-          <div class="empty-state">
-            <i class="fas fa-envelope text-muted mb-3" style="font-size: 2rem;"></i>
-            <p>কোন টিম আমন্ত্রণ নেই</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CREATE TEAM MODAL -->
-<div class="modal fade" id="createTeamModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">নতুন টিম তৈরি করুন</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="team-name" class="form-label">টিম নাম</label>
-          <input type="text" class="form-control" id="team-name" placeholder="আপনার টিমের নাম দিন">
-        </div>
-        <div class="mb-3">
-          <label for="team-tag" class="form-label">টিম ট্যাগ (সংক্ষিপ্ত নাম)</label>
-          <input type="text" class="form-control" id="team-tag" placeholder="যেমন: FFK, BDT">
-        </div>
-        <div class="mb-3">
-          <label for="team-logo" class="form-label">টিম লোগো URL (ঐচ্ছিক)</label>
-          <input type="url" class="form-control" id="team-logo" placeholder="https://example.com/logo.png">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-        <button type="button" class="btn btn-primary" id="btn-confirm-create-team">টিম তৈরি করুন</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TEAM DETAILS MODAL -->
-<div class="modal fade" id="teamDetailsModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="team-modal-title">টিম বিবরণ</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row mb-4">
-          <div class="col-md-3 d-flex align-items-center">
-            <img src="" id="team-modal-logo" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/100'">
-          </div>
-          <div class="col-md-9">
-            <h3 id="team-modal-name"></h3>
-            <h5 class="text-muted" id="team-modal-tag"></h5>
-            <div class="d-flex mt-3">
-              <span class="badge bg-primary me-2" id="team-modal-members">0 সদস্য</span>
-              <span class="badge bg-success" id="team-modal-tournaments">0 টুর্নামেন্ট</span>
-            </div>
-          </div>
-        </div>
-        
-        <ul class="nav nav-tabs" id="teamTabs">
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#team-members">সদস্য</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#team-tournaments">টুর্নামেন্ট</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#team-settings">সেটিংস</a>
-          </li>
-        </ul>
-        
-        <div class="tab-content mt-3">
-          <div class="tab-pane fade show active" id="team-members">
-            <div id="team-members-list">
-              <!-- Team members will be loaded here -->
-            </div>
-            <div class="mt-3">
-              <button class="btn btn-sm btn-primary" id="btn-invite-member">
-                <i class="fas fa-user-plus me-1"></i> সদস্য আমন্ত্রণ করুন
-              </button>
-            </div>
-          </div>
-          
-          <div class="tab-pane fade" id="team-tournaments">
-            <div id="team-tournaments-list">
-              <!-- Team tournaments will be loaded here -->
-              <div class="alert alert-info">
-                এই টিম এখনও কোন টুর্নামেন্টে অংশগ্রহণ করেনি
-              </div>
-            </div>
-          </div>
-          
-          <div class="tab-pane fade" id="team-settings">
-            <form id="team-settings-form">
-              <div class="mb-3">
-                <label for="edit-team-name" class="form-label">টিম নাম</label>
-                <input type="text" class="form-control" id="edit-team-name">
-              </div>
-              <div class="mb-3">
-                <label for="edit-team-tag" class="form-label">টিম ট্যাগ</label>
-                <input type="text" class="form-control" id="edit-team-tag">
-              </div>
-              <div class="mb-3">
-                <label for="edit-team-logo" class="form-label">টিম লোগো URL</label>
-                <input type="url" class="form-control" id="edit-team-logo">
-              </div>
-              <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-danger" id="btn-delete-team">
-                  <i class="fas fa-trash me-1"></i> টিম ডিলিট করুন
-                </button>
-                <button type="submit" class="btn btn-primary">
-                  <i class="fas fa-save me-1"></i> পরিবর্তন সংরক্ষণ করুন
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- INVITE MEMBER MODAL -->
-<div class="modal fade" id="inviteMemberModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">সদস্য আমন্ত্রণ করুন</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="invite-player-id" class="form-label">প্লেয়ার UID বা ইমেইল</label>
-          <input type="text" class="form-control" id="invite-player-id" placeholder="প্লেয়ারের UID বা ইমেইল দিন">
-        </div>
-        <div id="invite-search-results" class="mt-3">
-          <!-- Search results will appear here -->
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-        <button type="button" class="btn btn-primary" id="btn-send-invitation">আমন্ত্রণ পাঠান</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- LEADERBOARD SECTION -->
-<div id="leaderboard-section" class="d-none">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="mb-0">লিডারবোর্ড</h3>
-    <div class="d-flex">
-      <select id="leaderboard-type" class="form-select me-2">
-        <option value="monthly">মাসিক</option>
-        <option value="weekly">সাপ্তাহিক</option>
-        <option value="all-time">সর্বকালের</option>
-      </select>
-      <select id="leaderboard-region" class="form-select">
-        <option value="all">সব অঞ্চল</option>
-        <option value="dhaka">ঢাকা</option>
-        <option value="chittagong">চট্টগ্রাম</option>
-        <option value="khulna">খুলনা</option>
-        <option value="rajshahi">রাজশাহী</option>
-        <option value="sylhet">সিলেট</option>
-      </select>
-    </div>
-  </div>
-  
-  <div class="card">
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
-          <thead class="table-light">
-            <tr>
-              <th style="width: 50px;">#</th>
-              <th>প্লেয়ার</th>
-              <th>পয়েন্ট</th>
-              <th>জয়</th>
-              <th>টুর্নামেন্ট</th>
-              <th>অঞ্চল</th>
-            </tr>
-          </thead>
-          <tbody id="leaderboard-body">
-            <!-- Leaderboard will be loaded here -->
-            <tr>
-              <td colspan="6" class="text-center py-4">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">লোড হচ্ছে...</span>
-                </div>
-                <p class="mt-2">লিডারবোর্ড লোড হচ্ছে...</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- AUTH MODAL WITH OTP SUPPORT -->
+<!-- AUTH MODAL -->
 <div id="auth-modal" class="auth-modal">
   <div class="auth-card position-relative">
     <span class="close-modal">&times;</span>
     <h2 class="text-center mb-4">লগইন / রেজিস্টার</h2>
-    
-    <div id="auth-email-pass">
-      <div class="mb-3">
-        <label for="name" class="form-label">আপনার নাম</label>
-        <input id="name" class="form-control" placeholder="আপনার পুরো নাম লিখুন"/>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">ইমেইল</label>
-        <input id="email" type="email" class="form-control" placeholder="আপনার ইমেইল ঠিকানা"/>
-      </div>
-      <div class="mb-3">
-        <label for="mobile" class="form-label">মোবাইল নম্বর</label>
-        <input id="mobile" type="tel" class="form-control" placeholder="01XXXXXXXXX"/>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">পাসওয়ার্ড</label>
-        <input id="password" type="password" class="form-control" placeholder="কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড"/>
-      </div>
-      <div class="mb-4">
-        <label for="role-select" class="form-label">আপনার ভূমিকা</label>
-        <select id="role-select" class="form-select">
-          <option value="player">প্লেয়ার</option>
-          <option value="organizer">অর্গানাইজার</option>
-        </select>
-      </div>
-      <div class="d-grid gap-2">
-        <button id="btn-register" class="btn btn-primary">
-          <i class="fas fa-user-plus me-2"></i> রেজিস্টার
-        </button>
-        <button id="btn-login" class="btn btn-outline-primary">
-          <i class="fas fa-sign-in-alt me-2"></i> লগইন
-        </button>
-        <button id="btn-show-otp" class="btn btn-link text-primary">
-          <i class="fas fa-mobile-alt me-1"></i> মোবাইল OTP দিয়ে লগইন করুন
-        </button>
-      </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">আপনার নাম</label>
+      <input id="name" class="form-control" placeholder="আপনার পুরো নাম লিখুন"/>
     </div>
-    
-    <div id="auth-otp" style="display: none;">
-      <div class="mb-3">
-        <label for="otp-mobile" class="form-label">মোবাইল নম্বর</label>
-        <input id="otp-mobile" type="tel" class="form-control" placeholder="01XXXXXXXXX"/>
-      </div>
-      <div class="mb-3">
-        <button id="btn-send-otp" class="btn btn-outline-primary w-100">
-          OTP পাঠান
-        </button>
-      </div>
-      <div class="mb-3" id="otp-input-container" style="display: none;">
-        <label for="otp-code" class="form-label">OTP কোড</label>
-        <div class="otp-container">
-          <input type="text" class="otp-input" maxlength="1" data-index="1">
-          <input type="text" class="otp-input" maxlength="1" data-index="2">
-          <input type="text" class="otp-input" maxlength="1" data-index="3">
-          <input type="text" class="otp-input" maxlength="1" data-index="4">
-          <input type="text" class="otp-input" maxlength="1" data-index="5">
-          <input type="text" class="otp-input" maxlength="1" data-index="6">
-        </div>
-      </div>
-      <div class="d-grid gap-2">
-        <button id="btn-verify-otp" class="btn btn-primary" style="display: none;">
-          <i class="fas fa-check-circle me-2"></i> যাচাই করুন
-        </button>
-        <button id="btn-back-to-email" class="btn btn-link text-primary">
-          <i class="fas fa-arrow-left me-1"></i> ইমেইল দিয়ে লগইন করুন
-        </button>
-      </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">ইমেইল</label>
+      <input id="email" type="email" class="form-control" placeholder="আপনার ইমেইল ঠিকানা"/>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">পাসওয়ার্ড</label>
+      <input id="password" type="password" class="form-control" placeholder="কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড"/>
+    </div>
+    <div class="mb-4">
+      <label for="role-select" class="form-label">আপনার ভূমিকা</label>
+      <select id="role-select" class="form-select">
+        <option value="player">Player</option>
+        <option value="organizer">Organizer</option>
+      </select>
+    </div>
+    <div class="d-grid gap-2">
+      <button id="btn-register" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i> Register
+      </button>
+      <button id="btn-login" class="btn btn-outline-primary">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </button>
     </div>
   </div>
 </div>
@@ -798,7 +949,7 @@ body {
 <div id="dash">
   <!-- Welcome and Wallet Section -->
   <div class="row mb-4">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="wallet-card">
         <div class="d-flex justify-content-between align-items-center">
           <div>
@@ -812,34 +963,12 @@ body {
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card h-100">
-        <div class="card-body d-flex flex-column justify-content-center">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="mb-1">রেফার করুন</h6>
-              <p class="small text-muted mb-1">বন্ধুকে রেফার করে ৫০৳ বোনাস পান</p>
-            </div>
-            <button class="btn btn-sm btn-primary" id="btn-share-app">
-              <i class="fas fa-share-alt"></i>
-            </button>
-          </div>
-          <div class="input-group mt-2">
-            <input type="text" class="form-control form-control-sm" id="referral-code" readonly>
-            <button class="btn btn-sm btn-outline-secondary" id="btn-copy-referral">
-              <i class="fas fa-copy"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Mobile swipe tabs for dashboard -->
   <div class="swipe-tabs d-md-none mb-3" id="dashboard-tabs">
-    <div class="swipe-tab active" data-tab="player">প্লেয়ার</div>
-    <div class="swipe-tab" data-tab="organizer">অর্গানাইজার</div>
-    <div class="swipe-tab" data-tab="teams">টিম</div>
+    <div class="swipe-tab active" data-tab="player">Player</div>
+    <div class="swipe-tab" data-tab="organizer">Organizer</div>
   </div>
 
   <div class="row g-4">
@@ -890,8 +1019,38 @@ body {
             <!-- Transactions will be loaded here -->
             <div class="empty-state">
               <i class="fas fa-exchange-alt"></i>
-              <p>কোন ট্রানজেকশন নেই</p>
+              <p>No transactions yet</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player Tournaments Section -->
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-trophy me-2"></i> টুর্নামেন্টসমূহ
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead>
+                <tr>
+                  <th>নাম</th>
+                  <th>ফি</th>
+                  <th>তারিখ</th>
+                  <th>অ্যাকশন</th>
+                </tr>
+              </thead>
+              <tbody id="tournaments-body">
+                <!-- Tournaments will be loaded here -->
+                <tr>
+                  <td colspan="4" class="text-center py-4">
+                    <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
+                    <p class="mb-0">No tournaments joined yet</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -918,7 +1077,7 @@ body {
             <select class="form-select" id="withdraw-method">
               <option value="bkash">bKash</option>
               <option value="nagad">Nagad</option>
-              <option value="bank">ব্যাংক একাউন্ট</option>
+              <option value="bank">Bank Account</option>
             </select>
           </div>
           <button id="btn-withdraw" class="btn btn-primary w-100">
@@ -970,167 +1129,35 @@ body {
           </button>
         </div>
       </div>
-    </div>
-    
-    <!-- TEAMS VIEW -->
-    <div class="col-12" id="teams-view" style="display: none;">
+
+      <!-- Organizer Tournaments Section -->
       <div class="card">
         <div class="card-header bg-primary text-white">
-          <i class="fas fa-users me-2"></i> আপনার টিম ম্যানেজমেন্ট
+          <i class="fas fa-list-alt me-2"></i> আপনার টুর্নামেন্টসমূহ
         </div>
         <div class="card-body">
-          <div class="alert alert-info">
-            <i class="fas fa-info-circle me-2"></i> টিম তৈরি করুন এবং টুর্নামেন্টে অংশগ্রহণ করুন আপনার বন্ধুদের সাথে
-          </div>
-          
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-4">
-                <div class="card-header">
-                  <i class="fas fa-user-friends me-2"></i> আপনার টিমসমূহ
-                </div>
-                <div class="card-body" id="dashboard-teams-list">
-                  <!-- User teams will be loaded here -->
-                  <div class="empty-state">
-                    <i class="fas fa-users text-muted mb-3" style="font-size: 2rem;"></i>
-                    <p>আপনি এখনও কোন টিম তৈরি করেননি</p>
-                    <button class="btn btn-primary mt-2" id="btn-create-team-dashboard">
-                      টিম তৈরি করুন
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header">
-                  <i class="fas fa-trophy me-2"></i> টিম টুর্নামেন্ট
-                </div>
-                <div class="card-body" id="team-tournaments-dashboard">
-                  <!-- Team tournaments will be loaded here -->
-                  <div class="empty-state">
-                    <i class="fas fa-trophy text-muted mb-3" style="font-size: 2rem;"></i>
-                    <p>আপনার টিম এখনও কোন টুর্নামেন্টে অংশগ্রহণ করেনি</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Player Tournaments Section -->
-  <div class="card mb-4">
-    <div class="card-header bg-primary text-white">
-      <i class="fas fa-trophy me-2"></i> টুর্নামেন্টসমূহ
-    </div>
-    <div class="card-body">
-      <ul class="nav nav-tabs" id="tournamentTabs">
-        <li class="nav-item">
-          <a class="nav-link active" data-bs-toggle="tab" href="#joined-tournaments">যোগদান করেছেন</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="tab" href="#upcoming-tournaments">আসন্ন টুর্নামেন্ট</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="tab" href="#completed-tournaments">সম্পন্ন টুর্নামেন্ট</a>
-        </li>
-      </ul>
-      
-      <div class="tab-content mt-3">
-        <div class="tab-pane fade show active" id="joined-tournaments">
           <div class="table-responsive">
             <table class="table table-hover align-middle">
               <thead>
                 <tr>
                   <th>নাম</th>
-                  <th>ফি</th>
-                  <th>তারিখ</th>
+                  <th>স্ট্যাটাস</th>
+                  <th>প্লেয়ার</th>
                   <th>অ্যাকশন</th>
                 </tr>
               </thead>
-              <tbody id="tournaments-body">
-                <!-- Tournaments will be loaded here -->
+              <tbody id="organizer-tournaments-body">
+                <!-- Organizer tournaments will be loaded here -->
                 <tr>
                   <td colspan="4" class="text-center py-4">
                     <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
-                    <p class="mb-0">আপনি এখনও কোন টুর্নামেন্টে যোগ দেননি</p>
+                    <p class="mb-0">No tournaments created yet</p>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        
-        <div class="tab-pane fade" id="upcoming-tournaments">
-          <div class="row" id="upcoming-tournaments-grid">
-            <!-- Upcoming tournaments will be loaded here -->
-            <div class="col-12">
-              <div class="empty-state">
-                <i class="fas fa-trophy text-muted mb-3" style="font-size: 2rem;"></i>
-                <p>কোন আসন্ন টুর্নামেন্ট নেই</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="tab-pane fade" id="completed-tournaments">
-          <div class="table-responsive">
-            <table class="table table-hover align-middle">
-              <thead>
-                <tr>
-                  <th>নাম</th>
-                  <th>ফি</th>
-                  <th>তারিখ</th>
-                  <th>অবস্থান</th>
-                  <th>পুরস্কার</th>
-                </tr>
-              </thead>
-              <tbody id="completed-tournaments-body">
-                <!-- Completed tournaments will be loaded here -->
-                <tr>
-                  <td colspan="5" class="text-center py-4">
-                    <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
-                    <p class="mb-0">কোন সম্পন্ন টুর্নামেন্ট নেই</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Organizer Tournaments Section -->
-  <div class="card" id="organizer-tournaments-card">
-    <div class="card-header bg-primary text-white">
-      <i class="fas fa-list-alt me-2"></i> আপনার টুর্নামেন্টসমূহ
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-hover align-middle">
-          <thead>
-            <tr>
-              <th>নাম</th>
-              <th>স্ট্যাটাস</th>
-              <th>প্লেয়ার</th>
-              <th>অ্যাকশন</th>
-            </tr>
-          </thead>
-          <tbody id="organizer-tournaments-body">
-            <!-- Organizer tournaments will be loaded here -->
-            <tr>
-              <td colspan="4" class="text-center py-4">
-                <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
-                <p class="mb-0">আপনি এখনও কোন টুর্নামেন্ট তৈরি করেননি</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>
@@ -1146,10 +1173,6 @@ body {
   <a href="#" class="mobile-bottom-nav-item" data-section="tournaments">
     <i class="fas fa-trophy"></i>
     <span>টুর্নামেন্ট</span>
-  </a>
-  <a href="#" class="mobile-bottom-nav-item" data-section="teams">
-    <i class="fas fa-users"></i>
-    <span>টিম</span>
   </a>
   <a href="#" class="mobile-bottom-nav-item" data-section="wallet">
     <i class="fas fa-wallet"></i>
@@ -1170,7 +1193,6 @@ body {
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyDX7Z8o5xVJa8cSHvaurZg4FkJvN8mJuto",
@@ -1227,704 +1249,277 @@ const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
 const mobileMenuLogout = document.getElementById('mobile-menu-logout');
 const tournamentsLoading = document.getElementById('tournaments-loading');
 const swipeTabs = document.querySelectorAll('.swipe-tabs .swipe-tab');
-const teamsSection = document.getElementById('teams-section');
-const leaderboardSection = document.getElementById('leaderboard-section');
-const btnCreateTeam = document.getElementById('btn-create-team');
-const btnCreateTeamEmpty = document.getElementById('btn-create-team-empty');
-const btnCreateTeamDashboard = document.getElementById('btn-create-team-dashboard');
-const userTeamsList = document.getElementById('user-teams');
-const dashboardTeamsList = document.getElementById('dashboard-teams-list');
-const teamInvitations = document.getElementById('team-invitations');
-const createTeamModal = new bootstrap.Modal(document.getElementById('createTeamModal'));
-const teamDetailsModal = new bootstrap.Modal(document.getElementById('teamDetailsModal'));
-const inviteMemberModal = new bootstrap.Modal(document.getElementById('inviteMemberModal'));
-const supportChat = document.getElementById('support-chat');
-const btnSupportChat = document.getElementById('btn-support-chat');
-const closeChat = document.getElementById('close-chat');
-const chatMessages = document.getElementById('chat-messages');
-const chatInput = document.getElementById('chat-input');
-const sendMessage = document.getElementById('send-message');
-const pwaInstallPrompt = document.getElementById('pwa-install-prompt');
-const installAppBtn = document.getElementById('install-app');
-const cancelInstallBtn = document.getElementById('cancel-install');
-const btnShareApp = document.getElementById('btn-share-app');
-const referralCode = document.getElementById('referral-code');
-const btnCopyReferral = document.getElementById('btn-copy-referral');
-const authEmailPass = document.getElementById('auth-email-pass');
-const authOTP = document.getElementById('auth-otp');
-const btnShowOTP = document.getElementById('btn-show-otp');
-const btnBackToEmail = document.getElementById('btn-back-to-email');
-const btnSendOTP = document.getElementById('btn-send-otp');
-const otpInputContainer = document.getElementById('otp-input-container');
-const btnVerifyOTP = document.getElementById('btn-verify-otp');
-const otpInputs = document.querySelectorAll('.otp-input');
-const otpMobile = document.getElementById('otp-mobile');
-const mobileInput = document.getElementById('mobile');
-const teamsView = document.getElementById('teams-view');
 
-// New variables for team management
-let currentTeamId = null;
-let deferredPrompt = null;
-
-// Initialize PWA install prompt
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  pwaInstallPrompt.style.display = 'block';
+// Payment method selection
+document.querySelectorAll('.payment-method').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.payment-method').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
 });
 
-installAppBtn.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      pwaInstallPrompt.style.display = 'none';
+// Modal controls
+btnLoginShow.addEventListener('click', () => {
+  authModal.style.display = 'flex';
+});
+
+closeModal.addEventListener('click', () => {
+  authModal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === authModal) {
+    authModal.style.display = 'none';
+  }
+});
+
+// Mobile menu toggle
+mobileMenuBtn.addEventListener('click', () => {
+  mobileMenu.classList.add('show');
+  mobileMenuOverlay.classList.add('show');
+});
+
+mobileMenuClose.addEventListener('click', () => {
+  mobileMenu.classList.remove('show');
+  mobileMenuOverlay.classList.remove('show');
+});
+
+mobileMenuOverlay.addEventListener('click', () => {
+  mobileMenu.classList.remove('show');
+  mobileMenuOverlay.classList.remove('show');
+});
+
+// Mobile bottom nav
+mobileBottomNavItems.forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    mobileBottomNavItems.forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+    
+    // Scroll to section (simplified for demo)
+    const section = this.getAttribute('data-section');
+    if (section === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    deferredPrompt = null;
-  }
-});
-
-cancelInstallBtn.addEventListener('click', () => {
-  pwaInstallPrompt.style.display = 'none';
-});
-
-// Share app functionality
-btnShareApp.addEventListener('click', async () => {
-  try {
-    const uid = auth.currentUser?.uid;
-    if (uid) {
-      const shareData = {
-        title: 'Free Fire Arena',
-        text: 'Free Fire টুর্নামেন্টে অংশগ্রহণ করুন এবং পুরস্কার জিতুন!',
-        url: `https://freefirearena.com?ref=${uid}`
-      };
-      
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        // Fallback for browsers that don't support Web Share API
-        await navigator.clipboard.writeText(shareData.url);
-        alert('রেফারেল লিঙ্ক কপি করা হয়েছে!');
-      }
-    }
-  } catch (err) {
-    console.error('Error sharing:', err);
-  }
-});
-
-// Copy referral code
-btnCopyReferral.addEventListener('click', () => {
-  referralCode.select();
-  document.execCommand('copy');
-  alert('রেফারেল কোড কপি করা হয়েছে!');
-});
-
-// Support chat toggle
-btnSupportChat.addEventListener('click', () => {
-  supportChat.style.display = supportChat.style.display === 'flex' ? 'none' : 'flex';
-});
-
-closeChat.addEventListener('click', () => {
-  supportChat.style.display = 'none';
-});
-
-// Send message in support chat
-sendMessage.addEventListener('click', () => {
-  const message = chatInput.value.trim();
-  if (message && auth.currentUser) {
-    const uid = auth.currentUser.uid;
-    const messageId = db.ref().child(`supportChat/${uid}`).push().key;
-    
-    db.ref(`supportChat/${uid}/${messageId}`).set({
-      message,
-      sender: 'user',
-      timestamp: firebase.database.ServerValue.TIMESTAMP
-    }).then(() => {
-      chatInput.value = '';
-      
-      // Add admin reply after a short delay (simulated)
-      setTimeout(() => {
-        const replyId = db.ref().child(`supportChat/${uid}`).push().key;
-        db.ref(`supportChat/${uid}/${replyId}`).set({
-          message: 'আপনার বার্তার জন্য ধন্যবাদ। আমাদের সাপোর্ট টিম শীঘ্রই আপনার সাথে যোগাযোগ করবে।',
-          sender: 'admin',
-          timestamp: firebase.database.ServerValue.TIMESTAMP
-        });
-      }, 2000);
-    });
-  }
-});
-
-// Load support chat messages
-function loadSupportChat(uid) {
-  db.ref(`supportChat/${uid}`).orderByChild('timestamp').on('value', snap => {
-    const messages = snap.val() || {};
-    chatMessages.innerHTML = '';
-    
-    Object.entries(messages).forEach(([mid, m]) => {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `mb-2 d-flex ${m.sender === 'user' ? 'justify-content-end' : 'justify-content-start'}`;
-      
-      const messageContent = document.createElement('div');
-      messageContent.className = `p-3 rounded ${m.sender === 'user' ? 'bg-primary text-white' : 'bg-light'}`;
-      messageContent.style.maxWidth = '80%';
-      messageContent.textContent = m.message;
-      
-      messageDiv.appendChild(messageContent);
-      chatMessages.appendChild(messageDiv);
-    });
-    
-    // Scroll to bottom
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  });
-}
-
-// Team management functions
-function loadUserTeams(uid) {
-  db.ref(`users/${uid}/teams`).on('value', snap => {
-    const teamIds = snap.val() || {};
-    userTeamsList.innerHTML = '';
-    dashboardTeamsList.innerHTML = '';
-    
-    if (Object.keys(teamIds).length === 0) {
-      userTeamsList.innerHTML = `
-        <div class="empty-state">
-          <i class="fas fa-users text-muted mb-3" style="font-size: 2rem;"></i>
-          <p>আপনি এখনও কোন টিম তৈরি করেননি</p>
-          <button class="btn btn-primary mt-2" id="btn-create-team-empty">
-            টিম তৈরি করুন
-          </button>
-        </div>
-      `;
-      
-      dashboardTeamsList.innerHTML = `
-        <div class="empty-state">
-          <i class="fas fa-users text-muted mb-3" style="font-size: 2rem;"></i>
-          <p>আপনি এখনও কোন টিম তৈরি করেননি</p>
-          <button class="btn btn-primary mt-2" id="btn-create-team-dashboard">
-            টিম তৈরি করুন
-          </button>
-        </div>
-      `;
-      return;
-    }
-    
-    Object.keys(teamIds).forEach(teamId => {
-      db.ref(`teams/${teamId}`).once('value').then(teamSnap => {
-        const team = teamSnap.val();
-        if (team) {
-          renderTeamCard(teamId, team, userTeamsList);
-          renderTeamCard(teamId, team, dashboardTeamsList);
-        }
-      });
-    });
-  });
-}
-
-function renderTeamCard(teamId, team, container) {
-  const teamCard = document.createElement('div');
-  teamCard.className = 'team-card';
-  teamCard.innerHTML = `
-    <div class="d-flex justify-content-between align-items-center mb-2">
-      <h5 class="mb-0">${team.name} <small class="text-muted">${team.tag}</small></h5>
-      <button class="btn btn-sm btn-outline-primary view-team" data-team-id="${teamId}">
-        <i class="fas fa-eye"></i>
-      </button>
-    </div>
-    <div class="d-flex justify-content-between">
-      <small class="text-muted"><i class="fas fa-users me-1"></i> ${team.members ? Object.keys(team.members).length : 1} সদস্য</small>
-      <small class="text-muted"><i class="fas fa-trophy me-1"></i> ${team.tournaments ? Object.keys(team.tournaments).length : 0} টুর্নামেন্ট</small>
-    </div>
-  `;
-  
-  container.appendChild(teamCard);
-  
-  // Add click event to view team
-  teamCard.querySelector('.view-team').addEventListener('click', () => {
-    viewTeamDetails(teamId, team);
-  });
-}
-
-function viewTeamDetails(teamId, team) {
-  currentTeamId = teamId;
-  document.getElementById('team-modal-title').textContent = team.name;
-  document.getElementById('team-modal-name').textContent = team.name;
-  document.getElementById('team-modal-tag').textContent = team.tag;
-  document.getElementById('team-modal-logo').src = team.logo || 'https://via.placeholder.com/100';
-  document.getElementById('team-modal-members').textContent = `${team.members ? Object.keys(team.members).length : 1} সদস্য`;
-  document.getElementById('team-modal-tournaments').textContent = `${team.tournaments ? Object.keys(team.tournaments).length : 0} টুর্নামেন্ট`;
-  
-  // Set form values
-  document.getElementById('edit-team-name').value = team.name;
-  document.getElementById('edit-team-tag').value = team.tag;
-  document.getElementById('edit-team-logo').value = team.logo || '';
-  
-  // Load team members
-  const membersList = document.getElementById('team-members-list');
-  membersList.innerHTML = '';
-  
-  if (team.members) {
-    Object.entries(team.members).forEach(([uid, role]) => {
-      db.ref(`users/${uid}`).once('value').then(userSnap => {
-        const user = userSnap.val();
-        if (user) {
-          const memberDiv = document.createElement('div');
-          memberDiv.className = 'team-member';
-          memberDiv.innerHTML = `
-            <div class="team-member-avatar">
-              <i class="fas fa-user"></i>
-            </div>
-            <div class="flex-grow-1">
-              ${user.name}
-              ${role === 'captain' ? '<span class="captain-badge">ক্যাপ্টেন</span>' : ''}
-            </div>
-            ${role !== 'captain' ? `<button class="btn btn-sm btn-outline-danger remove-member" data-uid="${uid}">
-              <i class="fas fa-times"></i>
-            </button>` : ''}
-          `;
-          
-          membersList.appendChild(memberDiv);
-          
-          // Add remove member event
-          if (role !== 'captain') {
-            memberDiv.querySelector('.remove-member').addEventListener('click', function() {
-              removeTeamMember(teamId, uid);
-            });
-          }
-        }
-      });
-    });
-  }
-  
-  // Load team tournaments
-  const tournamentsList = document.getElementById('team-tournaments-list');
-  tournamentsList.innerHTML = '';
-  
-  if (team.tournaments) {
-    Object.keys(team.tournaments).forEach(tournamentId => {
-      db.ref(`tournaments/${tournamentId}`).once('value').then(tournamentSnap => {
-        const tournament = tournamentSnap.val();
-        if (tournament) {
-          const tournamentDiv = document.createElement('div');
-          tournamentDiv.className = 'mb-2 p-2 border rounded';
-          tournamentDiv.innerHTML = `
-            <div class="d-flex justify-content-between">
-              <strong>${tournament.name}</strong>
-              <span class="badge bg-primary">${tournament.fee}৳</span>
-            </div>
-            <div class="d-flex justify-content-between small text-muted">
-              <span>${formatDate(tournament.date)} ${tournament.time}</span>
-              <span>${team.tournaments[tournamentId].status || 'রেজিস্টার্ড'}</span>
-            </div>
-          `;
-          
-          tournamentsList.appendChild(tournamentDiv);
-        }
-      });
-    });
-  } else {
-    tournamentsList.innerHTML = `
-      <div class="alert alert-info">
-        এই টিম এখনও কোন টুর্নামেন্টে অংশগ্রহণ করেনি
-      </div>
-    `;
-  }
-  
-  teamDetailsModal.show();
-}
-
-function removeTeamMember(teamId, uid) {
-  if (confirm('আপনি কি নিশ্চিত এই সদস্যকে টিম থেকে সরাতে চান?')) {
-    db.ref(`teams/${teamId}/members/${uid}`).remove()
-      .then(() => {
-        db.ref(`users/${uid}/teams/${teamId}`).remove();
-        alert('সদস্য সফলভাবে সরানো হয়েছে');
-      })
-      .catch(err => {
-        alert('ত্রুটি: ' + err.message);
-      });
-  }
-}
-
-// Create new team
-btnCreateTeam.addEventListener('click', () => createTeamModal.show());
-btnCreateTeamEmpty.addEventListener('click', () => createTeamModal.show());
-btnCreateTeamDashboard.addEventListener('click', () => createTeamModal.show());
-
-document.getElementById('btn-confirm-create-team').addEventListener('click', () => {
-  const name = document.getElementById('team-name').value.trim();
-  const tag = document.getElementById('team-tag').value.trim();
-  const logo = document.getElementById('team-logo').value.trim();
-  const uid = auth.currentUser?.uid;
-  
-  if (!name || !tag || !uid) {
-    alert('টিম নাম এবং ট্যাগ অবশ্যই প্রয়োজন');
-    return;
-  }
-  
-  const teamId = db.ref().child('teams').push().key;
-  
-  db.ref(`teams/${teamId}`).set({
-    name,
-    tag,
-    logo: logo || '',
-    captain: uid,
-    members: {
-      [uid]: 'captain'
-    },
-    createdAt: firebase.database.ServerValue.TIMESTAMP
-  }).then(() => {
-    db.ref(`users/${uid}/teams/${teamId}`).set(true);
-    createTeamModal.hide();
-    alert('টিম সফলভাবে তৈরি হয়েছে!');
-  }).catch(err => {
-    alert('ত্রুটি: ' + err.message);
   });
 });
 
-// Invite member to team
-document.getElementById('btn-invite-member').addEventListener('click', () => {
-  inviteMemberModal.show();
-});
-
-document.getElementById('invite-player-id').addEventListener('input', (e) => {
-  const searchTerm = e.target.value.trim();
-  const resultsContainer = document.getElementById('invite-search-results');
-  resultsContainer.innerHTML = '';
-  
-  if (searchTerm.length > 2) {
-    db.ref('users').orderByChild('name').startAt(searchTerm).endAt(searchTerm + '\uf8ff')
-      .once('value')
-      .then(snap => {
-        const users = snap.val() || {};
-        Object.entries(users).forEach(([uid, user]) => {
-          if (uid !== auth.currentUser?.uid) {
-            const userDiv = document.createElement('div');
-            userDiv.className = 'p-2 border-bottom';
-            userDiv.innerHTML = `
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <strong>${user.name}</strong>
-                  <div class="small text-muted">${user.email}</div>
-                </div>
-                <button class="btn btn-sm btn-primary select-player" data-uid="${uid}">
-                  নির্বাচন করুন
-                </button>
-              </div>
-            `;
-            
-            resultsContainer.appendChild(userDiv);
-            
-            // Add select player event
-            userDiv.querySelector('.select-player').addEventListener('click', function() {
-              document.getElementById('invite-player-id').value = user.email;
-              resultsContainer.innerHTML = '';
-            });
-          }
-        });
-        
-        if (Object.keys(users).length === 0) {
-          resultsContainer.innerHTML = '<div class="alert alert-info">কোন প্লেয়ার পাওয়া যায়নি</div>';
-        }
-      });
-  }
-});
-
-document.getElementById('btn-send-invitation').addEventListener('click', () => {
-  const playerId = document.getElementById('invite-player-id').value.trim();
-  const teamId = currentTeamId;
-  
-  if (!playerId || !teamId) {
-    alert('প্লেয়ার এবং টিম নির্বাচন করুন');
-    return;
-  }
-  
-  // Find user by email or UID
-  let query;
-  if (playerId.includes('@')) {
-    query = db.ref('users').orderByChild('email').equalTo(playerId);
-  } else {
-    query = db.ref(`users/${playerId}`);
-  }
-  
-  query.once('value').then(snap => {
-    const user = snap.val();
-    let uid;
+// Dashboard tabs for mobile
+dashboardTabs.forEach(tab => {
+  tab.addEventListener('click', function() {
+    dashboardTabs.forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
     
-    if (user) {
-      if (snap.key) { // Direct UID reference
-        uid = snap.key;
-      } else { // Query result
-        uid = Object.keys(user)[0];
-        user = user[uid];
-      }
-      
-      // Check if user is already in team
-      db.ref(`teams/${teamId}/members/${uid}`).once('value').then(memberSnap => {
-        if (memberSnap.exists()) {
-          alert('এই প্লেয়ার ইতিমধ্যেই টিমের সদস্য');
-        } else {
-          // Send invitation
-          const invitationId = db.ref().child(`users/${uid}/teamInvitations`).push().key;
-          db.ref(`users/${uid}/teamInvitations/${invitationId}`).set({
-            teamId,
-            from: auth.currentUser.uid,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-          }).then(() => {
-            alert('আমন্ত্রণ সফলভাবে পাঠানো হয়েছে');
-            inviteMemberModal.hide();
-          });
-        }
-      });
+    const tabName = this.getAttribute('data-tab');
+    if (tabName === 'player') {
+      playerView.style.display = 'block';
+      organizerView.style.display = 'none';
     } else {
-      alert('প্লেয়ার পাওয়া যায়নি');
+      playerView.style.display = 'none';
+      organizerView.style.display = 'block';
     }
   });
 });
 
-// Load team invitations
-function loadTeamInvitations(uid) {
-  db.ref(`users/${uid}/teamInvitations`).on('value', snap => {
-    const invitations = snap.val() || {};
-    teamInvitations.innerHTML = '';
+// Mobile menu items
+mobileMenuItems.forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    mobileMenu.classList.remove('show');
+    mobileMenuOverlay.classList.remove('show');
     
-    if (Object.keys(invitations).length === 0) {
-      teamInvitations.innerHTML = `
-        <div class="empty-state">
-          <i class="fas fa-envelope text-muted mb-3" style="font-size: 2rem;"></i>
-          <p>কোন টিম আমন্ত্রণ নেই</p>
-        </div>
-      `;
-      return;
+    const section = this.getAttribute('data-section');
+    if (section === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  });
+});
+
+// Mobile menu logout
+mobileMenuLogout.addEventListener('click', () => {
+  auth.signOut();
+});
+
+// Swipe tabs for tournament filters
+swipeTabs.forEach(tab => {
+  tab.addEventListener('click', function() {
+    swipeTabs.forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
     
-    Object.entries(invitations).forEach(([inviteId, invite]) => {
-      db.ref(`teams/${invite.teamId}`).once('value').then(teamSnap => {
-        const team = teamSnap.val();
-        db.ref(`users/${invite.from}`).once('value').then(userSnap => {
-          const user = userSnap.val();
-          
-          const inviteCard = document.createElement('div');
-          inviteCard.className = 'team-card mb-3';
-          inviteCard.innerHTML = `
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0">${team.name}</h5>
-              <small class="text-muted">${formatTime(invite.timestamp)}</small>
-            </div>
-            <p class="small mb-2">আমন্ত্রণ করেছেন: ${user.name}</p>
-            <div class="d-flex">
-              <button class="btn btn-sm btn-success me-2 accept-invite" data-invite-id="${inviteId}" data-team-id="${invite.teamId}">
-                <i class="fas fa-check me-1"></i> গ্রহণ করুন
-              </button>
-              <button class="btn btn-sm btn-danger reject-invite" data-invite-id="${inviteId}">
-                <i class="fas fa-times me-1"></i> প্রত্যাখ্যান
-              </button>
-            </div>
-          `;
-          
-          teamInvitations.appendChild(inviteCard);
-          
-          // Add accept/reject events
-          inviteCard.querySelector('.accept-invite').addEventListener('click', function() {
-            const teamId = this.getAttribute('data-team-id');
-            const inviteId = this.getAttribute('data-invite-id');
-            
-            db.ref(`teams/${teamId}/members/${uid}`).set('member')
-              .then(() => {
-                db.ref(`users/${uid}/teams/${teamId}`).set(true);
-                db.ref(`users/${uid}/teamInvitations/${inviteId}`).remove();
-                alert('আপনি সফলভাবে টিমে যোগ দিয়েছেন!');
-              });
-          });
-          
-          inviteCard.querySelector('.reject-invite').addEventListener('click', function() {
-            const inviteId = this.getAttribute('data-invite-id');
-            db.ref(`users/${uid}/teamInvitations/${inviteId}`).remove();
-          });
-        });
-      });
-    });
+    const filter = this.getAttribute('data-filter');
+    filterTournaments(filter);
+  });
+});
+
+function filterTournaments(filter) {
+  const cards = document.querySelectorAll('.tournament-card');
+  
+  cards.forEach(card => {
+    const feeText = card.querySelector('.fee-badge, .premium-badge').textContent;
+    const fee = parseInt(feeText.replace('৳', ''));
+    
+    let show = false;
+    if (filter === 'all') show = true;
+    else if (filter === '0-100') show = fee >= 0 && fee <= 100;
+    else if (filter === '101-500') show = fee >= 101 && fee <= 500;
+    else if (filter === '501+') show = fee >= 501;
+    
+    card.parentNode.style.display = show ? 'block' : 'none';
   });
 }
 
-// Leaderboard functions
-function loadLeaderboard() {
-  const type = document.getElementById('leaderboard-type').value;
-  const region = document.getElementById('leaderboard-region').value;
-  
-  let query = db.ref('users').orderByChild(`stats/${type}_points`);
-  
-  query.limitToLast(50).once('value').then(snap => {
-    const users = snap.val() || {};
-    const leaderboardBody = document.getElementById('leaderboard-body');
-    leaderboardBody.innerHTML = '';
-    
-    let rankedUsers = [];
-    Object.entries(users).forEach(([uid, user]) => {
-      if (user.stats && user.stats[`${type}_points`] && 
-          (region === 'all' || user.region === region)) {
-        rankedUsers.push({
-          uid,
-          name: user.name,
-          points: user.stats[`${type}_points`] || 0,
-          wins: user.stats[`${type}_wins`] || 0,
-          tournaments: user.stats[`${type}_tournaments`] || 0,
-          region: user.region || 'অজানা'
-        });
+// Notification system
+notificationBell.addEventListener('click', (e) => {
+  e.stopPropagation();
+  notificationDropdown.style.display = notificationDropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close notification dropdown when clicking outside
+document.addEventListener('click', () => {
+  notificationDropdown.style.display = 'none';
+});
+
+markAllRead.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const uid = auth.currentUser.uid;
+  try {
+    const notifications = await db.ref(`users/${uid}/notifications`).once('value');
+    const updates = {};
+    notifications.forEach(notification => {
+      if (!notification.val().read) {
+        updates[`users/${uid}/notifications/${notification.key}/read`] = true;
       }
     });
-    
-    // Sort by points descending
-    rankedUsers.sort((a, b) => b.points - a.points);
-    
-    if (rankedUsers.length === 0) {
-      leaderboardBody.innerHTML = `
-        <tr>
-          <td colspan="6" class="text-center py-4">
-            <i class="fas fa-info-circle text-muted mb-2" style="font-size: 1.5rem;"></i>
-            <p class="mb-0">কোন ডাটা পাওয়া যায়নি</p>
-          </td>
-        </tr>
-      `;
-      return;
-    }
-    
-    rankedUsers.forEach((user, index) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${index + 1}</td>
-        <td>
-          <div class="d-flex align-items-center">
-            <div class="team-member-avatar me-2">
-              <i class="fas fa-user"></i>
-            </div>
-            <div>
-              ${user.name}
-              <div class="small text-muted">UID: ${user.uid.substring(0, 6)}...</div>
-            </div>
-          </div>
-        </td>
-        <td>${user.points}</td>
-        <td>${user.wins}</td>
-        <td>${user.tournaments}</td>
-        <td>${user.region}</td>
-      `;
-      
-      leaderboardBody.appendChild(tr);
-    });
-  });
-}
-
-// OTP Authentication
-btnShowOTP.addEventListener('click', () => {
-  authEmailPass.style.display = 'none';
-  authOTP.style.display = 'block';
-});
-
-btnBackToEmail.addEventListener('click', () => {
-  authEmailPass.style.display = 'block';
-  authOTP.style.display = 'none';
-});
-
-btnSendOTP.addEventListener('click', () => {
-  const mobile = otpMobile.value.trim();
-  
-  if (!mobile || mobile.length !== 11) {
-    alert('সঠিক মোবাইল নম্বর দিন (11 ডিজিট)');
-    return;
-  }
-  
-  // In a real app, you would send this to your backend to send actual OTP via SMS
-  // For demo, we'll just show the OTP input
-  otpInputContainer.style.display = 'block';
-  btnVerifyOTP.style.display = 'block';
-  alert('ডেমো: OTP পাঠানো হয়েছে (123456)');
-});
-
-// Auto-focus OTP inputs
-otpInputs.forEach((input, index) => {
-  input.addEventListener('input', (e) => {
-    if (e.target.value.length === 1 && index < otpInputs.length - 1) {
-      otpInputs[index + 1].focus();
-    }
-  });
-  
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Backspace' && index > 0 && !e.target.value) {
-      otpInputs[index - 1].focus();
-    }
-  });
-});
-
-btnVerifyOTP.addEventListener('click', () => {
-  let otp = '';
-  otpInputs.forEach(input => {
-    otp += input.value;
-  });
-  
-  if (otp.length !== 6) {
-    alert('সম্পূর্ণ OTP কোড দিন');
-    return;
-  }
-  
-  // In a real app, you would verify this OTP with your backend
-  // For demo, we'll just accept any 6-digit code
-  const mobile = otpMobile.value.trim();
-  
-  // Create or sign in user with mobile number
-  // Note: Firebase Auth doesn't support phone auth in web without reCAPTCHA
-  // This is just a demo implementation
-  alert('ডেমো: OTP যাচাই করা হয়েছে। আসল অ্যাপে Firebase Phone Auth ব্যবহার করুন।');
-  
-  // For demo, we'll just sign in with a dummy email
-  auth.signInWithEmailAndPassword(`user_${mobile}@demo.com`, '123456')
-    .then(() => {
-      authModal.style.display = 'none';
-    })
-    .catch(err => {
-      alert('ত্রুটি: ' + err.message);
-    });
-});
-
-// [Rest of your existing JavaScript code remains unchanged]
-// [All your original functions like loadUserData, loadHomeTournaments, etc. remain the same]
-// [I've kept all your original functionality and just added the new features]
-
-// Modified loadUserData to include new features
-function loadUserData(uid) {
-  db.ref('users/' + uid).on('value', snap => {
-    const u = snap.val(); 
-    if (!u) return;
-    
-    welcome.innerHTML = `স্বাগতম, <strong>${u.name}</strong> <span class="badge bg-secondary">${u.role}</span>`; 
-    uidSpan.innerText = uid; 
-    walletSpan.innerText = u.wallet || 0;
-    playerView.style.display = u.role === 'player' ? 'block' : 'none';
-    organizerView.style.display = u.role === 'organizer' ? 'block' : 'none';
-    teamsView.style.display = 'block';
-    
-    // Set referral code
-    referralCode.value = uid;
-    
-    // Load notifications
+    await db.ref().update(updates);
     loadNotifications(uid);
+  } catch (err) {
+    console.error("Error marking notifications as read:", err);
+  }
+});
+
+function loadNotifications(uid) {
+  db.ref(`users/${uid}/notifications`).orderByChild('timestamp').limitToLast(20).on('value', snap => {
+    const notifications = snap.val() || {};
+    notificationList.innerHTML = '';
+    let unreadCount = 0;
     
-    // Load appropriate data based on role
-    if (u.role === 'player') {
-      loadPlayerTournaments(uid);
-      loadTransactionHistory(uid);
-      loadUserTeams(uid);
-      loadTeamInvitations(uid);
-    } else if (u.role === 'organizer') {
-      loadOrganizerTournaments(uid);
+    Object.entries(notifications).reverse().forEach(([nid, n]) => {
+      const emoji = getEmojiForCategory(n.category);
+      const notificationItem = document.createElement('div');
+      notificationItem.className = `notification-item ${n.read ? '' : 'unread'}`;
+      notificationItem.innerHTML = `
+        <div class="d-flex justify-content-between">
+          <span class="notification-category category-${n.category}">
+            ${emoji} ${n.category}
+          </span>
+          <span class="notification-time">${formatTime(n.timestamp)}</span>
+        </div>
+        <div class="notification-title">${n.title}</div>
+        <div class="notification-message">${n.message}</div>
+      `;
+      notificationList.appendChild(notificationItem);
+      
+      if (!n.read) unreadCount++;
+    });
+    
+    // Update badge count
+    if (unreadCount > 0) {
+      notificationCount.textContent = unreadCount > 9 ? '9+' : unreadCount;
+      notificationCount.classList.remove('d-none');
+    } else {
+      notificationCount.classList.add('d-none');
     }
-    
-    // Load support chat if user is logged in
-    loadSupportChat(uid);
   });
 }
 
-// Modified AUTH STATE CHANGE to show support button
+function getEmojiForCategory(category) {
+  switch(category) {
+    case 'info': return 'ℹ️';
+    case 'warning': return '⚠️';
+    case 'success': return '✅';
+    case 'danger': return '❌';
+    case 'payment': return '💳';
+    case 'tournament': return '🏆';
+    default: return '🔔';
+  }
+}
+
+function sendNotification(uid, title, message, category = 'info') {
+  const notificationId = db.ref().child(`users/${uid}/notifications`).push().key;
+  db.ref(`users/${uid}/notifications/${notificationId}`).set({
+    title,
+    message,
+    category,
+    read: false,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  });
+}
+
+// Scroll to top button
+btnScrollTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    btnScrollTop.style.display = 'flex';
+  } else {
+    btnScrollTop.style.display = 'none';
+  }
+});
+
+// REGISTER / LOGIN
+btnRegister.addEventListener('click', async () => {
+  const name = nameIn.value.trim(), 
+        email = emailIn.value.trim(), 
+        pass = passIn.value, 
+        role = roleSelect.value;
+  
+  if (!name || !email || !pass) return alert('সব তথ্য পূরণ করুন');
+  if (pass.length < 6) return alert('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে');
+  
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await db.ref('users/' + cred.user.uid).set({
+      name,
+      email,
+      role,
+      wallet: 0,
+      verified: false,
+      ban: false,
+      createdAt: firebase.database.ServerValue.TIMESTAMP
+    });
+    
+    // Send welcome notification
+    sendNotification(cred.user.uid, 
+      'স্বাগতম!', 
+      `আপনি সফলভাবে ${role} হিসেবে রেজিস্টার করেছেন। FreeFire Arena এ অংশগ্রহণের জন্য আপনাকে ধন্যবাদ!`,
+      'success'
+    );
+    
+    alert('রেজিস্ট্রেশন সফল!');
+    authModal.style.display = 'none';
+  } catch (err) {
+    alert(err.message);
+  }
+});
+
+btnLogin.addEventListener('click', async () => {
+  const email = emailIn.value.trim(), pass = passIn.value;
+  if (!email || !pass) return alert('সব তথ্য পূরণ করুন');
+  
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+    authModal.style.display = 'none';
+  } catch (err) {
+    alert(err.message);
+  }
+});
+
+btnLogoutDash.addEventListener('click', () => auth.signOut());
+btnLogoutBanned.addEventListener('click', () => auth.signOut());
+
+// AUTH STATE CHANGE
 auth.onAuthStateChanged(user => {
   if (user) {
     // Check if user is banned
@@ -1944,7 +1539,6 @@ auth.onAuthStateChanged(user => {
         btnLogoutDash.classList.remove('d-none');
         btnLoginShow.classList.add('d-none');
         notificationBell.classList.remove('d-none');
-        btnSupportChat.classList.remove('d-none');
         mobileBottomNav.classList.remove('d-none');
         loadUserData(user.uid);
       }
@@ -1956,121 +1550,453 @@ auth.onAuthStateChanged(user => {
     btnLogoutDash.classList.add('d-none');
     btnLoginShow.classList.remove('d-none');
     notificationBell.classList.add('d-none');
-    btnSupportChat.classList.add('d-none');
     mobileBottomNav.classList.add('d-none');
     loadHomeTournaments();
   }
 });
 
-// Mobile menu items - updated for new sections
-mobileMenuItems.forEach(item => {
-  item.addEventListener('click', function(e) {
-    e.preventDefault();
-    mobileMenu.classList.remove('show');
-    mobileMenuOverlay.classList.remove('show');
+// LOAD USER DATA
+function loadUserData(uid) {
+  db.ref('users/' + uid).on('value', snap => {
+    const u = snap.val(); 
+    if (!u) return;
     
-    const section = this.getAttribute('data-section');
-    if (section === 'home') {
-      homeDash.style.display = 'block';
-      dash.style.display = 'none';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (section === 'tournaments') {
-      homeDash.style.display = 'block';
-      dash.style.display = 'none';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'none';
-    } else if (section === 'teams') {
-      homeDash.style.display = 'none';
-      dash.style.display = 'block';
-      teamsSection.style.display = 'block';
-      leaderboardSection.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (section === 'leaderboard') {
-      homeDash.style.display = 'none';
-      dash.style.display = 'none';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'block';
-      loadLeaderboard();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (section === 'wallet') {
-      homeDash.style.display = 'none';
-      dash.style.display = 'block';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    welcome.innerHTML = `স্বাগতম, <strong>${u.name}</strong> <span class="badge bg-secondary">${u.role}</span>`; 
+    uidSpan.innerText = uid; 
+    walletSpan.innerText = u.wallet || 0;
+    playerView.style.display = u.role === 'player' ? 'block' : 'none';
+    organizerView.style.display = u.role === 'organizer' ? 'block' : 'none';
+    
+    // Load notifications
+    loadNotifications(uid);
+    
+    // Load appropriate data based on role
+    if (u.role === 'player') {
+      loadPlayerTournaments(uid);
+      loadTransactionHistory(uid);
+    } else if (u.role === 'organizer') {
+      loadOrganizerTournaments(uid);
     }
   });
-});
+}
 
-// Mobile bottom nav - updated for new sections
-mobileBottomNavItems.forEach(item => {
-  item.addEventListener('click', function(e) {
-    e.preventDefault();
-    mobileBottomNavItems.forEach(i => i.classList.remove('active'));
-    this.classList.add('active');
+// LOAD TRANSACTION HISTORY
+function loadTransactionHistory(uid) {
+  db.ref(`transactions/${uid}`).orderByChild('timestamp').limitToLast(20).on('value', snap => {
+    const transactions = snap.val() || {};
+    transactionHistory.innerHTML = '';
     
-    const section = this.getAttribute('data-section');
-    if (section === 'home') {
-      homeDash.style.display = 'block';
-      dash.style.display = 'none';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (section === 'tournaments') {
-      homeDash.style.display = 'block';
-      dash.style.display = 'none';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'none';
-    } else if (section === 'teams') {
-      homeDash.style.display = 'none';
-      dash.style.display = 'block';
-      teamsSection.style.display = 'block';
-      leaderboardSection.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (section === 'wallet') {
-      homeDash.style.display = 'none';
-      dash.style.display = 'block';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (section === 'profile') {
-      homeDash.style.display = 'none';
-      dash.style.display = 'block';
-      teamsSection.style.display = 'none';
-      leaderboardSection.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (Object.keys(transactions).length === 0) {
+      transactionHistory.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-exchange-alt"></i>
+          <p>No transactions yet</p>
+        </div>
+      `;
+      return;
+    }
+    
+    Object.entries(transactions).reverse().forEach(([tid, t]) => {
+      const transactionItem = document.createElement('div');
+      transactionItem.className = 'transaction-item';
+      
+      const emoji = t.type === 'deposit' ? '⬆️' : '⬇️';
+      const amountClass = t.type === 'deposit' ? 'positive' : 'negative';
+      
+      transactionItem.innerHTML = `
+        <div>
+          <div class="transaction-details">${emoji} ${t.description || 'Transaction'}</div>
+          <small class="text-muted">${formatTime(t.timestamp)}</small>
+        </div>
+        <div class="transaction-amount ${amountClass}">${t.type === 'deposit' ? '+' : '-'}${t.amount}৳</div>
+      `;
+      
+      transactionHistory.appendChild(transactionItem);
+    });
+  });
+}
+
+// LOAD PLAYER TOURNAMENTS
+function loadPlayerTournaments(uid) {
+  db.ref('tournaments').orderByChild('status').equalTo('approved').on('value', snap => {
+    const tournaments = snap.val() || {};
+    tournamentsBody.innerHTML = '';
+    
+    if (Object.keys(tournaments).length === 0) {
+      tournamentsBody.innerHTML = `
+        <tr>
+          <td colspan="4" class="text-center py-4">
+            <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
+            <p class="mb-0">No tournaments available</p>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+    
+    Object.entries(tournaments).forEach(([tid, t]) => {
+      db.ref('users/' + t.organizer).once('value').then(uSnap => {
+        const organizer = uSnap.val() || {};
+        
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${t.name}</td>
+          <td>${t.fee}৳</td>
+          <td>${formatDate(t.date)} ${t.time}</td>
+          <td>
+            <button class="btn btn-sm btn-primary join-tournament" data-tid="${tid}" data-fee="${t.fee}">
+              Join
+            </button>
+          </td>
+        `;
+        
+        tournamentsBody.appendChild(tr);
+        
+        // Add join tournament event
+        tr.querySelector('.join-tournament').addEventListener('click', async function() {
+          const tournamentId = this.getAttribute('data-tid');
+          const fee = parseInt(this.getAttribute('data-fee'));
+          
+          // Check wallet balance
+          const userSnap = await db.ref('users/' + uid).once('value');
+          const user = userSnap.val();
+          
+          if (user.wallet < fee) {
+            alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।');
+            return;
+          }
+          
+          // Check if already joined
+          const joinedSnap = await db.ref(`tournaments/${tournamentId}/players/${uid}`).once('value');
+          if (joinedSnap.exists()) {
+            alert('আপনি ইতিমধ্যে এই টুর্নামেন্টে যোগ দিয়েছেন!');
+            return;
+          }
+          
+          // Deduct fee and join tournament
+          try {
+            await db.ref(`tournaments/${tournamentId}/players/${uid}`).set(true);
+            await db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee);
+            await db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
+            
+            // Record transaction
+            const transactionId = db.ref().child(`transactions/${uid}`).push().key;
+            await db.ref(`transactions/${uid}/${transactionId}`).set({
+              type: 'withdraw',
+              amount: fee,
+              description: `Joined tournament: ${t.name}`,
+              timestamp: firebase.database.ServerValue.TIMESTAMP
+            });
+            
+            // Send notification to organizer
+            sendNotification(t.organizer, 
+              'নতুন প্লেয়ার যোগ দিয়েছে', 
+              `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
+              'tournament'
+            );
+            
+            // Send notification to player
+            sendNotification(uid,
+              'টুর্নামেন্টে যোগদান সফল',
+              `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`,
+              'success'
+            );
+            
+            alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
+          } catch (err) {
+            alert('ত্রুটি: ' + err.message);
+          }
+        });
+      });
+    });
+  });
+}
+
+// LOAD ORGANIZER TOURNAMENTS
+function loadOrganizerTournaments(uid) {
+  db.ref('tournaments').orderByChild('organizer').equalTo(uid).on('value', snap => {
+    const tournaments = snap.val() || {};
+    organizerTournamentsBody.innerHTML = '';
+    
+    if (Object.keys(tournaments).length === 0) {
+      organizerTournamentsBody.innerHTML = `
+        <tr>
+          <td colspan="4" class="text-center py-4">
+            <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
+            <p class="mb-0">No tournaments created yet</p>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+    
+    Object.entries(tournaments).forEach(([tid, t]) => {
+      // Count players
+      const playerCount = t.players ? Object.keys(t.players).length : 0;
+      
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${t.name}</td>
+        <td>
+          <span class="badge ${getStatusBadgeClass(t.status)}">
+            ${t.status}
+          </span>
+        </td>
+        <td>${playerCount}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary view-tournament" data-tid="${tid}">
+            View
+          </button>
+        </td>
+      `;
+      
+      organizerTournamentsBody.appendChild(tr);
+      
+      // Add view tournament event
+      tr.querySelector('.view-tournament').addEventListener('click', function() {
+        const tournamentId = this.getAttribute('data-tid');
+        viewTournamentDetails(tournamentId, tournaments[tournamentId]);
+      });
+    });
+  });
+}
+
+function getStatusBadgeClass(status) {
+  switch(status) {
+    case 'approved': return 'bg-success';
+    case 'pending': return 'bg-warning';
+    case 'rejected': return 'bg-danger';
+    default: return 'bg-secondary';
+  }
+}
+
+function viewTournamentDetails(tid, tournament) {
+  // Create a modal to show tournament details
+  const modal = document.createElement('div');
+  modal.className = 'modal fade';
+  modal.id = 'tournamentModal';
+  modal.innerHTML = `
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">${tournament.name}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ${tournament.image ? `<img src="${tournament.image}" class="img-fluid mb-3 rounded" alt="Tournament Image">` : ''}
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Entry Fee:</strong> ${tournament.fee}৳</p>
+              <p><strong>Date:</strong> ${formatDate(tournament.date)}</p>
+              <p><strong>Time:</strong> ${tournament.time}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Status:</strong> <span class="badge ${getStatusBadgeClass(tournament.status)}">${tournament.status}</span></p>
+              <p><strong>Players Joined:</strong> ${tournament.players ? Object.keys(tournament.players).length : 0}</p>
+              <p><strong>Total Earnings:</strong> ${tournament.players ? Object.keys(tournament.players).length * tournament.fee : 0}৳</p>
+            </div>
+          </div>
+          ${tournament.prize ? `<div class="mb-3"><strong>Prize:</strong><br>${tournament.prize}</div>` : ''}
+          
+          <h5 class="mt-4 mb-3">Joined Players</h5>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>UID</th>
+                </tr>
+              </thead>
+              <tbody id="tournamentPlayersList">
+                <!-- Players will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Load Bootstrap modal
+  const modalInstance = new bootstrap.Modal(document.getElementById('tournamentModal'));
+  modalInstance.show();
+  
+  // Load players list
+  const playersList = document.getElementById('tournamentPlayersList');
+  if (tournament.players) {
+    Object.keys(tournament.players).forEach(playerId => {
+      db.ref(`users/${playerId}`).once('value').then(snap => {
+        const player = snap.val();
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${player.name}</td>
+          <td>${playerId}</td>
+        `;
+        playersList.appendChild(tr);
+      });
+    });
+  }
+  
+  // Remove modal when closed
+  document.getElementById('tournamentModal').addEventListener('hidden.bs.modal', function() {
+    this.remove();
+  });
+}
+
+// LOAD HOME TOURNAMENTS (Grid View)
+function loadHomeTournaments() {
+  tournamentsLoading.style.display = 'block';
+  
+  db.ref('tournaments').orderByChild('status').equalTo('approved').on('value', snap => {
+    const tournaments = snap.val() || {};
+    tournamentsGrid.innerHTML = '';
+    tournamentsLoading.style.display = 'none';
+    
+    if (Object.keys(tournaments).length === 0) {
+      tournamentsGrid.innerHTML = `
+        <div class="col-12">
+          <div class="empty-state">
+            <i class="fas fa-trophy"></i>
+            <h5>No tournaments available</h5>
+            <p>Check back later for upcoming tournaments</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+    
+    Object.entries(tournaments).forEach(([tid, t]) => {
+      db.ref('users/' + t.organizer).once('value').then(uSnap => {
+        const organizer = uSnap.val() || {};
+        
+        // Check if tournament is premium
+        const isPremium = t.premium || false;
+        
+        const card = document.createElement('div');
+        card.className = 'col-md-6 col-lg-4';
+        card.innerHTML = `
+          <div class="tournament-card ${isPremium ? 'premium pulse' : ''}">
+            ${isPremium ? '<span class="premium-badge"><i class="fas fa-crown me-1"></i> Premium</span>' : ''}
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <span>${t.name}</span>
+              <span class="${isPremium ? 'premium-badge' : 'fee-badge'}">${t.fee}৳</span>
+            </div>
+            ${t.image ? `<img src="${t.image}" class="tournament-image" alt="${t.name}">` : ''}
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-2">
+                <div>
+                  <i class="fas fa-user-tie me-2"></i>
+                  <span>${organizer.name}</span>
+                  ${organizer.verified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+                </div>
+              </div>
+              <div class="date-time mb-3">
+                <i class="far fa-calendar-alt me-2"></i>
+                ${formatDate(t.date)} at ${t.time}
+              </div>
+              ${t.prize ? `<div class="mb-3"><strong>Prize:</strong> ${t.prize}</div>` : ''}
+              <button class="btn btn-primary w-100 join-tournament-btn" data-tid="${tid}" data-fee="${t.fee}">
+                ${auth.currentUser ? 'Join Tournament' : 'Login to Join'}
+              </button>
+            </div>
+          </div>
+        `;
+        
+        tournamentsGrid.appendChild(card);
+        
+        // Add join button event
+        card.querySelector('.join-tournament-btn').addEventListener('click', function() {
+          if (!auth.currentUser) {
+            authModal.style.display = 'flex';
+          } else {
+            const tournamentId = this.getAttribute('data-tid');
+            const fee = parseInt(this.getAttribute('data-fee'));
+            
+            // Check wallet balance
+            db.ref('users/' + auth.currentUser.uid).once('value').then(snap => {
+              const user = snap.val();
+              
+              if (user.wallet < fee) {
+                alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।');
+                return;
+              }
+              
+              // Check if already joined
+              db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).once('value').then(joinedSnap => {
+                if (joinedSnap.exists()) {
+                  alert('আপনি ইতিমধ্যে এই টুর্নামেন্টে যোগ দিয়েছেন!');
+                  return;
+                }
+                
+                // Deduct fee and join tournament
+                db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).set(true)
+                  .then(() => {
+                    return db.ref(`users/${auth.currentUser.uid}/wallet`).transaction(current => (current || 0) - fee);
+                  })
+                  .then(() => {
+                    return db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
+                  })
+                  .then(() => {
+                    // Record transaction
+                    const transactionId = db.ref().child(`transactions/${auth.currentUser.uid}`).push().key;
+                    return db.ref(`transactions/${auth.currentUser.uid}/${transactionId}`).set({
+                      type: 'withdraw',
+                      amount: fee,
+                      description: `Joined tournament: ${t.name}`,
+                      timestamp: firebase.database.ServerValue.TIMESTAMP
+                    });
+                  })
+                  .then(() => {
+                    // Send notification to organizer
+                    sendNotification(t.organizer, 
+                      'নতুন প্লেয়ার যোগ দিয়েছে', 
+                      `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
+                      'tournament'
+                    );
+                    
+                    // Send notification to player
+                    sendNotification(auth.currentUser.uid,
+                      'টুর্নামেন্টে যোগদান সফল',
+                      `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`,
+                      'success'
+                    );
+                    
+                    alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
+                  })
+                  .catch(err => {
+                    alert('ত্রুটি: ' + err.message);
+                  });
+              });
+            });
+          }
+        });
+      });
+    });
+    
+    // Show only one premium tournament at the top
+    const premiumTournaments = document.querySelectorAll('.tournament-card.premium');
+    if (premiumTournaments.length > 0) {
+      tournamentsGrid.insertBefore(premiumTournaments[0].parentNode, tournamentsGrid.firstChild);
     }
   });
-});
+}
 
-// Dashboard tabs for mobile - updated for teams view
-dashboardTabs.forEach(tab => {
-  tab.addEventListener('click', function() {
-    dashboardTabs.forEach(t => t.classList.remove('active'));
-    this.classList.add('active');
-    
-    const tabName = this.getAttribute('data-tab');
-    if (tabName === 'player') {
-      playerView.style.display = 'block';
-      organizerView.style.display = 'none';
-      teamsView.style.display = 'none';
-    } else if (tabName === 'organizer') {
-      playerView.style.display = 'none';
-      organizerView.style.display = 'block';
-      teamsView.style.display = 'none';
-    } else if (tabName === 'teams') {
-      playerView.style.display = 'none';
-      organizerView.style.display = 'none';
-      teamsView.style.display = 'block';
-    }
-  });
-});
+// Format date to display nicely
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+}
 
-// Leaderboard type/region change
-document.getElementById('leaderboard-type').addEventListener('change', loadLeaderboard);
-document.getElementById('leaderboard-region').addEventListener('change', loadLeaderboard);
+// Format time to display nicely
+function formatTime(timestamp) {
+  const options = { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' };
+  return new Date(timestamp).toLocaleDateString('en-US', options);
+}
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
@@ -2081,23 +2007,173 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHomeTournaments();
   }
   
-  // Check if app is running as PWA
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    console.log('Running as PWA');
-  }
-  
-  // Check connection status for offline support
-  window.addEventListener('online', () => {
-    console.log('Online');
-    // You could add a notification that connection is restored
+  // Implement search functionality
+  searchTournaments.addEventListener('input', () => {
+    const searchTerm = searchTournaments.value.toLowerCase();
+    const cards = document.querySelectorAll('.tournament-card');
+    
+    cards.forEach(card => {
+      const name = card.querySelector('.card-header span').textContent.toLowerCase();
+      if (name.includes(searchTerm)) {
+        card.parentNode.style.display = 'block';
+      } else {
+        card.parentNode.style.display = 'none';
+      }
+    });
   });
   
-  window.addEventListener('offline', () => {
-    console.log('Offline');
-    // You could add a notification that app is running offline
+  filterFee.addEventListener('change', () => {
+    const feeRange = filterFee.value;
+    filterTournaments(feeRange);
   });
   
-  // [Rest of your existing initialization code]
+  // Add balance functionality
+  document.getElementById('btn-add-balance').addEventListener('click', async () => {
+    const amount = parseInt(document.getElementById('add-amount').value);
+    const number = document.getElementById('add-number').value;
+    const method = document.querySelector('.payment-method.active').getAttribute('data-method');
+    
+    if (!amount || amount <= 0 || !number || number.length !== 11) {
+      alert('সঠিক তথ্য প্রদান করুন');
+      return;
+    }
+    
+    const uid = auth.currentUser.uid;
+    const requestId = db.ref().child('paymentRequests').push().key;
+    
+    try {
+      await db.ref(`paymentRequests/${requestId}`).set({
+        userId: uid,
+        amount,
+        number,
+        method,
+        status: 'pending',
+        type: 'deposit',
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+      
+      // Send notification to user
+      sendNotification(uid,
+        'ব্যালেন্স রিকোয়েস্ট জমা হয়েছে',
+        `আপনার ${amount}৳ ব্যালেন্স যোগের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।`,
+        'payment'
+      );
+      
+      alert('আপনার রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।');
+      document.getElementById('add-amount').value = '';
+      document.getElementById('add-number').value = '';
+    } catch (err) {
+      alert('ত্রুটি: ' + err.message);
+    }
+  });
+  
+  // Withdraw functionality
+  document.getElementById('btn-withdraw').addEventListener('click', async () => {
+    const amount = parseInt(document.getElementById('withdraw-amount').value);
+    const number = document.getElementById('withdraw-number').value;
+    const method = document.getElementById('withdraw-method').value;
+    
+    if (!amount || amount <= 0 || !number || number.length !== 11) {
+      alert('সঠিক তথ্য প্রদান করুন');
+      return;
+    }
+    
+    const uid = auth.currentUser.uid;
+    
+    // Check wallet balance
+    const userSnap = await db.ref(`users/${uid}`).once('value');
+    const user = userSnap.val();
+    
+    if (user.wallet < amount) {
+      alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই।');
+      return;
+    }
+    
+    const requestId = db.ref().child('paymentRequests').push().key;
+    
+    try {
+      await db.ref(`paymentRequests/${requestId}`).set({
+        userId: uid,
+        amount,
+        number,
+        method,
+        status: 'pending',
+        type: 'withdraw',
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+      
+      // Send notification to user
+      sendNotification(uid,
+        'উত্তোলনের রিকোয়েস্ট জমা হয়েছে',
+        `আপনার ${amount}৳ উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।`,
+        'payment'
+      );
+      
+      alert('আপনার উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।');
+      document.getElementById('withdraw-amount').value = '';
+      document.getElementById('withdraw-number').value = '';
+    } catch (err) {
+      alert('ত্রুটি: ' + err.message);
+    }
+  });
+  
+  // Create tournament functionality
+  document.getElementById('btn-create-t').addEventListener('click', async () => {
+    const name = document.getElementById('t-name').value.trim();
+    const fee = parseInt(document.getElementById('t-fee').value);
+    const image = document.getElementById('t-image').value.trim();
+    const date = document.getElementById('t-date').value;
+    const time = document.getElementById('t-time').value;
+    const prize = document.getElementById('t-prize').value.trim();
+    const premium = document.getElementById('t-premium').checked;
+    
+    if (!name || !fee || fee < 0 || !date || !time) {
+      alert('সব প্রয়োজনীয় তথ্য প্রদান করুন');
+      return;
+    }
+    
+    const uid = auth.currentUser.uid;
+    const tournamentId = db.ref().child('tournaments').push().key;
+    
+    try {
+      await db.ref(`tournaments/${tournamentId}`).set({
+        name,
+        fee,
+        image,
+        date,
+        time,
+        prize: prize || '',
+        organizer: uid,
+        premium,
+        status: 'pending',
+        createdAt: firebase.database.ServerValue.TIMESTAMP
+      });
+      
+      // Send notification to organizer
+      sendNotification(uid,
+        'টুর্নামেন্ট তৈরি হয়েছে',
+        `আপনার "${name}" টুর্নামেন্ট তৈরি হয়েছে। এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।`,
+        'tournament'
+      );
+      
+      alert('আপনার টুর্নামেন্ট তৈরি হয়েছে! এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।');
+      document.getElementById('t-name').value = '';
+      document.getElementById('t-fee').value = '';
+      document.getElementById('t-image').value = '';
+      document.getElementById('t-date').value = '';
+      document.getElementById('t-time').value = '';
+      document.getElementById('t-prize').value = '';
+      document.getElementById('t-premium').checked = false;
+    } catch (err) {
+      alert('ত্রুটি: ' + err.message);
+    }
+  });
+});
+
+// Initialize Bootstrap tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
 });
 </script>
 </body>
