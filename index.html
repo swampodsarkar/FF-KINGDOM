@@ -265,14 +265,13 @@ body {
   height: 100%;
   background: var(--banned-bg);
   z-index: 9999;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   color: white;
   text-align: center;
   padding: 20px;
-  display: none;
 }
 
 .banned-icon {
@@ -769,6 +768,156 @@ body {
     font-size: 16px;
   }
 }
+
+/* Player Team Styles */
+.player-team {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.player-team-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 0.8rem;
+}
+
+.player-team-name {
+  font-size: 0.9rem;
+}
+
+.player-team-status {
+  margin-left: auto;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.status-solo {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-squad {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+/* Tournament Players Count */
+.tournament-players-count {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+/* Sticker Styles */
+.sticker {
+  font-size: 2rem;
+  margin: 0 5px;
+  display: inline-block;
+  animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+/* Player Type Badges */
+.player-type-badge {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 5px;
+}
+
+.badge-solo {
+  background-color: #bbdefb;
+  color: #0d47a1;
+}
+
+.badge-squad {
+  background-color: #c8e6c9;
+  color: #1b5e20;
+}
+
+/* Tournament Prize Sticker */
+.prize-sticker {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Mobile Tournament Card Enhancements */
+@media (max-width: 576px) {
+  .tournament-card .card-body {
+    padding: 10px;
+  }
+  
+  .tournament-card .btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .tournament-players-count {
+    font-size: 0.7rem;
+    padding: 2px 5px;
+  }
+}
+
+/* Player Join Button Animation */
+.join-tournament-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.join-tournament-btn:after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.1);
+  transform: rotate(30deg);
+  transition: all 0.3s;
+}
+
+.join-tournament-btn:hover:after {
+  left: 100%;
+}
+
+/* Quick Balance Add Button */
+.quick-add-balance {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.quick-add-balance:hover {
+  background-color: #388e3c;
+}
 </style>
 </head>
 <body>
@@ -790,7 +939,7 @@ body {
       <span class="support-sticker">🆘</span>
     </div>
     <p>ইমেইল: support@freefirearena.com</p>
-    <p>ফোন: 017XX-XXXXXX</p>
+    <p>ফোন: 01767882562</p>
     <button id="btn-logout-banned" class="btn btn-outline-light mt-3">
       <i class="fas fa-sign-out-alt me-2"></i> লগআউট
     </button>
@@ -982,11 +1131,19 @@ body {
         <div class="card-body">
           <div class="mb-3">
             <label for="add-amount" class="form-label">টাকার পরিমাণ</label>
-            <input id="add-amount" type="number" class="form-control" placeholder="যত টাকা যোগ করতে চান"/>
+            <div class="input-group">
+              <input id="add-amount" type="number" class="form-control" placeholder="যত টাকা যোগ করতে চান"/>
+              <button class="btn btn-outline-secondary quick-add-balance" data-amount="100">+100৳</button>
+              <button class="btn btn-outline-secondary quick-add-balance" data-amount="500">+500৳</button>
+            </div>
           </div>
           <div class="mb-3">
             <label for="add-number" class="form-label">মোবাইল নম্বর</label>
-            <input id="add-number" type="text" class="form-control" placeholder="017XXXXXXXX"/>
+            <input id="add-number" type="text" class="form-control" value="01767882562" placeholder="017XXXXXXXX"/>
+          </div>
+          <div class="mb-3">
+            <label for="transaction-id" class="form-label">ট্রানজেকশন ID</label>
+            <input id="transaction-id" type="text" class="form-control" placeholder="TRX123456789"/>
           </div>
           <div class="mb-3">
             <label class="form-label">পেমেন্ট মাধ্যম</label>
@@ -1124,6 +1281,13 @@ body {
             <input type="checkbox" class="form-check-input" id="t-premium">
             <label class="form-check-label" for="t-premium">প্রিমিয়াম টুর্নামেন্ট (বিশেষ প্রদর্শন)</label>
           </div>
+          <div class="mb-3">
+            <label for="t-team-type" class="form-label">টিম টাইপ</label>
+            <select id="t-team-type" class="form-select">
+              <option value="solo">Solo</option>
+              <option value="squad">Squad</option>
+            </select>
+          </div>
           <button id="btn-create-t" class="btn btn-primary w-100">
             <i class="fas fa-check-circle me-2"></i> টুর্নামেন্ট তৈরি করুন
           </button>
@@ -1249,12 +1413,21 @@ const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
 const mobileMenuLogout = document.getElementById('mobile-menu-logout');
 const tournamentsLoading = document.getElementById('tournaments-loading');
 const swipeTabs = document.querySelectorAll('.swipe-tabs .swipe-tab');
+const transactionIdInput = document.getElementById('transaction-id');
 
 // Payment method selection
 document.querySelectorAll('.payment-method').forEach(btn => {
   btn.addEventListener('click', function() {
     document.querySelectorAll('.payment-method').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
+  });
+});
+
+// Quick add balance buttons
+document.querySelectorAll('.quick-add-balance').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const amount = parseInt(this.getAttribute('data-amount'));
+    document.getElementById('add-amount').value = amount;
   });
 });
 
@@ -1564,19 +1737,21 @@ function loadUserData(uid) {
     welcome.innerHTML = `স্বাগতম, <strong>${u.name}</strong> <span class="badge bg-secondary">${u.role}</span>`; 
     uidSpan.innerText = uid; 
     walletSpan.innerText = u.wallet || 0;
-    playerView.style.display = u.role === 'player' ? 'block' : 'none';
-    organizerView.style.display = u.role === 'organizer' ? 'block' : 'none';
     
-    // Load notifications
-    loadNotifications(uid);
-    
-    // Load appropriate data based on role
+    // Show/hide panels based on role
     if (u.role === 'player') {
+      playerView.style.display = 'block';
+      organizerView.style.display = 'none';
       loadPlayerTournaments(uid);
       loadTransactionHistory(uid);
     } else if (u.role === 'organizer') {
+      playerView.style.display = 'none';
+      organizerView.style.display = 'block';
       loadOrganizerTournaments(uid);
     }
+    
+    // Load notifications
+    loadNotifications(uid);
   });
 }
 
@@ -1675,7 +1850,11 @@ function loadPlayerTournaments(uid) {
           
           // Deduct fee and join tournament
           try {
-            await db.ref(`tournaments/${tournamentId}/players/${uid}`).set(true);
+            await db.ref(`tournaments/${tournamentId}/players/${uid}`).set({
+              joinedAt: firebase.database.ServerValue.TIMESTAMP,
+              teamType: t.teamType || 'solo',
+              playerName: user.name
+            });
             await db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee);
             await db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
             
@@ -1789,6 +1968,7 @@ function viewTournamentDetails(tid, tournament) {
               <p><strong>Entry Fee:</strong> ${tournament.fee}৳</p>
               <p><strong>Date:</strong> ${formatDate(tournament.date)}</p>
               <p><strong>Time:</strong> ${tournament.time}</p>
+              <p><strong>Team Type:</strong> <span class="badge ${tournament.teamType === 'solo' ? 'badge-solo' : 'badge-squad'}">${tournament.teamType}</span></p>
             </div>
             <div class="col-md-6">
               <p><strong>Status:</strong> <span class="badge ${getStatusBadgeClass(tournament.status)}">${tournament.status}</span></p>
@@ -1803,8 +1983,9 @@ function viewTournamentDetails(tid, tournament) {
             <table class="table table-sm">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>UID</th>
+                  <th>Player</th>
+                  <th>Team Type</th>
+                  <th>Joined At</th>
                 </tr>
               </thead>
               <tbody id="tournamentPlayersList">
@@ -1829,13 +2010,26 @@ function viewTournamentDetails(tid, tournament) {
   // Load players list
   const playersList = document.getElementById('tournamentPlayersList');
   if (tournament.players) {
-    Object.keys(tournament.players).forEach(playerId => {
+    Object.entries(tournament.players).forEach(([playerId, playerData]) => {
       db.ref(`users/${playerId}`).once('value').then(snap => {
         const player = snap.val();
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${player.name}</td>
-          <td>${playerId}</td>
+          <td>
+            <div class="player-team">
+              <div class="player-team-avatar">${player.name.charAt(0).toUpperCase()}</div>
+              <div class="player-team-name">${player.name}</div>
+              <span class="player-team-status ${playerData.teamType === 'solo' ? 'status-solo' : 'status-squad'}">
+                ${playerData.teamType}
+              </span>
+            </div>
+          </td>
+          <td>
+            <span class="player-type-badge ${playerData.teamType === 'solo' ? 'badge-solo' : 'badge-squad'}">
+              ${playerData.teamType}
+            </span>
+          </td>
+          <td>${formatTime(playerData.joinedAt)}</td>
         `;
         playersList.appendChild(tr);
       });
@@ -1877,6 +2071,12 @@ function loadHomeTournaments() {
         // Check if tournament is premium
         const isPremium = t.premium || false;
         
+        // Count players
+        const playerCount = t.players ? Object.keys(t.players).length : 0;
+        
+        // Get team type sticker
+        const teamSticker = t.teamType === 'solo' ? '👤' : '👥';
+        
         const card = document.createElement('div');
         card.className = 'col-md-6 col-lg-4';
         card.innerHTML = `
@@ -1886,7 +2086,11 @@ function loadHomeTournaments() {
               <span>${t.name}</span>
               <span class="${isPremium ? 'premium-badge' : 'fee-badge'}">${t.fee}৳</span>
             </div>
-            ${t.image ? `<img src="${t.image}" class="tournament-image" alt="${t.name}">` : ''}
+            ${t.image ? `<img src="${t.image}" class="tournament-image" alt="${t.name}">` : `
+              <div class="tournament-image bg-light d-flex align-items-center justify-content-center">
+                <i class="fas fa-trophy" style="font-size: 3rem; color: #4361ee;"></i>
+              </div>
+            `}
             <div class="card-body">
               <div class="d-flex justify-content-between mb-2">
                 <div>
@@ -1894,12 +2098,24 @@ function loadHomeTournaments() {
                   <span>${organizer.name}</span>
                   ${organizer.verified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
                 </div>
+                <div>
+                  ${teamSticker} ${t.teamType === 'solo' ? 'Solo' : 'Squad'}
+                </div>
               </div>
               <div class="date-time mb-3">
                 <i class="far fa-calendar-alt me-2"></i>
                 ${formatDate(t.date)} at ${t.time}
               </div>
-              ${t.prize ? `<div class="mb-3"><strong>Prize:</strong> ${t.prize}</div>` : ''}
+              ${t.prize ? `<div class="mb-3"><span class="prize-sticker">🏆</span><strong>Prize:</strong> ${t.prize}</div>` : ''}
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <span class="sticker">🎮</span>
+                  <span>${playerCount} Players Joined</span>
+                </div>
+                <div class="tournament-players-count">
+                  <i class="fas fa-users me-1"></i> ${playerCount}
+                </div>
+              </div>
               <button class="btn btn-primary w-100 join-tournament-btn" data-tid="${tid}" data-fee="${t.fee}">
                 ${auth.currentUser ? 'Join Tournament' : 'Login to Join'}
               </button>
@@ -1934,7 +2150,11 @@ function loadHomeTournaments() {
                 }
                 
                 // Deduct fee and join tournament
-                db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).set(true)
+                db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).set({
+                  joinedAt: firebase.database.ServerValue.TIMESTAMP,
+                  teamType: t.teamType || 'solo',
+                  playerName: user.name
+                })
                   .then(() => {
                     return db.ref(`users/${auth.currentUser.uid}/wallet`).transaction(current => (current || 0) - fee);
                   })
@@ -2031,10 +2251,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-add-balance').addEventListener('click', async () => {
     const amount = parseInt(document.getElementById('add-amount').value);
     const number = document.getElementById('add-number').value;
+    const transactionId = document.getElementById('transaction-id').value;
     const method = document.querySelector('.payment-method.active').getAttribute('data-method');
     
-    if (!amount || amount <= 0 || !number || number.length !== 11) {
-      alert('সঠিক তথ্য প্রদান করুন');
+    if (!amount || amount <= 0 || !number || number.length !== 11 || !transactionId) {
+      alert('সঠিক তথ্য প্রদান করুন (টাকার পরিমাণ, মোবাইল নম্বর এবং ট্রানজেকশন ID আবশ্যক)');
+      return;
+    }
+    
+    // Verify phone number is 01767882562
+    if (number !== '01767882562') {
+      alert('দুঃখিত, শুধুমাত্র 01767882562 নম্বর থেকে ব্যালেন্স যোগ করা যাবে');
       return;
     }
     
@@ -2046,6 +2273,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userId: uid,
         amount,
         number,
+        transactionId,
         method,
         status: 'pending',
         type: 'deposit',
@@ -2060,8 +2288,33 @@ document.addEventListener('DOMContentLoaded', () => {
       );
       
       alert('আপনার রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।');
+      
+      // Clear form
       document.getElementById('add-amount').value = '';
-      document.getElementById('add-number').value = '';
+      document.getElementById('transaction-id').value = '';
+      
+      // Simulate admin approval after 5 seconds (for demo)
+      setTimeout(async () => {
+        await db.ref(`paymentRequests/${requestId}/status`).set('approved');
+        await db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) + amount);
+        
+        // Record transaction
+        const transactionId = db.ref().child(`transactions/${uid}`).push().key;
+        await db.ref(`transactions/${uid}/${transactionId}`).set({
+          type: 'deposit',
+          amount: amount,
+          description: `Deposit via ${method} (${transactionId})`,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        });
+        
+        // Send notification to user
+        sendNotification(uid,
+          'ব্যালেন্স যোগ হয়েছে',
+          `আপনার ${amount}৳ ব্যালেন্স যোগ হয়েছে। নতুন ব্যালেন্স: ${(walletSpan.textContent || 0) + amount}৳`,
+          'success'
+        );
+      }, 5000);
+      
     } catch (err) {
       alert('ত্রুটি: ' + err.message);
     }
@@ -2126,6 +2379,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const time = document.getElementById('t-time').value;
     const prize = document.getElementById('t-prize').value.trim();
     const premium = document.getElementById('t-premium').checked;
+    const teamType = document.getElementById('t-team-type').value;
     
     if (!name || !fee || fee < 0 || !date || !time) {
       alert('সব প্রয়োজনীয় তথ্য প্রদান করুন');
@@ -2145,6 +2399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         prize: prize || '',
         organizer: uid,
         premium,
+        teamType,
         status: 'pending',
         createdAt: firebase.database.ServerValue.TIMESTAMP
       });
