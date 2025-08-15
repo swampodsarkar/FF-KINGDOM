@@ -918,6 +918,289 @@ body {
 .quick-add-balance:hover {
   background-color: #388e3c;
 }
+
+/* Match Details Styles */
+.match-details-card {
+  border-left: 4px solid var(--primary);
+  margin-bottom: 15px;
+}
+
+.match-status {
+  font-weight: 600;
+}
+
+.match-status.upcoming {
+  color: var(--warning);
+}
+
+.match-status.ongoing {
+  color: var(--success);
+}
+
+.match-status.completed {
+  color: var(--danger);
+}
+
+.match-prize {
+  font-weight: 600;
+  color: var(--warning);
+}
+
+/* Leaderboard Styles */
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s;
+}
+
+.leaderboard-item:hover {
+  background-color: #f8f9fa;
+}
+
+.leaderboard-rank {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.leaderboard-rank.top3 {
+  background-color: var(--warning);
+}
+
+.leaderboard-details {
+  flex: 1;
+}
+
+.leaderboard-name {
+  font-weight: 600;
+}
+
+.leaderboard-stats {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.leaderboard-points {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Profile Styles */
+.profile-header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 auto 15px;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.profile-role {
+  background-color: rgba(255,255,255,0.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.profile-stat {
+  text-align: center;
+}
+
+.profile-stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.profile-stat-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* KYC Verification Styles */
+.kyc-upload {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.kyc-upload:hover {
+  border-color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.kyc-preview {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 15px;
+  display: none;
+}
+
+/* Tournament Management Styles */
+.tournament-management {
+  position: relative;
+}
+
+.tournament-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.tournament-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tournament-action-btn:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Result Upload Styles */
+.result-upload-form {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.result-player {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.result-player-input {
+  width: 60px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+/* Prize Distribution Styles */
+.prize-winner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.prize-amount-input {
+  width: 100px;
+  text-align: center;
+}
+
+/* Match Countdown Styles */
+.match-countdown {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--danger);
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* Room Details Styles */
+.room-details {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.room-detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.copy-room-btn {
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.copy-room-btn:hover {
+  text-decoration: underline;
+}
+
+/* Tournament Slots Styles */
+.slot-indicator {
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.slot-progress {
+  height: 100%;
+  background-color: var(--success);
+  transition: width 0.3s;
+}
+
+.slot-text {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  text-align: right;
+}
 </style>
 </head>
 <body>
@@ -967,6 +1250,12 @@ body {
     </a>
     <a href="#" class="mobile-menu-item" data-section="wallet">
       <i class="fas fa-wallet"></i> ওয়ালেট
+    </a>
+    <a href="#" class="mobile-menu-item" data-section="matches">
+      <i class="fas fa-gamepad"></i> ম্যাচ
+    </a>
+    <a href="#" class="mobile-menu-item" data-section="leaderboard">
+      <i class="fas fa-medal"></i> লিডারবোর্ড
     </a>
     <a href="#" class="mobile-menu-item" data-section="profile">
       <i class="fas fa-user"></i> প্রোফাইল
@@ -1183,7 +1472,7 @@ body {
       </div>
 
       <!-- Player Tournaments Section -->
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header bg-primary text-white">
           <i class="fas fa-trophy me-2"></i> টুর্নামেন্টসমূহ
         </div>
@@ -1208,6 +1497,38 @@ body {
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player Matches Section -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-gamepad me-2"></i> আমার ম্যাচসমূহ
+        </div>
+        <div class="card-body">
+          <div id="player-matches-list">
+            <!-- Matches will be loaded here -->
+            <div class="empty-state">
+              <i class="fas fa-gamepad"></i>
+              <p>No matches yet</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard Section -->
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-medal me-2"></i> লিডারবোর্ড
+        </div>
+        <div class="card-body">
+          <div id="leaderboard-list">
+            <!-- Leaderboard will be loaded here -->
+            <div class="empty-state">
+              <i class="fas fa-medal"></i>
+              <p>No leaderboard data yet</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1244,6 +1565,41 @@ body {
         </div>
       </div>
 
+      <!-- KYC Verification Section -->
+      <div class="card mb-4" id="kyc-section">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-id-card me-2"></i> KYC Verification
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="nid-number" class="form-label">NID Number</label>
+            <input id="nid-number" type="text" class="form-control" placeholder="Enter your NID number"/>
+          </div>
+          <div class="mb-3">
+            <label for="nid-front" class="form-label">NID Front Photo</label>
+            <div class="kyc-upload" id="nid-front-upload">
+              <i class="fas fa-camera"></i>
+              <p>Click to upload NID Front</p>
+              <img id="nid-front-preview" class="kyc-preview">
+            </div>
+            <input type="file" id="nid-front" accept="image/*" style="display: none;">
+          </div>
+          <div class="mb-3">
+            <label for="nid-back" class="form-label">NID Back Photo</label>
+            <div class="kyc-upload" id="nid-back-upload">
+              <i class="fas fa-camera"></i>
+              <p>Click to upload NID Back</p>
+              <img id="nid-back-preview" class="kyc-preview">
+            </div>
+            <input type="file" id="nid-back" accept="image/*" style="display: none;">
+          </div>
+          <button id="btn-submit-kyc" class="btn btn-primary w-100">
+            <i class="fas fa-check-circle me-2"></i> Submit KYC
+          </button>
+          <div class="text-muted small mt-2">KYC verification may take 24-48 hours</div>
+        </div>
+      </div>
+
       <!-- Create Tournament Section -->
       <div class="card mb-4">
         <div class="card-header bg-primary text-white">
@@ -1257,6 +1613,10 @@ body {
           <div class="mb-3">
             <label for="t-fee" class="form-label">এন্ট্রি ফি (৳)</label>
             <input id="t-fee" type="number" class="form-control" placeholder="টুর্নামেন্টের এন্ট্রি ফি"/>
+          </div>
+          <div class="mb-3">
+            <label for="t-slots" class="form-label">স্লট সংখ্যা</label>
+            <input id="t-slots" type="number" class="form-control" placeholder="টুর্নামেন্টের স্লট সংখ্যা" value="50"/>
           </div>
           <div class="mb-3">
             <label for="t-image" class="form-label">টুর্নামেন্ট ইমেজ URL</label>
@@ -1285,6 +1645,7 @@ body {
             <label for="t-team-type" class="form-label">টিম টাইপ</label>
             <select id="t-team-type" class="form-select">
               <option value="solo">Solo</option>
+              <option value="duo">Duo</option>
               <option value="squad">Squad</option>
             </select>
           </div>
@@ -1295,7 +1656,7 @@ body {
       </div>
 
       <!-- Organizer Tournaments Section -->
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header bg-primary text-white">
           <i class="fas fa-list-alt me-2"></i> আপনার টুর্নামেন্টসমূহ
         </div>
@@ -1323,6 +1684,337 @@ body {
           </div>
         </div>
       </div>
+
+      <!-- Tournament Management Section (shown when a tournament is selected) -->
+      <div class="card d-none" id="tournament-management">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-cog me-2"></i> টুর্নামেন্ট ম্যানেজমেন্ট
+        </div>
+        <div class="card-body">
+          <div id="tournament-management-content">
+            <!-- Tournament management content will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">প্রোফাইল</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="profile-header">
+          <div class="profile-avatar" id="profile-avatar">U</div>
+          <h3 class="profile-name" id="profile-name">User</h3>
+          <span class="profile-role" id="profile-role">Player</span>
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <div class="profile-stat-value" id="profile-matches">0</div>
+              <div class="profile-stat-label">Matches</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-value" id="profile-wins">0</div>
+              <div class="profile-stat-label">Wins</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-value" id="profile-earnings">0৳</div>
+              <div class="profile-stat-label">Earnings</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-user-edit me-2"></i> প্রোফাইল এডিট
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="profile-edit-name" class="form-label">নাম</label>
+                  <input type="text" class="form-control" id="profile-edit-name">
+                </div>
+                <div class="mb-3">
+                  <label for="profile-edit-email" class="form-label">ইমেইল</label>
+                  <input type="email" class="form-control" id="profile-edit-email">
+                </div>
+                <div class="mb-3">
+                  <label for="profile-edit-password" class="form-label">নতুন পাসওয়ার্ড (ঐচ্ছিক)</label>
+                  <input type="password" class="form-control" id="profile-edit-password" placeholder="Leave blank to keep current">
+                </div>
+                <button class="btn btn-primary w-100" id="btn-save-profile">
+                  <i class="fas fa-save me-2"></i> সেভ করুন
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-history me-2"></i> সাম্প্রতিক ম্যাচ
+              </div>
+              <div class="card-body">
+                <div id="profile-match-history">
+                  <!-- Match history will be loaded here -->
+                  <div class="empty-state">
+                    <i class="fas fa-gamepad"></i>
+                    <p>No match history yet</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOURNAMENT DETAILS MODAL -->
+<div class="modal fade" id="tournamentDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tournament-details-title">Tournament Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="" class="img-fluid rounded mb-3" id="tournament-details-image" alt="Tournament Image">
+            <div class="card mb-3">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-info-circle me-2"></i> তথ্য
+              </div>
+              <div class="card-body">
+                <div class="mb-2"><strong>Entry Fee:</strong> <span id="tournament-details-fee"></span>৳</div>
+                <div class="mb-2"><strong>Date:</strong> <span id="tournament-details-date"></span></div>
+                <div class="mb-2"><strong>Time:</strong> <span id="tournament-details-time"></span></div>
+                <div class="mb-2"><strong>Team Type:</strong> <span id="tournament-details-team-type"></span></div>
+                <div class="mb-2"><strong>Slots:</strong> <span id="tournament-details-slots"></span></div>
+                <div class="mb-2"><strong>Joined:</strong> <span id="tournament-details-joined"></span></div>
+                <div class="slot-indicator">
+                  <div class="slot-progress" id="tournament-slot-progress"></div>
+                </div>
+                <div class="slot-text" id="tournament-slot-text"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-trophy me-2"></i> পুরস্কার
+              </div>
+              <div class="card-body">
+                <div id="tournament-details-prize"></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-users me-2"></i> যোগদানকারী
+              </div>
+              <div class="card-body">
+                <div id="tournament-details-players">
+                  <!-- Players will be loaded here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary d-none" id="btn-join-tournament">Join Tournament</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MATCH DETAILS MODAL -->
+<div class="modal fade" id="matchDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="match-details-title">Match Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-info-circle me-2"></i> তথ্য
+              </div>
+              <div class="card-body">
+                <div class="mb-2"><strong>Tournament:</strong> <span id="match-tournament-name"></span></div>
+                <div class="mb-2"><strong>Date:</strong> <span id="match-date"></span></div>
+                <div class="mb-2"><strong>Time:</strong> <span id="match-time"></span></div>
+                <div class="mb-2"><strong>Status:</strong> <span class="match-status" id="match-status"></span></div>
+                <div class="mb-2"><strong>Team Type:</strong> <span id="match-team-type"></span></div>
+                <div class="mb-2"><strong>Entry Fee:</strong> <span id="match-fee"></span>৳</div>
+                <div class="mb-2"><strong>Prize:</strong> <span id="match-prize"></span></div>
+              </div>
+            </div>
+            <div class="card" id="match-result-card">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-medal me-2"></i> আপনার রেজাল্ট
+              </div>
+              <div class="card-body">
+                <div id="match-result-details">
+                  <!-- Result will be loaded here -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-door-open me-2"></i> রুম ডিটেইলস
+              </div>
+              <div class="card-body">
+                <div class="room-details">
+                  <div class="room-detail-item">
+                    <span>রুম আইডি:</span>
+                    <span id="room-id">-</span>
+                  </div>
+                  <div class="room-detail-item">
+                    <span>রুম পাসওয়ার্ড:</span>
+                    <span id="room-password">-</span>
+                  </div>
+                  <div class="room-detail-item">
+                    <span>রুম লিঙ্ক:</span>
+                    <span id="room-link">-</span>
+                  </div>
+                  <div class="room-detail-item">
+                    <span>ম্যাচ টাইম:</span>
+                    <span id="match-countdown">-</span>
+                  </div>
+                </div>
+                <button class="btn btn-primary w-100 mt-3" id="btn-copy-room">
+                  <i class="fas fa-copy me-2"></i> কপি করুন
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOURNAMENT MANAGEMENT MODAL -->
+<div class="modal fade" id="tournamentManagementModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">টুর্নামেন্ট ম্যানেজমেন্ট</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="tournamentManagementTabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#players-tab">Players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#room-tab">Room Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#results-tab">Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#prize-tab">Prize Distribution</a>
+          </li>
+        </ul>
+        
+        <div class="tab-content mt-3">
+          <div class="tab-pane fade show active" id="players-tab">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Player</th>
+                    <th>Status</th>
+                    <th>Joined At</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="management-players-list">
+                  <!-- Players will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="tab-pane fade" id="room-tab">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-door-open me-2"></i> রুম ডিটেইলস
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="room-id-input" class="form-label">রুম আইডি</label>
+                  <input type="text" class="form-control" id="room-id-input">
+                </div>
+                <div class="mb-3">
+                  <label for="room-password-input" class="form-label">রুম পাসওয়ার্ড</label>
+                  <input type="text" class="form-control" id="room-password-input">
+                </div>
+                <div class="mb-3">
+                  <label for="room-link-input" class="form-label">রুম লিঙ্ক (ঐচ্ছিক)</label>
+                  <input type="text" class="form-control" id="room-link-input" placeholder="https://example.com">
+                </div>
+                <button class="btn btn-primary" id="btn-save-room-details">
+                  <i class="fas fa-save me-2"></i> Save Room Details
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-pane fade" id="results-tab">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-medal me-2"></i> রেজাল্ট আপলোড
+              </div>
+              <div class="card-body">
+                <div id="result-upload-players">
+                  <!-- Players for result upload will be loaded here -->
+                </div>
+                <button class="btn btn-primary mt-3" id="btn-submit-results">
+                  <i class="fas fa-upload me-2"></i> Submit Results
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-pane fade" id="prize-tab">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <i class="fas fa-trophy me-2"></i> পুরস্কার বিতরণ
+              </div>
+              <div class="card-body">
+                <div id="prize-distribution-players">
+                  <!-- Players for prize distribution will be loaded here -->
+                </div>
+                <button class="btn btn-primary mt-3" id="btn-distribute-prizes">
+                  <i class="fas fa-gift me-2"></i> Distribute Prizes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1338,9 +2030,9 @@ body {
     <i class="fas fa-trophy"></i>
     <span>টুর্নামেন্ট</span>
   </a>
-  <a href="#" class="mobile-bottom-nav-item" data-section="wallet">
-    <i class="fas fa-wallet"></i>
-    <span>ওয়ালেট</span>
+  <a href="#" class="mobile-bottom-nav-item" data-section="matches">
+    <i class="fas fa-gamepad"></i>
+    <span>ম্যাচ</span>
   </a>
   <a href="#" class="mobile-bottom-nav-item" data-section="profile">
     <i class="fas fa-user"></i>
@@ -1357,6 +2049,7 @@ body {
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyDX7Z8o5xVJa8cSHvaurZg4FkJvN8mJuto",
@@ -1381,6 +2074,7 @@ const nameIn = document.getElementById('name');
 const btnLogin = document.getElementById('btn-login');
 const btnRegister = document.getElementById('btn-register');
 const btnLogoutDash = document.getElementById('btn-logout-dash');
+const btnLogoutBanned = document.getElementById('btn-logout-banned');
 const btnLoginShow = document.getElementById('btn-login-show');
 const closeModal = document.querySelector('.close-modal');
 const welcome = document.getElementById('welcome');
@@ -1393,7 +2087,6 @@ const tournamentsGrid = document.getElementById('tournaments-grid');
 const searchTournaments = document.getElementById('search-tournaments');
 const filterFee = document.getElementById('filter-fee');
 const bannedScreen = document.getElementById('banned-screen');
-const btnLogoutBanned = document.getElementById('btn-logout-banned');
 const btnScrollTop = document.getElementById('btn-scroll-top');
 const notificationBell = document.getElementById('notification-bell');
 const notificationDropdown = document.getElementById('notification-dropdown');
@@ -1414,6 +2107,35 @@ const mobileMenuLogout = document.getElementById('mobile-menu-logout');
 const tournamentsLoading = document.getElementById('tournaments-loading');
 const swipeTabs = document.querySelectorAll('.swipe-tabs .swipe-tab');
 const transactionIdInput = document.getElementById('transaction-id');
+const playerMatchesList = document.getElementById('player-matches-list');
+const leaderboardList = document.getElementById('leaderboard-list');
+const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
+const tournamentDetailsModal = new bootstrap.Modal(document.getElementById('tournamentDetailsModal'));
+const matchDetailsModal = new bootstrap.Modal(document.getElementById('matchDetailsModal'));
+const tournamentManagementModal = new bootstrap.Modal(document.getElementById('tournamentManagementModal'));
+const kycSection = document.getElementById('kyc-section');
+const nidFrontUpload = document.getElementById('nid-front-upload');
+const nidBackUpload = document.getElementById('nid-back-upload');
+const nidFrontInput = document.getElementById('nid-front');
+const nidBackInput = document.getElementById('nid-back');
+const nidFrontPreview = document.getElementById('nid-front-preview');
+const nidBackPreview = document.getElementById('nid-back-preview');
+const nidNumberInput = document.getElementById('nid-number');
+const btnSubmitKyc = document.getElementById('btn-submit-kyc');
+const tournamentManagement = document.getElementById('tournament-management');
+const tournamentManagementContent = document.getElementById('tournament-management-content');
+const profileName = document.getElementById('profile-name');
+const profileRole = document.getElementById('profile-role');
+const profileAvatar = document.getElementById('profile-avatar');
+const profileMatches = document.getElementById('profile-matches');
+const profileWins = document.getElementById('profile-wins');
+const profileEarnings = document.getElementById('profile-earnings');
+const profileEditName = document.getElementById('profile-edit-name');
+const profileEditEmail = document.getElementById('profile-edit-email');
+const profileEditPassword = document.getElementById('profile-edit-password');
+const btnSaveProfile = document.getElementById('btn-save-profile');
+const profileMatchHistory = document.getElementById('profile-match-history');
+const btnCopyRoom = document.getElementById('btn-copy-room');
 
 // Payment method selection
 document.querySelectorAll('.payment-method').forEach(btn => {
@@ -1469,10 +2191,11 @@ mobileBottomNavItems.forEach(item => {
     mobileBottomNavItems.forEach(i => i.classList.remove('active'));
     this.classList.add('active');
     
-    // Scroll to section (simplified for demo)
     const section = this.getAttribute('data-section');
     if (section === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (section === 'profile') {
+      showProfileModal();
     }
   });
 });
@@ -1504,6 +2227,8 @@ mobileMenuItems.forEach(item => {
     const section = this.getAttribute('data-section');
     if (section === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (section === 'profile') {
+      showProfileModal();
     }
   });
 });
@@ -1613,6 +2338,8 @@ function getEmojiForCategory(category) {
     case 'danger': return '❌';
     case 'payment': return '💳';
     case 'tournament': return '🏆';
+    case 'match': return '🎮';
+    case 'prize': return '💰';
     default: return '🔔';
   }
 }
@@ -1660,6 +2387,10 @@ btnRegister.addEventListener('click', async () => {
       wallet: 0,
       verified: false,
       ban: false,
+      kycVerified: false,
+      matchesPlayed: 0,
+      matchesWon: 0,
+      totalEarnings: 0,
       createdAt: firebase.database.ServerValue.TIMESTAMP
     });
     
@@ -1744,10 +2475,19 @@ function loadUserData(uid) {
       organizerView.style.display = 'none';
       loadPlayerTournaments(uid);
       loadTransactionHistory(uid);
+      loadPlayerMatches(uid);
+      loadLeaderboard();
     } else if (u.role === 'organizer') {
       playerView.style.display = 'none';
       organizerView.style.display = 'block';
       loadOrganizerTournaments(uid);
+      
+      // Show/hide KYC section based on verification status
+      if (u.kycVerified) {
+        kycSection.style.display = 'none';
+      } else {
+        kycSection.style.display = 'block';
+      }
     }
     
     // Load notifications
@@ -1848,13 +2588,39 @@ function loadPlayerTournaments(uid) {
             return;
           }
           
+          // Check if slots are available
+          const playerCount = t.players ? Object.keys(t.players).length : 0;
+          if (playerCount >= (t.slots || 50)) {
+            alert('এই টুর্নামেন্টে আর স্লট খালি নেই!');
+            return;
+          }
+          
           // Deduct fee and join tournament
           try {
             await db.ref(`tournaments/${tournamentId}/players/${uid}`).set({
               joinedAt: firebase.database.ServerValue.TIMESTAMP,
               teamType: t.teamType || 'solo',
-              playerName: user.name
+              playerName: user.name,
+              status: 'joined'
             });
+            
+            // Create match entry for the player
+            const matchId = db.ref().child('matches').push().key;
+            await db.ref(`matches/${matchId}`).set({
+              tournamentId,
+              playerId: uid,
+              playerName: user.name,
+              tournamentName: t.name,
+              date: t.date,
+              time: t.time,
+              teamType: t.teamType || 'solo',
+              entryFee: t.fee,
+              prize: t.prize || '',
+              status: 'upcoming',
+              createdAt: firebase.database.ServerValue.TIMESTAMP
+            });
+            
+            // Update user wallet
             await db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee);
             await db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
             
@@ -1866,6 +2632,9 @@ function loadPlayerTournaments(uid) {
               description: `Joined tournament: ${t.name}`,
               timestamp: firebase.database.ServerValue.TIMESTAMP
             });
+            
+            // Update user stats
+            await db.ref(`users/${uid}/matchesPlayed`).transaction(current => (current || 0) + 1);
             
             // Send notification to organizer
             sendNotification(t.organizer, 
@@ -1887,6 +2656,183 @@ function loadPlayerTournaments(uid) {
           }
         });
       });
+    });
+  });
+}
+
+// LOAD PLAYER MATCHES
+function loadPlayerMatches(uid) {
+  db.ref('matches').orderByChild('playerId').equalTo(uid).on('value', snap => {
+    const matches = snap.val() || {};
+    playerMatchesList.innerHTML = '';
+    
+    if (Object.keys(matches).length === 0) {
+      playerMatchesList.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-gamepad"></i>
+          <p>No matches yet</p>
+        </div>
+      `;
+      return;
+    }
+    
+    Object.entries(matches).reverse().forEach(([mid, m]) => {
+      const matchCard = document.createElement('div');
+      matchCard.className = 'card match-details-card mb-3';
+      
+      matchCard.innerHTML = `
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="mb-0">${m.tournamentName}</h6>
+            <span class="match-status ${m.status}">${m.status}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <div>
+              <i class="far fa-calendar-alt me-2"></i>
+              ${formatDate(m.date)} at ${m.time}
+            </div>
+            <div>
+              <span class="badge ${m.teamType === 'solo' ? 'badge-solo' : 'badge-squad'}">
+                ${m.teamType}
+              </span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <span class="text-muted">Entry:</span> ${m.entryFee}৳
+            </div>
+            ${m.prize ? `<div><span class="text-muted">Prize:</span> <span class="match-prize">${m.prize}</span></div>` : ''}
+          </div>
+          <button class="btn btn-sm btn-outline-primary w-100 mt-2 view-match-btn" data-mid="${mid}">
+            View Details
+          </button>
+        </div>
+      `;
+      
+      playerMatchesList.appendChild(matchCard);
+      
+      // Add view match event
+      matchCard.querySelector('.view-match-btn').addEventListener('click', function() {
+        showMatchDetails(mid, m);
+      });
+    });
+  });
+}
+
+// SHOW MATCH DETAILS
+function showMatchDetails(matchId, match) {
+  document.getElementById('match-details-title').textContent = match.tournamentName;
+  document.getElementById('match-tournament-name').textContent = match.tournamentName;
+  document.getElementById('match-date').textContent = formatDate(match.date);
+  document.getElementById('match-time').textContent = match.time;
+  document.getElementById('match-status').textContent = match.status;
+  document.getElementById('match-team-type').textContent = match.teamType;
+  document.getElementById('match-fee').textContent = match.entryFee;
+  document.getElementById('match-prize').textContent = match.prize || '-';
+  
+  // Set room details if available
+  if (match.roomId) {
+    document.getElementById('room-id').textContent = match.roomId;
+    document.getElementById('room-password').textContent = match.roomPassword || '-';
+    document.getElementById('room-link').textContent = match.roomLink || '-';
+  } else {
+    document.getElementById('room-id').textContent = 'Not available yet';
+    document.getElementById('room-password').textContent = 'Not available yet';
+    document.getElementById('room-link').textContent = 'Not available yet';
+  }
+  
+  // Set result details if available
+  const resultDetails = document.getElementById('match-result-details');
+  if (match.result) {
+    resultDetails.innerHTML = `
+      <div class="mb-2"><strong>Rank:</strong> ${match.result.rank || '-'}</div>
+      <div class="mb-2"><strong>Kills:</strong> ${match.result.kills || '-'}</div>
+      ${match.result.prize ? `<div class="mb-2"><strong>Prize:</strong> ${match.result.prize}৳</div>` : ''}
+      ${match.result.notes ? `<div class="mb-2"><strong>Notes:</strong> ${match.result.notes}</div>` : ''}
+    `;
+  } else {
+    resultDetails.innerHTML = '<p>No result available yet</p>';
+  }
+  
+  // Set countdown if match is upcoming
+  const countdownElement = document.getElementById('match-countdown');
+  if (match.status === 'upcoming') {
+    const matchTime = new Date(`${match.date} ${match.time}`).getTime();
+    updateCountdown(matchTime, countdownElement);
+    const countdownInterval = setInterval(() => {
+      updateCountdown(matchTime, countdownElement);
+    }, 1000);
+    
+    // Clear interval when modal is closed
+    matchDetailsModal._element.addEventListener('hidden.bs.modal', () => {
+      clearInterval(countdownInterval);
+    });
+  } else {
+    countdownElement.textContent = 'Match completed';
+  }
+  
+  matchDetailsModal.show();
+}
+
+// UPDATE COUNTDOWN
+function updateCountdown(matchTime, element) {
+  const now = new Date().getTime();
+  const distance = matchTime - now;
+  
+  if (distance < 0) {
+    element.textContent = "Match time has arrived!";
+    return;
+  }
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  element.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+// LOAD LEADERBOARD
+function loadLeaderboard() {
+  db.ref('users').orderByChild('totalEarnings').limitToLast(10).on('value', snap => {
+    const users = snap.val() || {};
+    leaderboardList.innerHTML = '';
+    
+    if (Object.keys(users).length === 0) {
+      leaderboardList.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-medal"></i>
+          <p>No leaderboard data yet</p>
+        </div>
+      `;
+      return;
+    }
+    
+    // Convert to array and sort by earnings
+    const leaderboard = Object.entries(users).map(([uid, u]) => ({
+      uid,
+      name: u.name,
+      earnings: u.totalEarnings || 0,
+      matches: u.matchesPlayed || 0,
+      wins: u.matchesWon || 0
+    })).sort((a, b) => b.earnings - a.earnings);
+    
+    leaderboard.forEach((user, index) => {
+      const leaderboardItem = document.createElement('div');
+      leaderboardItem.className = 'leaderboard-item';
+      
+      leaderboardItem.innerHTML = `
+        <div class="leaderboard-rank ${index < 3 ? 'top3' : ''}">${index + 1}</div>
+        <div class="leaderboard-details">
+          <div class="leaderboard-name">${user.name}</div>
+          <div class="leaderboard-stats">
+            ${user.wins} Wins • ${user.matches} Matches
+          </div>
+        </div>
+        <div class="leaderboard-points">${user.earnings}৳</div>
+      `;
+      
+      leaderboardList.appendChild(leaderboardItem);
     });
   });
 }
@@ -1921,23 +2867,470 @@ function loadOrganizerTournaments(uid) {
             ${t.status}
           </span>
         </td>
-        <td>${playerCount}</td>
+        <td>${playerCount}/${t.slots || 50}</td>
         <td>
-          <button class="btn btn-sm btn-outline-primary view-tournament" data-tid="${tid}">
-            View
+          <button class="btn btn-sm btn-outline-primary manage-tournament" data-tid="${tid}">
+            Manage
           </button>
         </td>
       `;
       
       organizerTournamentsBody.appendChild(tr);
       
-      // Add view tournament event
-      tr.querySelector('.view-tournament').addEventListener('click', function() {
+      // Add manage tournament event
+      tr.querySelector('.manage-tournament').addEventListener('click', function() {
         const tournamentId = this.getAttribute('data-tid');
-        viewTournamentDetails(tournamentId, tournaments[tournamentId]);
+        manageTournament(tournamentId, tournaments[tournamentId]);
       });
     });
   });
+}
+
+// MANAGE TOURNAMENT
+function manageTournament(tournamentId, tournament) {
+  // Show tournament management section
+  tournamentManagement.classList.remove('d-none');
+  tournamentManagementContent.innerHTML = `
+    <h4 class="mb-4">${tournament.name}</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <i class="fas fa-info-circle me-2"></i> টুর্নামেন্ট তথ্য
+          </div>
+          <div class="card-body">
+            <div class="mb-2"><strong>Date:</strong> ${formatDate(tournament.date)}</div>
+            <div class="mb-2"><strong>Time:</strong> ${tournament.time}</div>
+            <div class="mb-2"><strong>Entry Fee:</strong> ${tournament.fee}৳</div>
+            <div class="mb-2"><strong>Team Type:</strong> ${tournament.teamType}</div>
+            <div class="mb-2"><strong>Slots:</strong> ${tournament.players ? Object.keys(tournament.players).length : 0}/${tournament.slots || 50}</div>
+            <div class="mb-2"><strong>Prize:</strong> ${tournament.prize || '-'}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <i class="fas fa-tools me-2"></i> অ্যাকশনস
+          </div>
+          <div class="card-body">
+            <button class="btn btn-primary w-100 mb-2" id="btn-open-management">
+              <i class="fas fa-cog me-2"></i> Full Management
+            </button>
+            <button class="btn btn-outline-danger w-100" id="btn-cancel-tournament" ${tournament.status !== 'approved' ? 'disabled' : ''}>
+              <i class="fas fa-times me-2"></i> Cancel Tournament
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Scroll to management section
+  tournamentManagement.scrollIntoView({ behavior: 'smooth' });
+  
+  // Add event for full management
+  document.getElementById('btn-open-management').addEventListener('click', () => {
+    openTournamentManagementModal(tournamentId, tournament);
+  });
+  
+  // Add event for cancel tournament
+  document.getElementById('btn-cancel-tournament').addEventListener('click', async () => {
+    if (confirm('Are you sure you want to cancel this tournament? All entry fees will be refunded.')) {
+      try {
+        // Refund all players
+        if (tournament.players) {
+          const updates = {};
+          const notifications = {};
+          
+          Object.keys(tournament.players).forEach(playerId => {
+            // Refund entry fee
+            updates[`users/${playerId}/wallet`] = firebase.database.ServerValue.increment(tournament.fee);
+            
+            // Record transaction
+            const transactionId = db.ref().child(`transactions/${playerId}`).push().key;
+            updates[`transactions/${playerId}/${transactionId}`] = {
+              type: 'deposit',
+              amount: tournament.fee,
+              description: `Refund for canceled tournament: ${tournament.name}`,
+              timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+            
+            // Create notification
+            const notificationId = db.ref().child(`users/${playerId}/notifications`).push().key;
+            notifications[`users/${playerId}/notifications/${notificationId}`] = {
+              title: 'Tournament Canceled',
+              message: `The tournament "${tournament.name}" has been canceled. Your entry fee of ${tournament.fee}৳ has been refunded.`,
+              category: 'tournament',
+              read: false,
+              timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+            
+            // Update match status
+            updates[`matches/${tournamentId}_${playerId}/status`] = 'canceled';
+          });
+          
+          // Deduct from organizer wallet
+          const totalRefund = Object.keys(tournament.players).length * tournament.fee;
+          updates[`users/${tournament.organizer}/wallet`] = firebase.database.ServerValue.increment(-totalRefund);
+          
+          // Update tournament status
+          updates[`tournaments/${tournamentId}/status`] = 'canceled';
+          
+          // Apply all updates
+          await db.ref().update(updates);
+          
+          // Send notifications
+          await db.ref().update(notifications);
+        } else {
+          // Just update tournament status if no players
+          await db.ref(`tournaments/${tournamentId}/status`).set('canceled');
+        }
+        
+        alert('Tournament has been canceled and players have been refunded.');
+        tournamentManagement.classList.add('d-none');
+      } catch (err) {
+        alert('Error canceling tournament: ' + err.message);
+      }
+    }
+  });
+}
+
+// OPEN TOURNAMENT MANAGEMENT MODAL
+function openTournamentManagementModal(tournamentId, tournament) {
+  // Set active tab to players
+  const tabLinks = document.querySelectorAll('#tournamentManagementTabs .nav-link');
+  tabLinks.forEach(link => link.classList.remove('active'));
+  tabLinks[0].classList.add('active');
+  
+  const tabPanes = document.querySelectorAll('#tournamentManagementTabs ~ .tab-content .tab-pane');
+  tabPanes.forEach(pane => pane.classList.remove('show', 'active'));
+  tabPanes[0].classList.add('show', 'active');
+  
+  // Load players list
+  const playersList = document.getElementById('management-players-list');
+  playersList.innerHTML = '';
+  
+  if (tournament.players) {
+    Object.entries(tournament.players).forEach(([playerId, player]) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="player-team">
+            <div class="player-team-avatar">${player.playerName.charAt(0).toUpperCase()}</div>
+            <div class="player-team-name">${player.playerName}</div>
+          </div>
+        </td>
+        <td>
+          <span class="badge ${player.status === 'joined' ? 'bg-success' : 'bg-secondary'}">
+            ${player.status}
+          </span>
+        </td>
+        <td>${formatTime(player.joinedAt)}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-danger kick-player" data-pid="${playerId}" ${player.status !== 'joined' ? 'disabled' : ''}>
+            Kick
+          </button>
+        </td>
+      `;
+      
+      playersList.appendChild(tr);
+      
+      // Add kick player event
+      tr.querySelector('.kick-player').addEventListener('click', async function() {
+        if (confirm(`Are you sure you want to kick ${player.playerName} from the tournament?`)) {
+          try {
+            // Update player status
+            await db.ref(`tournaments/${tournamentId}/players/${playerId}/status`).set('kicked');
+            
+            // Refund entry fee
+            await db.ref(`users/${playerId}/wallet`).transaction(current => (current || 0) + tournament.fee);
+            
+            // Record transaction
+            const transactionId = db.ref().child(`transactions/${playerId}`).push().key;
+            await db.ref(`transactions/${playerId}/${transactionId}`).set({
+              type: 'deposit',
+              amount: tournament.fee,
+              description: `Refund for being kicked from tournament: ${tournament.name}`,
+              timestamp: firebase.database.ServerValue.TIMESTAMP
+            });
+            
+            // Update match status
+            await db.ref(`matches/${tournamentId}_${playerId}/status`).set('kicked');
+            
+            // Send notification to player
+            sendNotification(playerId,
+              'Tournament Kick',
+              `You have been kicked from the tournament "${tournament.name}". Your entry fee of ${tournament.fee}৳ has been refunded.`,
+              'tournament'
+            );
+            
+            alert(`${player.playerName} has been kicked from the tournament.`);
+          } catch (err) {
+            alert('Error kicking player: ' + err.message);
+          }
+        }
+      });
+    });
+  }
+  
+  // Load room details if they exist
+  if (tournament.roomDetails) {
+    document.getElementById('room-id-input').value = tournament.roomDetails.roomId || '';
+    document.getElementById('room-password-input').value = tournament.roomDetails.roomPassword || '';
+    document.getElementById('room-link-input').value = tournament.roomDetails.roomLink || '';
+  } else {
+    document.getElementById('room-id-input').value = '';
+    document.getElementById('room-password-input').value = '';
+    document.getElementById('room-link-input').value = '';
+  }
+  
+  // Add event for saving room details
+  document.getElementById('btn-save-room-details').addEventListener('click', async () => {
+    const roomId = document.getElementById('room-id-input').value.trim();
+    const roomPassword = document.getElementById('room-password-input').value.trim();
+    const roomLink = document.getElementById('room-link-input').value.trim();
+    
+    if (!roomId) {
+      alert('Room ID is required');
+      return;
+    }
+    
+    try {
+      await db.ref(`tournaments/${tournamentId}/roomDetails`).set({
+        roomId,
+        roomPassword,
+        roomLink,
+        updatedAt: firebase.database.ServerValue.TIMESTAMP
+      });
+      
+      // Update all matches with room details
+      if (tournament.players) {
+        const updates = {};
+        Object.keys(tournament.players).forEach(playerId => {
+          updates[`matches/${tournamentId}_${playerId}/roomId`] = roomId;
+          updates[`matches/${tournamentId}_${playerId}/roomPassword`] = roomPassword;
+          updates[`matches/${tournamentId}_${playerId}/roomLink`] = roomLink;
+          updates[`matches/${tournamentId}_${playerId}/status`] = 'ongoing';
+          
+          // Send notification to player
+          const notificationId = db.ref().child(`users/${playerId}/notifications`).push().key;
+          updates[`users/${playerId}/notifications/${notificationId}`] = {
+            title: 'Room Details Available',
+            message: `Room details for tournament "${tournament.name}" are now available. Check your matches.`,
+            category: 'match',
+            read: false,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          };
+        });
+        
+        await db.ref().update(updates);
+      }
+      
+      alert('Room details saved successfully!');
+    } catch (err) {
+      alert('Error saving room details: ' + err.message);
+    }
+  });
+  
+  // Load players for result upload
+  const resultPlayersList = document.getElementById('result-upload-players');
+  resultPlayersList.innerHTML = '';
+  
+  if (tournament.players) {
+    Object.entries(tournament.players).forEach(([playerId, player]) => {
+      if (player.status === 'joined') {
+        const resultPlayer = document.createElement('div');
+        resultPlayer.className = 'result-player';
+        resultPlayer.innerHTML = `
+          <div class="player-team">
+            <div class="player-team-avatar">${player.playerName.charAt(0).toUpperCase()}</div>
+            <div class="player-team-name">${player.playerName}</div>
+          </div>
+          <input type="number" class="form-control result-player-input" placeholder="Rank" data-pid="${playerId}">
+          <input type="number" class="form-control result-player-input" placeholder="Kills" data-pid="${playerId}">
+        `;
+        
+        resultPlayersList.appendChild(resultPlayer);
+      }
+    });
+  }
+  
+  // Add event for submitting results
+  document.getElementById('btn-submit-results').addEventListener('click', async () => {
+    const results = {};
+    const inputs = document.querySelectorAll('#result-upload-players .result-player-input');
+    
+    inputs.forEach(input => {
+      const playerId = input.getAttribute('data-pid');
+      const value = input.value.trim();
+      
+      if (value) {
+        if (!results[playerId]) {
+          results[playerId] = {};
+        }
+        
+        if (input.placeholder === 'Rank') {
+          results[playerId].rank = parseInt(value);
+        } else {
+          results[playerId].kills = parseInt(value);
+        }
+      }
+    });
+    
+    if (Object.keys(results).length === 0) {
+      alert('Please enter at least one result');
+      return;
+    }
+    
+    try {
+      const updates = {};
+      
+      // Update tournament with results
+      updates[`tournaments/${tournamentId}/results`] = results;
+      updates[`tournaments/${tournamentId}/status`] = 'completed';
+      
+      // Update all matches with results
+      Object.entries(results).forEach(([playerId, result]) => {
+        updates[`matches/${tournamentId}_${playerId}/result`] = result;
+        updates[`matches/${tournamentId}_${playerId}/status`] = 'completed';
+      });
+      
+      await db.ref().update(updates);
+      
+      alert('Results submitted successfully!');
+    } catch (err) {
+      alert('Error submitting results: ' + err.message);
+    }
+  });
+  
+  // Load players for prize distribution
+  const prizePlayersList = document.getElementById('prize-distribution-players');
+  prizePlayersList.innerHTML = '';
+  
+  if (tournament.players && tournament.results) {
+    // Sort players by rank
+    const sortedPlayers = Object.entries(tournament.players)
+      .filter(([playerId]) => tournament.results[playerId] && tournament.results[playerId].rank)
+      .sort((a, b) => {
+        const rankA = tournament.results[a[0]].rank;
+        const rankB = tournament.results[b[0]].rank;
+        return rankA - rankB;
+      });
+    
+    sortedPlayers.forEach(([playerId, player]) => {
+      const prizeWinner = document.createElement('div');
+      prizeWinner.className = 'prize-winner';
+      prizeWinner.innerHTML = `
+        <div>
+          <div class="player-team">
+            <div class="player-team-avatar">${player.playerName.charAt(0).toUpperCase()}</div>
+            <div class="player-team-name">${player.playerName}</div>
+          </div>
+          <small class="text-muted">Rank: ${tournament.results[playerId].rank}, Kills: ${tournament.results[playerId].kills || 0}</small>
+        </div>
+        <input type="number" class="form-control prize-amount-input" placeholder="Prize (৳)" data-pid="${playerId}" value="0">
+      `;
+      
+      prizePlayersList.appendChild(prizeWinner);
+    });
+  }
+  
+  // Add event for prize distribution
+  document.getElementById('btn-distribute-prizes').addEventListener('click', async () => {
+    const prizes = {};
+    const inputs = document.querySelectorAll('#prize-distribution-players .prize-amount-input');
+    
+    inputs.forEach(input => {
+      const playerId = input.getAttribute('data-pid');
+      const value = parseInt(input.value.trim()) || 0;
+      
+      if (value > 0) {
+        prizes[playerId] = value;
+      }
+    });
+    
+    if (Object.keys(prizes).length === 0) {
+      alert('Please enter at least one prize amount');
+      return;
+    }
+    
+    // Check organizer balance
+    const organizerSnap = await db.ref(`users/${tournament.organizer}`).once('value');
+    const organizer = organizerSnap.val();
+    const totalPrize = Object.values(prizes).reduce((sum, amount) => sum + amount, 0);
+    
+    if (organizer.wallet < totalPrize) {
+      alert('You don\'t have enough balance to distribute these prizes');
+      return;
+    }
+    
+    try {
+      const updates = {};
+      const notifications = {};
+      
+      // Distribute prizes to players
+      Object.entries(prizes).forEach(([playerId, amount]) => {
+        if (amount > 0) {
+          // Add prize to player wallet
+          updates[`users/${playerId}/wallet`] = firebase.database.ServerValue.increment(amount);
+          
+          // Record transaction for player
+          const transactionId = db.ref().child(`transactions/${playerId}`).push().key;
+          updates[`transactions/${playerId}/${transactionId}`] = {
+            type: 'deposit',
+            amount: amount,
+            description: `Prize from tournament: ${tournament.name}`,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          };
+          
+          // Update player stats
+          updates[`users/${playerId}/totalEarnings`] = firebase.database.ServerValue.increment(amount);
+          
+          // Update match with prize
+          updates[`matches/${tournamentId}_${playerId}/result/prize`] = amount;
+          
+          // Create notification
+          const notificationId = db.ref().child(`users/${playerId}/notifications`).push().key;
+          notifications[`users/${playerId}/notifications/${notificationId}`] = {
+            title: 'Prize Received',
+            message: `You have received ${amount}৳ as prize from tournament "${tournament.name}".`,
+            category: 'prize',
+            read: false,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          };
+        }
+      });
+      
+      // Deduct from organizer wallet
+      updates[`users/${tournament.organizer}/wallet`] = firebase.database.ServerValue.increment(-totalPrize);
+      
+      // Record transaction for organizer
+      const transactionId = db.ref().child(`transactions/${tournament.organizer}`).push().key;
+      updates[`transactions/${tournament.organizer}/${transactionId}`] = {
+        type: 'withdraw',
+        amount: totalPrize,
+        description: `Prize distribution for tournament: ${tournament.name}`,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      };
+      
+      // Update tournament with prize distribution
+      updates[`tournaments/${tournamentId}/prizeDistributed`] = true;
+      
+      // Apply all updates
+      await db.ref().update(updates);
+      
+      // Send notifications
+      await db.ref().update(notifications);
+      
+      alert('Prizes distributed successfully!');
+    } catch (err) {
+      alert('Error distributing prizes: ' + err.message);
+    }
+  });
+  
+  // Show the modal
+  tournamentManagementModal.show();
 }
 
 function getStatusBadgeClass(status) {
@@ -1945,101 +3338,10 @@ function getStatusBadgeClass(status) {
     case 'approved': return 'bg-success';
     case 'pending': return 'bg-warning';
     case 'rejected': return 'bg-danger';
+    case 'completed': return 'bg-info';
+    case 'canceled': return 'bg-secondary';
     default: return 'bg-secondary';
   }
-}
-
-function viewTournamentDetails(tid, tournament) {
-  // Create a modal to show tournament details
-  const modal = document.createElement('div');
-  modal.className = 'modal fade';
-  modal.id = 'tournamentModal';
-  modal.innerHTML = `
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">${tournament.name}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ${tournament.image ? `<img src="${tournament.image}" class="img-fluid mb-3 rounded" alt="Tournament Image">` : ''}
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <p><strong>Entry Fee:</strong> ${tournament.fee}৳</p>
-              <p><strong>Date:</strong> ${formatDate(tournament.date)}</p>
-              <p><strong>Time:</strong> ${tournament.time}</p>
-              <p><strong>Team Type:</strong> <span class="badge ${tournament.teamType === 'solo' ? 'badge-solo' : 'badge-squad'}">${tournament.teamType}</span></p>
-            </div>
-            <div class="col-md-6">
-              <p><strong>Status:</strong> <span class="badge ${getStatusBadgeClass(tournament.status)}">${tournament.status}</span></p>
-              <p><strong>Players Joined:</strong> ${tournament.players ? Object.keys(tournament.players).length : 0}</p>
-              <p><strong>Total Earnings:</strong> ${tournament.players ? Object.keys(tournament.players).length * tournament.fee : 0}৳</p>
-            </div>
-          </div>
-          ${tournament.prize ? `<div class="mb-3"><strong>Prize:</strong><br>${tournament.prize}</div>` : ''}
-          
-          <h5 class="mt-4 mb-3">Joined Players</h5>
-          <div class="table-responsive">
-            <table class="table table-sm">
-              <thead>
-                <tr>
-                  <th>Player</th>
-                  <th>Team Type</th>
-                  <th>Joined At</th>
-                </tr>
-              </thead>
-              <tbody id="tournamentPlayersList">
-                <!-- Players will be loaded here -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  document.body.appendChild(modal);
-  
-  // Load Bootstrap modal
-  const modalInstance = new bootstrap.Modal(document.getElementById('tournamentModal'));
-  modalInstance.show();
-  
-  // Load players list
-  const playersList = document.getElementById('tournamentPlayersList');
-  if (tournament.players) {
-    Object.entries(tournament.players).forEach(([playerId, playerData]) => {
-      db.ref(`users/${playerId}`).once('value').then(snap => {
-        const player = snap.val();
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>
-            <div class="player-team">
-              <div class="player-team-avatar">${player.name.charAt(0).toUpperCase()}</div>
-              <div class="player-team-name">${player.name}</div>
-              <span class="player-team-status ${playerData.teamType === 'solo' ? 'status-solo' : 'status-squad'}">
-                ${playerData.teamType}
-              </span>
-            </div>
-          </td>
-          <td>
-            <span class="player-type-badge ${playerData.teamType === 'solo' ? 'badge-solo' : 'badge-squad'}">
-              ${playerData.teamType}
-            </span>
-          </td>
-          <td>${formatTime(playerData.joinedAt)}</td>
-        `;
-        playersList.appendChild(tr);
-      });
-    });
-  }
-  
-  // Remove modal when closed
-  document.getElementById('tournamentModal').addEventListener('hidden.bs.modal', function() {
-    this.remove();
-  });
 }
 
 // LOAD HOME TOURNAMENTS (Grid View)
@@ -2073,9 +3375,11 @@ function loadHomeTournaments() {
         
         // Count players
         const playerCount = t.players ? Object.keys(t.players).length : 0;
+        const slots = t.slots || 50;
+        const slotPercentage = Math.min(100, (playerCount / slots) * 100);
         
         // Get team type sticker
-        const teamSticker = t.teamType === 'solo' ? '👤' : '👥';
+        const teamSticker = t.teamType === 'solo' ? '👤' : (t.teamType === 'duo' ? '👥' : '👥👥');
         
         const card = document.createElement('div');
         card.className = 'col-md-6 col-lg-4';
@@ -2099,7 +3403,7 @@ function loadHomeTournaments() {
                   ${organizer.verified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
                 </div>
                 <div>
-                  ${teamSticker} ${t.teamType === 'solo' ? 'Solo' : 'Squad'}
+                  ${teamSticker} ${t.teamType === 'solo' ? 'Solo' : (t.teamType === 'duo' ? 'Duo' : 'Squad')}
                 </div>
               </div>
               <div class="date-time mb-3">
@@ -2110,12 +3414,16 @@ function loadHomeTournaments() {
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
                   <span class="sticker">🎮</span>
-                  <span>${playerCount} Players Joined</span>
+                  <span>${playerCount}/${slots} Players</span>
                 </div>
                 <div class="tournament-players-count">
-                  <i class="fas fa-users me-1"></i> ${playerCount}
+                  <i class="fas fa-users me-1"></i> ${playerCount}/${slots}
                 </div>
               </div>
+              <div class="slot-indicator">
+                <div class="slot-progress" style="width: ${slotPercentage}%"></div>
+              </div>
+              <div class="slot-text">${slots - playerCount} slots remaining</div>
               <button class="btn btn-primary w-100 join-tournament-btn" data-tid="${tid}" data-fee="${t.fee}">
                 ${auth.currentUser ? 'Join Tournament' : 'Login to Join'}
               </button>
@@ -2149,12 +3457,37 @@ function loadHomeTournaments() {
                   return;
                 }
                 
+                // Check if slots are available
+                const playerCount = t.players ? Object.keys(t.players).length : 0;
+                if (playerCount >= slots) {
+                  alert('এই টুর্নামেন্টে আর স্লট খালি নেই!');
+                  return;
+                }
+                
                 // Deduct fee and join tournament
                 db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).set({
                   joinedAt: firebase.database.ServerValue.TIMESTAMP,
                   teamType: t.teamType || 'solo',
-                  playerName: user.name
+                  playerName: user.name,
+                  status: 'joined'
                 })
+                  .then(() => {
+                    // Create match entry for the player
+                    const matchId = `${tournamentId}_${auth.currentUser.uid}`;
+                    return db.ref(`matches/${matchId}`).set({
+                      tournamentId,
+                      playerId: auth.currentUser.uid,
+                      playerName: user.name,
+                      tournamentName: t.name,
+                      date: t.date,
+                      time: t.time,
+                      teamType: t.teamType || 'solo',
+                      entryFee: t.fee,
+                      prize: t.prize || '',
+                      status: 'upcoming',
+                      createdAt: firebase.database.ServerValue.TIMESTAMP
+                    });
+                  })
                   .then(() => {
                     return db.ref(`users/${auth.currentUser.uid}/wallet`).transaction(current => (current || 0) - fee);
                   })
@@ -2170,6 +3503,10 @@ function loadHomeTournaments() {
                       description: `Joined tournament: ${t.name}`,
                       timestamp: firebase.database.ServerValue.TIMESTAMP
                     });
+                  })
+                  .then(() => {
+                    // Update user stats
+                    return db.ref(`users/${auth.currentUser.uid}/matchesPlayed`).transaction(current => (current || 0) + 1);
                   })
                   .then(() => {
                     // Send notification to organizer
@@ -2205,6 +3542,347 @@ function loadHomeTournaments() {
     }
   });
 }
+
+// SHOW TOURNAMENT DETAILS
+function showTournamentDetails(tournamentId, tournament) {
+  document.getElementById('tournament-details-title').textContent = tournament.name;
+  document.getElementById('tournament-details-fee').textContent = tournament.fee;
+  document.getElementById('tournament-details-date').textContent = formatDate(tournament.date);
+  document.getElementById('tournament-details-time').textContent = tournament.time;
+  document.getElementById('tournament-details-team-type').textContent = tournament.teamType === 'solo' ? 'Solo' : (tournament.teamType === 'duo' ? 'Duo' : 'Squad');
+  document.getElementById('tournament-details-slots').textContent = tournament.slots || 50;
+  
+  const playerCount = tournament.players ? Object.keys(tournament.players).length : 0;
+  document.getElementById('tournament-details-joined').textContent = playerCount;
+  
+  const slots = tournament.slots || 50;
+  const slotPercentage = Math.min(100, (playerCount / slots) * 100);
+  document.getElementById('tournament-slot-progress').style.width = `${slotPercentage}%`;
+  document.getElementById('tournament-slot-text').textContent = `${slots - playerCount} slots remaining`;
+  
+  if (tournament.image) {
+    document.getElementById('tournament-details-image').src = tournament.image;
+    document.getElementById('tournament-details-image').style.display = 'block';
+  } else {
+    document.getElementById('tournament-details-image').style.display = 'none';
+  }
+  
+  if (tournament.prize) {
+    document.getElementById('tournament-details-prize').innerHTML = tournament.prize;
+  } else {
+    document.getElementById('tournament-details-prize').innerHTML = '<p>No prize details available</p>';
+  }
+  
+  // Load players
+  const playersList = document.getElementById('tournament-details-players');
+  playersList.innerHTML = '';
+  
+  if (tournament.players) {
+    Object.entries(tournament.players).forEach(([playerId, player]) => {
+      const playerElement = document.createElement('div');
+      playerElement.className = 'player-team mb-2';
+      playerElement.innerHTML = `
+        <div class="player-team-avatar">${player.playerName.charAt(0).toUpperCase()}</div>
+        <div class="player-team-name">${player.playerName}</div>
+        <span class="player-team-status ${player.teamType === 'solo' ? 'status-solo' : 'status-squad'}">
+          ${player.teamType}
+        </span>
+      `;
+      playersList.appendChild(playerElement);
+    });
+  } else {
+    playersList.innerHTML = '<p>No players joined yet</p>';
+  }
+  
+  // Show/hide join button
+  const joinButton = document.getElementById('btn-join-tournament');
+  if (auth.currentUser) {
+    // Check if already joined
+    if (tournament.players && tournament.players[auth.currentUser.uid]) {
+      joinButton.classList.add('d-none');
+    } else {
+      joinButton.classList.remove('d-none');
+      joinButton.textContent = `Join for ${tournament.fee}৳`;
+      joinButton.onclick = () => {
+        joinTournament(tournamentId, tournament);
+        tournamentDetailsModal.hide();
+      };
+    }
+  } else {
+    joinButton.classList.add('d-none');
+  }
+  
+  tournamentDetailsModal.show();
+}
+
+// JOIN TOURNAMENT
+function joinTournament(tournamentId, tournament) {
+  const uid = auth.currentUser.uid;
+  const fee = tournament.fee;
+  
+  // Check wallet balance
+  db.ref('users/' + uid).once('value').then(snap => {
+    const user = snap.val();
+    
+    if (user.wallet < fee) {
+      alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।');
+      return;
+    }
+    
+    // Check if slots are available
+    const playerCount = tournament.players ? Object.keys(tournament.players).length : 0;
+    const slots = tournament.slots || 50;
+    if (playerCount >= slots) {
+      alert('এই টুর্নামেন্টে আর স্লট খালি নেই!');
+      return;
+    }
+    
+    // Deduct fee and join tournament
+    db.ref(`tournaments/${tournamentId}/players/${uid}`).set({
+      joinedAt: firebase.database.ServerValue.TIMESTAMP,
+      teamType: tournament.teamType || 'solo',
+      playerName: user.name,
+      status: 'joined'
+    })
+      .then(() => {
+        // Create match entry for the player
+        const matchId = `${tournamentId}_${uid}`;
+        return db.ref(`matches/${matchId}`).set({
+          tournamentId,
+          playerId: uid,
+          playerName: user.name,
+          tournamentName: tournament.name,
+          date: tournament.date,
+          time: tournament.time,
+          teamType: tournament.teamType || 'solo',
+          entryFee: tournament.fee,
+          prize: tournament.prize || '',
+          status: 'upcoming',
+          createdAt: firebase.database.ServerValue.TIMESTAMP
+        });
+      })
+      .then(() => {
+        return db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee);
+      })
+      .then(() => {
+        return db.ref(`users/${tournament.organizer}/wallet`).transaction(current => (current || 0) + fee);
+      })
+      .then(() => {
+        // Record transaction
+        const transactionId = db.ref().child(`transactions/${uid}`).push().key;
+        return db.ref(`transactions/${uid}/${transactionId}`).set({
+          type: 'withdraw',
+          amount: fee,
+          description: `Joined tournament: ${tournament.name}`,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        });
+      })
+      .then(() => {
+        // Update user stats
+        return db.ref(`users/${uid}/matchesPlayed`).transaction(current => (current || 0) + 1);
+      })
+      .then(() => {
+        // Send notification to organizer
+        sendNotification(tournament.organizer, 
+          'নতুন প্লেয়ার যোগ দিয়েছে', 
+          `${user.name} আপনার "${tournament.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
+          'tournament'
+        );
+        
+        // Send notification to player
+        sendNotification(uid,
+          'টুর্নামেন্টে যোগদান সফল',
+          `আপনি সফলভাবে "${tournament.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(tournament.date)} ${tournament.time}`,
+          'success'
+        );
+        
+        alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
+      })
+      .catch(err => {
+        alert('ত্রুটি: ' + err.message);
+      });
+  });
+}
+
+// SHOW PROFILE MODAL
+function showProfileModal() {
+  const user = auth.currentUser;
+  if (!user) return;
+  
+  db.ref('users/' + user.uid).once('value').then(snap => {
+    const userData = snap.val();
+    
+    profileName.textContent = userData.name;
+    profileRole.textContent = userData.role;
+    profileAvatar.textContent = userData.name.charAt(0).toUpperCase();
+    profileMatches.textContent = userData.matchesPlayed || 0;
+    profileWins.textContent = userData.matchesWon || 0;
+    profileEarnings.textContent = userData.totalEarnings || 0;
+    
+    profileEditName.value = userData.name;
+    profileEditEmail.value = userData.email;
+    profileEditPassword.value = '';
+    
+    // Load match history
+    profileMatchHistory.innerHTML = '';
+    db.ref('matches').orderByChild('playerId').equalTo(user.uid).limitToLast(5).once('value').then(matchSnap => {
+      const matches = matchSnap.val() || {};
+      
+      if (Object.keys(matches).length === 0) {
+        profileMatchHistory.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-gamepad"></i>
+            <p>No match history yet</p>
+          </div>
+        `;
+        return;
+      }
+      
+      Object.entries(matches).reverse().forEach(([mid, m]) => {
+        const matchItem = document.createElement('div');
+        matchItem.className = 'mb-3';
+        matchItem.innerHTML = `
+          <div class="d-flex justify-content-between">
+            <strong>${m.tournamentName}</strong>
+            <span class="badge ${m.status === 'completed' ? 'bg-success' : 'bg-warning'}">${m.status}</span>
+          </div>
+          <div class="text-muted small">${formatDate(m.date)}</div>
+          ${m.result ? `
+            <div class="small">
+              Rank: ${m.result.rank || '-'}, Kills: ${m.result.kills || '-'}
+              ${m.result.prize ? `, Prize: ${m.result.prize}৳` : ''}
+            </div>
+          ` : ''}
+        `;
+        profileMatchHistory.appendChild(matchItem);
+      });
+    });
+    
+    profileModal.show();
+  });
+}
+
+// SAVE PROFILE
+btnSaveProfile.addEventListener('click', async () => {
+  const name = profileEditName.value.trim();
+  const email = profileEditEmail.value.trim();
+  const password = profileEditPassword.value.trim();
+  
+  if (!name || !email) {
+    alert('Name and email are required');
+    return;
+  }
+  
+  try {
+    const updates = {};
+    updates['users/' + auth.currentUser.uid + '/name'] = name;
+    updates['users/' + auth.currentUser.uid + '/email'] = email;
+    
+    // Update email in Firebase Auth if changed
+    if (email !== auth.currentUser.email) {
+      await auth.currentUser.updateEmail(email);
+    }
+    
+    // Update password if provided
+    if (password && password.length >= 6) {
+      await auth.currentUser.updatePassword(password);
+    }
+    
+    await db.ref().update(updates);
+    
+    alert('Profile updated successfully!');
+    profileModal.hide();
+  } catch (err) {
+    alert('Error updating profile: ' + err.message);
+  }
+});
+
+// KYC UPLOAD
+nidFrontUpload.addEventListener('click', () => nidFrontInput.click());
+nidBackUpload.addEventListener('click', () => nidBackInput.click());
+
+nidFrontInput.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      nidFrontPreview.src = event.target.result;
+      nidFrontPreview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+nidBackInput.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      nidBackPreview.src = event.target.result;
+      nidBackPreview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// SUBMIT KYC
+btnSubmitKyc.addEventListener('click', async () => {
+  const nidNumber = nidNumberInput.value.trim();
+  const nidFrontFile = nidFrontInput.files[0];
+  const nidBackFile = nidBackInput.files[0];
+  
+  if (!nidNumber || !nidFrontFile || !nidBackFile) {
+    alert('Please fill all KYC fields');
+    return;
+  }
+  
+  try {
+    // In a real app, you would upload the files to Firebase Storage
+    // For this demo, we'll just store the file names
+    await db.ref(`users/${auth.currentUser.uid}/kyc`).set({
+      nidNumber,
+      nidFront: nidFrontFile.name,
+      nidBack: nidBackFile.name,
+      status: 'pending',
+      submittedAt: firebase.database.ServerValue.TIMESTAMP
+    });
+    
+    alert('KYC submitted successfully! Verification may take 24-48 hours.');
+    kycSection.style.display = 'none';
+    
+    // Send notification to admin (in a real app)
+    sendNotification('admin', 
+      'New KYC Submission', 
+      `User ${auth.currentUser.displayName} has submitted KYC documents for verification.`,
+      'info'
+    );
+  } catch (err) {
+    alert('Error submitting KYC: ' + err.message);
+  }
+});
+
+// COPY ROOM DETAILS
+btnCopyRoom.addEventListener('click', () => {
+  const roomId = document.getElementById('room-id').textContent;
+  const roomPassword = document.getElementById('room-password').textContent;
+  const roomLink = document.getElementById('room-link').textContent;
+  
+  let textToCopy = `Room ID: ${roomId}\n`;
+  if (roomPassword !== '-') textToCopy += `Password: ${roomPassword}\n`;
+  if (roomLink !== '-') textToCopy += `Link: ${roomLink}`;
+  
+  navigator.clipboard.writeText(textToCopy.trim())
+    .then(() => {
+      const originalText = btnCopyRoom.innerHTML;
+      btnCopyRoom.innerHTML = '<i class="fas fa-check me-2"></i> Copied!';
+      setTimeout(() => {
+        btnCopyRoom.innerHTML = originalText;
+      }, 2000);
+    })
+    .catch(err => {
+      console.error('Could not copy text: ', err);
+    });
+});
 
 // Format date to display nicely
 function formatDate(dateString) {
@@ -2374,6 +4052,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-create-t').addEventListener('click', async () => {
     const name = document.getElementById('t-name').value.trim();
     const fee = parseInt(document.getElementById('t-fee').value);
+    const slots = parseInt(document.getElementById('t-slots').value) || 50;
     const image = document.getElementById('t-image').value.trim();
     const date = document.getElementById('t-date').value;
     const time = document.getElementById('t-time').value;
@@ -2393,6 +4072,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await db.ref(`tournaments/${tournamentId}`).set({
         name,
         fee,
+        slots,
         image,
         date,
         time,
@@ -2411,9 +4091,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'tournament'
       );
       
+      // Send notification to admin (in a real app)
+      sendNotification('admin',
+        'New Tournament Created',
+        `User ${auth.currentUser.displayName} has created a new tournament "${name}".`,
+        'tournament'
+      );
+      
       alert('আপনার টুর্নামেন্ট তৈরি হয়েছে! এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।');
       document.getElementById('t-name').value = '';
       document.getElementById('t-fee').value = '';
+      document.getElementById('t-slots').value = '50';
       document.getElementById('t-image').value = '';
       document.getElementById('t-date').value = '';
       document.getElementById('t-time').value = '';
@@ -2423,12 +4111,6 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('ত্রুটি: ' + err.message);
     }
   });
-});
-
-// Initialize Bootstrap tooltips
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
 });
 </script>
 </body>
