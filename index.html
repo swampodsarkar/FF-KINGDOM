@@ -29,7 +29,7 @@ body {
   background: var(--body-bg);
   color: var(--text-dark);
   font-family: 'Poppins', sans-serif;
-  padding-bottom: 80px; /* Space for mobile bottom nav */
+  padding-bottom: 80px;
 }
 
 .navbar {
@@ -230,6 +230,27 @@ body {
   font-weight: 700;
 }
 
+.wallet-providers {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  color: #fff;
+  opacity: .95;
+  font-size: .9rem;
+}
+
+.uid-chip {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.uid-chip i { color: #fff; }
+
 /* Utility */
 .pill {
   padding: 0.25rem 0.8rem;
@@ -282,12 +303,8 @@ body {
 }
 
 @keyframes shake {
-  from {
-    transform: rotate(-10deg);
-  }
-  to {
-    transform: rotate(10deg);
-  }
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(10deg); }
 }
 
 .contact-support {
@@ -307,12 +324,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Hide elements initially */
@@ -322,60 +335,23 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .auth-card {
-    width: 90%;
-    padding: 20px;
-  }
-  
-  .wallet-amount {
-    font-size: 1.5rem;
-  }
-  
-  .tournament-card {
-    margin-bottom: 15px;
-  }
-  
-  .navbar-nav {
-    display: none;
-  }
-  
-  .mobile-menu-btn {
-    display: block !important;
-  }
-  
-  .tournament-image {
-    height: 120px;
-  }
-  
-  .card-body {
-    padding: 15px;
-  }
-  
-  .btn {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-  
-  .wallet-card {
-    padding: 15px;
-  }
+  .auth-card { width: 90%; padding: 20px; }
+  .wallet-amount { font-size: 1.5rem; }
+  .tournament-card { margin-bottom: 15px; }
+  .navbar-nav { display: none; }
+  .mobile-menu-btn { display: block !important; }
+  .tournament-image { height: 120px; }
+  .card-body { padding: 15px; }
+  .btn { padding: 8px 12px; font-size: 0.9rem; }
+  .wallet-card { padding: 15px; }
 }
 
 /* Premium Animations */
-.pulse {
-  animation: pulse 2s infinite;
-}
-
+.pulse { animation: pulse 2s infinite; }
 @keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(244, 180, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(244, 180, 0, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(244, 180, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 180, 0, 0); }
 }
 
 /* Floating action button */
@@ -397,810 +373,248 @@ body {
   z-index: 100;
   transition: all 0.3s;
 }
-
-.fab:hover {
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.5);
-}
+.fab:hover { transform: translateY(-3px) scale(1.1); box-shadow: 0 8px 25px rgba(67, 97, 238, 0.5); }
 
 /* Notification System */
-.notification-badge {
-  position: relative;
-  margin-right: 15px;
-}
-
+.notification-badge { position: relative; margin-right: 15px; }
 .notification-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: var(--danger);
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.7rem;
-  font-weight: bold;
+  position: absolute; top: -5px; right: -5px; background: var(--danger); color: white;
+  border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;
+  font-size: 0.7rem; font-weight: bold;
 }
-
 .notification-dropdown {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  width: 350px;
-  max-height: 500px;
-  overflow-y: auto;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  z-index: 1000;
-  display: none;
+  position: absolute; top: 40px; right: 0; width: 350px; max-height: 500px; overflow-y: auto; background: white;
+  border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 1000; display: none;
 }
-
-.notification-item {
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
-  transition: all 0.2s;
-}
-
-.notification-item:hover {
-  background: #f8f9fa;
-}
-
-.notification-item.unread {
-  background: #f0f7ff;
-}
-
-.notification-title {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.notification-time {
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
-.notification-category {
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  margin-right: 5px;
-}
-
-.category-info {
-  background: #d1ecf1;
-  color: #0c5460;
-}
-
-.category-warning {
-  background: #fff3cd;
-  color: #856404;
-}
-
-.category-success {
-  background: #d4edda;
-  color: #155724;
-}
-
-.category-danger {
-  background: #f8d7da;
-  color: #721c24;
-}
+.notification-item { padding: 12px 15px; border-bottom: 1px solid #eee; transition: all 0.2s; }
+.notification-item:hover { background: #f8f9fa; }
+.notification-item.unread { background: #f0f7ff; }
+.notification-title { font-weight: 600; margin-bottom: 5px; }
+.notification-time { font-size: 0.8rem; color: var(--text-light); }
+.notification-category { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
+.category-info { background: #d1ecf1; color: #0c5460; }
+.category-warning { background: #fff3cd; color: #856404; }
+.category-success { background: #d4edda; color: #155724; }
+.category-danger { background: #f8d7da; color: #721c24; }
 
 /* Tournament Image Preview */
-.tournament-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-bottom: 1px solid #eee;
-}
+.tournament-image { width: 100%; height: 150px; object-fit: cover; border-bottom: 1px solid #eee; }
 
 /* Wallet Transaction History */
-.transaction-history {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
+.transaction-history { max-height: 300px; overflow-y: auto; }
 .transaction-item {
-  padding: 10px 15px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 10px 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;
 }
-
-.transaction-amount {
-  font-weight: 600;
-}
-
-.transaction-amount.positive {
-  color: #28a745;
-}
-
-.transaction-amount.negative {
-  color: #dc3545;
-}
-
-.transaction-details {
-  font-size: 0.9rem;
-  color: var(--text-light);
-}
+.transaction-amount { font-weight: 600; }
+.transaction-amount.positive { color: #28a745; }
+.transaction-amount.negative { color: #dc3545; }
+.transaction-details { font-size: 0.9rem; color: var(--text-light); }
 
 /* Mobile Bottom Navigation */
 .mobile-bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-  display: none;
-  z-index: 1000;
+  position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: none; z-index: 1000;
 }
-
 .mobile-bottom-nav-item {
-  flex: 1;
-  text-align: center;
-  padding: 12px 0;
-  color: var(--text-light);
-  text-decoration: none;
-  font-size: 0.8rem;
-  transition: all 0.2s;
+  flex: 1; text-align: center; padding: 12px 0; color: var(--text-light); text-decoration: none; font-size: 0.8rem; transition: all 0.2s;
 }
-
-.mobile-bottom-nav-item.active {
-  color: var(--primary);
-}
-
-.mobile-bottom-nav-item i {
-  display: block;
-  font-size: 1.2rem;
-  margin-bottom: 4px;
-}
-
-.mobile-bottom-nav-item:hover {
-  color: var(--primary);
-}
+.mobile-bottom-nav-item.active { color: var(--primary); }
+.mobile-bottom-nav-item i { display: block; font-size: 1.2rem; margin-bottom: 4px; }
+.mobile-bottom-nav-item:hover { color: var(--primary); }
 
 @media (max-width: 768px) {
-  .mobile-bottom-nav {
-    display: flex;
-  }
-  
-  main {
-    padding-bottom: 70px;
-  }
-  
-  .fab {
-    bottom: 80px;
-  }
+  .mobile-bottom-nav { display: flex; }
+  main { padding-bottom: 70px; }
+  .fab { bottom: 80px; }
 }
 
 /* Mobile Menu */
-.mobile-menu-btn {
-  display: none;
-  border: none;
-  background: none;
-  font-size: 1.2rem;
-  color: var(--primary);
-}
-
+.mobile-menu-btn { display: none; border: none; background: none; font-size: 1.2rem; color: var(--primary); }
 .mobile-menu {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 80%;
-  max-width: 300px;
-  height: 100%;
-  background: white;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  z-index: 1100;
-  transition: all 0.3s;
-  padding: 20px;
-  overflow-y: auto;
+  position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px; height: 100%; background: white;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1); z-index: 1100; transition: all 0.3s; padding: 20px; overflow-y: auto;
 }
-
-.mobile-menu.show {
-  left: 0;
-}
-
+.mobile-menu.show { left: 0; }
 .mobile-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 1050;
-  display: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1050; display: none;
 }
-
-.mobile-menu-overlay.show {
-  display: block;
-}
-
+.mobile-menu-overlay.show { display: block; }
 .mobile-menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee;
 }
-
-.mobile-menu-close {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--danger);
-}
-
+.mobile-menu-close { font-size: 1.5rem; background: none; border: none; color: var(--danger); }
 .mobile-menu-item {
-  display: block;
-  padding: 12px 0;
-  color: var(--text-dark);
-  text-decoration: none;
-  border-bottom: 1px solid #eee;
-  transition: all 0.2s;
+  display: block; padding: 12px 0; color: var(--text-dark); text-decoration: none; border-bottom: 1px solid #eee; transition: all 0.2s;
 }
-
-.mobile-menu-item i {
-  margin-right: 10px;
-  width: 20px;
-  text-align: center;
-}
-
-.mobile-menu-item:hover {
-  color: var(--primary);
-  padding-left: 5px;
-}
+.mobile-menu-item i { margin-right: 10px; width: 20px; text-align: center; }
+.mobile-menu-item:hover { color: var(--primary); padding-left: 5px; }
 
 /* Form inputs */
-.form-control, .form-select {
-  border-radius: 8px;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  transition: all 0.3s;
-}
-
-.form-control:focus, .form-select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
-}
+.form-control, .form-select { border-radius: 8px; padding: 10px 15px; border: 1px solid #ddd; transition: all 0.3s; }
+.form-control:focus, .form-select:focus { border-color: var(--primary); box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25); }
 
 /* Payment method buttons */
 .payment-method {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border-radius: 8px;
-  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 8px; transition: all 0.2s; border: 1px solid #ddd;
 }
-
-.payment-method img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  margin-right: 5px;
-}
-
-.payment-method.active {
-  border-color: var(--primary);
-  background-color: rgba(67, 97, 238, 0.1);
-}
+.payment-method .emoji { font-size: 1.1rem; margin-right: 6px; }
+.payment-method.active { border-color: var(--primary); background-color: rgba(67, 97, 238, 0.1); }
 
 /* Table responsive */
-.table-responsive {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* Emoji Styles */
-.emoji {
-  font-size: 1.2em;
-  margin-right: 5px;
-}
+.emoji { font-size: 1.2rem; margin-right: 5px; }
 
 /* Loading spinner */
 .loading-spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s ease-in-out infinite;
+  display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 1s ease-in-out infinite;
 }
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* Empty state */
-.empty-state {
-  text-align: center;
-  padding: 30px;
-  color: var(--text-light);
-}
-
-.empty-state i {
-  font-size: 3rem;
-  margin-bottom: 15px;
-  color: #ddd;
-}
+.empty-state { text-align: center; padding: 30px; color: var(--text-light); }
+.empty-state i { font-size: 3rem; margin-bottom: 15px; color: #ddd; }
 
 /* Swipeable tabs for mobile */
-.swipe-tabs {
-  display: flex;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 15px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
+.swipe-tabs { display: flex; border-bottom: 1px solid #eee; margin-bottom: 15px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .swipe-tab {
-  padding: 10px 15px;
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  color: var(--text-light);
-  font-weight: 500;
-  transition: all 0.2s;
+  padding: 10px 15px; white-space: nowrap; border-bottom: 2px solid transparent; color: var(--text-light); font-weight: 500; transition: all 0.2s;
 }
-
-.swipe-tab.active {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-}
+.swipe-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
 
 /* Touch feedback */
-.btn, .mobile-bottom-nav-item, .mobile-menu-item {
-  -webkit-tap-highlight-color: transparent;
-}
+.btn, .mobile-bottom-nav-item, .mobile-menu-item { -webkit-tap-highlight-color: transparent; }
 
 /* Prevent zoom on input focus */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  select:focus, textarea:focus, input:focus {
-    font-size: 16px;
-  }
+  select:focus, textarea:focus, input:focus { font-size: 16px; }
 }
 
 /* Player Team Styles */
-.player-team {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
+.player-team { display: flex; align-items: center; margin-bottom: 5px; }
 .player-team-avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: var(--primary);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  font-size: 0.8rem;
+  width: 30px; height: 30px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 0.8rem;
 }
-
-.player-team-name {
-  font-size: 0.9rem;
-}
-
-.player-team-status {
-  margin-left: auto;
-  font-size: 0.8rem;
-  padding: 2px 8px;
-  border-radius: 10px;
-}
-
-.status-solo {
-  background-color: #e3f2fd;
-  color: #1976d2;
-}
-
-.status-squad {
-  background-color: #e8f5e9;
-  color: #388e3c;
-}
+.player-team-name { font-size: 0.9rem; }
+.player-team-status { margin-left: auto; font-size: 0.8rem; padding: 2px 8px; border-radius: 10px; }
+.status-solo { background-color: #e3f2fd; color: #1976d2; }
+.status-squad { background-color: #e8f5e9; color: #388e3c; }
 
 /* Tournament Players Count */
 .tournament-players-count {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  padding: 3px 8px;
-  border-radius: 10px;
-  font-size: 0.8rem;
+  position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;
 }
 
 /* Sticker Styles */
-.sticker {
-  font-size: 2rem;
-  margin: 0 5px;
-  display: inline-block;
-  animation: bounce 0.5s infinite alternate;
-}
-
-@keyframes bounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-5px);
-  }
-}
+.sticker { font-size: 2rem; margin: 0 5px; display: inline-block; animation: bounce 0.5s infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
 
 /* Player Type Badges */
-.player-type-badge {
-  font-size: 0.7rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: 5px;
-}
-
-.badge-solo {
-  background-color: #bbdefb;
-  color: #0d47a1;
-}
-
-.badge-squad {
-  background-color: #c8e6c9;
-  color: #1b5e20;
-}
+.player-type-badge { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: 5px; }
+.badge-solo { background-color: #bbdefb; color: #0d47a1; }
+.badge-squad { background-color: #c8e6c9; color: #1b5e20; }
 
 /* Tournament Prize Sticker */
-.prize-sticker {
-  font-size: 1.5rem;
-  margin-right: 8px;
-  vertical-align: middle;
-}
+.prize-sticker { font-size: 1.5rem; margin-right: 8px; vertical-align: middle; }
 
 /* Mobile Tournament Card Enhancements */
 @media (max-width: 576px) {
-  .tournament-card .card-body {
-    padding: 10px;
-  }
-  
-  .tournament-card .btn {
-    padding: 5px 10px;
-    font-size: 0.8rem;
-  }
-  
-  .tournament-players-count {
-    font-size: 0.7rem;
-    padding: 2px 5px;
-  }
+  .tournament-card .card-body { padding: 10px; }
+  .tournament-card .btn { padding: 5px 10px; font-size: 0.8rem; }
+  .tournament-players-count { font-size: 0.7rem; padding: 2px 5px; }
 }
 
 /* Player Join Button Animation */
-.join-tournament-btn {
-  position: relative;
-  overflow: hidden;
-}
-
+.join-tournament-btn { position: relative; overflow: hidden; }
 .join-tournament-btn:after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: rgba(255,255,255,0.1);
-  transform: rotate(30deg);
-  transition: all 0.3s;
+  content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: rgba(255,255,255,0.1);
+  transform: rotate(30deg); transition: all 0.3s;
 }
-
-.join-tournament-btn:hover:after {
-  left: 100%;
-}
+.join-tournament-btn:hover:after { left: 100%; }
 
 /* Quick Balance Add Button */
 .quick-add-balance {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 0.8rem;
-  margin-left: 5px;
-  cursor: pointer;
+  background-color: #4caf50; color: white; border: none; border-radius: 4px; padding: 2px 6px; font-size: 0.8rem; margin-left: 5px; cursor: pointer;
 }
-
-.quick-add-balance:hover {
-  background-color: #388e3c;
-}
+.quick-add-balance:hover { background-color: #388e3c; }
 
 /* Match Details Styles */
-.match-details-card {
-  border-left: 4px solid var(--primary);
-  margin-bottom: 15px;
-}
-
-.match-status {
-  font-weight: 600;
-}
-
-.match-status.upcoming {
-  color: var(--warning);
-}
-
-.match-status.ongoing {
-  color: var(--success);
-}
-
-.match-status.completed {
-  color: var(--danger);
-}
-
-.match-prize {
-  font-weight: 600;
-  color: var(--warning);
-}
+.match-details-card { border-left: 4px solid var(--primary); margin-bottom: 15px; }
+.match-status { font-weight: 600; }
+.match-status.upcoming { color: var(--warning); }
+.match-status.ongoing { color: var(--success); }
+.match-status.completed { color: var(--danger); }
+.match-prize { font-weight: 600; color: var(--warning); }
 
 /* Leaderboard Styles */
-.leaderboard-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  border-bottom: 1px solid #eee;
-  transition: all 0.2s;
-}
-
-.leaderboard-item:hover {
-  background-color: #f8f9fa;
-}
-
+.leaderboard-item { display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #eee; transition: all 0.2s; }
+.leaderboard-item:hover { background-color: #f8f9fa; }
 .leaderboard-rank {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: var(--primary);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 15px;
-  font-weight: 600;
+  width: 30px; height: 30px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: 600;
 }
-
-.leaderboard-rank.top3 {
-  background-color: var(--warning);
-}
-
-.leaderboard-details {
-  flex: 1;
-}
-
-.leaderboard-name {
-  font-weight: 600;
-}
-
-.leaderboard-stats {
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
-.leaderboard-points {
-  font-weight: 600;
-  color: var(--primary);
-}
+.leaderboard-rank.top3 { background-color: var(--warning); }
+.leaderboard-details { flex: 1; }
+.leaderboard-name { font-weight: 600; }
+.leaderboard-stats { font-size: 0.8rem; color: var(--text-light); }
+.leaderboard-points { font-weight: 600; color: var(--primary); }
 
 /* Profile Styles */
 .profile-header {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  text-align: center;
+  color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; text-align: center;
 }
-
 .profile-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: white;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 0 auto 15px;
+  width: 80px; height: 80px; border-radius: 50%; background-color: white; color: var(--primary);
+  display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 600; margin: 0 auto 15px;
 }
-
-.profile-name {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
+.profile-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 5px; }
 .profile-role {
-  background-color: rgba(255,255,255,0.2);
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  display: inline-block;
-  margin-bottom: 15px;
+  background-color: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 10px;
 }
+.profile-stats { display: flex; justify-content: center; gap: 20px; }
+.profile-stat { text-align: center; }
+.profile-stat-value { font-size: 1.2rem; font-weight: 600; }
+.profile-stat-label { font-size: 0.8rem; opacity: 0.8; }
 
-.profile-stats {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
+/* KYC */
+.kyc-upload { border: 2px dashed #ddd; border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s; }
+.kyc-upload:hover { border-color: var(--primary); background-color: rgba(67, 97, 238, 0.05); }
+.kyc-preview { max-width: 100%; max-height: 200px; margin-top: 15px; display: none; }
 
-.profile-stat {
-  text-align: center;
-}
-
-.profile-stat-value {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.profile-stat-label {
-  font-size: 0.8rem;
-  opacity: 0.8;
-}
-
-/* KYC Verification Styles */
-.kyc-upload {
-  border: 2px dashed #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.kyc-upload:hover {
-  border-color: var(--primary);
-  background-color: rgba(67, 97, 238, 0.05);
-}
-
-.kyc-preview {
-  max-width: 100%;
-  max-height: 200px;
-  margin-top: 15px;
-  display: none;
-}
-
-/* Tournament Management Styles */
-.tournament-management {
-  position: relative;
-}
-
-.tournament-actions {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  gap: 5px;
-}
-
+/* Management */
+.tournament-management { position: relative; }
+.tournament-actions { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; }
 .tournament-action-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  transition: all 0.2s;
+  width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: white; border: 1px solid #ddd; cursor: pointer; transition: all 0.2s;
 }
+.tournament-action-btn:hover { background-color: var(--primary); color: white; border-color: var(--primary); }
 
-.tournament-action-btn:hover {
-  background-color: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
+/* Result Upload */
+.result-upload-form { background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px; }
+.result-player { display: flex; align-items: center; margin-bottom: 10px; padding: 8px; background-color: white; border-radius: 6px; }
+.result-player-input { width: 60px; margin-left: 10px; text-align: center; }
 
-/* Result Upload Styles */
-.result-upload-form {
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 15px;
-}
-
-.result-player {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 8px;
-  background-color: white;
-  border-radius: 6px;
-}
-
-.result-player-input {
-  width: 60px;
-  margin-left: 10px;
-  text-align: center;
-}
-
-/* Prize Distribution Styles */
+/* Prize Distribution */
 .prize-winner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f8f9fa;
-  border-radius: 6px;
+  display: flex; align-items: center; justify-content: space-between; padding: 10px; margin-bottom: 10px; background-color: #f8f9fa; border-radius: 6px;
 }
+.prize-amount-input { width: 100px; text-align: center; }
 
-.prize-amount-input {
-  width: 100px;
-  text-align: center;
-}
-
-/* Match Countdown Styles */
+/* Match Countdown */
 .match-countdown {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--danger);
-  text-align: center;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  margin: 10px 0;
+  font-size: 1.2rem; font-weight: 600; color: var(--danger); text-align: center; padding: 10px; background-color: #f8f9fa; border-radius: 8px; margin: 10px 0;
 }
 
-/* Room Details Styles */
-.room-details {
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 15px 0;
-}
+/* Room Details */
+.room-details { background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; }
+.room-detail-item { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.copy-room-btn { cursor: pointer; color: var(--primary); }
+.copy-room-btn:hover { text-decoration: underline; }
 
-.room-detail-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.copy-room-btn {
-  cursor: pointer;
-  color: var(--primary);
-}
-
-.copy-room-btn:hover {
-  text-decoration: underline;
-}
-
-/* Tournament Slots Styles */
-.slot-indicator {
-  height: 10px;
-  background-color: #e9ecef;
-  border-radius: 5px;
-  margin: 10px 0;
-  overflow: hidden;
-}
-
-.slot-progress {
-  height: 100%;
-  background-color: var(--success);
-  transition: width 0.3s;
-}
-
-.slot-text {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  text-align: right;
-}
+/* Slots */
+.slot-indicator { height: 10px; background-color: #e9ecef; border-radius: 5px; margin: 10px 0; overflow: hidden; }
+.slot-progress { height: 100%; background-color: var(--success); transition: width 0.3s; }
+.slot-text { font-size: 0.8rem; color: var(--text-light); text-align: right; }
 </style>
 </head>
 <body>
@@ -1291,9 +705,7 @@ body {
           <div class="notification-header p-3 border-bottom">
             <h5 class="mb-0">Notifications</h5>
           </div>
-          <div id="notification-list">
-            <!-- Notifications will be loaded here -->
-          </div>
+          <div id="notification-list"></div>
           <div class="notification-footer p-2 text-center">
             <a href="#" id="mark-all-read">Mark all as read</a>
           </div>
@@ -1335,9 +747,7 @@ body {
     <div class="swipe-tab" data-filter="501+">501+৳</div>
   </div>
   
-  <div class="row" id="tournaments-grid">
-    <!-- Tournament cards will be inserted here -->
-  </div>
+  <div class="row" id="tournaments-grid"></div>
   
   <!-- Loading indicator -->
   <div id="tournaments-loading" class="text-center py-4">
@@ -1372,6 +782,11 @@ body {
         <option value="organizer">Organizer</option>
       </select>
     </div>
+    <div class="mb-3 d-none" id="game-id-group">
+      <label for="game-id" class="form-label">গেম আইডি (Free Fire UID)</label>
+      <input id="game-id" type="text" class="form-control" placeholder="আপনার Free Fire UID দিন"/>
+      <small class="text-muted">Player হিসেবে রেজিস্টার করলে গেম আইডি আবশ্যক</small>
+    </div>
     <div class="d-grid gap-2">
       <button id="btn-register" class="btn btn-primary">
         <i class="fas fa-user-plus"></i> Register
@@ -1392,7 +807,15 @@ body {
         <div class="d-flex justify-content-between align-items-center">
           <div>
             <h5 id="welcome" class="mb-1">স্বাগতম!</h5>
-            <div class="text-white-50">UID: <span id="uid" class="text-white"></span></div>
+            <div class="d-flex flex-column flex-sm-row gap-1">
+              <span class="uid-chip"><i class="fas fa-id-badge"></i> UID: <span id="uid" class="text-white"></span></span>
+              <span class="uid-chip"><i class="fas fa-gamepad"></i> Game ID: <span id="game-id-display" class="text-white">-</span></span>
+            </div>
+            <div class="wallet-providers">
+              <span><span class="emoji">💗</span>bKash</span>
+              <span><span class="emoji">🧡</span>Nagad</span>
+              <span><span class="emoji">🪐</span>Rocket</span>
+            </div>
           </div>
           <div class="text-end">
             <div class="text-white-50 mb-1">আপনার ওয়ালেট</div>
@@ -1438,13 +861,13 @@ body {
             <label class="form-label">পেমেন্ট মাধ্যম</label>
             <div class="d-flex gap-2">
               <button class="btn btn-outline-secondary flex-grow-1 payment-method active" data-method="bkash">
-                <img src="https://via.placeholder.com/20/DF1462/FFFFFF?text=B" class="me-2"> bKash
+                <span class="emoji">💗</span> bKash
               </button>
               <button class="btn btn-outline-secondary flex-grow-1 payment-method" data-method="nagad">
-                <img src="https://via.placeholder.com/20/1C366B/FFFFFF?text=N" class="me-2"> Nagad
+                <span class="emoji">🧡</span> Nagad
               </button>
               <button class="btn btn-outline-secondary flex-grow-1 payment-method" data-method="rocket">
-                <img src="https://via.placeholder.com/20/5D2D86/FFFFFF?text=R" class="me-2"> Rocket
+                <span class="emoji">🪐</span> Rocket
               </button>
             </div>
           </div>
@@ -1462,7 +885,6 @@ body {
         </div>
         <div class="card-body p-0">
           <div class="transaction-history" id="transaction-history">
-            <!-- Transactions will be loaded here -->
             <div class="empty-state">
               <i class="fas fa-exchange-alt"></i>
               <p>No transactions yet</p>
@@ -1488,7 +910,6 @@ body {
                 </tr>
               </thead>
               <tbody id="tournaments-body">
-                <!-- Tournaments will be loaded here -->
                 <tr>
                   <td colspan="4" class="text-center py-4">
                     <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
@@ -1508,7 +929,6 @@ body {
         </div>
         <div class="card-body">
           <div id="player-matches-list">
-            <!-- Matches will be loaded here -->
             <div class="empty-state">
               <i class="fas fa-gamepad"></i>
               <p>No matches yet</p>
@@ -1524,7 +944,6 @@ body {
         </div>
         <div class="card-body">
           <div id="leaderboard-list">
-            <!-- Leaderboard will be loaded here -->
             <div class="empty-state">
               <i class="fas fa-medal"></i>
               <p>No leaderboard data yet</p>
@@ -1619,9 +1038,12 @@ body {
             <input id="t-slots" type="number" class="form-control" placeholder="টুর্নামেন্টের স্লট সংখ্যা" value="50"/>
           </div>
           <div class="mb-3">
-            <label for="t-image" class="form-label">টুর্নামেন্ট ইমেজ URL</label>
-            <input id="t-image" type="url" class="form-control" placeholder="https://example.com/image.jpg"/>
-            <small class="text-muted">একটি আকর্ষণীয় ইমেজ URL প্রদান করুন</small>
+            <label for="t-image-file" class="form-label">টুর্নামেন্ট ব্যানার (ইমেজ আপলোড)</label>
+            <input id="t-image-file" type="file" accept="image/*" class="form-control"/>
+            <img id="t-image-preview" class="img-fluid rounded mt-2 d-none" alt="Banner Preview">
+            <div id="t-image-uploading" class="text-muted small mt-2 d-none">
+              <span class="loading-spinner me-2"></span>Uploading to ImageBB...
+            </div>
           </div>
           <div class="row mb-3">
             <div class="col-md-6">
@@ -1672,7 +1094,6 @@ body {
                 </tr>
               </thead>
               <tbody id="organizer-tournaments-body">
-                <!-- Organizer tournaments will be loaded here -->
                 <tr>
                   <td colspan="4" class="text-center py-4">
                     <i class="fas fa-trophy text-muted mb-2" style="font-size: 1.5rem;"></i>
@@ -1691,9 +1112,7 @@ body {
           <i class="fas fa-cog me-2"></i> টুর্নামেন্ট ম্যানেজমেন্ট
         </div>
         <div class="card-body">
-          <div id="tournament-management-content">
-            <!-- Tournament management content will be loaded here -->
-          </div>
+          <div id="tournament-management-content"></div>
         </div>
       </div>
     </div>
@@ -1713,6 +1132,10 @@ body {
           <div class="profile-avatar" id="profile-avatar">U</div>
           <h3 class="profile-name" id="profile-name">User</h3>
           <span class="profile-role" id="profile-role">Player</span>
+          <div class="d-flex flex-wrap justify-content-center gap-2 mb-2">
+            <span class="uid-chip"><i class="fas fa-id-badge"></i> UID: <span id="profile-firebase-uid">-</span></span>
+            <span class="uid-chip"><i class="fas fa-gamepad"></i> Game ID: <span id="profile-game-id">-</span></span>
+          </div>
           <div class="profile-stats">
             <div class="profile-stat">
               <div class="profile-stat-value" id="profile-matches">0</div>
@@ -1761,7 +1184,6 @@ body {
               </div>
               <div class="card-body">
                 <div id="profile-match-history">
-                  <!-- Match history will be loaded here -->
                   <div class="empty-state">
                     <i class="fas fa-gamepad"></i>
                     <p>No match history yet</p>
@@ -1820,9 +1242,7 @@ body {
                 <i class="fas fa-users me-2"></i> যোগদানকারী
               </div>
               <div class="card-body">
-                <div id="tournament-details-players">
-                  <!-- Players will be loaded here -->
-                </div>
+                <div id="tournament-details-players"></div>
               </div>
             </div>
           </div>
@@ -1866,9 +1286,7 @@ body {
                 <i class="fas fa-medal me-2"></i> আপনার রেজাল্ট
               </div>
               <div class="card-body">
-                <div id="match-result-details">
-                  <!-- Result will be loaded here -->
-                </div>
+                <div id="match-result-details"></div>
               </div>
             </div>
           </div>
@@ -1879,22 +1297,10 @@ body {
               </div>
               <div class="card-body">
                 <div class="room-details">
-                  <div class="room-detail-item">
-                    <span>রুম আইডি:</span>
-                    <span id="room-id">-</span>
-                  </div>
-                  <div class="room-detail-item">
-                    <span>রুম পাসওয়ার্ড:</span>
-                    <span id="room-password">-</span>
-                  </div>
-                  <div class="room-detail-item">
-                    <span>রুম লিঙ্ক:</span>
-                    <span id="room-link">-</span>
-                  </div>
-                  <div class="room-detail-item">
-                    <span>ম্যাচ টাইম:</span>
-                    <span id="match-countdown">-</span>
-                  </div>
+                  <div class="room-detail-item"><span>রুম আইডি:</span><span id="room-id">-</span></div>
+                  <div class="room-detail-item"><span>রুম পাসওয়ার্ড:</span><span id="room-password">-</span></div>
+                  <div class="room-detail-item"><span>রুম লিঙ্ক:</span><span id="room-link">-</span></div>
+                  <div class="room-detail-item"><span>ম্যাচ টাইম:</span><span id="match-countdown">-</span></div>
                 </div>
                 <button class="btn btn-primary w-100 mt-3" id="btn-copy-room">
                   <i class="fas fa-copy me-2"></i> কপি করুন
@@ -1904,9 +1310,7 @@ body {
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
     </div>
   </div>
 </div>
@@ -1921,100 +1325,54 @@ body {
       </div>
       <div class="modal-body">
         <ul class="nav nav-tabs" id="tournamentManagementTabs">
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#players-tab">Players</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#room-tab">Room Details</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#results-tab">Results</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#prize-tab">Prize Distribution</a>
-          </li>
+          <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#players-tab">Players</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#room-tab">Room Details</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#results-tab">Results</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#prize-tab">Prize Distribution</a></li>
         </ul>
-        
         <div class="tab-content mt-3">
           <div class="tab-pane fade show active" id="players-tab">
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
-                  <tr>
-                    <th>Player</th>
-                    <th>Status</th>
-                    <th>Joined At</th>
-                    <th>Action</th>
-                  </tr>
+                  <tr><th>Player</th><th>Status</th><th>Joined At</th><th>Action</th></tr>
                 </thead>
-                <tbody id="management-players-list">
-                  <!-- Players will be loaded here -->
-                </tbody>
+                <tbody id="management-players-list"></tbody>
               </table>
             </div>
           </div>
-          
           <div class="tab-pane fade" id="room-tab">
             <div class="card">
-              <div class="card-header bg-primary text-white">
-                <i class="fas fa-door-open me-2"></i> রুম ডিটেইলস
-              </div>
+              <div class="card-header bg-primary text-white"><i class="fas fa-door-open me-2"></i> রুম ডিটেইলস</div>
               <div class="card-body">
-                <div class="mb-3">
-                  <label for="room-id-input" class="form-label">রুম আইডি</label>
-                  <input type="text" class="form-control" id="room-id-input">
-                </div>
-                <div class="mb-3">
-                  <label for="room-password-input" class="form-label">রুম পাসওয়ার্ড</label>
-                  <input type="text" class="form-control" id="room-password-input">
-                </div>
-                <div class="mb-3">
-                  <label for="room-link-input" class="form-label">রুম লিঙ্ক (ঐচ্ছিক)</label>
-                  <input type="text" class="form-control" id="room-link-input" placeholder="https://example.com">
-                </div>
-                <button class="btn btn-primary" id="btn-save-room-details">
-                  <i class="fas fa-save me-2"></i> Save Room Details
-                </button>
+                <div class="mb-3"><label for="room-id-input" class="form-label">রুম আইডি</label><input type="text" class="form-control" id="room-id-input"></div>
+                <div class="mb-3"><label for="room-password-input" class="form-label">রুম পাসওয়ার্ড</label><input type="text" class="form-control" id="room-password-input"></div>
+                <div class="mb-3"><label for="room-link-input" class="form-label">রুম লিঙ্ক (ঐচ্ছিক)</label><input type="text" class="form-control" id="room-link-input" placeholder="https://example.com"></div>
+                <button class="btn btn-primary" id="btn-save-room-details"><i class="fas fa-save me-2"></i> Save Room Details</button>
               </div>
             </div>
           </div>
-          
           <div class="tab-pane fade" id="results-tab">
             <div class="card">
-              <div class="card-header bg-primary text-white">
-                <i class="fas fa-medal me-2"></i> রেজাল্ট আপলোড
-              </div>
+              <div class="card-header bg-primary text-white"><i class="fas fa-medal me-2"></i> রেজাল্ট আপলোড</div>
               <div class="card-body">
-                <div id="result-upload-players">
-                  <!-- Players for result upload will be loaded here -->
-                </div>
-                <button class="btn btn-primary mt-3" id="btn-submit-results">
-                  <i class="fas fa-upload me-2"></i> Submit Results
-                </button>
+                <div id="result-upload-players"></div>
+                <button class="btn btn-primary mt-3" id="btn-submit-results"><i class="fas fa-upload me-2"></i> Submit Results</button>
               </div>
             </div>
           </div>
-          
           <div class="tab-pane fade" id="prize-tab">
             <div class="card">
-              <div class="card-header bg-primary text-white">
-                <i class="fas fa-trophy me-2"></i> পুরস্কার বিতরণ
-              </div>
+              <div class="card-header bg-primary text-white"><i class="fas fa-trophy me-2"></i> পুরস্কার বিতরণ</div>
               <div class="card-body">
-                <div id="prize-distribution-players">
-                  <!-- Players for prize distribution will be loaded here -->
-                </div>
-                <button class="btn btn-primary mt-3" id="btn-distribute-prizes">
-                  <i class="fas fa-gift me-2"></i> Distribute Prizes
-                </button>
+                <div id="prize-distribution-players"></div>
+                <button class="btn btn-primary mt-3" id="btn-distribute-prizes"><i class="fas fa-gift me-2"></i> Distribute Prizes</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
     </div>
   </div>
 </div>
@@ -2022,22 +1380,10 @@ body {
 
 <!-- Mobile Bottom Navigation -->
 <div class="mobile-bottom-nav d-none" id="mobile-bottom-nav">
-  <a href="#" class="mobile-bottom-nav-item active" data-section="home">
-    <i class="fas fa-home"></i>
-    <span>হোম</span>
-  </a>
-  <a href="#" class="mobile-bottom-nav-item" data-section="tournaments">
-    <i class="fas fa-trophy"></i>
-    <span>টুর্নামেন্ট</span>
-  </a>
-  <a href="#" class="mobile-bottom-nav-item" data-section="matches">
-    <i class="fas fa-gamepad"></i>
-    <span>ম্যাচ</span>
-  </a>
-  <a href="#" class="mobile-bottom-nav-item" data-section="profile">
-    <i class="fas fa-user"></i>
-    <span>প্রোফাইল</span>
-  </a>
+  <a href="#" class="mobile-bottom-nav-item active" data-section="home"><i class="fas fa-home"></i><span>হোম</span></a>
+  <a href="#" class="mobile-bottom-nav-item" data-section="tournaments"><i class="fas fa-trophy"></i><span>টুর্নামেন্ট</span></a>
+  <a href="#" class="mobile-bottom-nav-item" data-section="matches"><i class="fas fa-gamepad"></i><span>ম্যাচ</span></a>
+  <a href="#" class="mobile-bottom-nav-item" data-section="profile"><i class="fas fa-user"></i><span>প্রোফাইল</span></a>
 </div>
 
 <!-- Floating Action Button -->
@@ -2063,6 +1409,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(), db = firebase.database();
 
+// ImageBB config
+const IMGBB_API_KEY = 'a5e9f23952de30236c940c60b740ec9d';
+
 // UI refs
 const authModal = document.getElementById('auth-modal');
 const dash = document.getElementById('dash');
@@ -2071,6 +1420,8 @@ const emailIn = document.getElementById('email');
 const passIn = document.getElementById('password');
 const roleSelect = document.getElementById('role-select');
 const nameIn = document.getElementById('name');
+const gameIdGroup = document.getElementById('game-id-group');
+const gameIdInput = document.getElementById('game-id');
 const btnLogin = document.getElementById('btn-login');
 const btnRegister = document.getElementById('btn-register');
 const btnLogoutDash = document.getElementById('btn-logout-dash');
@@ -2079,6 +1430,7 @@ const btnLoginShow = document.getElementById('btn-login-show');
 const closeModal = document.querySelector('.close-modal');
 const welcome = document.getElementById('welcome');
 const uidSpan = document.getElementById('uid');
+const gameIdDisplay = document.getElementById('game-id-display');
 const walletSpan = document.getElementById('wallet');
 const playerView = document.getElementById('player-view');
 const organizerView = document.getElementById('organizer-view');
@@ -2136,6 +1488,11 @@ const profileEditPassword = document.getElementById('profile-edit-password');
 const btnSaveProfile = document.getElementById('btn-save-profile');
 const profileMatchHistory = document.getElementById('profile-match-history');
 const btnCopyRoom = document.getElementById('btn-copy-room');
+const tImageFile = document.getElementById('t-image-file');
+const tImagePreview = document.getElementById('t-image-preview');
+const tImageUploading = document.getElementById('t-image-uploading');
+const profileFirebaseUid = document.getElementById('profile-firebase-uid');
+const profileGameId = document.getElementById('profile-game-id');
 
 // Payment method selection
 document.querySelectorAll('.payment-method').forEach(btn => {
@@ -2156,6 +1513,7 @@ document.querySelectorAll('.quick-add-balance').forEach(btn => {
 // Modal controls
 btnLoginShow.addEventListener('click', () => {
   authModal.style.display = 'flex';
+  toggleGameIdField();
 });
 
 closeModal.addEventListener('click', () => {
@@ -2168,17 +1526,40 @@ window.addEventListener('click', (e) => {
   }
 });
 
+// Toggle Game ID field by role
+function toggleGameIdField() {
+  if (roleSelect.value === 'player') {
+    gameIdGroup.classList.remove('d-none');
+  } else {
+    gameIdGroup.classList.add('d-none');
+    gameIdInput.value = '';
+  }
+}
+roleSelect.addEventListener('change', toggleGameIdField);
+
+// Preview tournament banner file
+if (tImageFile) {
+  tImageFile.addEventListener('change', () => {
+    const file = tImageFile.files[0];
+    if (file) {
+      tImagePreview.src = URL.createObjectURL(file);
+      tImagePreview.classList.remove('d-none');
+    } else {
+      tImagePreview.classList.add('d-none');
+      tImagePreview.src = '';
+    }
+  });
+}
+
 // Mobile menu toggle
 mobileMenuBtn.addEventListener('click', () => {
   mobileMenu.classList.add('show');
   mobileMenuOverlay.classList.add('show');
 });
-
 mobileMenuClose.addEventListener('click', () => {
   mobileMenu.classList.remove('show');
   mobileMenuOverlay.classList.remove('show');
 });
-
 mobileMenuOverlay.addEventListener('click', () => {
   mobileMenu.classList.remove('show');
   mobileMenuOverlay.classList.remove('show');
@@ -2190,7 +1571,6 @@ mobileBottomNavItems.forEach(item => {
     e.preventDefault();
     mobileBottomNavItems.forEach(i => i.classList.remove('active'));
     this.classList.add('active');
-    
     const section = this.getAttribute('data-section');
     if (section === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2205,7 +1585,6 @@ dashboardTabs.forEach(tab => {
   tab.addEventListener('click', function() {
     dashboardTabs.forEach(t => t.classList.remove('active'));
     this.classList.add('active');
-    
     const tabName = this.getAttribute('data-tab');
     if (tabName === 'player') {
       playerView.style.display = 'block';
@@ -2223,7 +1602,6 @@ mobileMenuItems.forEach(item => {
     e.preventDefault();
     mobileMenu.classList.remove('show');
     mobileMenuOverlay.classList.remove('show');
-    
     const section = this.getAttribute('data-section');
     if (section === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2243,7 +1621,6 @@ swipeTabs.forEach(tab => {
   tab.addEventListener('click', function() {
     swipeTabs.forEach(t => t.classList.remove('active'));
     this.classList.add('active');
-    
     const filter = this.getAttribute('data-filter');
     filterTournaments(filter);
   });
@@ -2251,17 +1628,14 @@ swipeTabs.forEach(tab => {
 
 function filterTournaments(filter) {
   const cards = document.querySelectorAll('.tournament-card');
-  
   cards.forEach(card => {
     const feeText = card.querySelector('.fee-badge, .premium-badge').textContent;
     const fee = parseInt(feeText.replace('৳', ''));
-    
     let show = false;
     if (filter === 'all') show = true;
     else if (filter === '0-100') show = fee >= 0 && fee <= 100;
     else if (filter === '101-500') show = fee >= 101 && fee <= 500;
     else if (filter === '501+') show = fee >= 501;
-    
     card.parentNode.style.display = show ? 'block' : 'none';
   });
 }
@@ -2271,12 +1645,9 @@ notificationBell.addEventListener('click', (e) => {
   e.stopPropagation();
   notificationDropdown.style.display = notificationDropdown.style.display === 'block' ? 'none' : 'block';
 });
-
-// Close notification dropdown when clicking outside
 document.addEventListener('click', () => {
   notificationDropdown.style.display = 'none';
 });
-
 markAllRead.addEventListener('click', async (e) => {
   e.preventDefault();
   const uid = auth.currentUser.uid;
@@ -2300,7 +1671,6 @@ function loadNotifications(uid) {
     const notifications = snap.val() || {};
     notificationList.innerHTML = '';
     let unreadCount = 0;
-    
     Object.entries(notifications).reverse().forEach(([nid, n]) => {
       const emoji = getEmojiForCategory(n.category);
       const notificationItem = document.createElement('div');
@@ -2316,11 +1686,8 @@ function loadNotifications(uid) {
         <div class="notification-message">${n.message}</div>
       `;
       notificationList.appendChild(notificationItem);
-      
       if (!n.read) unreadCount++;
     });
-    
-    // Update badge count
     if (unreadCount > 0) {
       notificationCount.textContent = unreadCount > 9 ? '9+' : unreadCount;
       notificationCount.classList.remove('d-none');
@@ -2359,7 +1726,6 @@ function sendNotification(uid, title, message, category = 'info') {
 btnScrollTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
 window.addEventListener('scroll', () => {
   if (window.pageYOffset > 300) {
     btnScrollTop.style.display = 'flex';
@@ -2373,17 +1739,21 @@ btnRegister.addEventListener('click', async () => {
   const name = nameIn.value.trim(), 
         email = emailIn.value.trim(), 
         pass = passIn.value, 
-        role = roleSelect.value;
+        role = roleSelect.value,
+        gameId = gameIdInput.value.trim();
   
   if (!name || !email || !pass) return alert('সব তথ্য পূরণ করুন');
   if (pass.length < 6) return alert('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে');
-  
+  if (role === 'player' && !gameId) return alert('Player হিসেবে গেম আইডি (UID) আবশ্যক');
+
   try {
     const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    try { await cred.user.updateProfile({ displayName: name }); } catch(e) {}
     await db.ref('users/' + cred.user.uid).set({
       name,
       email,
       role,
+      gameId: role === 'player' ? gameId : '',
       wallet: 0,
       verified: false,
       ban: false,
@@ -2393,14 +1763,7 @@ btnRegister.addEventListener('click', async () => {
       totalEarnings: 0,
       createdAt: firebase.database.ServerValue.TIMESTAMP
     });
-    
-    // Send welcome notification
-    sendNotification(cred.user.uid, 
-      'স্বাগতম!', 
-      `আপনি সফলভাবে ${role} হিসেবে রেজিস্টার করেছেন। FreeFire Arena এ অংশগ্রহণের জন্য আপনাকে ধন্যবাদ!`,
-      'success'
-    );
-    
+    sendNotification(cred.user.uid, 'স্বাগতম!', `আপনি সফলভাবে ${role} হিসেবে রেজিস্টার করেছেন। FreeFire Arena এ অংশগ্রহণের জন্য আপনাকে ধন্যবাদ!`, 'success');
     alert('রেজিস্ট্রেশন সফল!');
     authModal.style.display = 'none';
   } catch (err) {
@@ -2411,7 +1774,6 @@ btnRegister.addEventListener('click', async () => {
 btnLogin.addEventListener('click', async () => {
   const email = emailIn.value.trim(), pass = passIn.value;
   if (!email || !pass) return alert('সব তথ্য পূরণ করুন');
-  
   try {
     await auth.signInWithEmailAndPassword(email, pass);
     authModal.style.display = 'none';
@@ -2426,10 +1788,8 @@ btnLogoutBanned.addEventListener('click', () => auth.signOut());
 // AUTH STATE CHANGE
 auth.onAuthStateChanged(user => {
   if (user) {
-    // Check if user is banned
     db.ref('users/' + user.uid + '/ban').once('value').then(snap => {
       const isBanned = snap.val();
-      
       if (isBanned) {
         bannedScreen.style.display = 'flex';
         dash.style.display = 'none';
@@ -2464,12 +1824,10 @@ function loadUserData(uid) {
   db.ref('users/' + uid).on('value', snap => {
     const u = snap.val(); 
     if (!u) return;
-    
-    welcome.innerHTML = `স্বাগতম, <strong>${u.name}</strong> <span class="badge bg-secondary">${u.role}</span>`; 
+    welcome.innerHTML = `স্বাগতম, <strong>${u.name}</strong> <span class="badge bg-secondary">${u.role}</span>`;
     uidSpan.innerText = uid; 
     walletSpan.innerText = u.wallet || 0;
-    
-    // Show/hide panels based on role
+    gameIdDisplay.innerText = u.gameId || '-';
     if (u.role === 'player') {
       playerView.style.display = 'block';
       organizerView.style.display = 'none';
@@ -2481,16 +1839,12 @@ function loadUserData(uid) {
       playerView.style.display = 'none';
       organizerView.style.display = 'block';
       loadOrganizerTournaments(uid);
-      
-      // Show/hide KYC section based on verification status
       if (u.kycVerified) {
         kycSection.style.display = 'none';
       } else {
         kycSection.style.display = 'block';
       }
     }
-    
-    // Load notifications
     loadNotifications(uid);
   });
 }
@@ -2500,7 +1854,6 @@ function loadTransactionHistory(uid) {
   db.ref(`transactions/${uid}`).orderByChild('timestamp').limitToLast(20).on('value', snap => {
     const transactions = snap.val() || {};
     transactionHistory.innerHTML = '';
-    
     if (Object.keys(transactions).length === 0) {
       transactionHistory.innerHTML = `
         <div class="empty-state">
@@ -2510,14 +1863,11 @@ function loadTransactionHistory(uid) {
       `;
       return;
     }
-    
     Object.entries(transactions).reverse().forEach(([tid, t]) => {
       const transactionItem = document.createElement('div');
       transactionItem.className = 'transaction-item';
-      
       const emoji = t.type === 'deposit' ? '⬆️' : '⬇️';
       const amountClass = t.type === 'deposit' ? 'positive' : 'negative';
-      
       transactionItem.innerHTML = `
         <div>
           <div class="transaction-details">${emoji} ${t.description || 'Transaction'}</div>
@@ -2525,7 +1875,6 @@ function loadTransactionHistory(uid) {
         </div>
         <div class="transaction-amount ${amountClass}">${t.type === 'deposit' ? '+' : '-'}${t.amount}৳</div>
       `;
-      
       transactionHistory.appendChild(transactionItem);
     });
   });
@@ -2536,7 +1885,6 @@ function loadPlayerTournaments(uid) {
   db.ref('tournaments').orderByChild('status').equalTo('approved').on('value', snap => {
     const tournaments = snap.val() || {};
     tournamentsBody.innerHTML = '';
-    
     if (Object.keys(tournaments).length === 0) {
       tournamentsBody.innerHTML = `
         <tr>
@@ -2548,11 +1896,9 @@ function loadPlayerTournaments(uid) {
       `;
       return;
     }
-    
     Object.entries(tournaments).forEach(([tid, t]) => {
       db.ref('users/' + t.organizer).once('value').then(uSnap => {
         const organizer = uSnap.val() || {};
-        
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${t.name}</td>
@@ -2564,38 +1910,26 @@ function loadPlayerTournaments(uid) {
             </button>
           </td>
         `;
-        
         tournamentsBody.appendChild(tr);
-        
-        // Add join tournament event
         tr.querySelector('.join-tournament').addEventListener('click', async function() {
           const tournamentId = this.getAttribute('data-tid');
           const fee = parseInt(this.getAttribute('data-fee'));
-          
-          // Check wallet balance
           const userSnap = await db.ref('users/' + uid).once('value');
           const user = userSnap.val();
-          
           if (user.wallet < fee) {
             alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।');
             return;
           }
-          
-          // Check if already joined
           const joinedSnap = await db.ref(`tournaments/${tournamentId}/players/${uid}`).once('value');
           if (joinedSnap.exists()) {
             alert('আপনি ইতিমধ্যে এই টুর্নামেন্টে যোগ দিয়েছেন!');
             return;
           }
-          
-          // Check if slots are available
           const playerCount = t.players ? Object.keys(t.players).length : 0;
           if (playerCount >= (t.slots || 50)) {
             alert('এই টুর্নামেন্টে আর স্লট খালি নেই!');
             return;
           }
-          
-          // Deduct fee and join tournament
           try {
             await db.ref(`tournaments/${tournamentId}/players/${uid}`).set({
               joinedAt: firebase.database.ServerValue.TIMESTAMP,
@@ -2603,8 +1937,6 @@ function loadPlayerTournaments(uid) {
               playerName: user.name,
               status: 'joined'
             });
-            
-            // Create match entry for the player
             const matchId = db.ref().child('matches').push().key;
             await db.ref(`matches/${matchId}`).set({
               tournamentId,
@@ -2619,12 +1951,8 @@ function loadPlayerTournaments(uid) {
               status: 'upcoming',
               createdAt: firebase.database.ServerValue.TIMESTAMP
             });
-            
-            // Update user wallet
             await db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee);
             await db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
-            
-            // Record transaction
             const transactionId = db.ref().child(`transactions/${uid}`).push().key;
             await db.ref(`transactions/${uid}/${transactionId}`).set({
               type: 'withdraw',
@@ -2632,24 +1960,9 @@ function loadPlayerTournaments(uid) {
               description: `Joined tournament: ${t.name}`,
               timestamp: firebase.database.ServerValue.TIMESTAMP
             });
-            
-            // Update user stats
             await db.ref(`users/${uid}/matchesPlayed`).transaction(current => (current || 0) + 1);
-            
-            // Send notification to organizer
-            sendNotification(t.organizer, 
-              'নতুন প্লেয়ার যোগ দিয়েছে', 
-              `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
-              'tournament'
-            );
-            
-            // Send notification to player
-            sendNotification(uid,
-              'টুর্নামেন্টে যোগদান সফল',
-              `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`,
-              'success'
-            );
-            
+            sendNotification(t.organizer, 'নতুন প্লেয়ার যোগ দিয়েছে', `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`, 'tournament');
+            sendNotification(uid, 'টুর্নামেন্টে যোগদান সফল', `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`, 'success');
             alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
           } catch (err) {
             alert('ত্রুটি: ' + err.message);
@@ -2665,7 +1978,6 @@ function loadPlayerMatches(uid) {
   db.ref('matches').orderByChild('playerId').equalTo(uid).on('value', snap => {
     const matches = snap.val() || {};
     playerMatchesList.innerHTML = '';
-    
     if (Object.keys(matches).length === 0) {
       playerMatchesList.innerHTML = `
         <div class="empty-state">
@@ -2675,11 +1987,9 @@ function loadPlayerMatches(uid) {
       `;
       return;
     }
-    
     Object.entries(matches).reverse().forEach(([mid, m]) => {
       const matchCard = document.createElement('div');
       matchCard.className = 'card match-details-card mb-3';
-      
       matchCard.innerHTML = `
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
@@ -2687,20 +1997,11 @@ function loadPlayerMatches(uid) {
             <span class="match-status ${m.status}">${m.status}</span>
           </div>
           <div class="d-flex justify-content-between mb-2">
-            <div>
-              <i class="far fa-calendar-alt me-2"></i>
-              ${formatDate(m.date)} at ${m.time}
-            </div>
-            <div>
-              <span class="badge ${m.teamType === 'solo' ? 'badge-solo' : 'badge-squad'}">
-                ${m.teamType}
-              </span>
-            </div>
+            <div><i class="far fa-calendar-alt me-2"></i>${formatDate(m.date)} at ${m.time}</div>
+            <div><span class="badge ${m.teamType === 'solo' ? 'badge-solo' : 'badge-squad'}">${m.teamType}</span></div>
           </div>
           <div class="d-flex justify-content-between">
-            <div>
-              <span class="text-muted">Entry:</span> ${m.entryFee}৳
-            </div>
+            <div><span class="text-muted">Entry:</span> ${m.entryFee}৳</div>
             ${m.prize ? `<div><span class="text-muted">Prize:</span> <span class="match-prize">${m.prize}</span></div>` : ''}
           </div>
           <button class="btn btn-sm btn-outline-primary w-100 mt-2 view-match-btn" data-mid="${mid}">
@@ -2708,10 +2009,7 @@ function loadPlayerMatches(uid) {
           </button>
         </div>
       `;
-      
       playerMatchesList.appendChild(matchCard);
-      
-      // Add view match event
       matchCard.querySelector('.view-match-btn').addEventListener('click', function() {
         showMatchDetails(mid, m);
       });
@@ -2729,8 +2027,6 @@ function showMatchDetails(matchId, match) {
   document.getElementById('match-team-type').textContent = match.teamType;
   document.getElementById('match-fee').textContent = match.entryFee;
   document.getElementById('match-prize').textContent = match.prize || '-';
-  
-  // Set room details if available
   if (match.roomId) {
     document.getElementById('room-id').textContent = match.roomId;
     document.getElementById('room-password').textContent = match.roomPassword || '-';
@@ -2740,8 +2036,6 @@ function showMatchDetails(matchId, match) {
     document.getElementById('room-password').textContent = 'Not available yet';
     document.getElementById('room-link').textContent = 'Not available yet';
   }
-  
-  // Set result details if available
   const resultDetails = document.getElementById('match-result-details');
   if (match.result) {
     resultDetails.innerHTML = `
@@ -2753,8 +2047,6 @@ function showMatchDetails(matchId, match) {
   } else {
     resultDetails.innerHTML = '<p>No result available yet</p>';
   }
-  
-  // Set countdown if match is upcoming
   const countdownElement = document.getElementById('match-countdown');
   if (match.status === 'upcoming') {
     const matchTime = new Date(`${match.date} ${match.time}`).getTime();
@@ -2762,15 +2054,12 @@ function showMatchDetails(matchId, match) {
     const countdownInterval = setInterval(() => {
       updateCountdown(matchTime, countdownElement);
     }, 1000);
-    
-    // Clear interval when modal is closed
     matchDetailsModal._element.addEventListener('hidden.bs.modal', () => {
       clearInterval(countdownInterval);
     });
   } else {
     countdownElement.textContent = 'Match completed';
   }
-  
   matchDetailsModal.show();
 }
 
@@ -2778,17 +2067,11 @@ function showMatchDetails(matchId, match) {
 function updateCountdown(matchTime, element) {
   const now = new Date().getTime();
   const distance = matchTime - now;
-  
-  if (distance < 0) {
-    element.textContent = "Match time has arrived!";
-    return;
-  }
-  
+  if (distance < 0) { element.textContent = "Match time has arrived!"; return; }
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
   element.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
@@ -2797,7 +2080,6 @@ function loadLeaderboard() {
   db.ref('users').orderByChild('totalEarnings').limitToLast(10).on('value', snap => {
     const users = snap.val() || {};
     leaderboardList.innerHTML = '';
-    
     if (Object.keys(users).length === 0) {
       leaderboardList.innerHTML = `
         <div class="empty-state">
@@ -2807,8 +2089,6 @@ function loadLeaderboard() {
       `;
       return;
     }
-    
-    // Convert to array and sort by earnings
     const leaderboard = Object.entries(users).map(([uid, u]) => ({
       uid,
       name: u.name,
@@ -2816,22 +2096,17 @@ function loadLeaderboard() {
       matches: u.matchesPlayed || 0,
       wins: u.matchesWon || 0
     })).sort((a, b) => b.earnings - a.earnings);
-    
     leaderboard.forEach((user, index) => {
       const leaderboardItem = document.createElement('div');
       leaderboardItem.className = 'leaderboard-item';
-      
       leaderboardItem.innerHTML = `
         <div class="leaderboard-rank ${index < 3 ? 'top3' : ''}">${index + 1}</div>
         <div class="leaderboard-details">
           <div class="leaderboard-name">${user.name}</div>
-          <div class="leaderboard-stats">
-            ${user.wins} Wins • ${user.matches} Matches
-          </div>
+          <div class="leaderboard-stats">${user.wins} Wins • ${user.matches} Matches</div>
         </div>
         <div class="leaderboard-points">${user.earnings}৳</div>
       `;
-      
       leaderboardList.appendChild(leaderboardItem);
     });
   });
@@ -2842,7 +2117,6 @@ function loadOrganizerTournaments(uid) {
   db.ref('tournaments').orderByChild('organizer').equalTo(uid).on('value', snap => {
     const tournaments = snap.val() || {};
     organizerTournamentsBody.innerHTML = '';
-    
     if (Object.keys(tournaments).length === 0) {
       organizerTournamentsBody.innerHTML = `
         <tr>
@@ -2854,30 +2128,16 @@ function loadOrganizerTournaments(uid) {
       `;
       return;
     }
-    
     Object.entries(tournaments).forEach(([tid, t]) => {
-      // Count players
       const playerCount = t.players ? Object.keys(t.players).length : 0;
-      
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${t.name}</td>
-        <td>
-          <span class="badge ${getStatusBadgeClass(t.status)}">
-            ${t.status}
-          </span>
-        </td>
+        <td><span class="badge ${getStatusBadgeClass(t.status)}">${t.status}</span></td>
         <td>${playerCount}/${t.slots || 50}</td>
-        <td>
-          <button class="btn btn-sm btn-outline-primary manage-tournament" data-tid="${tid}">
-            Manage
-          </button>
-        </td>
+        <td><button class="btn btn-sm btn-outline-primary manage-tournament" data-tid="${tid}">Manage</button></td>
       `;
-      
       organizerTournamentsBody.appendChild(tr);
-      
-      // Add manage tournament event
       tr.querySelector('.manage-tournament').addEventListener('click', function() {
         const tournamentId = this.getAttribute('data-tid');
         manageTournament(tournamentId, tournaments[tournamentId]);
@@ -2886,18 +2146,16 @@ function loadOrganizerTournaments(uid) {
   });
 }
 
-// MANAGE TOURNAMENT
+// MANAGE TOURNAMENT (unchanged major logic; omitted for brevity in comment)
+// ... existing management functions from your original code (unchanged) ...
 function manageTournament(tournamentId, tournament) {
-  // Show tournament management section
   tournamentManagement.classList.remove('d-none');
   tournamentManagementContent.innerHTML = `
     <h4 class="mb-4">${tournament.name}</h4>
     <div class="row">
       <div class="col-md-6">
         <div class="card mb-4">
-          <div class="card-header bg-primary text-white">
-            <i class="fas fa-info-circle me-2"></i> টুর্নামেন্ট তথ্য
-          </div>
+          <div class="card-header bg-primary text-white"><i class="fas fa-info-circle me-2"></i> টুর্নামেন্ট তথ্য</div>
           <div class="card-body">
             <div class="mb-2"><strong>Date:</strong> ${formatDate(tournament.date)}</div>
             <div class="mb-2"><strong>Time:</strong> ${tournament.time}</div>
@@ -2910,44 +2168,27 @@ function manageTournament(tournamentId, tournament) {
       </div>
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header bg-primary text-white">
-            <i class="fas fa-tools me-2"></i> অ্যাকশনস
-          </div>
+          <div class="card-header bg-primary text-white"><i class="fas fa-tools me-2"></i> অ্যাকশনস</div>
           <div class="card-body">
-            <button class="btn btn-primary w-100 mb-2" id="btn-open-management">
-              <i class="fas fa-cog me-2"></i> Full Management
-            </button>
-            <button class="btn btn-outline-danger w-100" id="btn-cancel-tournament" ${tournament.status !== 'approved' ? 'disabled' : ''}>
-              <i class="fas fa-times me-2"></i> Cancel Tournament
-            </button>
+            <button class="btn btn-primary w-100 mb-2" id="btn-open-management"><i class="fas fa-cog me-2"></i> Full Management</button>
+            <button class="btn btn-outline-danger w-100" id="btn-cancel-tournament" ${tournament.status !== 'approved' ? 'disabled' : ''}><i class="fas fa-times me-2"></i> Cancel Tournament</button>
           </div>
         </div>
       </div>
     </div>
   `;
-  
-  // Scroll to management section
   tournamentManagement.scrollIntoView({ behavior: 'smooth' });
-  
-  // Add event for full management
   document.getElementById('btn-open-management').addEventListener('click', () => {
     openTournamentManagementModal(tournamentId, tournament);
   });
-  
-  // Add event for cancel tournament
   document.getElementById('btn-cancel-tournament').addEventListener('click', async () => {
     if (confirm('Are you sure you want to cancel this tournament? All entry fees will be refunded.')) {
       try {
-        // Refund all players
         if (tournament.players) {
           const updates = {};
           const notifications = {};
-          
           Object.keys(tournament.players).forEach(playerId => {
-            // Refund entry fee
             updates[`users/${playerId}/wallet`] = firebase.database.ServerValue.increment(tournament.fee);
-            
-            // Record transaction
             const transactionId = db.ref().child(`transactions/${playerId}`).push().key;
             updates[`transactions/${playerId}/${transactionId}`] = {
               type: 'deposit',
@@ -2955,8 +2196,6 @@ function manageTournament(tournamentId, tournament) {
               description: `Refund for canceled tournament: ${tournament.name}`,
               timestamp: firebase.database.ServerValue.TIMESTAMP
             };
-            
-            // Create notification
             const notificationId = db.ref().child(`users/${playerId}/notifications`).push().key;
             notifications[`users/${playerId}/notifications/${notificationId}`] = {
               title: 'Tournament Canceled',
@@ -2965,28 +2204,16 @@ function manageTournament(tournamentId, tournament) {
               read: false,
               timestamp: firebase.database.ServerValue.TIMESTAMP
             };
-            
-            // Update match status
             updates[`matches/${tournamentId}_${playerId}/status`] = 'canceled';
           });
-          
-          // Deduct from organizer wallet
           const totalRefund = Object.keys(tournament.players).length * tournament.fee;
           updates[`users/${tournament.organizer}/wallet`] = firebase.database.ServerValue.increment(-totalRefund);
-          
-          // Update tournament status
           updates[`tournaments/${tournamentId}/status`] = 'canceled';
-          
-          // Apply all updates
           await db.ref().update(updates);
-          
-          // Send notifications
           await db.ref().update(notifications);
         } else {
-          // Just update tournament status if no players
           await db.ref(`tournaments/${tournamentId}/status`).set('canceled');
         }
-        
         alert('Tournament has been canceled and players have been refunded.');
         tournamentManagement.classList.add('d-none');
       } catch (err) {
@@ -2996,57 +2223,32 @@ function manageTournament(tournamentId, tournament) {
   });
 }
 
-// OPEN TOURNAMENT MANAGEMENT MODAL
+// OPEN TOURNAMENT MANAGEMENT MODAL (unchanged logic from your original, retained)
+// ... original openTournamentManagementModal implementation ...
 function openTournamentManagementModal(tournamentId, tournament) {
-  // Set active tab to players
   const tabLinks = document.querySelectorAll('#tournamentManagementTabs .nav-link');
   tabLinks.forEach(link => link.classList.remove('active'));
   tabLinks[0].classList.add('active');
-  
   const tabPanes = document.querySelectorAll('#tournamentManagementTabs ~ .tab-content .tab-pane');
   tabPanes.forEach(pane => pane.classList.remove('show', 'active'));
   tabPanes[0].classList.add('show', 'active');
-  
-  // Load players list
   const playersList = document.getElementById('management-players-list');
   playersList.innerHTML = '';
-  
   if (tournament.players) {
     Object.entries(tournament.players).forEach(([playerId, player]) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>
-          <div class="player-team">
-            <div class="player-team-avatar">${player.playerName.charAt(0).toUpperCase()}</div>
-            <div class="player-team-name">${player.playerName}</div>
-          </div>
-        </td>
-        <td>
-          <span class="badge ${player.status === 'joined' ? 'bg-success' : 'bg-secondary'}">
-            ${player.status}
-          </span>
-        </td>
+        <td><div class="player-team"><div class="player-team-avatar">${player.playerName.charAt(0).toUpperCase()}</div><div class="player-team-name">${player.playerName}</div></div></td>
+        <td><span class="badge ${player.status === 'joined' ? 'bg-success' : 'bg-secondary'}">${player.status}</span></td>
         <td>${formatTime(player.joinedAt)}</td>
-        <td>
-          <button class="btn btn-sm btn-outline-danger kick-player" data-pid="${playerId}" ${player.status !== 'joined' ? 'disabled' : ''}>
-            Kick
-          </button>
-        </td>
+        <td><button class="btn btn-sm btn-outline-danger kick-player" data-pid="${playerId}" ${player.status !== 'joined' ? 'disabled' : ''}>Kick</button></td>
       `;
-      
       playersList.appendChild(tr);
-      
-      // Add kick player event
       tr.querySelector('.kick-player').addEventListener('click', async function() {
         if (confirm(`Are you sure you want to kick ${player.playerName} from the tournament?`)) {
           try {
-            // Update player status
             await db.ref(`tournaments/${tournamentId}/players/${playerId}/status`).set('kicked');
-            
-            // Refund entry fee
             await db.ref(`users/${playerId}/wallet`).transaction(current => (current || 0) + tournament.fee);
-            
-            // Record transaction
             const transactionId = db.ref().child(`transactions/${playerId}`).push().key;
             await db.ref(`transactions/${playerId}/${transactionId}`).set({
               type: 'deposit',
@@ -3054,17 +2256,8 @@ function openTournamentManagementModal(tournamentId, tournament) {
               description: `Refund for being kicked from tournament: ${tournament.name}`,
               timestamp: firebase.database.ServerValue.TIMESTAMP
             });
-            
-            // Update match status
             await db.ref(`matches/${tournamentId}_${playerId}/status`).set('kicked');
-            
-            // Send notification to player
-            sendNotification(playerId,
-              'Tournament Kick',
-              `You have been kicked from the tournament "${tournament.name}". Your entry fee of ${tournament.fee}৳ has been refunded.`,
-              'tournament'
-            );
-            
+            sendNotification(playerId, 'Tournament Kick', `You have been kicked from the tournament "${tournament.name}". Your entry fee of ${tournament.fee}৳ has been refunded.`, 'tournament');
             alert(`${player.playerName} has been kicked from the tournament.`);
           } catch (err) {
             alert('Error kicking player: ' + err.message);
@@ -3073,8 +2266,6 @@ function openTournamentManagementModal(tournamentId, tournament) {
       });
     });
   }
-  
-  // Load room details if they exist
   if (tournament.roomDetails) {
     document.getElementById('room-id-input').value = tournament.roomDetails.roomId || '';
     document.getElementById('room-password-input').value = tournament.roomDetails.roomPassword || '';
@@ -3084,27 +2275,15 @@ function openTournamentManagementModal(tournamentId, tournament) {
     document.getElementById('room-password-input').value = '';
     document.getElementById('room-link-input').value = '';
   }
-  
-  // Add event for saving room details
   document.getElementById('btn-save-room-details').addEventListener('click', async () => {
     const roomId = document.getElementById('room-id-input').value.trim();
     const roomPassword = document.getElementById('room-password-input').value.trim();
     const roomLink = document.getElementById('room-link-input').value.trim();
-    
-    if (!roomId) {
-      alert('Room ID is required');
-      return;
-    }
-    
+    if (!roomId) { alert('Room ID is required'); return; }
     try {
       await db.ref(`tournaments/${tournamentId}/roomDetails`).set({
-        roomId,
-        roomPassword,
-        roomLink,
-        updatedAt: firebase.database.ServerValue.TIMESTAMP
+        roomId, roomPassword, roomLink, updatedAt: firebase.database.ServerValue.TIMESTAMP
       });
-      
-      // Update all matches with room details
       if (tournament.players) {
         const updates = {};
         Object.keys(tournament.players).forEach(playerId => {
@@ -3112,8 +2291,6 @@ function openTournamentManagementModal(tournamentId, tournament) {
           updates[`matches/${tournamentId}_${playerId}/roomPassword`] = roomPassword;
           updates[`matches/${tournamentId}_${playerId}/roomLink`] = roomLink;
           updates[`matches/${tournamentId}_${playerId}/status`] = 'ongoing';
-          
-          // Send notification to player
           const notificationId = db.ref().child(`users/${playerId}/notifications`).push().key;
           updates[`users/${playerId}/notifications/${notificationId}`] = {
             title: 'Room Details Available',
@@ -3123,20 +2300,15 @@ function openTournamentManagementModal(tournamentId, tournament) {
             timestamp: firebase.database.ServerValue.TIMESTAMP
           };
         });
-        
         await db.ref().update(updates);
       }
-      
       alert('Room details saved successfully!');
     } catch (err) {
       alert('Error saving room details: ' + err.message);
     }
   });
-  
-  // Load players for result upload
   const resultPlayersList = document.getElementById('result-upload-players');
   resultPlayersList.innerHTML = '';
-  
   if (tournament.players) {
     Object.entries(tournament.players).forEach(([playerId, player]) => {
       if (player.status === 'joined') {
@@ -3150,74 +2322,43 @@ function openTournamentManagementModal(tournamentId, tournament) {
           <input type="number" class="form-control result-player-input" placeholder="Rank" data-pid="${playerId}">
           <input type="number" class="form-control result-player-input" placeholder="Kills" data-pid="${playerId}">
         `;
-        
         resultPlayersList.appendChild(resultPlayer);
       }
     });
   }
-  
-  // Add event for submitting results
   document.getElementById('btn-submit-results').addEventListener('click', async () => {
     const results = {};
     const inputs = document.querySelectorAll('#result-upload-players .result-player-input');
-    
     inputs.forEach(input => {
       const playerId = input.getAttribute('data-pid');
       const value = input.value.trim();
-      
       if (value) {
-        if (!results[playerId]) {
-          results[playerId] = {};
-        }
-        
-        if (input.placeholder === 'Rank') {
-          results[playerId].rank = parseInt(value);
-        } else {
-          results[playerId].kills = parseInt(value);
-        }
+        if (!results[playerId]) { results[playerId] = {}; }
+        if (input.placeholder === 'Rank') results[playerId].rank = parseInt(value);
+        else results[playerId].kills = parseInt(value);
       }
     });
-    
-    if (Object.keys(results).length === 0) {
-      alert('Please enter at least one result');
-      return;
-    }
-    
+    if (Object.keys(results).length === 0) { alert('Please enter at least one result'); return; }
     try {
       const updates = {};
-      
-      // Update tournament with results
       updates[`tournaments/${tournamentId}/results`] = results;
       updates[`tournaments/${tournamentId}/status`] = 'completed';
-      
-      // Update all matches with results
       Object.entries(results).forEach(([playerId, result]) => {
         updates[`matches/${tournamentId}_${playerId}/result`] = result;
         updates[`matches/${tournamentId}_${playerId}/status`] = 'completed';
       });
-      
       await db.ref().update(updates);
-      
       alert('Results submitted successfully!');
     } catch (err) {
       alert('Error submitting results: ' + err.message);
     }
   });
-  
-  // Load players for prize distribution
   const prizePlayersList = document.getElementById('prize-distribution-players');
   prizePlayersList.innerHTML = '';
-  
   if (tournament.players && tournament.results) {
-    // Sort players by rank
     const sortedPlayers = Object.entries(tournament.players)
       .filter(([playerId]) => tournament.results[playerId] && tournament.results[playerId].rank)
-      .sort((a, b) => {
-        const rankA = tournament.results[a[0]].rank;
-        const rankB = tournament.results[b[0]].rank;
-        return rankA - rankB;
-      });
-    
+      .sort((a, b) => tournament.results[a[0]].rank - tournament.results[b[0]].rank);
     sortedPlayers.forEach(([playerId, player]) => {
       const prizeWinner = document.createElement('div');
       prizeWinner.className = 'prize-winner';
@@ -3231,81 +2372,46 @@ function openTournamentManagementModal(tournamentId, tournament) {
         </div>
         <input type="number" class="form-control prize-amount-input" placeholder="Prize (৳)" data-pid="${playerId}" value="0">
       `;
-      
       prizePlayersList.appendChild(prizeWinner);
     });
   }
-  
-  // Add event for prize distribution
   document.getElementById('btn-distribute-prizes').addEventListener('click', async () => {
     const prizes = {};
     const inputs = document.querySelectorAll('#prize-distribution-players .prize-amount-input');
-    
     inputs.forEach(input => {
       const playerId = input.getAttribute('data-pid');
       const value = parseInt(input.value.trim()) || 0;
-      
-      if (value > 0) {
-        prizes[playerId] = value;
-      }
+      if (value > 0) prizes[playerId] = value;
     });
-    
-    if (Object.keys(prizes).length === 0) {
-      alert('Please enter at least one prize amount');
-      return;
-    }
-    
-    // Check organizer balance
+    if (Object.keys(prizes).length === 0) { alert('Please enter at least one prize amount'); return; }
     const organizerSnap = await db.ref(`users/${tournament.organizer}`).once('value');
     const organizer = organizerSnap.val();
     const totalPrize = Object.values(prizes).reduce((sum, amount) => sum + amount, 0);
-    
-    if (organizer.wallet < totalPrize) {
-      alert('You don\'t have enough balance to distribute these prizes');
-      return;
-    }
-    
+    if (organizer.wallet < totalPrize) { alert('You don\'t have enough balance to distribute these prizes'); return; }
     try {
       const updates = {};
       const notifications = {};
-      
-      // Distribute prizes to players
       Object.entries(prizes).forEach(([playerId, amount]) => {
-        if (amount > 0) {
-          // Add prize to player wallet
-          updates[`users/${playerId}/wallet`] = firebase.database.ServerValue.increment(amount);
-          
-          // Record transaction for player
-          const transactionId = db.ref().child(`transactions/${playerId}`).push().key;
-          updates[`transactions/${playerId}/${transactionId}`] = {
-            type: 'deposit',
-            amount: amount,
-            description: `Prize from tournament: ${tournament.name}`,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-          };
-          
-          // Update player stats
-          updates[`users/${playerId}/totalEarnings`] = firebase.database.ServerValue.increment(amount);
-          
-          // Update match with prize
-          updates[`matches/${tournamentId}_${playerId}/result/prize`] = amount;
-          
-          // Create notification
-          const notificationId = db.ref().child(`users/${playerId}/notifications`).push().key;
-          notifications[`users/${playerId}/notifications/${notificationId}`] = {
-            title: 'Prize Received',
-            message: `You have received ${amount}৳ as prize from tournament "${tournament.name}".`,
-            category: 'prize',
-            read: false,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-          };
-        }
+        updates[`users/${playerId}/wallet`] = firebase.database.ServerValue.increment(amount);
+        const transactionId = db.ref().child(`transactions/${playerId}`).push().key;
+        updates[`transactions/${playerId}/${transactionId}`] = {
+          type: 'deposit',
+          amount: amount,
+          description: `Prize from tournament: ${tournament.name}`,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        };
+        updates[`users/${playerId}/totalEarnings`] = firebase.database.ServerValue.increment(amount);
+        updates[`matches/${tournamentId}_${playerId}/result/prize`] = amount;
+        const notificationId = db.ref().child(`users/${playerId}/notifications`).push().key;
+        notifications[`users/${playerId}/notifications/${notificationId}`] = {
+          title: 'Prize Received',
+          message: `You have received ${amount}৳ as prize from tournament "${tournament.name}".`,
+          category: 'prize',
+          read: false,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        };
       });
-      
-      // Deduct from organizer wallet
       updates[`users/${tournament.organizer}/wallet`] = firebase.database.ServerValue.increment(-totalPrize);
-      
-      // Record transaction for organizer
       const transactionId = db.ref().child(`transactions/${tournament.organizer}`).push().key;
       updates[`transactions/${tournament.organizer}/${transactionId}`] = {
         type: 'withdraw',
@@ -3313,23 +2419,14 @@ function openTournamentManagementModal(tournamentId, tournament) {
         description: `Prize distribution for tournament: ${tournament.name}`,
         timestamp: firebase.database.ServerValue.TIMESTAMP
       };
-      
-      // Update tournament with prize distribution
       updates[`tournaments/${tournamentId}/prizeDistributed`] = true;
-      
-      // Apply all updates
       await db.ref().update(updates);
-      
-      // Send notifications
       await db.ref().update(notifications);
-      
       alert('Prizes distributed successfully!');
     } catch (err) {
       alert('Error distributing prizes: ' + err.message);
     }
   });
-  
-  // Show the modal
   tournamentManagementModal.show();
 }
 
@@ -3347,12 +2444,10 @@ function getStatusBadgeClass(status) {
 // LOAD HOME TOURNAMENTS (Grid View)
 function loadHomeTournaments() {
   tournamentsLoading.style.display = 'block';
-  
   db.ref('tournaments').orderByChild('status').equalTo('approved').on('value', snap => {
     const tournaments = snap.val() || {};
     tournamentsGrid.innerHTML = '';
     tournamentsLoading.style.display = 'none';
-    
     if (Object.keys(tournaments).length === 0) {
       tournamentsGrid.innerHTML = `
         <div class="col-12">
@@ -3365,22 +2460,14 @@ function loadHomeTournaments() {
       `;
       return;
     }
-    
     Object.entries(tournaments).forEach(([tid, t]) => {
       db.ref('users/' + t.organizer).once('value').then(uSnap => {
         const organizer = uSnap.val() || {};
-        
-        // Check if tournament is premium
         const isPremium = t.premium || false;
-        
-        // Count players
         const playerCount = t.players ? Object.keys(t.players).length : 0;
         const slots = t.slots || 50;
         const slotPercentage = Math.min(100, (playerCount / slots) * 100);
-        
-        // Get team type sticker
         const teamSticker = t.teamType === 'solo' ? '👤' : (t.teamType === 'duo' ? '👥' : '👥👥');
-        
         const card = document.createElement('div');
         card.className = 'col-md-6 col-lg-4';
         card.innerHTML = `
@@ -3402,27 +2489,15 @@ function loadHomeTournaments() {
                   <span>${organizer.name}</span>
                   ${organizer.verified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
                 </div>
-                <div>
-                  ${teamSticker} ${t.teamType === 'solo' ? 'Solo' : (t.teamType === 'duo' ? 'Duo' : 'Squad')}
-                </div>
+                <div>${teamSticker} ${t.teamType === 'solo' ? 'Solo' : (t.teamType === 'duo' ? 'Duo' : 'Squad')}</div>
               </div>
-              <div class="date-time mb-3">
-                <i class="far fa-calendar-alt me-2"></i>
-                ${formatDate(t.date)} at ${t.time}
-              </div>
+              <div class="date-time mb-3"><i class="far fa-calendar-alt me-2"></i>${formatDate(t.date)} at ${t.time}</div>
               ${t.prize ? `<div class="mb-3"><span class="prize-sticker">🏆</span><strong>Prize:</strong> ${t.prize}</div>` : ''}
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                  <span class="sticker">🎮</span>
-                  <span>${playerCount}/${slots} Players</span>
-                </div>
-                <div class="tournament-players-count">
-                  <i class="fas fa-users me-1"></i> ${playerCount}/${slots}
-                </div>
+                <div><span class="sticker">🎮</span><span>${playerCount}/${slots} Players</span></div>
+                <div class="tournament-players-count"><i class="fas fa-users me-1"></i> ${playerCount}/${slots}</div>
               </div>
-              <div class="slot-indicator">
-                <div class="slot-progress" style="width: ${slotPercentage}%"></div>
-              </div>
+              <div class="slot-indicator"><div class="slot-progress" style="width: ${slotPercentage}%"></div></div>
               <div class="slot-text">${slots - playerCount} slots remaining</div>
               <button class="btn btn-primary w-100 join-tournament-btn" data-tid="${tid}" data-fee="${t.fee}">
                 ${auth.currentUser ? 'Join Tournament' : 'Login to Join'}
@@ -3430,112 +2505,75 @@ function loadHomeTournaments() {
             </div>
           </div>
         `;
-        
         tournamentsGrid.appendChild(card);
-        
-        // Add join button event
         card.querySelector('.join-tournament-btn').addEventListener('click', function() {
           if (!auth.currentUser) {
             authModal.style.display = 'flex';
           } else {
             const tournamentId = this.getAttribute('data-tid');
             const fee = parseInt(this.getAttribute('data-fee'));
-            
-            // Check wallet balance
             db.ref('users/' + auth.currentUser.uid).once('value').then(snap => {
               const user = snap.val();
-              
               if (user.wallet < fee) {
                 alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।');
                 return;
               }
-              
-              // Check if already joined
               db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).once('value').then(joinedSnap => {
                 if (joinedSnap.exists()) {
                   alert('আপনি ইতিমধ্যে এই টুর্নামেন্টে যোগ দিয়েছেন!');
                   return;
                 }
-                
-                // Check if slots are available
                 const playerCount = t.players ? Object.keys(t.players).length : 0;
                 if (playerCount >= slots) {
                   alert('এই টুর্নামেন্টে আর স্লট খালি নেই!');
                   return;
                 }
-                
-                // Deduct fee and join tournament
                 db.ref(`tournaments/${tournamentId}/players/${auth.currentUser.uid}`).set({
                   joinedAt: firebase.database.ServerValue.TIMESTAMP,
                   teamType: t.teamType || 'solo',
                   playerName: user.name,
                   status: 'joined'
                 })
-                  .then(() => {
-                    // Create match entry for the player
-                    const matchId = `${tournamentId}_${auth.currentUser.uid}`;
-                    return db.ref(`matches/${matchId}`).set({
-                      tournamentId,
-                      playerId: auth.currentUser.uid,
-                      playerName: user.name,
-                      tournamentName: t.name,
-                      date: t.date,
-                      time: t.time,
-                      teamType: t.teamType || 'solo',
-                      entryFee: t.fee,
-                      prize: t.prize || '',
-                      status: 'upcoming',
-                      createdAt: firebase.database.ServerValue.TIMESTAMP
-                    });
-                  })
-                  .then(() => {
-                    return db.ref(`users/${auth.currentUser.uid}/wallet`).transaction(current => (current || 0) - fee);
-                  })
-                  .then(() => {
-                    return db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee);
-                  })
-                  .then(() => {
-                    // Record transaction
-                    const transactionId = db.ref().child(`transactions/${auth.currentUser.uid}`).push().key;
-                    return db.ref(`transactions/${auth.currentUser.uid}/${transactionId}`).set({
-                      type: 'withdraw',
-                      amount: fee,
-                      description: `Joined tournament: ${t.name}`,
-                      timestamp: firebase.database.ServerValue.TIMESTAMP
-                    });
-                  })
-                  .then(() => {
-                    // Update user stats
-                    return db.ref(`users/${auth.currentUser.uid}/matchesPlayed`).transaction(current => (current || 0) + 1);
-                  })
-                  .then(() => {
-                    // Send notification to organizer
-                    sendNotification(t.organizer, 
-                      'নতুন প্লেয়ার যোগ দিয়েছে', 
-                      `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
-                      'tournament'
-                    );
-                    
-                    // Send notification to player
-                    sendNotification(auth.currentUser.uid,
-                      'টুর্নামেন্টে যোগদান সফল',
-                      `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`,
-                      'success'
-                    );
-                    
-                    alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
-                  })
-                  .catch(err => {
-                    alert('ত্রুটি: ' + err.message);
+                .then(() => {
+                  const matchId = `${tournamentId}_${auth.currentUser.uid}`;
+                  return db.ref(`matches/${matchId}`).set({
+                    tournamentId,
+                    playerId: auth.currentUser.uid,
+                    playerName: user.name,
+                    tournamentName: t.name,
+                    date: t.date,
+                    time: t.time,
+                    teamType: t.teamType || 'solo',
+                    entryFee: t.fee,
+                    prize: t.prize || '',
+                    status: 'upcoming',
+                    createdAt: firebase.database.ServerValue.TIMESTAMP
                   });
+                })
+                .then(() => db.ref(`users/${auth.currentUser.uid}/wallet`).transaction(current => (current || 0) - fee))
+                .then(() => db.ref(`users/${t.organizer}/wallet`).transaction(current => (current || 0) + fee))
+                .then(() => {
+                  const transactionId = db.ref().child(`transactions/${auth.currentUser.uid}`).push().key;
+                  return db.ref(`transactions/${auth.currentUser.uid}/${transactionId}`).set({
+                    type: 'withdraw',
+                    amount: fee,
+                    description: `Joined tournament: ${t.name}`,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                  });
+                })
+                .then(() => db.ref(`users/${auth.currentUser.uid}/matchesPlayed`).transaction(current => (current || 0) + 1))
+                .then(() => {
+                  sendNotification(t.organizer, 'নতুন প্লেয়ার যোগ দিয়েছে', `${user.name} আপনার "${t.name}" টুর্নামেন্টে যোগ দিয়েছে।`, 'tournament');
+                  sendNotification(auth.currentUser.uid, 'টুর্নামেন্টে যোগদান সফল', `আপনি সফলভাবে "${t.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(t.date)} ${t.time}`, 'success');
+                  alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
+                })
+                .catch(err => alert('ত্রুটি: ' + err.message));
               });
             });
           }
         });
       });
     });
-    
-    // Show only one premium tournament at the top
     const premiumTournaments = document.querySelectorAll('.tournament-card.premium');
     if (premiumTournaments.length > 0) {
       tournamentsGrid.insertBefore(premiumTournaments[0].parentNode, tournamentsGrid.firstChild);
@@ -3543,7 +2581,7 @@ function loadHomeTournaments() {
   });
 }
 
-// SHOW TOURNAMENT DETAILS
+// SHOW TOURNAMENT DETAILS (unchanged)
 function showTournamentDetails(tournamentId, tournament) {
   document.getElementById('tournament-details-title').textContent = tournament.name;
   document.getElementById('tournament-details-fee').textContent = tournament.fee;
@@ -3551,32 +2589,25 @@ function showTournamentDetails(tournamentId, tournament) {
   document.getElementById('tournament-details-time').textContent = tournament.time;
   document.getElementById('tournament-details-team-type').textContent = tournament.teamType === 'solo' ? 'Solo' : (tournament.teamType === 'duo' ? 'Duo' : 'Squad');
   document.getElementById('tournament-details-slots').textContent = tournament.slots || 50;
-  
   const playerCount = tournament.players ? Object.keys(tournament.players).length : 0;
   document.getElementById('tournament-details-joined').textContent = playerCount;
-  
   const slots = tournament.slots || 50;
   const slotPercentage = Math.min(100, (playerCount / slots) * 100);
   document.getElementById('tournament-slot-progress').style.width = `${slotPercentage}%`;
   document.getElementById('tournament-slot-text').textContent = `${slots - playerCount} slots remaining`;
-  
   if (tournament.image) {
     document.getElementById('tournament-details-image').src = tournament.image;
     document.getElementById('tournament-details-image').style.display = 'block';
   } else {
     document.getElementById('tournament-details-image').style.display = 'none';
   }
-  
   if (tournament.prize) {
     document.getElementById('tournament-details-prize').innerHTML = tournament.prize;
   } else {
     document.getElementById('tournament-details-prize').innerHTML = '<p>No prize details available</p>';
   }
-  
-  // Load players
   const playersList = document.getElementById('tournament-details-players');
   playersList.innerHTML = '';
-  
   if (tournament.players) {
     Object.entries(tournament.players).forEach(([playerId, player]) => {
       const playerElement = document.createElement('div');
@@ -3584,123 +2615,78 @@ function showTournamentDetails(tournamentId, tournament) {
       playerElement.innerHTML = `
         <div class="player-team-avatar">${player.playerName.charAt(0).toUpperCase()}</div>
         <div class="player-team-name">${player.playerName}</div>
-        <span class="player-team-status ${player.teamType === 'solo' ? 'status-solo' : 'status-squad'}">
-          ${player.teamType}
-        </span>
+        <span class="player-team-status ${player.teamType === 'solo' ? 'status-solo' : 'status-squad'}">${player.teamType}</span>
       `;
       playersList.appendChild(playerElement);
     });
   } else {
     playersList.innerHTML = '<p>No players joined yet</p>';
   }
-  
-  // Show/hide join button
   const joinButton = document.getElementById('btn-join-tournament');
   if (auth.currentUser) {
-    // Check if already joined
     if (tournament.players && tournament.players[auth.currentUser.uid]) {
       joinButton.classList.add('d-none');
     } else {
       joinButton.classList.remove('d-none');
       joinButton.textContent = `Join for ${tournament.fee}৳`;
-      joinButton.onclick = () => {
-        joinTournament(tournamentId, tournament);
-        tournamentDetailsModal.hide();
-      };
+      joinButton.onclick = () => { joinTournament(tournamentId, tournament); tournamentDetailsModal.hide(); };
     }
   } else {
     joinButton.classList.add('d-none');
   }
-  
   tournamentDetailsModal.show();
 }
 
-// JOIN TOURNAMENT
+// JOIN TOURNAMENT (unchanged)
 function joinTournament(tournamentId, tournament) {
   const uid = auth.currentUser.uid;
   const fee = tournament.fee;
-  
-  // Check wallet balance
   db.ref('users/' + uid).once('value').then(snap => {
     const user = snap.val();
-    
-    if (user.wallet < fee) {
-      alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।');
-      return;
-    }
-    
-    // Check if slots are available
+    if (user.wallet < fee) { alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই। প্রথমে ব্যালেন্স যোগ করুন।'); return; }
     const playerCount = tournament.players ? Object.keys(tournament.players).length : 0;
     const slots = tournament.slots || 50;
-    if (playerCount >= slots) {
-      alert('এই টুর্নামেন্টে আর স্লট খালি নেই!');
-      return;
-    }
-    
-    // Deduct fee and join tournament
+    if (playerCount >= slots) { alert('এই টুর্নামেন্টে আর স্লট খালি নেই!'); return; }
     db.ref(`tournaments/${tournamentId}/players/${uid}`).set({
       joinedAt: firebase.database.ServerValue.TIMESTAMP,
       teamType: tournament.teamType || 'solo',
       playerName: user.name,
       status: 'joined'
     })
-      .then(() => {
-        // Create match entry for the player
-        const matchId = `${tournamentId}_${uid}`;
-        return db.ref(`matches/${matchId}`).set({
-          tournamentId,
-          playerId: uid,
-          playerName: user.name,
-          tournamentName: tournament.name,
-          date: tournament.date,
-          time: tournament.time,
-          teamType: tournament.teamType || 'solo',
-          entryFee: tournament.fee,
-          prize: tournament.prize || '',
-          status: 'upcoming',
-          createdAt: firebase.database.ServerValue.TIMESTAMP
-        });
-      })
-      .then(() => {
-        return db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee);
-      })
-      .then(() => {
-        return db.ref(`users/${tournament.organizer}/wallet`).transaction(current => (current || 0) + fee);
-      })
-      .then(() => {
-        // Record transaction
-        const transactionId = db.ref().child(`transactions/${uid}`).push().key;
-        return db.ref(`transactions/${uid}/${transactionId}`).set({
-          type: 'withdraw',
-          amount: fee,
-          description: `Joined tournament: ${tournament.name}`,
-          timestamp: firebase.database.ServerValue.TIMESTAMP
-        });
-      })
-      .then(() => {
-        // Update user stats
-        return db.ref(`users/${uid}/matchesPlayed`).transaction(current => (current || 0) + 1);
-      })
-      .then(() => {
-        // Send notification to organizer
-        sendNotification(tournament.organizer, 
-          'নতুন প্লেয়ার যোগ দিয়েছে', 
-          `${user.name} আপনার "${tournament.name}" টুর্নামেন্টে যোগ দিয়েছে।`,
-          'tournament'
-        );
-        
-        // Send notification to player
-        sendNotification(uid,
-          'টুর্নামেন্টে যোগদান সফল',
-          `আপনি সফলভাবে "${tournament.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(tournament.date)} ${tournament.time}`,
-          'success'
-        );
-        
-        alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
-      })
-      .catch(err => {
-        alert('ত্রুটি: ' + err.message);
+    .then(() => {
+      const matchId = `${tournamentId}_${uid}`;
+      return db.ref(`matches/${matchId}`).set({
+        tournamentId,
+        playerId: uid,
+        playerName: user.name,
+        tournamentName: tournament.name,
+        date: tournament.date,
+        time: tournament.time,
+        teamType: tournament.teamType || 'solo',
+        entryFee: tournament.fee,
+        prize: tournament.prize || '',
+        status: 'upcoming',
+        createdAt: firebase.database.ServerValue.TIMESTAMP
       });
+    })
+    .then(() => db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) - fee))
+    .then(() => db.ref(`users/${tournament.organizer}/wallet`).transaction(current => (current || 0) + fee))
+    .then(() => {
+      const transactionId = db.ref().child(`transactions/${uid}`).push().key;
+      return db.ref(`transactions/${uid}/${transactionId}`).set({
+        type: 'withdraw',
+        amount: fee,
+        description: `Joined tournament: ${tournament.name}`,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+    })
+    .then(() => db.ref(`users/${uid}/matchesPlayed`).transaction(current => (current || 0) + 1))
+    .then(() => {
+      sendNotification(tournament.organizer, 'নতুন প্লেয়ার যোগ দিয়েছে', `${user.name} আপনার "${tournament.name}" টুর্নামেন্টে যোগ দিয়েছে।`, 'tournament');
+      sendNotification(uid, 'টুর্নামেন্টে যোগদান সফল', `আপনি সফলভাবে "${tournament.name}" টুর্নামেন্টে যোগ দিয়েছেন। টুর্নামেন্টের তারিখ: ${formatDate(tournament.date)} ${tournament.time}`, 'success');
+      alert('টুর্নামেন্টে সফলভাবে যোগ দিয়েছেন!');
+    })
+    .catch(err => alert('ত্রুটি: ' + err.message));
   });
 }
 
@@ -3708,26 +2694,22 @@ function joinTournament(tournamentId, tournament) {
 function showProfileModal() {
   const user = auth.currentUser;
   if (!user) return;
-  
   db.ref('users/' + user.uid).once('value').then(snap => {
     const userData = snap.val();
-    
     profileName.textContent = userData.name;
     profileRole.textContent = userData.role;
     profileAvatar.textContent = userData.name.charAt(0).toUpperCase();
     profileMatches.textContent = userData.matchesPlayed || 0;
     profileWins.textContent = userData.matchesWon || 0;
-    profileEarnings.textContent = userData.totalEarnings || 0;
-    
+    profileEarnings.textContent = (userData.totalEarnings || 0) + '৳';
+    profileFirebaseUid.textContent = user.uid;
+    profileGameId.textContent = userData.gameId || '-';
     profileEditName.value = userData.name;
     profileEditEmail.value = userData.email;
     profileEditPassword.value = '';
-    
-    // Load match history
     profileMatchHistory.innerHTML = '';
     db.ref('matches').orderByChild('playerId').equalTo(user.uid).limitToLast(5).once('value').then(matchSnap => {
       const matches = matchSnap.val() || {};
-      
       if (Object.keys(matches).length === 0) {
         profileMatchHistory.innerHTML = `
           <div class="empty-state">
@@ -3737,7 +2719,6 @@ function showProfileModal() {
         `;
         return;
       }
-      
       Object.entries(matches).reverse().forEach(([mid, m]) => {
         const matchItem = document.createElement('div');
         matchItem.className = 'mb-3';
@@ -3747,17 +2728,11 @@ function showProfileModal() {
             <span class="badge ${m.status === 'completed' ? 'bg-success' : 'bg-warning'}">${m.status}</span>
           </div>
           <div class="text-muted small">${formatDate(m.date)}</div>
-          ${m.result ? `
-            <div class="small">
-              Rank: ${m.result.rank || '-'}, Kills: ${m.result.kills || '-'}
-              ${m.result.prize ? `, Prize: ${m.result.prize}৳` : ''}
-            </div>
-          ` : ''}
+          ${m.result ? `<div class="small">Rank: ${m.result.rank || '-'}, Kills: ${m.result.kills || '-'}${m.result.prize ? `, Prize: ${m.result.prize}৳` : ''}</div>` : ''}
         `;
         profileMatchHistory.appendChild(matchItem);
       });
     });
-    
     profileModal.show();
   });
 }
@@ -3767,29 +2742,19 @@ btnSaveProfile.addEventListener('click', async () => {
   const name = profileEditName.value.trim();
   const email = profileEditEmail.value.trim();
   const password = profileEditPassword.value.trim();
-  
-  if (!name || !email) {
-    alert('Name and email are required');
-    return;
-  }
-  
+  if (!name || !email) { alert('Name and email are required'); return; }
   try {
     const updates = {};
     updates['users/' + auth.currentUser.uid + '/name'] = name;
     updates['users/' + auth.currentUser.uid + '/email'] = email;
-    
-    // Update email in Firebase Auth if changed
+    await db.ref().update(updates);
     if (email !== auth.currentUser.email) {
       await auth.currentUser.updateEmail(email);
     }
-    
-    // Update password if provided
     if (password && password.length >= 6) {
       await auth.currentUser.updatePassword(password);
     }
-    
-    await db.ref().update(updates);
-    
+    try { await auth.currentUser.updateProfile({ displayName: name }); } catch(e) {}
     alert('Profile updated successfully!');
     profileModal.hide();
   } catch (err) {
@@ -3800,7 +2765,6 @@ btnSaveProfile.addEventListener('click', async () => {
 // KYC UPLOAD
 nidFrontUpload.addEventListener('click', () => nidFrontInput.click());
 nidBackUpload.addEventListener('click', () => nidBackInput.click());
-
 nidFrontInput.addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (file) {
@@ -3812,7 +2776,6 @@ nidFrontInput.addEventListener('change', function(e) {
     reader.readAsDataURL(file);
   }
 });
-
 nidBackInput.addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (file) {
@@ -3830,15 +2793,11 @@ btnSubmitKyc.addEventListener('click', async () => {
   const nidNumber = nidNumberInput.value.trim();
   const nidFrontFile = nidFrontInput.files[0];
   const nidBackFile = nidBackInput.files[0];
-  
   if (!nidNumber || !nidFrontFile || !nidBackFile) {
     alert('Please fill all KYC fields');
     return;
   }
-  
   try {
-    // In a real app, you would upload the files to Firebase Storage
-    // For this demo, we'll just store the file names
     await db.ref(`users/${auth.currentUser.uid}/kyc`).set({
       nidNumber,
       nidFront: nidFrontFile.name,
@@ -3846,16 +2805,9 @@ btnSubmitKyc.addEventListener('click', async () => {
       status: 'pending',
       submittedAt: firebase.database.ServerValue.TIMESTAMP
     });
-    
     alert('KYC submitted successfully! Verification may take 24-48 hours.');
     kycSection.style.display = 'none';
-    
-    // Send notification to admin (in a real app)
-    sendNotification('admin', 
-      'New KYC Submission', 
-      `User ${auth.currentUser.displayName} has submitted KYC documents for verification.`,
-      'info'
-    );
+    sendNotification('admin','New KYC Submission',`User ${auth.currentUser.displayName || auth.currentUser.uid} has submitted KYC documents for verification.`,'info');
   } catch (err) {
     alert('Error submitting KYC: ' + err.message);
   }
@@ -3866,31 +2818,46 @@ btnCopyRoom.addEventListener('click', () => {
   const roomId = document.getElementById('room-id').textContent;
   const roomPassword = document.getElementById('room-password').textContent;
   const roomLink = document.getElementById('room-link').textContent;
-  
   let textToCopy = `Room ID: ${roomId}\n`;
   if (roomPassword !== '-') textToCopy += `Password: ${roomPassword}\n`;
   if (roomLink !== '-') textToCopy += `Link: ${roomLink}`;
-  
   navigator.clipboard.writeText(textToCopy.trim())
     .then(() => {
       const originalText = btnCopyRoom.innerHTML;
       btnCopyRoom.innerHTML = '<i class="fas fa-check me-2"></i> Copied!';
-      setTimeout(() => {
-        btnCopyRoom.innerHTML = originalText;
-      }, 2000);
+      setTimeout(() => { btnCopyRoom.innerHTML = originalText; }, 2000);
     })
-    .catch(err => {
-      console.error('Could not copy text: ', err);
-    });
+    .catch(err => { console.error('Could not copy text: ', err); });
 });
 
-// Format date to display nicely
+// ImageBB upload helpers
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadToImgBB(file) {
+  const base64DataUrl = await fileToBase64(file);
+  const base64 = base64DataUrl.split(',')[1];
+  const formData = new FormData();
+  formData.append('image', base64);
+  const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData });
+  const data = await res.json();
+  if (!data.success) {
+    throw new Error(data.error?.message || 'Image upload failed');
+  }
+  return data.data.display_url || data.data.url;
+}
+
+// Format date/time
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-US', options);
 }
-
-// Format time to display nicely
 function formatTime(timestamp) {
   const options = { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' };
   return new Date(timestamp).toLocaleDateString('en-US', options);
@@ -3898,148 +2865,78 @@ function formatTime(timestamp) {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-  // Load initial data
   if (auth.currentUser) {
     loadUserData(auth.currentUser.uid);
   } else {
     loadHomeTournaments();
   }
-  
-  // Implement search functionality
   searchTournaments.addEventListener('input', () => {
     const searchTerm = searchTournaments.value.toLowerCase();
     const cards = document.querySelectorAll('.tournament-card');
-    
     cards.forEach(card => {
       const name = card.querySelector('.card-header span').textContent.toLowerCase();
-      if (name.includes(searchTerm)) {
-        card.parentNode.style.display = 'block';
-      } else {
-        card.parentNode.style.display = 'none';
-      }
+      card.parentNode.style.display = name.includes(searchTerm) ? 'block' : 'none';
     });
   });
-  
-  filterFee.addEventListener('change', () => {
-    const feeRange = filterFee.value;
-    filterTournaments(feeRange);
-  });
-  
-  // Add balance functionality
+  filterFee.addEventListener('change', () => { filterTournaments(filterFee.value); });
+
+  // Add balance
   document.getElementById('btn-add-balance').addEventListener('click', async () => {
     const amount = parseInt(document.getElementById('add-amount').value);
     const number = document.getElementById('add-number').value;
-    const transactionId = document.getElementById('transaction-id').value;
+    const trxId = document.getElementById('transaction-id').value;
     const method = document.querySelector('.payment-method.active').getAttribute('data-method');
-    
-    if (!amount || amount <= 0 || !number || number.length !== 11 || !transactionId) {
+    if (!amount || amount <= 0 || !number || number.length !== 11 || !trxId) {
       alert('সঠিক তথ্য প্রদান করুন (টাকার পরিমাণ, মোবাইল নম্বর এবং ট্রানজেকশন ID আবশ্যক)');
       return;
     }
-    
-    // Verify phone number is 01767882562
     if (number !== '01767882562') {
       alert('দুঃখিত, শুধুমাত্র 01767882562 নম্বর থেকে ব্যালেন্স যোগ করা যাবে');
       return;
     }
-    
     const uid = auth.currentUser.uid;
     const requestId = db.ref().child('paymentRequests').push().key;
-    
     try {
       await db.ref(`paymentRequests/${requestId}`).set({
-        userId: uid,
-        amount,
-        number,
-        transactionId,
-        method,
-        status: 'pending',
-        type: 'deposit',
+        userId: uid, amount, number, transactionId: trxId, method, status: 'pending', type: 'deposit',
         timestamp: firebase.database.ServerValue.TIMESTAMP
       });
-      
-      // Send notification to user
-      sendNotification(uid,
-        'ব্যালেন্স রিকোয়েস্ট জমা হয়েছে',
-        `আপনার ${amount}৳ ব্যালেন্স যোগের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।`,
-        'payment'
-      );
-      
+      sendNotification(uid,'ব্যালেন্স রিকোয়েস্ট জমা হয়েছে',`আপনার ${amount}৳ ব্যালেন্স যোগের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।`,'payment');
       alert('আপনার রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই আপনার ওয়ালেটে টাকা যোগ হবে।');
-      
-      // Clear form
       document.getElementById('add-amount').value = '';
       document.getElementById('transaction-id').value = '';
-      
-      // Simulate admin approval after 5 seconds (for demo)
       setTimeout(async () => {
         await db.ref(`paymentRequests/${requestId}/status`).set('approved');
         await db.ref(`users/${uid}/wallet`).transaction(current => (current || 0) + amount);
-        
-        // Record transaction
         const transactionId = db.ref().child(`transactions/${uid}`).push().key;
         await db.ref(`transactions/${uid}/${transactionId}`).set({
-          type: 'deposit',
-          amount: amount,
-          description: `Deposit via ${method} (${transactionId})`,
+          type: 'deposit', amount: amount, description: `Deposit via ${method} (${trxId})`,
           timestamp: firebase.database.ServerValue.TIMESTAMP
         });
-        
-        // Send notification to user
-        sendNotification(uid,
-          'ব্যালেন্স যোগ হয়েছে',
-          `আপনার ${amount}৳ ব্যালেন্স যোগ হয়েছে। নতুন ব্যালেন্স: ${(walletSpan.textContent || 0) + amount}৳`,
-          'success'
-        );
+        sendNotification(uid,'ব্যালেন্স যোগ হয়েছে',`আপনার ${amount}৳ ব্যালেন্স যোগ হয়েছে।`,'success');
       }, 5000);
-      
     } catch (err) {
       alert('ত্রুটি: ' + err.message);
     }
   });
-  
-  // Withdraw functionality
+
+  // Withdraw
   document.getElementById('btn-withdraw').addEventListener('click', async () => {
     const amount = parseInt(document.getElementById('withdraw-amount').value);
     const number = document.getElementById('withdraw-number').value;
     const method = document.getElementById('withdraw-method').value;
-    
-    if (!amount || amount <= 0 || !number || number.length !== 11) {
-      alert('সঠিক তথ্য প্রদান করুন');
-      return;
-    }
-    
+    if (!amount || amount <= 0 || !number || number.length !== 11) { alert('সঠিক তথ্য প্রদান করুন'); return; }
     const uid = auth.currentUser.uid;
-    
-    // Check wallet balance
     const userSnap = await db.ref(`users/${uid}`).once('value');
     const user = userSnap.val();
-    
-    if (user.wallet < amount) {
-      alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই।');
-      return;
-    }
-    
+    if (user.wallet < amount) { alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই।'); return; }
     const requestId = db.ref().child('paymentRequests').push().key;
-    
     try {
       await db.ref(`paymentRequests/${requestId}`).set({
-        userId: uid,
-        amount,
-        number,
-        method,
-        status: 'pending',
-        type: 'withdraw',
+        userId: uid, amount, number, method, status: 'pending', type: 'withdraw',
         timestamp: firebase.database.ServerValue.TIMESTAMP
       });
-      
-      // Send notification to user
-      sendNotification(uid,
-        'উত্তোলনের রিকোয়েস্ট জমা হয়েছে',
-        `আপনার ${amount}৳ উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।`,
-        'payment'
-      );
-      
+      sendNotification(uid,'উত্তোলনের রিকোয়েস্ট জমা হয়েছে',`আপনার ${amount}৳ উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।`,'payment');
       alert('আপনার উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।');
       document.getElementById('withdraw-amount').value = '';
       document.getElementById('withdraw-number').value = '';
@@ -4047,68 +2944,67 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('ত্রুটি: ' + err.message);
     }
   });
-  
-  // Create tournament functionality
-  document.getElementById('btn-create-t').addEventListener('click', async () => {
+
+  // Create tournament with ImageBB upload
+  document.getElementById('btn-create-t').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
     const name = document.getElementById('t-name').value.trim();
     const fee = parseInt(document.getElementById('t-fee').value);
     const slots = parseInt(document.getElementById('t-slots').value) || 50;
-    const image = document.getElementById('t-image').value.trim();
     const date = document.getElementById('t-date').value;
     const time = document.getElementById('t-time').value;
     const prize = document.getElementById('t-prize').value.trim();
     const premium = document.getElementById('t-premium').checked;
     const teamType = document.getElementById('t-team-type').value;
-    
+    const bannerFile = tImageFile.files[0];
+
     if (!name || !fee || fee < 0 || !date || !time) {
       alert('সব প্রয়োজনীয় তথ্য প্রদান করুন');
       return;
     }
-    
+    if (!bannerFile) {
+      alert('টুর্নামেন্ট ব্যানার ইমেজ আপলোড করুন');
+      return;
+    }
+
+    btn.disabled = true;
+    let imageUrl = '';
+    try {
+      tImageUploading.classList.remove('d-none');
+      imageUrl = await uploadToImgBB(bannerFile);
+      tImageUploading.classList.add('d-none');
+    } catch (err) {
+      tImageUploading.classList.add('d-none');
+      btn.disabled = false;
+      alert('ইমেজ আপলোড ব্যর্থ: ' + err.message);
+      return;
+    }
+
     const uid = auth.currentUser.uid;
     const tournamentId = db.ref().child('tournaments').push().key;
-    
     try {
       await db.ref(`tournaments/${tournamentId}`).set({
-        name,
-        fee,
-        slots,
-        image,
-        date,
-        time,
-        prize: prize || '',
-        organizer: uid,
-        premium,
-        teamType,
-        status: 'pending',
-        createdAt: firebase.database.ServerValue.TIMESTAMP
+        name, fee, slots, image: imageUrl, date, time,
+        prize: prize || '', organizer: uid, premium, teamType,
+        status: 'pending', createdAt: firebase.database.ServerValue.TIMESTAMP
       });
-      
-      // Send notification to organizer
-      sendNotification(uid,
-        'টুর্নামেন্ট তৈরি হয়েছে',
-        `আপনার "${name}" টুর্নামেন্ট তৈরি হয়েছে। এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।`,
-        'tournament'
-      );
-      
-      // Send notification to admin (in a real app)
-      sendNotification('admin',
-        'New Tournament Created',
-        `User ${auth.currentUser.displayName} has created a new tournament "${name}".`,
-        'tournament'
-      );
-      
+      sendNotification(uid,'টুর্নামেন্ট তৈরি হয়েছে',`আপনার "${name}" টুর্নামেন্ট তৈরি হয়েছে। এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।`,'tournament');
+      sendNotification('admin','New Tournament Created',`User ${auth.currentUser.displayName || uid} has created a new tournament "${name}".`,'tournament');
       alert('আপনার টুর্নামেন্ট তৈরি হয়েছে! এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।');
       document.getElementById('t-name').value = '';
       document.getElementById('t-fee').value = '';
       document.getElementById('t-slots').value = '50';
-      document.getElementById('t-image').value = '';
+      tImageFile.value = '';
+      tImagePreview.classList.add('d-none');
+      tImagePreview.src = '';
       document.getElementById('t-date').value = '';
       document.getElementById('t-time').value = '';
       document.getElementById('t-prize').value = '';
       document.getElementById('t-premium').checked = false;
     } catch (err) {
       alert('ত্রুটি: ' + err.message);
+    } finally {
+      btn.disabled = false;
     }
   });
 });
