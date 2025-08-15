@@ -567,7 +567,7 @@ body {
   width: 80px; height: 80px; border-radius: 50%; background-color: white; color: var(--primary);
   display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 600; margin: 0 auto 15px;
 }
-.profile-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 5px; }
+.profile-name { font-size: 1.5rem; font-weight: 600; }
 .profile-role {
   background-color: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 10px;
 }
@@ -820,6 +820,29 @@ body {
           <div class="text-end">
             <div class="text-white-50 mb-1">আপনার ওয়ালেট</div>
             <div class="wallet-amount">৳<span id="wallet">0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Refer & Earn (Minimal UI) -->
+  <div class="row mb-4" id="referral-row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-link me-2"></i> Refer & Earn
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
+            <div class="flex-grow-1">
+              <input id="referral-link" class="form-control" readonly>
+              <small class="text-muted">এই লিংক শেয়ার করুন। প্রত্যেক রেজিস্ট্রেশনে আপনি 2৳ পাবেন।</small>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn btn-outline-primary" id="btn-copy-ref-link"><i class="fas fa-copy me-1"></i> Copy</button>
+              <span class="pill">Referred: <span id="referral-count">0</span></span>
+            </div>
           </div>
         </div>
       </div>
@@ -1412,6 +1435,9 @@ const auth = firebase.auth(), db = firebase.database();
 // ImageBB config
 const IMGBB_API_KEY = 'a5e9f23952de30236c940c60b740ec9d';
 
+// Referral storage key
+const REFERRER_KEY = 'ffa_referrer_uid';
+
 // UI refs
 const authModal = document.getElementById('auth-modal');
 const dash = document.getElementById('dash');
@@ -1493,6 +1519,11 @@ const tImagePreview = document.getElementById('t-image-preview');
 const tImageUploading = document.getElementById('t-image-uploading');
 const profileFirebaseUid = document.getElementById('profile-firebase-uid');
 const profileGameId = document.getElementById('profile-game-id');
+
+// Referral UI refs
+const referralLinkInput = document.getElementById('referral-link');
+const btnCopyRefLink = document.getElementById('btn-copy-ref-link');
+const referralCountSpan = document.getElementById('referral-count');
 
 // Payment method selection
 document.querySelectorAll('.payment-method').forEach(btn => {
@@ -1734,6 +1765,19 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Referral: capture referrer from URL
+function captureReferrerFromURL() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get('ref');
+    if (ref) {
+      localStorage.setItem(REFERRER_KEY, ref);
+    }
+  } catch (e) {
+    console.warn('Unable to parse referral param', e);
+  }
+}
+
 // REGISTER / LOGIN
 btnRegister.addEventListener('click', async () => {
   const name = nameIn.value.trim(), 
@@ -1763,6 +1807,35 @@ btnRegister.addEventListener('click', async () => {
       totalEarnings: 0,
       createdAt: firebase.database.ServerValue.TIMESTAMP
     });
+
+    // Referral bonus: 2৳ to referrer if present
+    try {
+      const referrerUid = localStorage.getItem(REFERRER_KEY);
+      if (referrerUid && referrerUid !== cred.user.uid) {
+        const refSnap = await db.ref('users/' + referrerUid).once('value');
+        if (refSnap.exists()) {
+          const updates = {};
+          updates[`users/${referrerUid}/wallet`] = firebase.database.ServerValue.increment(2);
+          const txnId = db.ref().child(`transactions/${referrerUid}`).push().key;
+          updates[`transactions/${referrerUid}/${txnId}`] = {
+            type: 'deposit',
+            amount: 2,
+            description: `Referral bonus from ${name}`,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          };
+          updates[`users/${referrerUid}/referralCount`] = firebase.database.ServerValue.increment(1);
+          updates[`users/${referrerUid}/referrals/${cred.user.uid}`] = { name, timestamp: firebase.database.ServerValue.TIMESTAMP };
+          updates[`users/${cred.user.uid}/referredBy`] = referrerUid;
+          await db.ref().update(updates);
+          sendNotification(referrerUid, 'Referral bonus', `${name} আপনার রেফারেল দিয়ে রেজিস্টার করেছে। আপনি 2৳ পেয়েছেন!`, 'success');
+        }
+      }
+    } catch (refErr) {
+      console.error('Referral bonus error:', refErr);
+    } finally {
+      localStorage.removeItem(REFERRER_KEY);
+    }
+
     sendNotification(cred.user.uid, 'স্বাগতম!', `আপনি সফলভাবে ${role} হিসেবে রেজিস্টার করেছেন। FreeFire Arena এ অংশগ্রহণের জন্য আপনাকে ধন্যবাদ!`, 'success');
     alert('রেজিস্ট্রেশন সফল!');
     authModal.style.display = 'none';
@@ -1828,6 +1901,15 @@ function loadUserData(uid) {
     uidSpan.innerText = uid; 
     walletSpan.innerText = u.wallet || 0;
     gameIdDisplay.innerText = u.gameId || '-';
+
+    // Populate referral UI
+    if (referralLinkInput) {
+      referralLinkInput.value = `${location.origin}${location.pathname}?ref=${uid}`;
+    }
+    if (referralCountSpan) {
+      referralCountSpan.textContent = u.referralCount || 0;
+    }
+
     if (u.role === 'player') {
       playerView.style.display = 'block';
       organizerView.style.display = 'none';
@@ -1846,6 +1928,20 @@ function loadUserData(uid) {
       }
     }
     loadNotifications(uid);
+  });
+}
+
+// Referral: copy link
+if (btnCopyRefLink) {
+  btnCopyRefLink.addEventListener('click', () => {
+    if (!referralLinkInput || !referralLinkInput.value) return;
+    navigator.clipboard.writeText(referralLinkInput.value)
+      .then(() => {
+        const original = btnCopyRefLink.innerHTML;
+        btnCopyRefLink.innerHTML = '<i class="fas fa-check me-1"></i> Copied';
+        setTimeout(() => { btnCopyRefLink.innerHTML = '<i class="fas fa-copy me-1"></i> Copy'; }, 1200);
+      })
+      .catch(() => alert('Copy failed'));
   });
 }
 
@@ -2146,8 +2242,7 @@ function loadOrganizerTournaments(uid) {
   });
 }
 
-// MANAGE TOURNAMENT (unchanged major logic; omitted for brevity in comment)
-// ... existing management functions from your original code (unchanged) ...
+// MANAGE TOURNAMENT
 function manageTournament(tournamentId, tournament) {
   tournamentManagement.classList.remove('d-none');
   tournamentManagementContent.innerHTML = `
@@ -2223,8 +2318,7 @@ function manageTournament(tournamentId, tournament) {
   });
 }
 
-// OPEN TOURNAMENT MANAGEMENT MODAL (unchanged logic from your original, retained)
-// ... original openTournamentManagementModal implementation ...
+// OPEN TOURNAMENT MANAGEMENT MODAL
 function openTournamentManagementModal(tournamentId, tournament) {
   const tabLinks = document.querySelectorAll('#tournamentManagementTabs .nav-link');
   tabLinks.forEach(link => link.classList.remove('active'));
@@ -2581,7 +2675,7 @@ function loadHomeTournaments() {
   });
 }
 
-// SHOW TOURNAMENT DETAILS (unchanged)
+// SHOW TOURNAMENT DETAILS
 function showTournamentDetails(tournamentId, tournament) {
   document.getElementById('tournament-details-title').textContent = tournament.name;
   document.getElementById('tournament-details-fee').textContent = tournament.fee;
@@ -2637,7 +2731,7 @@ function showTournamentDetails(tournamentId, tournament) {
   tournamentDetailsModal.show();
 }
 
-// JOIN TOURNAMENT (unchanged)
+// JOIN TOURNAMENT
 function joinTournament(tournamentId, tournament) {
   const uid = auth.currentUser.uid;
   const fee = tournament.fee;
@@ -2865,6 +2959,9 @@ function formatTime(timestamp) {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+  // Capture referral param on load
+  captureReferrerFromURL();
+
   if (auth.currentUser) {
     loadUserData(auth.currentUser.uid);
   } else {
