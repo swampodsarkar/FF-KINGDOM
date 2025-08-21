@@ -716,13 +716,178 @@ body {
   border: none;
 }
 .android-banner .btn-download:hover { background: #059669; }
+
+/* Game Mode Badges */
+.game-mode-badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 5px;
+}
+.game-mode-battle-royale { background-color: #dc2626; color: white; }
+.game-mode-clash-squad { background-color: #2563eb; color: white; }
+.game-mode-lone-wolf { background-color: #059669; color: white; }
+
+/* Tournament Card Enhancements */
+.tournament-card .card-body {
+  position: relative;
+}
+
+.tournament-card .game-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.tournament-card .game-rules {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tournament-card .tournament-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.tournament-card .tournament-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tournament-card .tournament-image-overlay .players-count {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.tournament-card .tournament-image-overlay .players-count i {
+  margin-right: 5px;
+}
+
+.tournament-card .tournament-image {
+  transition: transform 0.3s ease;
+}
+
+.tournament-card:hover .tournament-image {
+  transform: scale(1.05);
+}
+
+/* Organizer Tournament Edit Styles */
+.organizer-tournament-actions {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.organizer-tournament-actions .btn {
+  flex: 1;
+  font-size: 0.8rem;
+  padding: 5px 8px;
+}
+
+/* Rules Modal */
+.rules-modal-content {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.rules-list {
+  padding-left: 20px;
+}
+
+.rules-list li {
+  margin-bottom: 8px;
+}
+
+/* Game Mode Selection */
+.game-mode-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.game-mode-option {
+  flex: 1;
+  min-width: 100px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.game-mode-option:hover {
+  border-color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.game-mode-option.active {
+  border-color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+.game-mode-option i {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Rules Template Selector */
+.rules-template-selector {
+  margin-bottom: 15px;
+}
+
+.rules-template {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rules-template:hover {
+  border-color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.rules-template.active {
+  border-color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+.rules-template h6 {
+  margin-bottom: 5px;
+}
+
+.rules-template p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0;
+}
 </style>
 </head>
 <body>
 
 <div id="offline-banner" class="offline-banner d-none">
   আপনি অফলাইনে আছেন। কিছু ফিচার কাজ নাও করতে পারে।
-  
 </div>
 
 <!-- Banned User Screen -->
@@ -730,7 +895,7 @@ body {
   <div class="banned-icon">
     <i class="fas fa-ban"></i>
   </div>
-  <h2 class="mb-3">আপনার অ্যাকাউন্ট বন্ধ করা হয়েছে!</হ2>
+  <h2 class="mb-3">আপনার অ্যাকাউন্ট বন্ধ করা হয়েছে!</h2>
   <p class="mb-4">আপনার অ্যাকাউন্টে আমাদের নীতিমালা লঙ্ঘন করা হয়েছে বলে সনাক্ত করা হয়েছে।</p>
   
   <div class="contact-support">
@@ -747,7 +912,6 @@ body {
       <i class="fas fa-sign-out-alt me-2"></i> লগআউট
     </button>
   </div>
-  
 </div>
 
 <!-- Mobile Menu Overlay -->
@@ -1121,7 +1285,7 @@ body {
       <!-- Leaderboard Section -->
       <div class="card">
         <div class="card-header bg-primary text-white">
-          <i class="fas fa-medal me-2"></i> লিডারবোর্ড
+          <i class="fas fa-medal me-2"></i> লিডারবоর্ড
         </div>
         <div class="card-body">
           <div id="leaderboard-list">
@@ -1218,6 +1382,27 @@ body {
             <label for="t-slots" class="form-label">স্লট সংখ্যা</label>
             <input id="t-slots" type="number" class="form-control" placeholder="টুর্নামেন্টের স্লট সংখ্যা" value="50"/>
           </div>
+          
+          <!-- Game Mode Selection -->
+          <div class="mb-3">
+            <label class="form-label">গেম মোড</label>
+            <div class="game-mode-selector">
+              <div class="game-mode-option" data-mode="battle-royale">
+                <i class="fas fa-fire"></i>
+                <span>Battle Royale</span>
+              </div>
+              <div class="game-mode-option" data-mode="clash-squad">
+                <i class="fas fa-users"></i>
+                <span>Clash Squad</span>
+              </div>
+              <div class="game-mode-option" data-mode="lone-wolf">
+                <i class="fas fa-user"></i>
+                <span>Lone Wolf</span>
+              </div>
+            </div>
+            <input type="hidden" id="t-game-mode" value="battle-royale">
+          </div>
+          
           <div class="mb-3">
             <label for="t-image-file" class="form-label">টুর্নামেন্ট ব্যানার (ইমেজ আপলোড)</label>
             <input id="t-image-file" type="file" accept="image/*" class="form-control"/>
@@ -1240,9 +1425,32 @@ body {
             <label for="t-prize" class="form-label">পুরস্কার (ঐচ্ছিক)</label>
             <textarea id="t-prize" class="form-control" placeholder="পুরস্কারের বিবরণ লিখুন..."></textarea>
           </div>
+          
+          <!-- Rules Template Selector -->
+          <div class="mb-3">
+            <label class="form-label">রুলস টেমপ্লেট</label>
+            <div class="rules-template-selector">
+              <div class="rules-template" data-template="default">
+                <h6>ডিফল্ট রুলস</h6>
+                <p>সাধারণ টুর্নামেন্ট রুলস</p>
+              </div>
+              <div class="rules-template" data-template="competitive">
+                <h6>কম্পিটিটিভ রুলস</h6>
+                <p>প্রতিযোগিতামূলক টুর্নামেন্টের জন্য</p>
+              </div>
+              <div class="rules-template" data-template="custom">
+                <h6>কাস্টম রুলস</h6>
+                <p>নিজের রুলস লিখুন</p>
+              </div>
+            </div>
+          </div>
+          
           <div class="mb-3">
             <label for="t-rules" class="form-label">টুর্নামেন্ট রুলস</label>
-            <textarea id="t-rules" class="form-control" placeholder="টুর্নামেন্টের নিয়মাবলী লিখুন..."></textarea>
+            <textarea id="t-rules" class="form-control" placeholder="টুর্নামেন্টের নিয়মাবলী লিখুন..." rows="5">1. No cheating or hacking
+2. Respect all players
+3. Follow the game rules
+4. Tournament admin decisions are final</textarea>
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="t-premium">
@@ -1353,7 +1561,7 @@ body {
                   <input type="email" class="form-control" id="profile-edit-email">
                 </div>
                 <div class="mb-3">
-                  <label for="profile-edit-password" class="form-label">নতুন পাসওয়ার্ড (ঐচ্ছিক)</label>
+                  <label for="profile-edit-password" class="form-label">নতুন পасওয়ার্ড (ঐচ্ছিক)</label>
                   <input type="password" class="form-control" id="profile-edit-password" placeholder="Leave blank to keep current">
                 </div>
                 <button class="btn btn-primary w-100" id="btn-save-profile">
@@ -1403,6 +1611,7 @@ body {
                 <div class="mb-2"><strong>Entry Fee:</strong> <span id="tournament-details-fee"></span>৳</div>
                 <div class="mb-2"><strong>Date:</strong> <span id="tournament-details-date"></span></div>
                 <div class="mb-2"><strong>Time:</strong> <span id="tournament-details-time"></span></div>
+                <div class="mb-2"><strong>Game Mode:</strong> <span id="tournament-details-game-mode"></span></div>
                 <div class="mb-2"><strong>Team Type:</strong> <span id="tournament-details-team-type"></span></div>
                 <div class="mb-2"><strong>Slots:</strong> <span id="tournament-details-slots"></span></div>
                 <div class="mb-2"><strong>Joined:</strong> <span id="tournament-details-joined"></span></div>
@@ -1506,7 +1715,6 @@ body {
       <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
     </div>
   </div>
-  
 </div>
 
 <!-- TOURNAMENT MANAGEMENT MODAL -->
@@ -1570,6 +1778,24 @@ body {
     </div>
   </div>
 </div>
+
+<!-- RULES MODAL -->
+<div class="modal fade" id="rulesModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">টুর্নামেন্ট রুলস</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body rules-modal-content">
+        <div id="rules-content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
 
 <!-- Mobile Bottom Navigation -->
@@ -1618,7 +1844,7 @@ function showToast(message, type = 'info') {
                     type === 'warning' ? 'bg-warning text-dark' : 'bg-primary';
     el.className = `toast align-items-center text-white ${bgClass}`;
     el.setAttribute('role','alert');
-    el.setAttribute('aria-live','assertive');
+    el.setAttribute(' aria-live','assertive');
     el.setAttribute('aria-atomic','true');
     el.innerHTML = `
       <div class="d-flex">
@@ -1740,6 +1966,7 @@ const profileModal = new bootstrap.Modal(document.getElementById('profileModal')
 const tournamentDetailsModal = new bootstrap.Modal(document.getElementById('tournamentDetailsModal'));
 const matchDetailsModal = new bootstrap.Modal(document.getElementById('matchDetailsModal'));
 const tournamentManagementModal = new bootstrap.Modal(document.getElementById('tournamentManagementModal'));
+const rulesModal = new bootstrap.Modal(document.getElementById('rulesModal'));
 const kycSection = document.getElementById('kyc-section');
 const nidFrontUpload = document.getElementById('nid-front-upload');
 const nidBackUpload = document.getElementById('nid-back-upload');
@@ -1775,6 +2002,12 @@ const referralLinkInput = document.getElementById('referral-link');
 const btnCopyRefLink = document.getElementById('btn-copy-ref-link');
 const btnShareRefLink = document.getElementById('btn-share-ref-link');
 const referralCountSpan = document.getElementById('referral-count');
+
+// New UI refs for game mode selection
+const gameModeOptions = document.querySelectorAll('.game-mode-option');
+const tGameModeInput = document.getElementById('t-game-mode');
+const rulesTemplates = document.querySelectorAll('.rules-template');
+const tRulesTextarea = document.getElementById('t-rules');
 
 // Payment method selection
 document.querySelectorAll('.payment-method').forEach(btn => {
@@ -1832,6 +2065,52 @@ if (tImageFile) {
     }
   });
 }
+
+// Game mode selection
+gameModeOptions.forEach(option => {
+  option.addEventListener('click', function() {
+    gameModeOptions.forEach(opt => opt.classList.remove('active'));
+    this.classList.add('active');
+    tGameModeInput.value = this.getAttribute('data-mode');
+  });
+});
+
+// Rules template selection
+const rulesTemplatesData = {
+  'default': `1. No cheating or hacking
+2. Respect all players
+3. Follow the game rules
+4. Tournament admin decisions are final
+5. Players must join 15 minutes before start time
+6. Disconnections are player's responsibility
+7. Prize distribution within 24 hours of tournament completion`,
+
+  'competitive': `1. Strict no cheating policy - instant ban for any hacks
+2. Players must record their gameplay
+3. Team communication through Discord only
+4. Check-in required 30 minutes before start
+5. No late entries under any circumstances
+6. Professional behavior required - no toxicity
+7. Prize distribution: 1st-60%, 2nd-30%, 3rd-10%
+8. Dispute resolution within 1 hour of match completion`,
+
+  'custom': ``
+};
+
+rulesTemplates.forEach(template => {
+  template.addEventListener('click', function() {
+    rulesTemplates.forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    
+    const templateType = this.getAttribute('data-template');
+    if (templateType !== 'custom') {
+      tRulesTextarea.value = rulesTemplatesData[templateType];
+    } else {
+      tRulesTextarea.value = '';
+      tRulesTextarea.focus();
+    }
+  });
+});
 
 // Mobile menu toggle
 mobileMenuBtn.addEventListener('click', () => {
@@ -2476,14 +2755,62 @@ function loadOrganizerTournaments(uid) {
         <td>${t.name}</td>
         <td><span class="badge ${getStatusBadgeClass(t.status)}">${t.status}</span></td>
         <td>${playerCount}/${t.slots || 50}</td>
-        <td><button class="btn btn-sm btn-outline-primary manage-tournament" data-tid="${tid}">Manage</button></td>
+        <td>
+          <div class="organizer-tournament-actions">
+            <button class="btn btn-sm btn-outline-primary manage-tournament" data-tid="${tid}">Manage</button>
+            <button class="btn btn-sm btn-outline-secondary edit-tournament" data-tid="${tid}">Edit</button>
+          </div>
+        </td>
       `;
       organizerTournamentsBody.appendChild(tr);
       tr.querySelector('.manage-tournament').addEventListener('click', function() {
         manageTournament(tid, t);
       });
+      tr.querySelector('.edit-tournament').addEventListener('click', function() {
+        editTournament(tid, t);
+      });
     });
   });
+}
+
+function editTournament(tournamentId, tournament) {
+  // Fill the form with tournament data
+  document.getElementById('t-name').value = tournament.name;
+  document.getElementById('t-fee').value = tournament.fee;
+  document.getElementById('t-slots').value = tournament.slots || 50;
+  document.getElementById('t-date').value = tournament.date;
+  document.getElementById('t-time').value = tournament.time;
+  document.getElementById('t-prize').value = tournament.prize || '';
+  document.getElementById('t-rules').value = tournament.rules || '';
+  document.getElementById('t-premium').checked = tournament.premium || false;
+  document.getElementById('t-team-type').value = tournament.teamType || 'solo';
+  
+  // Set game mode
+  const gameMode = tournament.gameMode || 'battle-royale';
+  gameModeOptions.forEach(option => {
+    if (option.getAttribute('data-mode') === gameMode) {
+      option.classList.add('active');
+    } else {
+      option.classList.remove('active');
+    }
+  });
+  tGameModeInput.value = gameMode;
+  
+  // Set image preview if exists
+  if (tournament.image) {
+    tImagePreview.src = tournament.image;
+    tImagePreview.classList.remove('d-none');
+  }
+  
+  // Scroll to form
+  document.getElementById('btn-create-t').scrollIntoView({ behavior: 'smooth' });
+  
+  // Change button text
+  const createButton = document.getElementById('btn-create-t');
+  createButton.innerHTML = '<i class="fas fa-save me-2"></i> আপডেট টুর্নামেন্ট';
+  createButton.setAttribute('data-edit-id', tournamentId);
+  
+  notify('টুর্নামেন্ট ডিটেইলস লোড করা হয়েছে। প্রয়োজনীয় পরিবর্তন করুন এবং আপডেট বাটনে ক্লিক করুন।', 'info');
 }
 
 function manageTournament(tournamentId, tournament) {
@@ -2498,10 +2825,11 @@ function manageTournament(tournamentId, tournament) {
             <div class="mb-2"><strong>Date:</strong> ${formatDate(tournament.date)}</div>
             <div class="mb-2"><strong>Time:</strong> ${tournament.time}</div>
             <div class="mb-2"><strong>Entry Fee:</strong> ${tournament.fee}৳</div>
+            <div class="mb-2"><strong>Game Mode:</strong> ${tournament.gameMode || 'Battle Royale'}</div>
             <div class="mb-2"><strong>Team Type:</strong> ${tournament.teamType}</div>
             <div class="mb-2"><strong>Slots:</strong> ${tournament.players ? Object.keys(tournament.players).length : 0}/${tournament.slots || 50}</div>
             <div class="mb-2"><strong>Prize:</strong> ${tournament.prize || '-'}</div>
-            <div class="mb-2"><strong>Rules:</strong> ${tournament.rules ? '<div class="mt-1">'+tournament.rules.replace(/\n/g,'<br>')+'</div>' : '-'}</div>
+            <div class="mb-2"><strong>Rules:</strong> ${tournament.rules ? '<button class="btn btn-sm btn-outline-primary view-rules-btn" data-rules="' + encodeURIComponent(tournament.rules) + '">View Rules</button>' : '-'}</div>
           </div>
         </div>
       </div>
@@ -2547,6 +2875,16 @@ function manageTournament(tournamentId, tournament) {
       } catch (err) { alert('Error canceling tournament: ' + err.message); }
     }
   });
+  
+  // Add event listener for view rules button
+  const viewRulesBtn = document.querySelector('.view-rules-btn');
+  if (viewRulesBtn) {
+    viewRulesBtn.addEventListener('click', function() {
+      const rules = decodeURIComponent(this.getAttribute('data-rules'));
+      document.getElementById('rules-content').innerHTML = `<pre>${rules}</pre>`;
+      rulesModal.show();
+    });
+  }
 }
 
 function openTournamentManagementModal(tournamentId, tournament) {
@@ -2764,6 +3102,25 @@ function loadHomeTournaments() {
         const slots = t.slots || 50;
         const slotPercentage = Math.min(100, (playerCount / slots) * 100);
         const teamSticker = t.teamType === 'solo' ? '👤' : (t.teamType === 'duo' ? '👥' : '👥👥');
+        
+        // Get game mode badge
+        let gameModeBadge = '';
+        if (t.gameMode) {
+          let modeClass = '';
+          let modeText = '';
+          if (t.gameMode === 'battle-royale') {
+            modeClass = 'game-mode-battle-royale';
+            modeText = 'Battle Royale';
+          } else if (t.gameMode === 'clash-squad') {
+            modeClass = 'game-mode-clash-squad';
+            modeText = 'Clash Squad';
+          } else if (t.gameMode === 'lone-wolf') {
+            modeClass = 'game-mode-lone-wolf';
+            modeText = 'Lone Wolf';
+          }
+          gameModeBadge = `<span class="game-mode-badge ${modeClass}">${modeText}</span>`;
+        }
+        
         const col = document.createElement('div');
         col.className = 'col-md-6 col-lg-4';
         const fav = isFavorite(tid);
@@ -2777,11 +3134,17 @@ function loadHomeTournaments() {
               <span>${t.name}</span>
               <span class="fee-badge" data-fee="${t.fee}">${t.fee}৳</span>
             </div>
-            ${t.image ? `<img src="${t.image}" class="tournament-image" alt="${t.name}" loading="lazy">` : `
-              <div class="tournament-image bg-light d-flex align-items-center justify-content-center">
-                <i class="fas fa-trophy" style="font-size: 3rem; color: #4361ee;"></i>
+            <div class="tournament-image-container">
+              ${t.image ? `<img src="${t.image}" class="tournament-image" alt="${t.name}" loading="lazy">` : `
+                <div class="tournament-image bg-light d-flex align-items-center justify-content-center">
+                  <i class="fas fa-trophy" style="font-size: 3rem; color: #4361ee;"></i>
+                </div>
+              `}
+              <div class="tournament-image-overlay">
+                <div class="tournament-players-count"><i class="fas fa-users me-1"></i> ${playerCount}/${slots}</div>
+                <div class="players-count">${teamSticker} ${t.teamType === 'solo' ? 'Solo' : (t.teamType === 'duo' ? 'Duo' : 'Squad')}</div>
               </div>
-            `}
+            </div>
             <div class="card-body">
               <div class="d-flex justify-content-between mb-2">
                 <div>
@@ -2789,24 +3152,21 @@ function loadHomeTournaments() {
                   <span>${organizer.name || 'Organizer'}</span>
                   ${organizer.verified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
                 </div>
-                <div>${teamSticker} ${t.teamType === 'solo' ? 'Solo' : (t.teamType === 'duo' ? 'Duo' : 'Squad')}</div>
+                ${gameModeBadge}
               </div>
               <div class="date-time mb-3"><i class="far fa-calendar-alt me-2"></i>${formatDate(t.date)} at ${t.time}</div>
               ${t.prize ? `<div class="mb-3"><span class="prize-sticker">🏆</span><strong>Prize:</strong> ${t.prize}</div>` : ''}
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div><span class="sticker">🎮</span><span>${playerCount}/${slots} Players</span></div>
-                <div class="tournament-players-count"><i class="fas fa-users me-1"></i> ${playerCount}/${slots}</div>
-              </div>
+              ${t.rules ? `<div class="game-rules mb-3">${t.rules.substring(0, 100)}${t.rules.length > 100 ? '...' : ''}</div>` : ''}
               <div class="slot-indicator"><div class="slot-progress" style="width: ${slotPercentage}%"></div></div>
               <div class="slot-text">${slots - playerCount} slots remaining</div>
               <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-outline-secondary w-100 details-btn" data-tid="${tid}">Details</button>
                 <div class="d-flex gap-2">
+                  <button class="btn btn-outline-secondary flex-fill details-btn" data-tid="${tid}">Details</button>
                   <button class="btn btn-outline-primary flex-fill share-btn" data-tid="${tid}"><i class="fas fa-share"></i></button>
-                  <button class="btn btn-primary flex-fill join-tournament-btn" data-tid="${tid}" data-fee="${t.fee}">
-                    ${auth.currentUser ? 'Join' : 'Login to Join'}
-                  </button>
                 </div>
+                <button class="btn btn-primary join-tournament-btn" data-tid="${tid}" data-fee="${t.fee}">
+                  ${auth.currentUser ? 'Join' : 'Login to Join'}
+                </button>
               </div>
             </div>
           </div>
@@ -2879,6 +3239,13 @@ function showTournamentDetails(tournamentId, tournament) {
   document.getElementById('tournament-details-fee').textContent = tournament.fee;
   document.getElementById('tournament-details-date').textContent = formatDate(tournament.date);
   document.getElementById('tournament-details-time').textContent = tournament.time;
+  
+  // Set game mode display
+  let gameModeText = 'Battle Royale';
+  if (tournament.gameMode === 'clash-squad') gameModeText = 'Clash Squad';
+  else if (tournament.gameMode === 'lone-wolf') gameModeText = 'Lone Wolf';
+  document.getElementById('tournament-details-game-mode').textContent = gameModeText;
+  
   document.getElementById('tournament-details-team-type').textContent = tournament.teamType === 'solo' ? 'Solo' : (tournament.teamType === 'duo' ? 'Duo' : 'Squad');
   document.getElementById('tournament-details-slots').textContent = tournament.slots || 50;
   const playerCount = tournament.players ? Object.keys(tournament.players).length : 0;
@@ -2894,7 +3261,7 @@ function showTournamentDetails(tournamentId, tournament) {
     document.getElementById('tournament-details-image').style.display = 'none';
   }
   document.getElementById('tournament-details-prize').innerHTML = tournament.prize ? tournament.prize : '<p>No prize details available</p>';
-  document.getElementById('tournament-details-rules').innerHTML = tournament.rules ? tournament.rules.replace(/\n/g,'<br>') : 'No rules provided';
+  document.getElementById('tournament-details-rules').innerHTML = tournament.rules ? `<pre>${tournament.rules}</pre>` : 'No rules provided';
   const playersList = document.getElementById('tournament-details-players');
   playersList.innerHTML = '';
   if (tournament.players) {
@@ -3123,8 +3490,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (savedTheme) document.body.setAttribute('data-theme', savedTheme);
   else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.setAttribute('data-theme', 'dark');
   updateOfflineBanner();
+  
+  // Set default active game mode
+  gameModeOptions[0].classList.add('active');
+  
+  // Set default active rules template
+  rulesTemplates[0].classList.add('active');
+  
   if (auth.currentUser) loadUserData(auth.currentUser.uid);
   else loadHomeTournaments();
+  
   searchTournaments.addEventListener('input', () => {
     const searchTerm = searchTournaments.value.toLowerCase();
     const cards = document.querySelectorAll('.tournament-card');
@@ -3133,7 +3508,9 @@ document.addEventListener('DOMContentLoaded', () => {
       card.parentNode.style.display = name.includes(searchTerm) ? 'block' : 'none';
     });
   });
+  
   filterFee.addEventListener('change', () => { filterTournaments(filterFee.value); });
+  
   document.getElementById('btn-add-balance').addEventListener('click', async () => {
     const amount = parseInt(document.getElementById('add-amount').value);
     const number = document.getElementById('add-number').value;
@@ -3211,7 +3588,7 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: firebase.database.ServerValue.TIMESTAMP
       });
       sendNotification(uid,'উত্তোলনের রিকোয়েস্ট জমা হয়েছে',`আপনার ${amount}৳ উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।`,'payment');
-      alert('আপনার উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যাপ্রুভ করলেই টাকা পাঠানো হবে।');
+      alert('আপনার উত্তোলনের রিকোয়েস্ট জমা হয়েছে। এডমিন অ্যاپ্রুভ করলেই টাকা পাঠানো হবে।');
       document.getElementById('p-withdraw-amount').value = '';
       document.getElementById('p-withdraw-number').value = '';
     } catch (err) { alert('ত্রুটি: ' + err.message); }
@@ -3228,31 +3605,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const rules = document.getElementById('t-rules').value.trim();
     const premium = document.getElementById('t-premium').checked;
     const teamType = document.getElementById('t-team-type').value;
+    const gameMode = tGameModeInput.value;
     const bannerFile = tImageFile.files[0];
+    const isEdit = btn.getAttribute('data-edit-id');
+    
     if (!name || !fee || fee < 0 || !date || !time) { alert('সব প্রয়োজনীয় তথ্য প্রদান করুন'); return; }
-    if (!bannerFile) { alert('টুর্নামেন্ট ব্যানার ইমেজ আপলোড করুন'); return; }
+    if (!bannerFile && !isEdit) { alert('টুর্নামেন্ট ব্যানার ইমেজ আপলোড করুন'); return; }
     btn.disabled = true;
+    
     let imageUrl = '';
-    try {
-      tImageUploading.classList.remove('d-none');
-      imageUrl = await uploadToImgBB(bannerFile);
-      tImageUploading.classList.add('d-none');
-    } catch (err) {
-      tImageUploading.classList.add('d-none');
-      btn.disabled = false;
-      alert('ইমেজ আপলোড ব্যর্থ: ' + err.message);
-      return;
+    if (bannerFile) {
+      try {
+        tImageUploading.classList.remove('d-none');
+        imageUrl = await uploadToImgBB(bannerFile);
+        tImageUploading.classList.add('d-none');
+      } catch (err) {
+        tImageUploading.classList.add('d-none');
+        btn.disabled = false;
+        alert('ইমেজ আপলোড ব্যর্থ: ' + err.message);
+        return;
+      }
+    } else if (isEdit) {
+      // Keep existing image if editing and no new image uploaded
+      const tournamentSnap = await db.ref(`tournaments/${isEdit}`).once('value');
+      const tournament = tournamentSnap.val();
+      imageUrl = tournament.image || '';
     }
+    
     const uid = auth.currentUser.uid;
-    const tournamentId = db.ref().child('tournaments').push().key;
+    const tournamentId = isEdit || db.ref().child('tournaments').push().key;
+    
     try {
-      await db.ref(`tournaments/${tournamentId}`).set({
-        name, fee, slots, image: imageUrl, date, time, prize: prize || '', rules: rules || '', organizer: uid, premium, teamType, status: 'pending',
-        createdAt: firebase.database.ServerValue.TIMESTAMP
-      });
-      sendNotification(uid,'টুর্নামেন্ট তৈরি হয়েছে',`আপনার "${name}" টুর্নামেন্ট তৈরি হয়েছে। এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।`,'tournament');
-      sendNotification('admin','New Tournament Created',`User ${auth.currentUser.displayName || uid} has created a new tournament "${name}".`, 'tournament');
-      alert('আপনার টুর্নামেন্ট তৈরি হয়েছে! এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।');
+      const tournamentData = {
+        name, fee, slots, date, time, prize: prize || '', rules: rules || '', organizer: uid, 
+        premium, teamType, gameMode, status: isEdit ? 'approved' : 'pending',
+        updatedAt: firebase.database.ServerValue.TIMESTAMP
+      };
+      
+      if (imageUrl) {
+        tournamentData.image = imageUrl;
+      }
+      
+      if (!isEdit) {
+        tournamentData.createdAt = firebase.database.ServerValue.TIMESTAMP;
+      }
+      
+      await db.ref(`tournaments/${tournamentId}`).set(tournamentData);
+      
+      sendNotification(uid, isEdit ? 'টুর্নামেন্ট আপডেট হয়েছে' : 'টুর্নামেন্ট তৈরি হয়েছে', 
+        `আপনার "${name}" টুর্নামেন্ট ${isEdit ? 'আপডেট' : 'তৈরি'} হয়েছে। ${isEdit ? '' : 'এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।'}`, 'tournament');
+      
+      if (!isEdit) {
+        sendNotification('admin','New Tournament Created',`User ${auth.currentUser.displayName || uid} has created a new tournament "${name}".`, 'tournament');
+      }
+      
+      alert(`আপনার টুর্নামেন্ট ${isEdit ? 'আপডেট' : 'তৈরি'} হয়েছে! ${isEdit ? '' : 'এডমিন অ্যাপ্রুভ করলেই এটি পাবলিশ হবে।'}`);
+      
+      // Reset form
       document.getElementById('t-name').value = '';
       document.getElementById('t-fee').value = '';
       document.getElementById('t-slots').value = '50';
@@ -3262,8 +3671,24 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('t-date').value = '';
       document.getElementById('t-time').value = '';
       document.getElementById('t-prize').value = '';
-      document.getElementById('t-rules').value = '';
+      document.getElementById('t-rules').value = rulesTemplatesData['default'];
       document.getElementById('t-premium').checked = false;
+      document.getElementById('t-team-type').value = 'solo';
+      
+      // Reset game mode
+      gameModeOptions.forEach(opt => opt.classList.remove('active'));
+      gameModeOptions[0].classList.add('active');
+      tGameModeInput.value = 'battle-royale';
+      
+      // Reset rules template
+      rulesTemplates.forEach(t => t.classList.remove('active'));
+      rulesTemplates[0].classList.add('active');
+      
+      // Reset button text
+      if (isEdit) {
+        btn.innerHTML = '<i class="fas fa-check-circle me-2"></i> টুর্নামেন্ট তৈরি করুন';
+        btn.removeAttribute('data-edit-id');
+      }
     } catch (err) { alert('ত্রুটি: ' + err.message); }
     finally { btn.disabled = false; }
   });
