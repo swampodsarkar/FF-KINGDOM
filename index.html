@@ -10,6 +10,7 @@
 <style>
 :root {
   --primary: #facc15;
+  --primary-dark: #e6b800;
   --dark: #0f172a;
   --dark-light: #1e293b;
   --text: #f8fafc;
@@ -17,6 +18,8 @@
   --success: #22c55e;
   --danger: #ef4444;
   --info: #3b82f6;
+  --warning: #f59e0b;
+  --royal: #a855f7;
 }
 
 body {
@@ -37,6 +40,38 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border-radius: 25px;
+  border: 1px solid #334155;
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
 }
 
 .container {
@@ -117,6 +152,16 @@ body {
   color: white;
 }
 
+.btn-warning {
+  background: var(--warning);
+  color: white;
+}
+
+.btn-royal {
+  background: var(--royal);
+  color: white;
+}
+
 .hidden {
   display: none;
 }
@@ -164,6 +209,7 @@ body {
   transition: transform 0.3s;
   margin-bottom: 20px;
   overflow: hidden;
+  position: relative;
 }
 
 .tournament-card:hover {
@@ -175,6 +221,18 @@ body {
   height: 160px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.tournament-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--primary);
+  color: var(--dark);
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .tournament-content {
@@ -205,6 +263,22 @@ body {
 
 .tournament-actions button {
   flex: 1;
+}
+
+.game-mode-badges {
+  display: flex;
+  gap: 5px;
+  margin: 8px 0;
+  flex-wrap: wrap;
+}
+
+.game-mode-badge {
+  background: rgba(168, 85, 247, 0.2);
+  color: var(--royal);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .profile-header {
@@ -458,6 +532,127 @@ body {
   width: 0%;
   transition: width 0.3s;
 }
+
+.announcement-item {
+  padding: 12px;
+  border-bottom: 1px solid #334155;
+}
+
+.announcement-item:last-child {
+  border-bottom: none;
+}
+
+.announcement-title {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.announcement-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.filter-btn {
+  background: var(--dark);
+  color: var(--text-secondary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+.user-search-result {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #334155;
+  cursor: pointer;
+}
+
+.user-search-result:last-child {
+  border-bottom: none;
+}
+
+.user-search-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  border: 2px solid var(--primary);
+}
+
+.user-search-info {
+  flex: 1;
+}
+
+.user-search-name {
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.user-search-uid {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.banned-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--danger);
+  z-index: 10;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.banned-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.search-results-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--dark-light);
+  border-radius: 0 0 12px 12px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.search-results-container.active {
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -518,10 +713,32 @@ body {
 <div id="appPages" class="hidden">
   <div class="header">
     <h1>🔥 FF Kingdom</h1>
+    <button id="searchToggleBtn" class="btn btn-sm"><i class="fas fa-search"></i></button>
+  </div>
+
+  <!-- Search Container (initially hidden) -->
+  <div id="searchContainer" class="container hidden">
+    <div class="search-container">
+      <input type="text" id="userSearchInput" class="search-input" placeholder="Search players by name or UID...">
+      <i class="fas fa-search search-icon"></i>
+      <div id="searchResults" class="search-results-container"></div>
+    </div>
   </div>
 
   <div id="homePage" class="container">
     <h3 class="mb-3">🔥 Ongoing Tournaments</h3>
+    
+    <!-- Game Mode Filters -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="solo">Solo</button>
+      <button class="filter-btn" data-filter="duo">Duo</button>
+      <button class="filter-btn" data-filter="squad">Squad</button>
+      <button class="filter-btn" data-filter="battle-royale">Battle Royale</button>
+      <button class="filter-btn" data-filter="clash-squad">Clash Squad</button>
+      <button class="filter-btn" data-filter="leon-wolf">Leon Wolf</button>
+    </div>
+    
     <div id="tournamentsList" class="loading">
       <i class="fas fa-spinner fa-spin"></i> Loading tournaments...
     </div>
@@ -696,12 +913,20 @@ body {
         <button id="refundBtn" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</button>
       </div>
       
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
           <h4 class="mb-1"><i class="fas fa-gift"></i> Refer & Earn</h4>
           <p class="mb-0 text-small">Earn coins by referring friends</p>
         </div>
         <button id="referBtn" class="btn btn-sm btn-success"><i class="fas fa-tag"></i> View Code</button>
+      </div>
+      
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h4 class="mb-1"><i class="fas fa-bullhorn"></i> Announcements</h4>
+          <p class="mb-0 text-small">Latest news and updates</p>
+        </div>
+        <button id="announcementsBtn" class="btn btn-sm btn-warning"><i class="fas fa-eye"></i> View</button>
       </div>
     </div>
     
@@ -742,6 +967,26 @@ body {
     <h3 class="modal-title" id="modalTitle"></h3>
     <div id="modalBody"></div>
     <button class="btn w-100 mt-3" id="modalClose">Close</button>
+  </div>
+</div>
+
+<!-- User Profile Modal -->
+<div class="modal-backdrop" id="userProfileModalBg">
+  <div class="modal-content" id="userProfileModalContent">
+    <h3 class="modal-title" id="userProfileModalTitle">Player Profile</h3>
+    <div id="userProfileModalBody"></div>
+    <button class="btn w-100 mt-3" id="userProfileModalClose">Close</button>
+  </div>
+</div>
+
+<!-- Announcements Modal -->
+<div class="modal-backdrop" id="announcementsModalBg">
+  <div class="modal-content" id="announcementsModalContent">
+    <h3 class="modal-title"><i class="fas fa-bullhorn"></i> Announcements</h3>
+    <div id="announcementsList" class="announcement-list">
+      <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading announcements...</div>
+    </div>
+    <button class="btn w-100 mt-3" id="announcementsModalClose">Close</button>
   </div>
 </div>
 
@@ -831,6 +1076,84 @@ function showModal(title, body, isHTML = false) {
   modalBg.style.display = 'flex';
 }
 
+// User Profile Modal
+const userProfileModalBg = document.getElementById('userProfileModalBg');
+const userProfileModalTitle = document.getElementById('userProfileModalTitle');
+const userProfileModalBody = document.getElementById('userProfileModalBody');
+document.getElementById('userProfileModalClose').addEventListener('click', () => {
+  userProfileModalBg.style.display = 'none';
+});
+
+function showUserProfileModal(userId) {
+  db.ref('users/' + userId).once('value').then(snapshot => {
+    const user = snapshot.val() || {};
+    
+    userProfileModalTitle.innerText = user.name || 'Player Profile';
+    
+    let profileHTML = `
+      <div class="profile-header">
+        <img src="${user.profilePic || 'https://via.placeholder.com/80'}" class="profile-pic" alt="Profile"/>
+        <div class="profile-info">
+          <h2 class="profile-name">${user.name || 'Player'}</h2>
+          <p>🎮 Free Fire UID: ${user.freeFireUID || 'Not set'}</p>
+          ${user.status ? `<p>💬 Status: ${user.status}</p>` : ''}
+        </div>
+      </div>
+      
+      <div class="profile-stats">
+        <div class="stat-card">
+          <div class="stat-value">${user.matchesPlayed || 0}</div>
+          <div class="stat-label">🎮 Matches</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${user.wins || 0}</div>
+          <div class="stat-label">🏆 Wins</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${user.winRate ? (user.winRate * 100).toFixed(1) + '%' : '0%'}</div>
+          <div class="stat-label">📊 Win Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${user.income || 0}</div>
+          <div class="stat-label">💵 Income</div>
+        </div>
+      </div>
+    `;
+    
+    userProfileModalBody.innerHTML = profileHTML;
+    userProfileModalBg.style.display = 'flex';
+  });
+}
+
+// Announcements Modal
+const announcementsModalBg = document.getElementById('announcementsModalBg');
+document.getElementById('announcementsModalClose').addEventListener('click', () => {
+  announcementsModalBg.style.display = 'none';
+});
+
+function loadAnnouncements() {
+  db.ref('announcements').orderByChild('timestamp').limitToLast(10).once('value').then(snapshot => {
+    let announcementsHTML = '';
+    
+    if (snapshot.exists()) {
+      snapshot.forEach(child => {
+        const announcement = child.val();
+        announcementsHTML += `
+          <div class="announcement-item">
+            <div class="announcement-title">${announcement.title}</div>
+            <div class="announcement-content">${announcement.content}</div>
+            <div class="announcement-date">${new Date(announcement.timestamp).toLocaleDateString()}</div>
+          </div>
+        `;
+      });
+    } else {
+      announcementsHTML = '<div class="text-center py-3">No announcements yet</div>';
+    }
+    
+    document.getElementById('announcementsList').innerHTML = announcementsHTML;
+  });
+}
+
 // More page buttons
 document.getElementById('updateBtn').addEventListener('click', () => {
   window.open('https://yourappdownloadlink.com', '_blank');
@@ -844,6 +1167,118 @@ document.getElementById('referBtn').addEventListener('click', () => {
   showModal('Refer & Earn', 'Your referral code: FFK12345. Share this code with your friends to earn 50 coins when they sign up and make their first deposit!');
 });
 
+document.getElementById('announcementsBtn').addEventListener('click', () => {
+  loadAnnouncements();
+  announcementsModalBg.style.display = 'flex';
+});
+
+// Search functionality
+document.getElementById('searchToggleBtn').addEventListener('click', () => {
+  const searchContainer = document.getElementById('searchContainer');
+  if (searchContainer.classList.contains('hidden')) {
+    searchContainer.classList.remove('hidden');
+    document.getElementById('userSearchInput').focus();
+  } else {
+    searchContainer.classList.add('hidden');
+    document.getElementById('searchResults').classList.remove('active');
+  }
+});
+
+document.getElementById('userSearchInput').addEventListener('input', debounce(function(e) {
+  const query = e.target.value.trim().toLowerCase();
+  const searchResults = document.getElementById('searchResults');
+  
+  if (query.length < 2) {
+    searchResults.classList.remove('active');
+    return;
+  }
+  
+  db.ref('users').once('value').then(snapshot => {
+    let resultsHTML = '';
+    let resultCount = 0;
+    
+    if (snapshot.exists()) {
+      snapshot.forEach(child => {
+        const user = child.val();
+        const userName = user.name || '';
+        const userUID = user.freeFireUID || '';
+        
+        if (userName.toLowerCase().includes(query) || userUID.toLowerCase().includes(query)) {
+          resultCount++;
+          resultsHTML += `
+            <div class="user-search-result" data-userid="${child.key}">
+              <img src="${user.profilePic || 'https://via.placeholder.com/50'}" class="user-search-avatar" alt="${userName}">
+              <div class="user-search-info">
+                <div class="user-search-name">${userName}</div>
+                <div class="user-search-uid">UID: ${userUID}</div>
+              </div>
+            </div>
+          `;
+        }
+      });
+    }
+    
+    if (resultCount > 0) {
+      searchResults.innerHTML = resultsHTML;
+      searchResults.classList.add('active');
+      
+      // Add click event to search results
+      document.querySelectorAll('.user-search-result').forEach(result => {
+        result.addEventListener('click', () => {
+          const userId = result.getAttribute('data-userid');
+          showUserProfileModal(userId);
+          document.getElementById('searchContainer').classList.add('hidden');
+          document.getElementById('userSearchInput').value = '';
+          searchResults.classList.remove('active');
+        });
+      });
+    } else {
+      searchResults.innerHTML = '<div class="text-center py-3">No players found</div>';
+      searchResults.classList.add('active');
+    }
+  });
+}, 300));
+
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Tournament filtering
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    
+    const filter = this.getAttribute('data-filter');
+    filterTournaments(filter);
+  });
+});
+
+function filterTournaments(filter) {
+  const tournamentCards = document.querySelectorAll('.tournament-card');
+  
+  tournamentCards.forEach(card => {
+    if (filter === 'all') {
+      card.style.display = 'block';
+    } else {
+      const gameModes = card.getAttribute('data-game-modes') || '';
+      if (gameModes.includes(filter)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    }
+  });
+}
+
 // Load tournaments
 function loadTournaments() {
   db.ref('tournaments').on('value', snap => {
@@ -853,17 +1288,23 @@ function loadTournaments() {
         let tournament = child.val();
         let image = tournament.image || 'https://via.placeholder.com/400x200?text=Tournament';
         let endTime = new Date(tournament.endTime || Date.now() + 3600000).getTime();
+        let gameModes = tournament.gameModes || ['solo'];
         
         html += `
-          <div class="card tournament-card">
+          <div class="card tournament-card" data-game-modes="${gameModes.join(' ')}">
             <img src="${image}" class="tournament-img"/>
+            <span class="tournament-badge">${tournament.type || 'Solo'}</span>
             <div class="tournament-content">
               <h3 class="tournament-title">${tournament.title || 'Unnamed Tournament'}</h3>
-              <p class="tournament-info"><i class="fas fa-flag"></i> Type: ${tournament.type || 'Solo'}</p>
               <p class="tournament-info"><i class="fas fa-ticket-alt"></i> Entry: ${tournament.entryFee || 0} BDT</p>
               <p class="tournament-info"><i class="fas fa-award"></i> Prize: ${tournament.prizePool || 0} BDT</p>
               <p class="tournament-info"><i class="fas fa-users"></i> Players: ${tournament.players ? Object.keys(tournament.players).length : 0}/${tournament.maxPlayers || 50}</p>
               <p class="tournament-info"><i class="fas fa-clock"></i> Ends in: <span class="countdown" id="cd${child.key}">Loading...</span></p>
+              
+              <div class="game-mode-badges">
+                ${gameModes.map(mode => `<span class="game-mode-badge">${modeToLabel(mode)}</span>`).join('')}
+              </div>
+              
               <div class="tournament-actions">
                 <button class="btn btn-sm btn-info" onclick="showTournamentDetails('${child.key}')"><i class="fas fa-info-circle"></i> Details</button>
                 <button class="btn btn-sm btn-success" onclick="joinTournament('${child.key}', ${tournament.entryFee || 0})"><i class="fas fa-sign-in-alt"></i> Join</button>
@@ -880,6 +1321,19 @@ function loadTournaments() {
     
     document.getElementById('tournamentsList').innerHTML = html;
   });
+}
+
+function modeToLabel(mode) {
+  const modeLabels = {
+    'solo': 'Solo',
+    'duo': 'Duo',
+    'squad': 'Squad',
+    'battle-royale': 'Battle Royale',
+    'clash-squad': 'Clash Squad',
+    'leon-wolf': 'Leon Wolf'
+  };
+  
+  return modeLabels[mode] || mode;
 }
 
 // Countdown timer
@@ -920,6 +1374,7 @@ function showTournamentDetails(tournamentId) {
       <div class="tournament-details">
         <p><strong>Title:</strong> ${tournament.title || 'Unnamed Tournament'}</p>
         <p><strong>Type:</strong> ${tournament.type || 'Solo'}</p>
+        <p><strong>Game Modes:</strong> ${(tournament.gameModes || ['solo']).map(modeToLabel).join(', ')}</p>
         <p><strong>Entry Fee:</strong> ${tournament.entryFee || 0} BDT</p>
         <p><strong>Prize Pool:</strong> ${tournament.prizePool || 0} BDT</p>
         <p><strong>Max Players:</strong> ${tournament.maxPlayers || 50}</p>
@@ -966,7 +1421,14 @@ function showTournamentDetails(tournamentId) {
   });
 }
 
-// Join tournament
+// Check if user is banned before allowing actions
+function checkIfBanned(userId) {
+  return db.ref('bannedUsers/' + userId).once('value').then(snapshot => {
+    return snapshot.exists();
+  });
+}
+
+// Join tournament with ban check
 function joinTournament(tournamentId, entryFee) {
   const user = auth.currentUser;
   if (!user) {
@@ -974,31 +1436,38 @@ function joinTournament(tournamentId, entryFee) {
     return;
   }
   
-  db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
-    const coins = snapshot.val() || 0;
-    
-    if (coins >= entryFee) {
-      // Deduct entry fee
-      db.ref('users/' + user.uid + '/coins').set(coins - entryFee);
-      
-      // Add user to tournament
-      db.ref('tournaments/' + tournamentId + '/players/' + user.uid).set(true);
-      
-      // Add tournament to user's list
-      db.ref('userTournaments/' + user.uid + '/' + tournamentId).set({
-        joinedAt: Date.now(),
-        status: 'registered',
-        tournamentName: document.getElementById('tournamentsList').querySelector(`[onclick*="${tournamentId}"]`).closest('.tournament-card').querySelector('.tournament-title').textContent
-      });
-      
-      showModal('Success', 'You have successfully joined the tournament!');
-    } else {
-      showModal('Error', 'You do not have enough coins to join this tournament');
+  checkIfBanned(user.uid).then(isBanned => {
+    if (isBanned) {
+      showModal('Account Banned', 'Your account has been banned. You cannot join tournaments. Please contact support for more information.');
+      return;
     }
+    
+    db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
+      const coins = snapshot.val() || 0;
+      
+      if (coins >= entryFee) {
+        // Deduct entry fee
+        db.ref('users/' + user.uid + '/coins').set(coins - entryFee);
+        
+        // Add user to tournament
+        db.ref('tournaments/' + tournamentId + '/players/' + user.uid).set(true);
+        
+        // Add tournament to user's list
+        db.ref('userTournaments/' + user.uid + '/' + tournamentId).set({
+          joinedAt: Date.now(),
+          status: 'registered',
+          tournamentName: document.getElementById('tournamentsList').querySelector(`[onclick*="${tournamentId}"]`).closest('.tournament-card').querySelector('.tournament-title').textContent
+        });
+        
+        showModal('Success', 'You have successfully joined the tournament!');
+      } else {
+        showModal('Error', 'You do not have enough coins to join this tournament');
+      }
+    });
   });
 }
 
-// Load user profile
+// Load user profile with ban status
 function loadProfile(userId) {
   db.ref('users/' + userId).on('value', snapshot => {
     const user = snapshot.val() || {};
@@ -1026,6 +1495,25 @@ function loadProfile(userId) {
     document.getElementById('editName').value = user.name || '';
     document.getElementById('editFFUID').value = user.freeFireUID || '';
     document.getElementById('profileStatus').value = user.status || '';
+    
+    // Check if user is banned and show warning
+    checkIfBanned(userId).then(isBanned => {
+      if (isBanned) {
+        const profileCard = document.querySelector('#profilePage .card');
+        if (!profileCard.querySelector('.banned-overlay')) {
+          const bannedOverlay = document.createElement('div');
+          bannedOverlay.className = 'banned-overlay';
+          bannedOverlay.innerHTML = `
+            <div class="banned-icon"><i class="fas fa-ban"></i></div>
+            <h3>Account Banned</h3>
+            <p>Your account has been suspended. You cannot join tournaments or withdraw funds.</p>
+            <p>Please contact support for more information.</p>
+          `;
+          profileCard.style.position = 'relative';
+          profileCard.appendChild(bannedOverlay);
+        }
+      }
+    });
   });
 }
 
@@ -1176,87 +1664,101 @@ document.getElementById('uploadPicBtn').addEventListener('click', () => {
   });
 });
 
-// Deposit
+// Deposit with ban check
 document.getElementById('depositBtn').addEventListener('click', () => {
-  const amount = parseInt(document.getElementById('depositAmount').value);
-  const transactionId = document.getElementById('depositTransactionId').value.trim();
-  const method = document.getElementById('depositMethod').value;
-  
-  if (amount < MIN_DEPOSIT) {
-    showModal('Error', `Minimum deposit is ${MIN_DEPOSIT} BDT`);
-    return;
-  }
-  
-  if (!transactionId) {
-    showModal('Error', 'Please enter a transaction ID');
-    return;
-  }
-  
   const user = auth.currentUser;
   if (!user) return;
   
-  // Save deposit request
-  db.ref('paymentRequests').push({
-    userId: user.uid,
-    amount: amount,
-    method: method,
-    transactionId: transactionId,
-    type: 'deposit',
-    status: 'pending',
-    timestamp: Date.now()
-  })
-  .then(() => {
-    showModal('Success', 'Deposit request submitted. It will be processed within 24 hours.');
-    document.getElementById('depositAmount').value = '';
-    document.getElementById('depositTransactionId').value = '';
-  })
-  .catch(error => showModal('Error', error.message));
-});
-
-// Withdraw
-document.getElementById('withdrawBtn').addEventListener('click', () => {
-  const amount = parseInt(document.getElementById('withdrawAmount').value);
-  const account = document.getElementById('withdrawAccount').value.trim();
-  const method = document.getElementById('withdrawMethod').value;
-  
-  if (amount < MIN_WITHDRAW) {
-    showModal('Error', `Minimum withdrawal is ${MIN_WITHDRAW} BDT`);
-    return;
-  }
-  
-  if (!account) {
-    showModal('Error', 'Please enter your account number');
-    return;
-  }
-  
-  const user = auth.currentUser;
-  if (!user) return;
-  
-  // Check if user has enough balance
-  db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
-    const coins = snapshot.val() || 0;
-    
-    if (coins < amount) {
-      showModal('Error', 'You do not have enough coins to withdraw');
+  checkIfBanned(user.uid).then(isBanned => {
+    if (isBanned) {
+      showModal('Account Banned', 'Your account has been banned. You cannot make deposits. Please contact support for more information.');
       return;
     }
     
-    // Save withdrawal request
+    const amount = parseInt(document.getElementById('depositAmount').value);
+    const transactionId = document.getElementById('depositTransactionId').value.trim();
+    const method = document.getElementById('depositMethod').value;
+    
+    if (amount < MIN_DEPOSIT) {
+      showModal('Error', `Minimum deposit is ${MIN_DEPOSIT} BDT`);
+      return;
+    }
+    
+    if (!transactionId) {
+      showModal('Error', 'Please enter a transaction ID');
+      return;
+    }
+    
+    // Save deposit request
     db.ref('paymentRequests').push({
       userId: user.uid,
       amount: amount,
       method: method,
-      account: account,
-      type: 'withdraw',
+      transactionId: transactionId,
+      type: 'deposit',
       status: 'pending',
       timestamp: Date.now()
     })
     .then(() => {
-      showModal('Success', 'Withdrawal request submitted. It will be processed within 24 hours.');
-      document.getElementById('withdrawAmount').value = '';
-      document.getElementById('withdrawAccount').value = '';
+      showModal('Success', 'Deposit request submitted. It will be processed within 24 hours.');
+      document.getElementById('depositAmount').value = '';
+      document.getElementById('depositTransactionId').value = '';
     })
     .catch(error => showModal('Error', error.message));
+  });
+});
+
+// Withdraw with ban check
+document.getElementById('withdrawBtn').addEventListener('click', () => {
+  const user = auth.currentUser;
+  if (!user) return;
+  
+  checkIfBanned(user.uid).then(isBanned => {
+    if (isBanned) {
+      showModal('Account Banned', 'Your account has been banned. You cannot withdraw funds. Please contact support for more information.');
+      return;
+    }
+    
+    const amount = parseInt(document.getElementById('withdrawAmount').value);
+    const account = document.getElementById('withdrawAccount').value.trim();
+    const method = document.getElementById('withdrawMethod').value;
+    
+    if (amount < MIN_WITHDRAW) {
+      showModal('Error', `Minimum withdrawal is ${MIN_WITHDRAW} BDT`);
+      return;
+    }
+    
+    if (!account) {
+      showModal('Error', 'Please enter your account number');
+      return;
+    }
+    
+    // Check if user has enough balance
+    db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
+      const coins = snapshot.val() || 0;
+      
+      if (coins < amount) {
+        showModal('Error', 'You do not have enough coins to withdraw');
+        return;
+      }
+      
+      // Save withdrawal request
+      db.ref('paymentRequests').push({
+        userId: user.uid,
+        amount: amount,
+        method: method,
+        account: account,
+        type: 'withdraw',
+        status: 'pending',
+        timestamp: Date.now()
+      })
+      .then(() => {
+        showModal('Success', 'Withdrawal request submitted. It will be processed within 24 hours.');
+        document.getElementById('withdrawAmount').value = '';
+        document.getElementById('withdrawAccount').value = '';
+      })
+      .catch(error => showModal('Error', error.message));
+    });
   });
 });
 
