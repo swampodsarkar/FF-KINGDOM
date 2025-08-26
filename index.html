@@ -20,6 +20,7 @@
   --info: #3b82f6;
   --warning: #f59e0b;
   --royal: #a855f7;
+  --organizer: #10b981;
 }
 
 body {
@@ -159,6 +160,11 @@ body {
 
 .btn-royal {
   background: var(--royal);
+  color: white;
+}
+
+.btn-organizer {
+  background: var(--organizer);
   color: white;
 }
 
@@ -653,6 +659,83 @@ body {
 .search-results-container.active {
   display: block;
 }
+
+.verified-badge {
+  color: var(--info);
+  margin-left: 5px;
+}
+
+.organizer-section {
+  border-left: 3px solid var(--organizer);
+  padding-left: 10px;
+  margin: 20px 0;
+}
+
+.organizer-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.winner-selection {
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.winner-list {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.winner-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.winner-item:last-child {
+  border-bottom: none;
+}
+
+.winner-selected {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.organizer-tournament-card {
+  border: 1px solid var(--organizer);
+}
+
+.organizer-tournament-card .tournament-title {
+  color: var(--organizer);
+}
+
+.tournament-winner-badge {
+  background: var(--organizer);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.organizer-name {
+  color: var(--organizer);
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.tournament-date {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 2px 0;
+}
 </style>
 </head>
 <body>
@@ -664,7 +747,8 @@ body {
     
     <div class="registration-tabs">
       <button class="tab-btn active" id="loginTabBtn">Login</button>
-      <button class="tab-btn" id="registerTabBtn">Register</button>
+      <button class="tab-btn" id="registerTabBtn">Player Register</button>
+      <button class="tab-btn" id="organizerRegisterTabBtn">Organizer Register</button>
     </div>
     
     <div class="tab-content active" id="loginTab">
@@ -704,7 +788,27 @@ body {
         <label for="regConfirmPassword">🔒 Confirm Password</label>
         <input id="regConfirmPassword" type="password" placeholder="Confirm your password"/>
       </div>
-      <button id="signUpBtn" class="btn w-100"><i class="fas fa-user-plus"></i> Create Account</button>
+      <button id="signUpBtn" class="btn w-100"><i class="fas fa-user-plus"></i> Create Player Account</button>
+    </div>
+    
+    <div class="tab-content" id="organizerRegisterTab">
+      <div class="input-group">
+        <label for="orgRegName">👤 Organizer Name</label>
+        <input id="orgRegName" type="text" placeholder="Organizer name"/>
+      </div>
+      <div class="input-group">
+        <label for="orgRegEmail">📧 Email</label>
+        <input id="orgRegEmail" type="email" placeholder="Your email"/>
+      </div>
+      <div class="input-group">
+        <label for="orgRegPassword">🔒 Password</label>
+        <input id="orgRegPassword" type="password" placeholder="Create password"/>
+      </div>
+      <div class="input-group">
+        <label for="orgRegConfirmPassword">🔒 Confirm Password</label>
+        <input id="orgRegConfirmPassword" type="password" placeholder="Confirm your password"/>
+      </div>
+      <button id="orgSignUpBtn" class="btn btn-organizer w-100"><i class="fas fa-user-plus"></i> Create Organizer Account</button>
     </div>
   </div>
 </div>
@@ -893,6 +997,83 @@ body {
     </div>
   </div>
 
+  <div id="organizerPage" class="container hidden">
+    <h3 class="mb-3"><i class="fas fa-crown"></i> Organizer Dashboard</h3>
+    
+    <div class="card">
+      <h3 class="form-section-title"><i class="fas fa-plus-circle"></i> Create Tournament</h3>
+      
+      <div class="input-group">
+        <label for="tournamentTitle">🏆 Tournament Title</label>
+        <input id="tournamentTitle" type="text" placeholder="Tournament title"/>
+      </div>
+      
+      <div class="input-group">
+        <label for="tournamentType">🎯 Type</label>
+        <select id="tournamentType">
+          <option value="solo">Solo</option>
+          <option value="duo">Duo</option>
+          <option value="squad">Squad</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label>🎮 Game Modes</label>
+        <div>
+          <input type="checkbox" id="modeBattleRoyale" value="battle-royale">
+          <label for="modeBattleRoyale">Battle Royale</label>
+        </div>
+        <div>
+          <input type="checkbox" id="modeClashSquad" value="clash-squad">
+          <label for="modeClashSquad">Clash Squad</label>
+        </div>
+        <div>
+          <input type="checkbox" id="modeLeonWolf" value="leon-wolf">
+          <label for="modeLeonWolf">Leon Wolf</label>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <label for="entryFee">💰 Entry Fee (BDT)</label>
+        <input id="entryFee" type="number" placeholder="Entry fee" min="0"/>
+      </div>
+      
+      <div class="input-group">
+        <label for="prizePool">🏅 Prize Pool (BDT) or description</label>
+        <textarea id="prizePool" placeholder="Example: 30 tk per kill, 2 tk bonus..."></textarea>
+      </div>
+      
+      <div class="input-group">
+        <label for="maxPlayers">👥 Max Players</label>
+        <input id="maxPlayers" type="number" placeholder="Maximum players" min="2"/>
+      </div>
+      
+      <div class="input-group">
+        <label for="tournamentRules">📜 Rules</label>
+        <textarea id="tournamentRules" placeholder="Tournament rules" rows="3"></textarea>
+      </div>
+      
+      <div class="input-group">
+        <label for="tournamentDate">📅 Tournament Date</label>
+        <input id="tournamentDate" type="datetime-local"/>
+      </div>
+      
+      <div class="input-group">
+        <label for="tournamentPoster">🖼️ Tournament Poster</label>
+        <input id="tournamentPoster" type="file" accept="image/*"/>
+      </div>
+      
+      <button id="createTournamentBtn" class="btn btn-organizer w-100"><i class="fas fa-plus"></i> Create Tournament</button>
+    </div>
+    
+    <div class="card">
+      <h3 class="form-section-title"><i class="fas fa-trophy"></i> My Created Tournaments</h3>
+      <div id="organizerTournamentsList" class="loading">
+        <i class="fas fa-spinner fa-spin"></i> Loading your tournaments...
+      </div>
+    </div>
+  </div>
+
   <div id="morePage" class="container hidden">
     <h3 class="mb-3"><i class="fas fa-cog"></i> More Options</h3>
     
@@ -954,6 +1135,10 @@ body {
       <i class="fas fa-trophy"></i>
       <span>My Tournaments</span>
     </button>
+    <button class="nav-btn" id="navOrganizer">
+      <i class="fas fa-crown"></i>
+      <span>Organizer</span>
+    </button>
     <button class="nav-btn" id="navMore">
       <i class="fas fa-ellipsis-h"></i>
       <span>More</span>
@@ -990,6 +1175,15 @@ body {
   </div>
 </div>
 
+<!-- Tournament Details Modal -->
+<div class="modal-backdrop" id="tournamentDetailsModalBg">
+  <div class="modal-content" id="tournamentDetailsModalContent">
+    <h3 class="modal-title" id="tournamentDetailsModalTitle">Tournament Details</h3>
+    <div id="tournamentDetailsModalBody"></div>
+    <button class="btn w-100 mt-3" id="tournamentDetailsModalClose">Close</button>
+  </div>
+</div>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -1010,13 +1204,14 @@ const db = firebase.database();
 const auth = firebase.auth();
 
 const MIN_DEPOSIT = 10, MIN_WITHDRAW = 100;
-const IMGBB_API_KEY = 'a5e9f23952de30236c940c60b740ec9d';
+const IMGBB_API_KEY = '213fd215f712156cc6a6ab529469da2f';
 
 // Navigation
 const pages = {
   homePage: document.getElementById('homePage'),
   profilePage: document.getElementById('profilePage'),
   myTournamentsPage: document.getElementById('myTournamentsPage'),
+  organizerPage: document.getElementById('organizerPage'),
   morePage: document.getElementById('morePage')
 };
 
@@ -1034,13 +1229,15 @@ function showPage(pageId) {
     btn.classList.remove('active');
   });
   
-  document.getElementById('nav' + pageId.charAt(0).toUpperCase() + pageId.slice(1).replace('Page', '')).classList.add('active');
+  const pageName = pageId.replace('Page', '');
+  document.getElementById('nav' + pageName.charAt(0).toUpperCase() + pageName.slice(1)).classList.add('active');
 }
 
 // Set up navigation
 document.getElementById('navHome').addEventListener('click', () => showPage('homePage'));
 document.getElementById('navProfile').addEventListener('click', () => showPage('profilePage'));
 document.getElementById('navMyTournaments').addEventListener('click', () => showPage('myTournamentsPage'));
+document.getElementById('navOrganizer').addEventListener('click', () => showPage('organizerPage'));
 document.getElementById('navMore').addEventListener('click', () => showPage('morePage'));
 
 // Registration tabs
@@ -1056,6 +1253,13 @@ document.getElementById('registerTabBtn').addEventListener('click', function() {
   document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
   this.classList.add('active');
   document.getElementById('registerTab').classList.add('active');
+});
+
+document.getElementById('organizerRegisterTabBtn').addEventListener('click', function() {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  this.classList.add('active');
+  document.getElementById('organizerRegisterTab').classList.add('active');
 });
 
 // Modal
@@ -1094,7 +1298,7 @@ function showUserProfileModal(userId) {
       <div class="profile-header">
         <img src="${user.profilePic || 'https://via.placeholder.com/80'}" class="profile-pic" alt="Profile"/>
         <div class="profile-info">
-          <h2 class="profile-name">${user.name || 'Player'}</h2>
+          <h2 class="profile-name">${user.name || 'Player'} ${user.isVerified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}</h2>
           <p>🎮 Free Fire UID: ${user.freeFireUID || 'Not set'}</p>
           ${user.status ? `<p>💬 Status: ${user.status}</p>` : ''}
         </div>
@@ -1209,7 +1413,7 @@ document.getElementById('userSearchInput').addEventListener('input', debounce(fu
             <div class="user-search-result" data-userid="${child.key}">
               <img src="${user.profilePic || 'https://via.placeholder.com/50'}" class="user-search-avatar" alt="${userName}">
               <div class="user-search-info">
-                <div class="user-search-name">${userName}</div>
+                <div class="user-search-name">${userName} ${user.isVerified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}</div>
                 <div class="user-search-uid">UID: ${userUID}</div>
               </div>
             </div>
@@ -1287,39 +1491,51 @@ function loadTournaments() {
       snap.forEach(child => {
         let tournament = child.val();
         let image = tournament.image || 'https://via.placeholder.com/400x200?text=Tournament';
-        let endTime = new Date(tournament.endTime || Date.now() + 3600000).getTime();
         let gameModes = tournament.gameModes || ['solo'];
+        let winnerId = tournament.winner || null;
+        let tournamentDate = tournament.tournamentDate || Date.now();
+        let organizerId = tournament.organizerId;
         
-        html += `
-          <div class="card tournament-card" data-game-modes="${gameModes.join(' ')}">
-            <img src="${image}" class="tournament-img"/>
-            <span class="tournament-badge">${tournament.type || 'Solo'}</span>
-            <div class="tournament-content">
-              <h3 class="tournament-title">${tournament.title || 'Unnamed Tournament'}</h3>
-              <p class="tournament-info"><i class="fas fa-ticket-alt"></i> Entry: ${tournament.entryFee || 0} BDT</p>
-              <p class="tournament-info"><i class="fas fa-award"></i> Prize: ${tournament.prizePool || 0} BDT</p>
-              <p class="tournament-info"><i class="fas fa-users"></i> Players: ${tournament.players ? Object.keys(tournament.players).length : 0}/${tournament.maxPlayers || 50}</p>
-              <p class="tournament-info"><i class="fas fa-clock"></i> Ends in: <span class="countdown" id="cd${child.key}">Loading...</span></p>
-              
-              <div class="game-mode-badges">
-                ${gameModes.map(mode => `<span class="game-mode-badge">${modeToLabel(mode)}</span>`).join('')}
-              </div>
-              
-              <div class="tournament-actions">
-                <button class="btn btn-sm btn-info" onclick="showTournamentDetails('${child.key}')"><i class="fas fa-info-circle"></i> Details</button>
-                <button class="btn btn-sm btn-success" onclick="joinTournament('${child.key}', ${tournament.entryFee || 0})"><i class="fas fa-sign-in-alt"></i> Join</button>
+        // Get organizer info
+        db.ref('users/' + organizerId).once('value').then(orgSnapshot => {
+          const organizer = orgSnapshot.val() || {};
+          
+          html += `
+            <div class="card tournament-card ${winnerId ? 'organizer-tournament-card' : ''}" data-game-modes="${gameModes.join(' ')}">
+              <img src="${image}" class="tournament-img"/>
+              <span class="tournament-badge">${tournament.type || 'Solo'}</span>
+              ${winnerId ? '<span class="tournament-winner-badge">Winner Declared</span>' : ''}
+              <div class="tournament-content">
+                <h3 class="tournament-title">${tournament.title || 'Unnamed Tournament'}</h3>
+                <p class="tournament-info"><i class="fas fa-ticket-alt"></i> Entry: ${tournament.entryFee || 0} BDT</p>
+                <p class="tournament-info"><i class="fas fa-award"></i> Prize: ${tournament.prizePool || 0}</p>
+                <p class="tournament-info"><i class="fas fa-users"></i> Players: ${tournament.players ? Object.keys(tournament.players).length : 0}/${tournament.maxPlayers || 50}</p>
+                <p class="tournament-date"><i class="fas fa-calendar"></i> ${new Date(tournamentDate).toLocaleDateString()} ${new Date(tournamentDate).toLocaleTimeString()}</p>
+                
+                <div class="organizer-name">
+                  <i class="fas fa-crown"></i> Organizer: ${organizer.name || 'Unknown'} 
+                  ${organizer.isVerified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}
+                </div>
+                
+                <div class="game-mode-badges">
+                  ${gameModes.map(mode => `<span class="game-mode-badge">${modeToLabel(mode)}</span>`).join('')}
+                </div>
+                
+                <div class="tournament-actions">
+                  <button class="btn btn-sm btn-info" onclick="showTournamentDetails('${child.key}')"><i class="fas fa-info-circle"></i> Details</button>
+                  ${!winnerId ? `<button class="btn btn-sm btn-success" onclick="joinTournament('${child.key}', ${tournament.entryFee || 0})"><i class="fas fa-sign-in-alt"></i> Join</button>` : ''}
+                </div>
               </div>
             </div>
-          </div>
-        `;
-        
-        setCountdown('cd' + child.key, endTime);
+          `;
+          
+          document.getElementById('tournamentsList').innerHTML = html;
+        });
       });
     } else {
       html = '<div class="text-center py-4"><i class="fas fa-trophy fa-2x mb-3"></i><p>No tournaments available at the moment</p></div>';
+      document.getElementById('tournamentsList').innerHTML = html;
     }
-    
-    document.getElementById('tournamentsList').innerHTML = html;
   });
 }
 
@@ -1336,30 +1552,6 @@ function modeToLabel(mode) {
   return modeLabels[mode] || mode;
 }
 
-// Countdown timer
-function setCountdown(elementId, endTime) {
-  const countdownElement = document.getElementById(elementId);
-  if (!countdownElement) return;
-  
-  const timer = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = endTime - now;
-    
-    if (distance < 0) {
-      countdownElement.innerText = 'Ended';
-      clearInterval(timer);
-      return;
-    }
-    
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    countdownElement.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }, 1000);
-}
-
 // Tournament details
 function showTournamentDetails(tournamentId) {
   db.ref('tournaments/' + tournamentId).once('value').then(snapshot => {
@@ -1369,55 +1561,103 @@ function showTournamentDetails(tournamentId) {
       return;
     }
     
-    const players = tournament.players ? Object.keys(tournament.players) : [];
-    let detailsHTML = `
-      <div class="tournament-details">
-        <p><strong>Title:</strong> ${tournament.title || 'Unnamed Tournament'}</p>
-        <p><strong>Type:</strong> ${tournament.type || 'Solo'}</p>
-        <p><strong>Game Modes:</strong> ${(tournament.gameModes || ['solo']).map(modeToLabel).join(', ')}</p>
-        <p><strong>Entry Fee:</strong> ${tournament.entryFee || 0} BDT</p>
-        <p><strong>Prize Pool:</strong> ${tournament.prizePool || 0} BDT</p>
-        <p><strong>Max Players:</strong> ${tournament.maxPlayers || 50}</p>
-        <p><strong>Rules:</strong> ${tournament.rules || 'No special rules'}</p>
-        <p><strong>Players Joined:</strong> ${players.length}</p>
-        <hr>
-        <p><strong>Player List:</strong></p>
-        <div class="player-list">
-    `;
-    
-    if (players.length > 0) {
-      // Get player names instead of IDs
-      const playerPromises = players.map(playerId => {
-        return db.ref('users/' + playerId).once('value')
-          .then(userSnapshot => {
-            const user = userSnapshot.val() || {};
-            return {
-              name: user.name || 'Unknown Player',
-              uid: user.freeFireUID || 'N/A'
-            };
-          });
-      });
+    // Get organizer info
+    db.ref('users/' + tournament.organizerId).once('value').then(orgSnapshot => {
+      const organizer = orgSnapshot.val() || {};
       
-      Promise.all(playerPromises).then(players => {
-        players.forEach((player, index) => {
-          detailsHTML += `
-            <div class="player-item">
-              <div>
-                <div class="player-name">${index + 1}. ${player.name}</div>
-                <div class="player-uid">UID: ${player.uid}</div>
-              </div>
-              <span class="currency-badge">Joined</span>
-            </div>
-          `;
+      const players = tournament.players ? Object.keys(tournament.players) : [];
+      let detailsHTML = `
+        <div class="tournament-details">
+          <p><strong>Title:</strong> ${tournament.title || 'Unnamed Tournament'}</p>
+          <p><strong>Type:</strong> ${tournament.type || 'Solo'}</p>
+          <p><strong>Game Modes:</strong> ${(tournament.gameModes || ['solo']).map(modeToLabel).join(', ')}</p>
+          <p><strong>Entry Fee:</strong> ${tournament.entryFee || 0} BDT</p>
+          <p><strong>Prize Pool:</strong> ${tournament.prizePool || 0}</p>
+          <p><strong>Max Players:</strong> ${tournament.maxPlayers || 50}</p>
+          <p><strong>Date:</strong> ${new Date(tournament.tournamentDate).toLocaleDateString()} ${new Date(tournament.tournamentDate).toLocaleTimeString()}</p>
+          <p><strong>Organizer:</strong> ${organizer.name || 'Unknown'} ${organizer.isVerified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}</p>
+          <p><strong>Rules:</strong> ${tournament.rules || 'No special rules'}</p>
+          <p><strong>Players Joined:</strong> ${players.length}</p>
+          <hr>
+          <p><strong>Player List:</strong></p>
+          <div class="player-list">
+      `;
+      
+      if (players.length > 0) {
+        // Get player names instead of IDs
+        const playerPromises = players.map(playerId => {
+          return db.ref('users/' + playerId).once('value')
+            .then(userSnapshot => {
+              const user = userSnapshot.val() || {};
+              return {
+                id: playerId,
+                name: user.name || 'Unknown Player',
+                uid: user.freeFireUID || 'N/A'
+              };
+            });
         });
         
-        detailsHTML += `</div></div>`;
+        Promise.all(playerPromises).then(players => {
+          players.forEach((player, index) => {
+            detailsHTML += `
+              <div class="player-item">
+                <div>
+                  <div class="player-name">${index + 1}. ${player.name}</div>
+                  <div class="player-uid">UID: ${player.uid}</div>
+                </div>
+                <span class="currency-badge">Joined</span>
+              </div>
+            `;
+          });
+          
+          // Add organizer controls if user is the organizer
+          const user = auth.currentUser;
+          if (user && tournament.organizerId === user.uid) {
+            detailsHTML += `
+              </div>
+              <div class="organizer-section">
+                <h4><i class="fas fa-crown"></i> Organizer Controls</h4>
+                <div class="winner-selection">
+                  <p><strong>Select Winner:</strong></p>
+                  <select id="winnerSelect" class="form-control">
+                    <option value="">Select a winner</option>
+                    ${players.map(player => `<option value="${player.id}">${player.name}</option>`).join('')}
+                  </select>
+                  <button class="btn btn-organizer btn-sm mt-2" onclick="declareWinner('${tournamentId}')">Declare Winner</button>
+                </div>
+              </div>
+            `;
+          }
+          
+          detailsHTML += `</div></div>`;
+          showModal('Tournament Details', detailsHTML, true);
+        });
+      } else {
+        detailsHTML += `<div class="text-center py-3">No players joined yet</div></div></div>`;
         showModal('Tournament Details', detailsHTML, true);
-      });
-    } else {
-      detailsHTML += `<div class="text-center py-3">No players joined yet</div></div></div>`;
-      showModal('Tournament Details', detailsHTML, true);
-    }
+      }
+    });
+  });
+}
+
+// Declare tournament winner
+function declareWinner(tournamentId) {
+  const winnerSelect = document.getElementById('winnerSelect');
+  const winnerId = winnerSelect.value;
+  
+  if (!winnerId) {
+    showModal('Error', 'Please select a winner');
+    return;
+  }
+  
+  db.ref('tournaments/' + tournamentId).update({
+    winner: winnerId,
+    winnerDeclaredAt: Date.now()
+  }).then(() => {
+    showModal('Success', 'Winner declared successfully!');
+    modalBg.style.display = 'none';
+  }).catch(error => {
+    showModal('Error', error.message);
   });
 }
 
@@ -1436,33 +1676,42 @@ function joinTournament(tournamentId, entryFee) {
     return;
   }
   
-  checkIfBanned(user.uid).then(isBanned => {
-    if (isBanned) {
-      showModal('Account Banned', 'Your account has been banned. You cannot join tournaments. Please contact support for more information.');
+  // Check if user is an organizer
+  db.ref('users/' + user.uid + '/isOrganizer').once('value').then(snapshot => {
+    const isOrganizer = snapshot.val();
+    if (isOrganizer) {
+      showModal('Error', 'Organizers cannot join tournaments as players');
       return;
     }
     
-    db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
-      const coins = snapshot.val() || 0;
-      
-      if (coins >= entryFee) {
-        // Deduct entry fee
-        db.ref('users/' + user.uid + '/coins').set(coins - entryFee);
-        
-        // Add user to tournament
-        db.ref('tournaments/' + tournamentId + '/players/' + user.uid).set(true);
-        
-        // Add tournament to user's list
-        db.ref('userTournaments/' + user.uid + '/' + tournamentId).set({
-          joinedAt: Date.now(),
-          status: 'registered',
-          tournamentName: document.getElementById('tournamentsList').querySelector(`[onclick*="${tournamentId}"]`).closest('.tournament-card').querySelector('.tournament-title').textContent
-        });
-        
-        showModal('Success', 'You have successfully joined the tournament!');
-      } else {
-        showModal('Error', 'You do not have enough coins to join this tournament');
+    checkIfBanned(user.uid).then(isBanned => {
+      if (isBanned) {
+        showModal('Account Banned', 'Your account has been banned. You cannot join tournaments. Please contact support for more information.');
+        return;
       }
+      
+      db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
+        const coins = snapshot.val() || 0;
+        
+        if (coins >= entryFee) {
+          // Deduct entry fee
+          db.ref('users/' + user.uid + '/coins').set(coins - entryFee);
+          
+          // Add user to tournament
+          db.ref('tournaments/' + tournamentId + '/players/' + user.uid).set(true);
+          
+          // Add tournament to user's list
+          db.ref('userTournaments/' + user.uid + '/' + tournamentId).set({
+            joinedAt: Date.now(),
+            status: 'registered',
+            tournamentName: document.getElementById('tournamentsList').querySelector(`[onclick*="${tournamentId}"]`).closest('.tournament-card').querySelector('.tournament-title').textContent
+          });
+          
+          showModal('Success', 'You have successfully joined the tournament!');
+        } else {
+          showModal('Error', 'You do not have enough coins to join this tournament');
+        }
+      });
     });
   });
 }
@@ -1489,6 +1738,11 @@ function loadProfile(userId) {
     
     if (user.status) {
       document.getElementById('profileStatusDisplay').textContent = '💬 Status: ' + user.status;
+    }
+    
+    // Show verified badge if user is verified
+    if (user.isVerified) {
+      document.getElementById('profileName').innerHTML = (user.name || 'Player') + ' <i class="fas fa-check-circle verified-badge"></i>';
     }
     
     // Pre-fill edit form
@@ -1564,7 +1818,7 @@ function loadMyTournaments(userId) {
                   <h3 class="tournament-title">${tournament.title || 'Unnamed Tournament'}</h3>
                   <p class="tournament-info"><i class="fas fa-flag"></i> Type: ${tournament.type || 'Solo'}</p>
                   <p class="tournament-info"><i class="fas fa-ticket-alt"></i> Entry: ${tournament.entryFee || 0} BDT</p>
-                  <p class="tournament-info"><i class="fas fa-award"></i> Prize: ${tournament.prizePool || 0} BDT</p>
+                  <p class="tournament-info"><i class="fas fa-award"></i> Prize: ${tournament.prizePool || 0}</p>
                   <p class="tournament-info"><i class="fas fa-users"></i> Players: ${tournament.players ? Object.keys(tournament.players).length : 0}/${tournament.maxPlayers || 50}</p>
                   <p class="tournament-info"><i class="fas fa-info-circle"></i> Status: ${tournamentData.status || 'registered'}</p>
                 </div>
@@ -1581,6 +1835,149 @@ function loadMyTournaments(userId) {
     }
   });
 }
+
+// Load organizer's tournaments
+function loadOrganizerTournaments(userId) {
+  db.ref('tournaments').orderByChild('organizerId').equalTo(userId).on('value', snapshot => {
+    let tournamentsHTML = '';
+    
+    if (snapshot.exists()) {
+      snapshot.forEach(child => {
+        const tournament = child.val();
+        const players = tournament.players ? Object.keys(tournament.players) : [];
+        
+        tournamentsHTML += `
+          <div class="card organizer-tournament-card">
+            <div class="tournament-content">
+              <h3 class="tournament-title">${tournament.title || 'Unnamed Tournament'}</h3>
+              <p class="tournament-info"><i class="fas fa-flag"></i> Type: ${tournament.type || 'Solo'}</p>
+              <p class="tournament-info"><i class="fas fa-ticket-alt"></i> Entry: ${tournament.entryFee || 0} BDT</p>
+              <p class="tournament-info"><i class="fas fa-award"></i> Prize: ${tournament.prizePool || 0}</p>
+              <p class="tournament-info"><i class="fas fa-users"></i> Players: ${players.length}/${tournament.maxPlayers || 50}</p>
+              <p class="tournament-date"><i class="fas fa-calendar"></i> ${new Date(tournament.tournamentDate).toLocaleDateString()} ${new Date(tournament.tournamentDate).toLocaleTimeString()}</p>
+              
+              <div class="organizer-controls">
+                <button class="btn btn-sm btn-info" onclick="showTournamentDetails('${child.key}')">
+                  <i class="fas fa-info-circle"></i> Details
+                </button>
+                ${!tournament.winner ? `
+                <button class="btn btn-sm btn-warning" onclick="editTournament('${child.key}')">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    } else {
+      tournamentsHTML = '<div class="text-center py-4"><i class="fas fa-trophy fa-2x mb-3"></i><p>You haven\'t created any tournaments yet</p></div>';
+    }
+    
+    document.getElementById('organizerTournamentsList').innerHTML = tournamentsHTML;
+  });
+}
+
+// Create tournament
+document.getElementById('createTournamentBtn').addEventListener('click', () => {
+  const user = auth.currentUser;
+  if (!user) return;
+  
+  // Check if user is an organizer
+  db.ref('users/' + user.uid + '/isOrganizer').once('value').then(snapshot => {
+    const isOrganizer = snapshot.val();
+    if (!isOrganizer) {
+      showModal('Error', 'Only organizers can create tournaments');
+      return;
+    }
+    
+    const title = document.getElementById('tournamentTitle').value;
+    const type = document.getElementById('tournamentType').value;
+    const entryFee = parseInt(document.getElementById('entryFee').value) || 0;
+    const prizePool = document.getElementById('prizePool').value;
+    const maxPlayers = parseInt(document.getElementById('maxPlayers').value) || 50;
+    const rules = document.getElementById('tournamentRules').value;
+    const tournamentDate = document.getElementById('tournamentDate').value;
+    const file = document.getElementById('tournamentPoster').files[0];
+    
+    if (!title || !type || !prizePool || !maxPlayers || !tournamentDate) {
+      showModal('Error', 'Please fill all required fields');
+      return;
+    }
+    
+    // Get selected game modes
+    const gameModes = [];
+    if (document.getElementById('modeBattleRoyale').checked) gameModes.push('battle-royale');
+    if (document.getElementById('modeClashSquad').checked) gameModes.push('clash-squad');
+    if (document.getElementById('modeLeonWolf').checked) gameModes.push('leon-wolf');
+    
+    if (gameModes.length === 0) {
+      showModal('Error', 'Please select at least one game mode');
+      return;
+    }
+    
+    // If poster is uploaded, upload to ImgBB
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append('key', IMGBB_API_KEY);
+      
+      fetch('https://api.imgbb.com/1/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          createTournamentInDB(data.data.url);
+        } else {
+          throw new Error('Image upload failed');
+        }
+      })
+      .catch(error => {
+        showModal('Error', error.message);
+      });
+    } else {
+      createTournamentInDB('');
+    }
+    
+    function createTournamentInDB(imageUrl) {
+      const tournamentData = {
+        title: title,
+        type: type,
+        gameModes: gameModes,
+        entryFee: entryFee,
+        prizePool: prizePool,
+        maxPlayers: maxPlayers,
+        rules: rules,
+        tournamentDate: new Date(tournamentDate).getTime(),
+        image: imageUrl,
+        organizerId: user.uid,
+        createdAt: Date.now(),
+        endTime: new Date(tournamentDate).getTime() + (24 * 60 * 60 * 1000) // 24 hours after start
+      };
+      
+      db.ref('tournaments').push(tournamentData)
+        .then(() => {
+          showModal('Success', 'Tournament created successfully!');
+          // Clear form
+          document.getElementById('tournamentTitle').value = '';
+          document.getElementById('entryFee').value = '';
+          document.getElementById('prizePool').value = '';
+          document.getElementById('maxPlayers').value = '';
+          document.getElementById('tournamentRules').value = '';
+          document.getElementById('tournamentDate').value = '';
+          document.getElementById('tournamentPoster').value = '';
+          document.getElementById('modeBattleRoyale').checked = false;
+          document.getElementById('modeClashSquad').checked = false;
+          document.getElementById('modeLeonWolf').checked = false;
+        })
+        .catch(error => {
+          showModal('Error', error.message);
+        });
+    }
+  });
+});
 
 // Update profile
 document.getElementById('updateProfileBtn').addEventListener('click', () => {
@@ -1669,42 +2066,51 @@ document.getElementById('depositBtn').addEventListener('click', () => {
   const user = auth.currentUser;
   if (!user) return;
   
-  checkIfBanned(user.uid).then(isBanned => {
-    if (isBanned) {
-      showModal('Account Banned', 'Your account has been banned. You cannot make deposits. Please contact support for more information.');
+  // Check if user is an organizer
+  db.ref('users/' + user.uid + '/isOrganizer').once('value').then(snapshot => {
+    const isOrganizer = snapshot.val();
+    if (isOrganizer) {
+      showModal('Error', 'Organizers cannot make deposits');
       return;
     }
     
-    const amount = parseInt(document.getElementById('depositAmount').value);
-    const transactionId = document.getElementById('depositTransactionId').value.trim();
-    const method = document.getElementById('depositMethod').value;
-    
-    if (amount < MIN_DEPOSIT) {
-      showModal('Error', `Minimum deposit is ${MIN_DEPOSIT} BDT`);
-      return;
-    }
-    
-    if (!transactionId) {
-      showModal('Error', 'Please enter a transaction ID');
-      return;
-    }
-    
-    // Save deposit request
-    db.ref('paymentRequests').push({
-      userId: user.uid,
-      amount: amount,
-      method: method,
-      transactionId: transactionId,
-      type: 'deposit',
-      status: 'pending',
-      timestamp: Date.now()
-    })
-    .then(() => {
-      showModal('Success', 'Deposit request submitted. It will be processed within 24 hours.');
-      document.getElementById('depositAmount').value = '';
-      document.getElementById('depositTransactionId').value = '';
-    })
-    .catch(error => showModal('Error', error.message));
+    checkIfBanned(user.uid).then(isBanned => {
+      if (isBanned) {
+        showModal('Account Banned', 'Your account has been banned. You cannot make deposits. Please contact support for more information.');
+        return;
+      }
+      
+      const amount = parseInt(document.getElementById('depositAmount').value);
+      const transactionId = document.getElementById('depositTransactionId').value.trim();
+      const method = document.getElementById('depositMethod').value;
+      
+      if (amount < MIN_DEPOSIT) {
+        showModal('Error', `Minimum deposit is ${MIN_DEPOSIT} BDT`);
+        return;
+      }
+      
+      if (!transactionId) {
+        showModal('Error', 'Please enter a transaction ID');
+        return;
+      }
+      
+      // Save deposit request
+      db.ref('paymentRequests').push({
+        userId: user.uid,
+        amount: amount,
+        method: method,
+        transactionId: transactionId,
+        type: 'deposit',
+        status: 'pending',
+        timestamp: Date.now()
+      })
+      .then(() => {
+        showModal('Success', 'Deposit request submitted. It will be processed within 24 hours.');
+        document.getElementById('depositAmount').value = '';
+        document.getElementById('depositTransactionId').value = '';
+      })
+      .catch(error => showModal('Error', error.message));
+    });
   });
 });
 
@@ -1713,56 +2119,105 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
   const user = auth.currentUser;
   if (!user) return;
   
-  checkIfBanned(user.uid).then(isBanned => {
-    if (isBanned) {
-      showModal('Account Banned', 'Your account has been banned. You cannot withdraw funds. Please contact support for more information.');
+  // Check if user is an organizer
+  db.ref('users/' + user.uid + '/isOrganizer').once('value').then(snapshot => {
+    const isOrganizer = snapshot.val();
+    if (isOrganizer) {
+      showModal('Error', 'Organizers cannot withdraw funds');
       return;
     }
     
-    const amount = parseInt(document.getElementById('withdrawAmount').value);
-    const account = document.getElementById('withdrawAccount').value.trim();
-    const method = document.getElementById('withdrawMethod').value;
-    
-    if (amount < MIN_WITHDRAW) {
-      showModal('Error', `Minimum withdrawal is ${MIN_WITHDRAW} BDT`);
-      return;
-    }
-    
-    if (!account) {
-      showModal('Error', 'Please enter your account number');
-      return;
-    }
-    
-    // Check if user has enough balance
-    db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
-      const coins = snapshot.val() || 0;
-      
-      if (coins < amount) {
-        showModal('Error', 'You do not have enough coins to withdraw');
+    checkIfBanned(user.uid).then(isBanned => {
+      if (isBanned) {
+        showModal('Account Banned', 'Your account has been banned. You cannot withdraw funds. Please contact support for more information.');
         return;
       }
       
-      // Save withdrawal request
-      db.ref('paymentRequests').push({
-        userId: user.uid,
-        amount: amount,
-        method: method,
-        account: account,
-        type: 'withdraw',
-        status: 'pending',
-        timestamp: Date.now()
-      })
-      .then(() => {
-        showModal('Success', 'Withdrawal request submitted. It will be processed within 24 hours.');
-        document.getElementById('withdrawAmount').value = '';
-        document.getElementById('withdrawAccount').value = '';
-      })
-      .catch(error => showModal('Error', error.message));
+      const amount = parseInt(document.getElementById('withdrawAmount').value);
+      const account = document.getElementById('withdrawAccount').value.trim();
+      const method = document.getElementById('withdrawMethod').value;
+      
+      if (amount < MIN_WITHDRAW) {
+        showModal('Error', `Minimum withdrawal is ${MIN_WITHDRAW} BDT`);
+        return;
+      }
+      
+      if (!account) {
+        showModal('Error', 'Please enter your account number');
+        return;
+      }
+      
+      // Check if user has enough balance
+      db.ref('users/' + user.uid + '/coins').once('value').then(snapshot => {
+        const coins = snapshot.val() || 0;
+        
+        if (coins < amount) {
+          showModal('Error', 'You do not have enough coins to withdraw');
+          return;
+        }
+        
+        // Save withdrawal request
+        db.ref('paymentRequests').push({
+          userId: user.uid,
+          amount: amount,
+          method: method,
+          account: account,
+          type: 'withdraw',
+          status: 'pending',
+          timestamp: Date.now()
+        })
+        .then(() => {
+          showModal('Success', 'Withdrawal request submitted. It will be processed within 24 hours.');
+          document.getElementById('withdrawAmount').value = '';
+          document.getElementById('withdrawAccount').value = '';
+        })
+        .catch(error => showModal('Error', error.message));
+      });
     });
   });
 });
 
-// Authentication
+// Organizer registration
+document.getElementById('orgSignUpBtn').addEventListener('click', () => {
+  const name = document.getElementById('orgRegName').value;
+  const email = document.getElementById('orgRegEmail').value;
+  const password = document.getElementById('orgRegPassword').value;
+  const confirmPassword = document.getElementById('orgRegConfirmPassword').value;
+  
+  if (!name || !email || !password || !confirmPassword) {
+    showModal('Error', 'Please fill all fields');
+    return;
+  }
+  
+  if (password !== confirmPassword) {
+    showModal('Error', 'Passwords do not match');
+    return;
+  }
+  
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+      
+      // Save organizer data
+      return db.ref('users/' + user.uid).set({
+        name: name,
+        email: email,
+        isOrganizer: true,
+        isVerified: false, // Admin needs to verify organizers
+        createdAt: Date.now()
+      });
+    })
+    .then(() => {
+      showModal('Success', 'Organizer account created successfully! It will be verified by admin shortly.');
+      // Switch to login tab
+      document.getElementById('loginTabBtn').click();
+    })
+    .catch(error => {
+      showModal('Error', error.message);
+    });
+});
+
+// Player registration
 document.getElementById('signUpBtn').addEventListener('click', () => {
   const name = document.getElementById('regName').value;
   const email = document.getElementById('regEmail').value;
@@ -1795,6 +2250,7 @@ document.getElementById('signUpBtn').addEventListener('click', () => {
         matchesPlayed: 0,
         wins: 0,
         income: 0,
+        isOrganizer: false,
         joinedAt: Date.now()
       });
     })
@@ -1808,6 +2264,7 @@ document.getElementById('signUpBtn').addEventListener('click', () => {
     });
 });
 
+// Login
 document.getElementById('loginBtn').addEventListener('click', () => {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
@@ -1830,6 +2287,21 @@ document.getElementById('loginBtn').addEventListener('click', () => {
       loadTournaments();
       loadTransactions(user.uid);
       loadMyTournaments(user.uid);
+      
+      // Check if user is organizer and load organizer tournaments
+      db.ref('users/' + user.uid + '/isOrganizer').once('value').then(snapshot => {
+        const isOrganizer = snapshot.val();
+        if (isOrganizer) {
+          loadOrganizerTournaments(user.uid);
+          document.getElementById('navOrganizer').classList.remove('hidden');
+          // Hide deposit section for organizers
+          document.getElementById('depositBtn').closest('.wallet-section').style.display = 'none';
+        } else {
+          document.getElementById('navOrganizer').classList.add('hidden');
+          // Show deposit section for players
+          document.getElementById('depositBtn').closest('.wallet-section').style.display = 'block';
+        }
+      });
     })
     .catch(error => {
       showModal('Error', error.message);
@@ -1860,6 +2332,21 @@ auth.onAuthStateChanged(user => {
     loadTournaments();
     loadTransactions(user.uid);
     loadMyTournaments(user.uid);
+    
+    // Check if user is organizer and load organizer tournaments
+    db.ref('users/' + user.uid + '/isOrganizer').once('value').then(snapshot => {
+      const isOrganizer = snapshot.val();
+      if (isOrganizer) {
+        loadOrganizerTournaments(user.uid);
+        document.getElementById('navOrganizer').classList.remove('hidden');
+        // Hide deposit section for organizers
+        document.getElementById('depositBtn').closest('.wallet-section').style.display = 'none';
+      } else {
+        document.getElementById('navOrganizer').classList.add('hidden');
+        // Show deposit section for players
+        document.getElementById('depositBtn').closest('.wallet-section').style.display = 'block';
+      }
+    });
   } else {
     // User is signed out
     document.getElementById('authPage').classList.remove('hidden');
