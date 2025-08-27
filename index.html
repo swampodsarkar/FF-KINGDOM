@@ -736,6 +736,134 @@ body {
   color: var(--text-secondary);
   margin: 2px 0;
 }
+
+/* New styles for improved mobile UI */
+.tournament-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+@media (min-width: 480px) {
+  .tournament-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .tournament-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tournament-card-mobile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tournament-img-mobile {
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.tournament-content-mobile {
+  flex: 1;
+  padding: 12px;
+}
+
+.organizer-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.announcement-toast {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  background: var(--dark-light);
+  border-left: 4px solid var(--primary);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  max-width: 320px;
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+}
+
+.announcement-toast.show {
+  transform: translateX(0);
+}
+
+.announcement-toast-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  color: var(--primary);
+}
+
+.announcement-toast-content {
+  flex: 1;
+}
+
+.announcement-toast-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--primary);
+}
+
+.announcement-toast-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+/* Improved form styling */
+.form-control {
+  background: var(--dark);
+  border: 1px solid #334155;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Improved button styling */
+.btn-block {
+  width: 100%;
+}
+
+/* Improved tournament card layout for mobile */
+.tournament-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.tournament-prize {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.tournament-slots {
+  color: var(--text-secondary);
+}
 </style>
 </head>
 <body>
@@ -843,7 +971,7 @@ body {
       <button class="filter-btn" data-filter="leon-wolf">Leon Wolf</button>
     </div>
     
-    <div id="tournamentsList" class="loading">
+    <div id="tournamentsList" class="loading tournament-grid">
       <i class="fas fa-spinner fa-spin"></i> Loading tournaments...
     </div>
   </div>
@@ -859,7 +987,7 @@ body {
         </div>
       </div>
       
-      <div class="profile-stats">
+      <div class="profile-stats" id="playerStats">
         <div class="stat-card">
           <div class="stat-value" id="walletBalance">0</div>
           <div class="stat-label">💰 BDT</div>
@@ -874,6 +1002,25 @@ body {
         </div>
         <div class="stat-card">
           <div class="stat-value" id="profileIncome">0</div>
+          <div class="stat-label">💵 Income</div>
+        </div>
+      </div>
+      
+      <div class="organizer-stats hidden" id="organizerStats">
+        <div class="stat-card">
+          <div class="stat-value" id="tournamentsHosted">0</div>
+          <div class="stat-label">🏆 Tournaments Hosted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="tournamentsCompleted">0</div>
+          <div class="stat-label">✅ Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="totalParticipants">0</div>
+          <div class="stat-label">👥 Participants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="organizerIncome">0</div>
           <div class="stat-label">💵 Income</div>
         </div>
       </div>
@@ -925,7 +1072,7 @@ body {
       <button id="uploadPicBtn" class="btn btn-info w-100 mt-2"><i class="fas fa-upload"></i> Upload Picture</button>
     </div>
 
-    <div class="card">
+    <div class="card" id="playerWalletSection">
       <h3 class="form-section-title"><i class="fas fa-wallet"></i> Wallet</h3>
       
       <div class="wallet-section">
@@ -1184,6 +1331,20 @@ body {
   </div>
 </div>
 
+<!-- Announcement Toast Notification -->
+<div class="announcement-toast" id="announcementToast">
+  <div class="announcement-toast-icon">
+    <i class="fas fa-bullhorn"></i>
+  </div>
+  <div class="announcement-toast-content">
+    <div class="announcement-toast-title" id="toastTitle">New Announcement</div>
+    <div class="announcement-toast-message" id="toastMessage">You have a new announcement</div>
+  </div>
+  <button class="announcement-toast-close" id="toastClose">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -1335,6 +1496,24 @@ document.getElementById('announcementsModalClose').addEventListener('click', () 
   announcementsModalBg.style.display = 'none';
 });
 
+// Announcement Toast
+const announcementToast = document.getElementById('announcementToast');
+const toastTitle = document.getElementById('toastTitle');
+const toastMessage = document.getElementById('toastMessage');
+document.getElementById('toastClose').addEventListener('click', () => {
+  announcementToast.classList.remove('show');
+});
+
+function showAnnouncementToast(title, message) {
+  toastTitle.textContent = title;
+  toastMessage.textContent = message;
+  announcementToast.classList.add('show');
+  
+  setTimeout(() => {
+    announcementToast.classList.remove('show');
+  }, 5000);
+}
+
 function loadAnnouncements() {
   db.ref('announcements').orderByChild('timestamp').limitToLast(10).once('value').then(snapshot => {
     let announcementsHTML = '';
@@ -1355,6 +1534,17 @@ function loadAnnouncements() {
     }
     
     document.getElementById('announcementsList').innerHTML = announcementsHTML;
+  });
+}
+
+// Listen for new announcements
+function listenForAnnouncements() {
+  db.ref('announcements').orderByChild('timestamp').limitToLast(1).on('child_added', snapshot => {
+    const announcement = snapshot.val();
+    // Only show toast if announcement is less than 1 minute old
+    if (Date.now() - announcement.timestamp < 60000) {
+      showAnnouncementToast(announcement.title, announcement.content);
+    }
   });
 }
 
@@ -1501,11 +1691,11 @@ function loadTournaments() {
           const organizer = orgSnapshot.val() || {};
           
           html += `
-            <div class="card tournament-card ${winnerId ? 'organizer-tournament-card' : ''}" data-game-modes="${gameModes.join(' ')}">
-              <img src="${image}" class="tournament-img"/>
+            <div class="card tournament-card tournament-card-mobile" data-game-modes="${gameModes.join(' ')}">
+              <img src="${image}" class="tournament-img-mobile"/>
               <span class="tournament-badge">${tournament.type || 'Solo'}</span>
               ${winnerId ? '<span class="tournament-winner-badge">Winner Declared</span>' : ''}
-              <div class="tournament-content">
+              <div class="tournament-content-mobile">
                 <h3 class="tournament-title">${tournament.title || 'Unnamed Tournament'}</h3>
                 <p class="tournament-info"><i class="fas fa-ticket-alt"></i> Entry: ${tournament.entryFee || 0} BDT</p>
                 <p class="tournament-info"><i class="fas fa-award"></i> Prize: ${tournament.prizePool || 0}</p>
@@ -1592,7 +1782,8 @@ function showTournamentDetails(tournamentId) {
               return {
                 id: playerId,
                 name: user.name || 'Unknown Player',
-                uid: user.freeFireUID || 'N/A'
+                uid: user.freeFireUID || 'N/A',
+                email: user.email || 'N/A'
               };
             });
         });
@@ -1603,7 +1794,7 @@ function showTournamentDetails(tournamentId) {
               <div class="player-item">
                 <div>
                   <div class="player-name">${index + 1}. ${player.name}</div>
-                  <div class="player-uid">UID: ${player.uid}</div>
+                  <div class="player-uid">UID: ${player.uid} | Email: ${player.email}</div>
                 </div>
                 <span class="currency-badge">Joined</span>
               </div>
@@ -1694,20 +1885,30 @@ function joinTournament(tournamentId, entryFee) {
         const coins = snapshot.val() || 0;
         
         if (coins >= entryFee) {
-          // Deduct entry fee
-          db.ref('users/' + user.uid + '/coins').set(coins - entryFee);
-          
-          // Add user to tournament
-          db.ref('tournaments/' + tournamentId + '/players/' + user.uid).set(true);
-          
-          // Add tournament to user's list
-          db.ref('userTournaments/' + user.uid + '/' + tournamentId).set({
-            joinedAt: Date.now(),
-            status: 'registered',
-            tournamentName: document.getElementById('tournamentsList').querySelector(`[onclick*="${tournamentId}"]`).closest('.tournament-card').querySelector('.tournament-title').textContent
+          // Get user details for the tournament registration
+          db.ref('users/' + user.uid).once('value').then(userSnapshot => {
+            const userData = userSnapshot.val() || {};
+            
+            // Deduct entry fee
+            db.ref('users/' + user.uid + '/coins').set(coins - entryFee);
+            
+            // Add user to tournament with details
+            db.ref('tournaments/' + tournamentId + '/players/' + user.uid).set({
+              name: userData.name || 'Unknown Player',
+              uid: userData.freeFireUID || 'N/A',
+              email: userData.email || 'N/A',
+              joinedAt: Date.now()
+            });
+            
+            // Add tournament to user's list
+            db.ref('userTournaments/' + user.uid + '/' + tournamentId).set({
+              joinedAt: Date.now(),
+              status: 'registered',
+              tournamentName: document.getElementById('tournamentsList').querySelector(`[onclick*="${tournamentId}"]`).closest('.tournament-card').querySelector('.tournament-title').textContent
+            });
+            
+            showModal('Success', 'You have successfully joined the tournament!');
           });
-          
-          showModal('Success', 'You have successfully joined the tournament!');
         } else {
           showModal('Error', 'You do not have enough coins to join this tournament');
         }
@@ -1724,9 +1925,24 @@ function loadProfile(userId) {
     // Update profile page
     document.getElementById('profileName').textContent = user.name || 'Player';
     document.getElementById('walletBalance').textContent = user.coins || 0;
-    document.getElementById('profileMatches').textContent = user.matchesPlayed || 0;
-    document.getElementById('profileWins').textContent = user.wins || 0;
-    document.getElementById('profileIncome').textContent = user.income || 0;
+    
+    // Show different stats based on user type
+    if (user.isOrganizer) {
+      document.getElementById('playerStats').classList.add('hidden');
+      document.getElementById('organizerStats').classList.remove('hidden');
+      document.getElementById('playerWalletSection').classList.add('hidden');
+      
+      // Load organizer stats
+      loadOrganizerStats(userId);
+    } else {
+      document.getElementById('playerStats').classList.remove('hidden');
+      document.getElementById('organizerStats').classList.add('hidden');
+      document.getElementById('playerWalletSection').classList.remove('hidden');
+      
+      document.getElementById('profileMatches').textContent = user.matchesPlayed || 0;
+      document.getElementById('profileWins').textContent = user.wins || 0;
+      document.getElementById('profileIncome').textContent = user.income || 0;
+    }
     
     if (user.freeFireUID) {
       document.querySelector('#profileFFUID span').textContent = user.freeFireUID;
@@ -1768,6 +1984,50 @@ function loadProfile(userId) {
         }
       }
     });
+  });
+}
+
+// Load organizer stats
+function loadOrganizerStats(userId) {
+  // Count tournaments hosted
+  db.ref('tournaments').orderByChild('organizerId').equalTo(userId).once('value').then(snapshot => {
+    const tournamentsHosted = snapshot.numChildren();
+    document.getElementById('tournamentsHosted').textContent = tournamentsHosted;
+    
+    // Count completed tournaments
+    let completed = 0;
+    let totalParticipants = 0;
+    
+    if (snapshot.exists()) {
+      snapshot.forEach(child => {
+        const tournament = child.val();
+        if (tournament.winner) {
+          completed++;
+        }
+        if (tournament.players) {
+          totalParticipants += Object.keys(tournament.players).length;
+        }
+      });
+    }
+    
+    document.getElementById('tournamentsCompleted').textContent = completed;
+    document.getElementById('totalParticipants').textContent = totalParticipants;
+  });
+  
+  // Calculate organizer income (from entry fees)
+  db.ref('transactions').orderByChild('userId').equalTo(userId).once('value').then(snapshot => {
+    let income = 0;
+    
+    if (snapshot.exists()) {
+      snapshot.forEach(child => {
+        const transaction = child.val();
+        if (transaction.type === 'tournament_income') {
+          income += transaction.amount || 0;
+        }
+      });
+    }
+    
+    document.getElementById('organizerIncome').textContent = income;
   });
 }
 
@@ -2094,22 +2354,30 @@ document.getElementById('depositBtn').addEventListener('click', () => {
         return;
       }
       
-      // Save deposit request
-      db.ref('paymentRequests').push({
-        userId: user.uid,
-        amount: amount,
-        method: method,
-        transactionId: transactionId,
-        type: 'deposit',
-        status: 'pending',
-        timestamp: Date.now()
-      })
-      .then(() => {
-        showModal('Success', 'Deposit request submitted. It will be processed within 24 hours.');
-        document.getElementById('depositAmount').value = '';
-        document.getElementById('depositTransactionId').value = '';
-      })
-      .catch(error => showModal('Error', error.message));
+      // Get user details for the payment request
+      db.ref('users/' + user.uid).once('value').then(userSnapshot => {
+        const userData = userSnapshot.val() || {};
+        
+        // Save deposit request with user details
+        db.ref('paymentRequests').push({
+          userId: user.uid,
+          userName: userData.name || 'Unknown',
+          userEmail: userData.email || 'N/A',
+          userUID: userData.freeFireUID || 'N/A',
+          amount: amount,
+          method: method,
+          transactionId: transactionId,
+          type: 'deposit',
+          status: 'pending',
+          timestamp: Date.now()
+        })
+        .then(() => {
+          showModal('Success', 'Deposit request submitted. It will be processed within 24 hours.');
+          document.getElementById('depositAmount').value = '';
+          document.getElementById('depositTransactionId').value = '';
+        })
+        .catch(error => showModal('Error', error.message));
+      });
     });
   });
 });
@@ -2156,22 +2424,30 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
           return;
         }
         
-        // Save withdrawal request
-        db.ref('paymentRequests').push({
-          userId: user.uid,
-          amount: amount,
-          method: method,
-          account: account,
-          type: 'withdraw',
-          status: 'pending',
-          timestamp: Date.now()
-        })
-        .then(() => {
-          showModal('Success', 'Withdrawal request submitted. It will be processed within 24 hours.');
-          document.getElementById('withdrawAmount').value = '';
-          document.getElementById('withdrawAccount').value = '';
-        })
-        .catch(error => showModal('Error', error.message));
+        // Get user details for the payment request
+        db.ref('users/' + user.uid).once('value').then(userSnapshot => {
+          const userData = userSnapshot.val() || {};
+          
+          // Save withdrawal request with user details
+          db.ref('paymentRequests').push({
+            userId: user.uid,
+            userName: userData.name || 'Unknown',
+            userEmail: userData.email || 'N/A',
+            userUID: userData.freeFireUID || 'N/A',
+            amount: amount,
+            method: method,
+            account: account,
+            type: 'withdraw',
+            status: 'pending',
+            timestamp: Date.now()
+          })
+          .then(() => {
+            showModal('Success', 'Withdrawal request submitted. It will be processed within 24 hours.');
+            document.getElementById('withdrawAmount').value = '';
+            document.getElementById('withdrawAccount').value = '';
+          })
+          .catch(error => showModal('Error', error.message));
+        });
       });
     });
   });
@@ -2347,6 +2623,9 @@ auth.onAuthStateChanged(user => {
         document.getElementById('depositBtn').closest('.wallet-section').style.display = 'block';
       }
     });
+    
+    // Start listening for announcements
+    listenForAnnouncements();
   } else {
     // User is signed out
     document.getElementById('authPage').classList.remove('hidden');
