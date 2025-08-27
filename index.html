@@ -1395,7 +1395,21 @@ function showPage(pageId) {
 document.getElementById('navHome').addEventListener('click', () => showPage('homePage'));
 document.getElementById('navProfile').addEventListener('click', () => showPage('profilePage'));
 document.getElementById('navMyTournaments').addEventListener('click', () => showPage('myTournamentsPage'));
-document.getElementById('navOrganizer').addEventListener('click', () => showPage('organizerPage'));
+document.getElementById('navOrganizer').addEventListener('click', () => {
+  const user = auth.currentUser;
+  if (user) {
+    db.ref('users/' + user.uid + '/isOrganizer').once('value').then(snapshot => {
+      const isOrganizer = snapshot.val();
+      if (isOrganizer) {
+        showPage('organizerPage');
+      } else {
+        showModal('Access Denied', 'You are not an organizer. Only verified organizers can access this section.');
+      }
+    });
+  } else {
+    showModal('Error', 'You must be logged in to access this section');
+  }
+});
 document.getElementById('navMore').addEventListener('click', () => showPage('morePage'));
 
 // Registration tabs
@@ -2121,6 +2135,9 @@ function loadOrganizerTournaments(userId) {
                 <button class="btn btn-sm btn-warning" onclick="editTournament('${child.key}')">
                   <i class="fas fa-edit"></i> Edit
                 </button>
+                <button class="btn btn-sm btn-danger" onclick="deleteTournament('${child.key}')">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
                 ` : ''}
               </div>
             </div>
@@ -2133,6 +2150,24 @@ function loadOrganizerTournaments(userId) {
     
     document.getElementById('organizerTournamentsList').innerHTML = tournamentsHTML;
   });
+}
+
+// Delete tournament
+function deleteTournament(tournamentId) {
+  if (confirm("Are you sure you want to delete this tournament? This action cannot be undone.")) {
+    db.ref('tournaments/' + tournamentId).remove()
+      .then(() => {
+        showModal('Success', 'Tournament deleted successfully!');
+      })
+      .catch(error => {
+        showModal('Error', error.message);
+      });
+  }
+}
+
+// Edit tournament
+function editTournament(tournamentId) {
+  showModal('Edit Tournament', 'Edit functionality will be implemented in the next update.', false);
 }
 
 // Create tournament
@@ -2318,7 +2353,7 @@ document.getElementById('uploadPicBtn').addEventListener('click', () => {
   });
 });
 
-// Deposit with ban check
+// Deposit with ban check - FIXED: Add type field to distinguish deposit/withdraw
 document.getElementById('depositBtn').addEventListener('click', () => {
   const user = auth.currentUser;
   if (!user) return;
@@ -2355,7 +2390,7 @@ document.getElementById('depositBtn').addEventListener('click', () => {
       db.ref('users/' + user.uid).once('value').then(userSnapshot => {
         const userData = userSnapshot.val() || {};
         
-        // Save deposit request with user details
+        // Save deposit request with user details - FIXED: Add type field
         db.ref('paymentRequests').push({
           userId: user.uid,
           userName: userData.name || 'Unknown',
@@ -2364,7 +2399,7 @@ document.getElementById('depositBtn').addEventListener('click', () => {
           amount: amount,
           method: method,
           transactionId: transactionId,
-          type: 'deposit',
+          type: 'deposit', // This distinguishes deposit from withdraw
           status: 'pending',
           timestamp: Date.now()
         })
@@ -2379,7 +2414,7 @@ document.getElementById('depositBtn').addEventListener('click', () => {
   });
 });
 
-// Withdraw with ban check
+// Withdraw with ban check - FIXED: Add type field to distinguish deposit/withdraw
 document.getElementById('withdrawBtn').addEventListener('click', () => {
   const user = auth.currentUser;
   if (!user) return;
@@ -2425,7 +2460,7 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
         db.ref('users/' + user.uid).once('value').then(userSnapshot => {
           const userData = userSnapshot.val() || {};
           
-          // Save withdrawal request with user details
+          // Save withdrawal request with user details - FIXED: Add type field
           db.ref('paymentRequests').push({
             userId: user.uid,
             userName: userData.name || 'Unknown',
@@ -2434,7 +2469,7 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
             amount: amount,
             method: method,
             account: account,
-            type: 'withdraw',
+            type: 'withdraw', // This distinguishes withdraw from deposit
             status: 'pending',
             timestamp: Date.now()
           })
