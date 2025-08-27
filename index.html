@@ -963,12 +963,9 @@ body {
     <!-- Game Mode Filters -->
     <div class="filter-buttons">
       <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="solo">Solo</button>
-      <button class="filter-btn" data-filter="duo">Duo</button>
-      <button class="filter-btn" data-filter="squad">Squad</button>
       <button class="filter-btn" data-filter="battle-royale">Battle Royale</button>
       <button class="filter-btn" data-filter="clash-squad">Clash Squad</button>
-      <button class="filter-btn" data-filter="leon-wolf">Leon Wolf</button>
+      <button class="filter-btn" data-filter="leon-wolf">Lone Wolf</button>
     </div>
     
     <div id="tournamentsList" class="loading tournament-grid">
@@ -1176,7 +1173,7 @@ body {
         </div>
         <div>
           <input type="checkbox" id="modeLeonWolf" value="leon-wolf">
-          <label for="modeLeonWolf">Leon Wolf</label>
+          <label for="modeLeonWolf">Lone Wolf</label>
         </div>
       </div>
       
@@ -1736,7 +1733,7 @@ function modeToLabel(mode) {
     'squad': 'Squad',
     'battle-royale': 'Battle Royale',
     'clash-squad': 'Clash Squad',
-    'leon-wolf': 'Leon Wolf'
+    'leon-wolf': 'Lone Wolf'
   };
   
   return modeLabels[mode] || mode;
