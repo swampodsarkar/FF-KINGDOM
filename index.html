@@ -864,9 +864,166 @@ body {
 .tournament-slots {
   color: var(--text-secondary);
 }
+
+/* New styles for announcements slider */
+.announcements-slider {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--dark-light);
+  border-bottom: 1px solid #334155;
+  z-index: 99;
+  overflow: hidden;
+  height: 40px;
+}
+
+.announcements-track {
+  display: flex;
+  animation: slideAnnouncements 30s linear infinite;
+  white-space: nowrap;
+}
+
+.announcement-slide {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.announcement-slide i {
+  margin-right: 10px;
+  color: var(--primary);
+}
+
+@keyframes slideAnnouncements {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* New styles for social section */
+.social-section {
+  margin-top: 20px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--dark);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.3s;
+}
+
+.social-button:hover {
+  background: var(--dark-light);
+}
+
+.social-icon {
+  width: 30px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.social-content {
+  flex: 1;
+}
+
+.social-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.social-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.social-action {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* New styles for referral system */
+.referral-section {
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.referral-code {
+  background: white;
+  color: var(--dark);
+  padding: 10px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  letter-spacing: 2px;
+}
+
+.copy-btn {
+  background: var(--success);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+}
+
+/* New styles for tournament editing */
+.edit-tournament-form {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* New styles for announcement banners */
+.announcement-banner {
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+  color: var(--dark);
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.announcement-banner i {
+  margin-right: 10px;
+}
+
+.announcement-banner-close {
+  background: none;
+  border: none;
+  color: var(--dark);
+  cursor: pointer;
+  font-size: 16px;
+}
 </style>
 </head>
 <body>
+
+<!-- Announcements Slider -->
+<div class="announcements-slider" id="announcementsSlider">
+  <div class="announcements-track" id="announcementsTrack">
+    <!-- Announcements will be loaded here -->
+  </div>
+</div>
 
 <!-- Login/Registration Page -->
 <div id="authPage" class="container">
@@ -959,6 +1116,12 @@ body {
 
   <div id="homePage" class="container">
     <h3 class="mb-3">🔥 Ongoing Tournaments</h3>
+    
+    <!-- Announcement Banner -->
+    <div class="announcement-banner hidden" id="homeAnnouncementBanner">
+      <div><i class="fas fa-bullhorn"></i> <span id="bannerText"></span></div>
+      <button class="announcement-banner-close" id="bannerClose"><i class="fas fa-times"></i></button>
+    </div>
     
     <!-- Game Mode Filters -->
     <div class="filter-buttons">
@@ -1255,6 +1418,41 @@ body {
       </div>
     </div>
     
+    <!-- New Social Media Section -->
+    <div class="card social-section">
+      <h4 class="form-section-title"><i class="fas fa-share-alt"></i> Follow Us</h4>
+      
+      <a href="https://www.facebook.com/profile.php?id=61579782358444" target="_blank" class="social-button">
+        <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+        <div class="social-content">
+          <div class="social-title">Facebook Page</div>
+          <div class="social-description">Follow our official page for updates</div>
+        </div>
+        <div class="social-action">Follow</div>
+      </a>
+      
+      <a href="#" class="social-button" id="guildJoinBtn">
+        <div class="social-icon"><i class="fas fa-users"></i></div>
+        <div class="social-content">
+          <div class="social-title">Join Our Guild</div>
+          <div class="social-description">Copy our guild ID to join</div>
+        </div>
+        <div class="social-action">Copy ID</div>
+      </a>
+    </div>
+    
+    <!-- Referral Section -->
+    <div class="card referral-section">
+      <h4 class="form-section-title"><i class="fas fa-gift"></i> Refer & Earn</h4>
+      <p>Refer friends and earn 2 BDT for each successful registration!</p>
+      
+      <div class="referral-code" id="referralCodeDisplay">Loading...</div>
+      
+      <button class="copy-btn" id="copyReferralBtn">
+        <i class="fas fa-copy"></i> Copy Referral Code
+      </button>
+    </div>
+    
     <div class="card">
       <h4 class="form-section-title"><i class="fas fa-headset"></i> Support</h4>
       <p>Having issues? Contact our support team:</p>
@@ -1328,6 +1526,16 @@ body {
   </div>
 </div>
 
+<!-- Edit Tournament Modal -->
+<div class="modal-backdrop" id="editTournamentModalBg">
+  <div class="modal-content" id="editTournamentModalContent">
+    <h3 class="modal-title"><i class="fas fa-edit"></i> Edit Tournament</h3>
+    <div id="editTournamentModalBody" class="edit-tournament-form"></div>
+    <button class="btn btn-organizer w-100 mt-3" id="saveTournamentChangesBtn">Save Changes</button>
+    <button class="btn w-100 mt-2" id="editTournamentModalClose">Cancel</button>
+  </div>
+</div>
+
 <!-- Announcement Toast Notification -->
 <div class="announcement-toast" id="announcementToast">
   <div class="announcement-toast-icon">
@@ -1363,6 +1571,8 @@ const auth = firebase.auth();
 
 const MIN_DEPOSIT = 10, MIN_WITHDRAW = 100;
 const IMGBB_API_KEY = '213fd215f712156cc6a6ab529469da2f';
+const GUILD_ID = '3059289441';
+const REFERRAL_REWARD = 2; // 2 BDT per referral
 
 // Navigation
 const pages = {
@@ -1507,6 +1717,13 @@ document.getElementById('announcementsModalClose').addEventListener('click', () 
   announcementsModalBg.style.display = 'none';
 });
 
+// Edit Tournament Modal
+const editTournamentModalBg = document.getElementById('editTournamentModalBg');
+const editTournamentModalBody = document.getElementById('editTournamentModalBody');
+document.getElementById('editTournamentModalClose').addEventListener('click', () => {
+  editTournamentModalBg.style.display = 'none';
+});
+
 // Announcement Toast
 const announcementToast = document.getElementById('announcementToast');
 const toastTitle = document.getElementById('toastTitle');
@@ -1548,6 +1765,47 @@ function loadAnnouncements() {
   });
 }
 
+// Load announcements for the slider
+function loadAnnouncementsSlider() {
+  db.ref('announcements').orderByChild('timestamp').limitToLast(5).once('value').then(snapshot => {
+    let announcementsHTML = '';
+    
+    if (snapshot.exists()) {
+      snapshot.forEach(child => {
+        const announcement = child.val();
+        announcementsHTML += `
+          <div class="announcement-slide">
+            <i class="fas fa-bullhorn"></i> ${announcement.title}: ${announcement.content}
+          </div>
+        `;
+      });
+      
+      document.getElementById('announcementsTrack').innerHTML = announcementsHTML;
+      document.getElementById('announcementsSlider').classList.remove('hidden');
+    } else {
+      document.getElementById('announcementsSlider').classList.add('hidden');
+    }
+  });
+}
+
+// Load home page announcement banner
+function loadHomeAnnouncement() {
+  db.ref('announcements').orderByChild('timestamp').limitToLast(1).once('value').then(snapshot => {
+    if (snapshot.exists()) {
+      snapshot.forEach(child => {
+        const announcement = child.val();
+        document.getElementById('bannerText').textContent = `${announcement.title}: ${announcement.content}`;
+        document.getElementById('homeAnnouncementBanner').classList.remove('hidden');
+      });
+    }
+  });
+}
+
+// Close announcement banner
+document.getElementById('bannerClose').addEventListener('click', () => {
+  document.getElementById('homeAnnouncementBanner').classList.add('hidden');
+});
+
 // Listen for new announcements
 function listenForAnnouncements() {
   db.ref('announcements').orderByChild('timestamp').limitToLast(1).on('child_added', snapshot => {
@@ -1556,6 +1814,10 @@ function listenForAnnouncements() {
     if (Date.now() - announcement.timestamp < 60000) {
       showAnnouncementToast(announcement.title, announcement.content);
     }
+    
+    // Update slider and banner
+    loadAnnouncementsSlider();
+    loadHomeAnnouncement();
   });
 }
 
@@ -1569,13 +1831,60 @@ document.getElementById('refundBtn').addEventListener('click', () => {
 });
 
 document.getElementById('referBtn').addEventListener('click', () => {
-  showModal('Refer & Earn', 'Your referral code: FFK12345. Share this code with your friends to earn 50 coins when they sign up and make their first deposit!');
+  const user = auth.currentUser;
+  if (user) {
+    db.ref('users/' + user.uid).once('value').then(snapshot => {
+      const userData = snapshot.val() || {};
+      const referralCode = userData.referralCode || 'FFK' + user.uid.substring(0, 8).toUpperCase();
+      
+      showModal('Refer & Earn', `
+        <div class="referral-section">
+          <p>Share your referral code with friends and earn ${REFERRAL_REWARD} BDT when they sign up and make their first deposit!</p>
+          <div class="referral-code">${referralCode}</div>
+          <button class="copy-btn" onclick="copyToClipboard('${referralCode}')">
+            <i class="fas fa-copy"></i> Copy Referral Code
+          </button>
+        </div>
+      `, true);
+    });
+  } else {
+    showModal('Error', 'You must be logged in to view your referral code');
+  }
 });
 
 document.getElementById('announcementsBtn').addEventListener('click', () => {
   loadAnnouncements();
   announcementsModalBg.style.display = 'flex';
 });
+
+// Copy guild ID to clipboard
+document.getElementById('guildJoinBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  copyToClipboard(GUILD_ID);
+  showAnnouncementToast('Guild ID Copied', `Guild ID ${GUILD_ID} copied to clipboard!`);
+});
+
+// Copy referral code to clipboard
+document.getElementById('copyReferralBtn').addEventListener('click', () => {
+  const user = auth.currentUser;
+  if (user) {
+    db.ref('users/' + user.uid).once('value').then(snapshot => {
+      const userData = snapshot.val() || {};
+      const referralCode = userData.referralCode || 'FFK' + user.uid.substring(0, 8).toUpperCase();
+      copyToClipboard(referralCode);
+      showAnnouncementToast('Referral Code Copied', `Referral code ${referralCode} copied to clipboard!`);
+    });
+  }
+});
+
+function copyToClipboard(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+}
 
 // Search functionality
 document.getElementById('searchToggleBtn').addEventListener('click', () => {
@@ -1827,6 +2136,10 @@ function showTournamentDetails(tournamentId) {
                   </select>
                   <button class="btn btn-organizer btn-sm mt-2" onclick="declareWinner('${tournamentId}')">Declare Winner</button>
                 </div>
+                <div class="mt-3">
+                  <button class="btn btn-warning btn-sm" onclick="editTournament('${tournamentId}')"><i class="fas fa-edit"></i> Edit Tournament</button>
+                  <button class="btn btn-danger btn-sm" onclick="cancelTournament('${tournamentId}')"><i class="fas fa-times"></i> Cancel Tournament</button>
+                </div>
               </div>
             `;
           }
@@ -1860,6 +2173,173 @@ function declareWinner(tournamentId) {
     modalBg.style.display = 'none';
   }).catch(error => {
     showModal('Error', error.message);
+  });
+}
+
+// Edit tournament
+function editTournament(tournamentId) {
+  db.ref('tournaments/' + tournamentId).once('value').then(snapshot => {
+    const tournament = snapshot.val();
+    if (!tournament) {
+      showModal('Error', 'Tournament not found');
+      return;
+    }
+    
+    let editHTML = `
+      <div class="input-group">
+        <label for="editTournamentTitle">🏆 Tournament Title</label>
+        <input id="editTournamentTitle" type="text" value="${tournament.title || ''}" placeholder="Tournament title"/>
+      </div>
+      
+      <div class="input-group">
+        <label for="editTournamentType">🎯 Type</label>
+        <select id="editTournamentType">
+          <option value="solo" ${tournament.type === 'solo' ? 'selected' : ''}>Solo</option>
+          <option value="duo" ${tournament.type === 'duo' ? 'selected' : ''}>Duo</option>
+          <option value="squad" ${tournament.type === 'squad' ? 'selected' : ''}>Squad</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label>🎮 Game Modes</label>
+        <div>
+          <input type="checkbox" id="editModeBattleRoyale" value="battle-royale" ${tournament.gameModes && tournament.gameModes.includes('battle-royale') ? 'checked' : ''}>
+          <label for="editModeBattleRoyale">Battle Royale</label>
+        </div>
+        <div>
+          <input type="checkbox" id="editModeClashSquad" value="clash-squad" ${tournament.gameModes && tournament.gameModes.includes('clash-squad') ? 'checked' : ''}>
+          <label for="editModeClashSquad">Clash Squad</label>
+        </div>
+        <div>
+          <input type="checkbox" id="editModeLeonWolf" value="leon-wolf" ${tournament.gameModes && tournament.gameModes.includes('leon-wolf') ? 'checked' : ''}>
+          <label for="editModeLeonWolf">Lone Wolf</label>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <label for="editEntryFee">💰 Entry Fee (BDT)</label>
+        <input id="editEntryFee" type="number" value="${tournament.entryFee || 0}" placeholder="Entry fee" min="0"/>
+      </div>
+      
+      <div class="input-group">
+        <label for="editPrizePool">🏅 Prize Pool (BDT) or description</label>
+        <textarea id="editPrizePool" placeholder="Example: 30 tk per kill, 2 tk bonus...">${tournament.prizePool || ''}</textarea>
+      </div>
+      
+      <div class="input-group">
+        <label for="editMaxPlayers">👥 Max Players</label>
+        <input id="editMaxPlayers" type="number" value="${tournament.maxPlayers || 50}" placeholder="Maximum players" min="2"/>
+      </div>
+      
+      <div class="input-group">
+        <label for="editTournamentRules">📜 Rules</label>
+        <textarea id="editTournamentRules" placeholder="Tournament rules" rows="3">${tournament.rules || ''}</textarea>
+      </div>
+      
+      <div class="input-group">
+        <label for="editTournamentDate">📅 Tournament Date</label>
+        <input id="editTournamentDate" type="datetime-local" value="${new Date(tournament.tournamentDate).toISOString().slice(0, 16)}"/>
+      </div>
+    `;
+    
+    editTournamentModalBody.innerHTML = editHTML;
+    editTournamentModalBg.style.display = 'flex';
+    
+    // Save changes button
+    document.getElementById('saveTournamentChangesBtn').onclick = function() {
+      saveTournamentChanges(tournamentId);
+    };
+  });
+}
+
+// Save tournament changes
+function saveTournamentChanges(tournamentId) {
+  const title = document.getElementById('editTournamentTitle').value;
+  const type = document.getElementById('editTournamentType').value;
+  const entryFee = parseInt(document.getElementById('editEntryFee').value) || 0;
+  const prizePool = document.getElementById('editPrizePool').value;
+  const maxPlayers = parseInt(document.getElementById('editMaxPlayers').value) || 50;
+  const rules = document.getElementById('editTournamentRules').value;
+  const tournamentDate = document.getElementById('editTournamentDate').value;
+  
+  if (!title || !type || !prizePool || !maxPlayers || !tournamentDate) {
+    showModal('Error', 'Please fill all required fields');
+    return;
+  }
+  
+  // Get selected game modes
+  const gameModes = [];
+  if (document.getElementById('editModeBattleRoyale').checked) gameModes.push('battle-royale');
+  if (document.getElementById('editModeClashSquad').checked) gameModes.push('clash-squad');
+  if (document.getElementById('editModeLeonWolf').checked) gameModes.push('leon-wolf');
+  
+  if (gameModes.length === 0) {
+    showModal('Error', 'Please select at least one game mode');
+    return;
+  }
+  
+  const updates = {
+    title: title,
+    type: type,
+    gameModes: gameModes,
+    entryFee: entryFee,
+    prizePool: prizePool,
+    maxPlayers: maxPlayers,
+    rules: rules,
+    tournamentDate: new Date(tournamentDate).getTime(),
+    updatedAt: Date.now()
+  };
+  
+  db.ref('tournaments/' + tournamentId).update(updates)
+    .then(() => {
+      showModal('Success', 'Tournament updated successfully!');
+      editTournamentModalBg.style.display = 'none';
+    })
+    .catch(error => {
+      showModal('Error', error.message);
+    });
+}
+
+// Cancel tournament and refund players
+function cancelTournament(tournamentId) {
+  if (!confirm("Are you sure you want to cancel this tournament? All entry fees will be refunded to players.")) {
+    return;
+  }
+  
+  db.ref('tournaments/' + tournamentId).once('value').then(snapshot => {
+    const tournament = snapshot.val();
+    if (!tournament) return;
+    
+    const entryFee = tournament.entryFee || 0;
+    const players = tournament.players ? Object.keys(tournament.players) : [];
+    
+    // Refund each player
+    const refundPromises = players.map(playerId => {
+      return db.ref('users/' + playerId + '/coins').once('value').then(coinSnapshot => {
+        const currentCoins = coinSnapshot.val() || 0;
+        return db.ref('users/' + playerId + '/coins').set(currentCoins + entryFee);
+      }).then(() => {
+        // Record transaction
+        return db.ref('transactions/' + playerId).push({
+          type: 'tournament_refund',
+          amount: entryFee,
+          tournamentId: tournamentId,
+          tournamentName: tournament.title,
+          status: 'approved',
+          timestamp: Date.now()
+        });
+      });
+    });
+    
+    Promise.all(refundPromises).then(() => {
+      // Delete tournament
+      return db.ref('tournaments/' + tournamentId).remove();
+    }).then(() => {
+      showModal('Success', 'Tournament canceled and all players refunded successfully!');
+      modalBg.style.display = 'none';
+    }).catch(error => {
+      showModal('Error', error.message);
+    });
   });
 }
 
@@ -1976,6 +2456,16 @@ function loadProfile(userId) {
     document.getElementById('editName').value = user.name || '';
     document.getElementById('editFFUID').value = user.freeFireUID || '';
     document.getElementById('profileStatus').value = user.status || '';
+    
+    // Load referral code
+    if (user.referralCode) {
+      document.getElementById('referralCodeDisplay').textContent = user.referralCode;
+    } else {
+      // Generate referral code if not exists
+      const referralCode = 'FFK' + userId.substring(0, 8).toUpperCase();
+      db.ref('users/' + userId + '/referralCode').set(referralCode);
+      document.getElementById('referralCodeDisplay').textContent = referralCode;
+    }
     
     // Check if user is banned and show warning
     checkIfBanned(userId).then(isBanned => {
@@ -2135,8 +2625,8 @@ function loadOrganizerTournaments(userId) {
                 <button class="btn btn-sm btn-warning" onclick="editTournament('${child.key}')">
                   <i class="fas fa-edit"></i> Edit
                 </button>
-                <button class="btn btn-sm btn-danger" onclick="deleteTournament('${child.key}')">
-                  <i class="fas fa-trash"></i> Delete
+                <button class="btn btn-sm btn-danger" onclick="cancelTournament('${child.key}')">
+                  <i class="fas fa-times"></i> Cancel
                 </button>
                 ` : ''}
               </div>
@@ -2150,24 +2640,6 @@ function loadOrganizerTournaments(userId) {
     
     document.getElementById('organizerTournamentsList').innerHTML = tournamentsHTML;
   });
-}
-
-// Delete tournament
-function deleteTournament(tournamentId) {
-  if (confirm("Are you sure you want to delete this tournament? This action cannot be undone.")) {
-    db.ref('tournaments/' + tournamentId).remove()
-      .then(() => {
-        showModal('Success', 'Tournament deleted successfully!');
-      })
-      .catch(error => {
-        showModal('Error', error.message);
-      });
-  }
-}
-
-// Edit tournament
-function editTournament(tournamentId) {
-  showModal('Edit Tournament', 'Edit functionality will be implemented in the next update.', false);
 }
 
 // Create tournament
@@ -2525,7 +2997,7 @@ document.getElementById('orgSignUpBtn').addEventListener('click', () => {
     });
 });
 
-// Player registration
+// Player registration with referral system
 document.getElementById('signUpBtn').addEventListener('click', () => {
   const name = document.getElementById('regName').value;
   const email = document.getElementById('regEmail').value;
@@ -2533,6 +3005,7 @@ document.getElementById('signUpBtn').addEventListener('click', () => {
   const freeFireUID = document.getElementById('regFFUID').value;
   const password = document.getElementById('regPassword').value;
   const confirmPassword = document.getElementById('regConfirmPassword').value;
+  const referralCode = new URLSearchParams(window.location.search).get('ref');
   
   if (!name || !email || !mobile || !freeFireUID || !password || !confirmPassword) {
     showModal('Error', 'Please fill all fields');
@@ -2548,6 +3021,9 @@ document.getElementById('signUpBtn').addEventListener('click', () => {
     .then(userCredential => {
       const user = userCredential.user;
       
+      // Generate referral code for new user
+      const userReferralCode = 'FFK' + user.uid.substring(0, 8).toUpperCase();
+      
       // Save user data
       return db.ref('users/' + user.uid).set({
         name: name,
@@ -2558,8 +3034,14 @@ document.getElementById('signUpBtn').addEventListener('click', () => {
         matchesPlayed: 0,
         wins: 0,
         income: 0,
+        referralCode: userReferralCode,
         isOrganizer: false,
         joinedAt: Date.now()
+      }).then(() => {
+        // Process referral if exists
+        if (referralCode) {
+          return processReferral(referralCode, user.uid);
+        }
       });
     })
     .then(() => {
@@ -2571,6 +3053,39 @@ document.getElementById('signUpBtn').addEventListener('click', () => {
       showModal('Error', error.message);
     });
 });
+
+// Process referral code
+function processReferral(referralCode, newUserId) {
+  // Find user with this referral code
+  return db.ref('users').orderByChild('referralCode').equalTo(referralCode).once('value').then(snapshot => {
+    if (snapshot.exists()) {
+      let referrerId = null;
+      snapshot.forEach(child => {
+        referrerId = child.key;
+      });
+      
+      if (referrerId) {
+        // Add reward to referrer
+        return db.ref('users/' + referrerId + '/coins').once('value').then(coinSnapshot => {
+          const currentCoins = coinSnapshot.val() || 0;
+          return db.ref('users/' + referrerId + '/coins').set(currentCoins + REFERRAL_REWARD);
+        }).then(() => {
+          // Record referral transaction
+          return db.ref('transactions/' + referrerId).push({
+            type: 'referral_reward',
+            amount: REFERRAL_REWARD,
+            referredUser: newUserId,
+            status: 'approved',
+            timestamp: Date.now()
+          });
+        }).then(() => {
+          // Record referral for new user
+          return db.ref('users/' + newUserId + '/referredBy').set(referrerId);
+        });
+      }
+    }
+  });
+}
 
 // Login
 document.getElementById('loginBtn').addEventListener('click', () => {
@@ -2658,6 +3173,8 @@ auth.onAuthStateChanged(user => {
     
     // Start listening for announcements
     listenForAnnouncements();
+    loadAnnouncementsSlider();
+    loadHomeAnnouncement();
   } else {
     // User is signed out
     document.getElementById('authPage').classList.remove('hidden');
