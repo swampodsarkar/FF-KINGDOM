@@ -3,110 +3,87 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>সাময়িকভাবে সেবা বন্ধ</title>
+  <title>সাময়িকভাবে সেবা বন্ধ — FF Kingdom</title>
   <meta name="description" content="পর্যাপ্ত সমর্থন না পাওয়ায় অ্যাপটি সাময়িকভাবে বন্ধ রাখা হয়েছে।" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg1:#0f172a; /* slate-900 */
-      --bg2:#1e293b; /* slate-800 */
-      --card:#0b1220aa;
-      --text:#e2e8f0; /* slate-200 */
-      --muted:#94a3b8; /* slate-400 */
-      --accent:#38bdf8; /* sky-400 */
-      --accent-2:#a78bfa; /* violet-400 */
+      --bg1:#0f172a;
+      --bg2:#1e293b;
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --accent:#38bdf8;
+      --accent-2:#a78bfa;
       --success:#22c55e;
       --shadow: 0 20px 50px rgba(0,0,0,.35);
+      --notice-bg: rgba(34,197,94,0.08);
+      --notice-border: rgba(34,197,94,0.18);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:"Noto Sans Bengali", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family:"Noto Sans Bengali", system-ui, sans-serif;
       color:var(--text);
       background: radial-gradient(1200px 800px at 10% 10%, #0b1220 0%, var(--bg1) 40%, var(--bg2) 100%),
                   linear-gradient(135deg, rgba(56,189,248,.08), rgba(167,139,250,.08));
-      display:grid;
-      place-items:center;
-      padding:24px;
+      display:grid; place-items:center; padding:24px;
     }
 
-    .wrap{
-      width:min(720px, 100%);
-      position:relative;
-      isolation:isolate;
-    }
-
-    .glow{
-      position:absolute; inset:-60px; z-index:-1;
+    .wrap{width:min(760px, 100%);position:relative;isolation:isolate;}
+    .glow{position:absolute; inset:-60px; z-index:-1;
       background: radial-gradient(300px 300px at 10% 10%, rgba(56,189,248,.25), transparent 60%),
                   radial-gradient(300px 300px at 90% 20%, rgba(167,139,250,.25), transparent 60%),
                   radial-gradient(300px 300px at 50% 110%, rgba(34,197,94,.18), transparent 60%);
-      filter: blur(40px);
-      opacity:.9;
-      pointer-events:none;
-    }
+      filter: blur(40px); opacity:.9; pointer-events:none;}
 
-    .card{
-      background: linear-gradient(180deg, rgba(15,23,42,.85), rgba(2,6,23,.7));
-      border:1px solid rgba(148,163,184,.18);
-      border-radius:22px;
-      box-shadow:var(--shadow);
-      padding:28px 28px 24px;
+    .card{background: linear-gradient(180deg, rgba(15,23,42,.85), rgba(2,6,23,.7));
+      border:1px solid rgba(148,163,184,.18); border-radius:22px;
+      box-shadow:var(--shadow); padding:28px 28px 24px;
       backdrop-filter: blur(10px) saturate(120%);
-      animation: floatIn .7s cubic-bezier(.2,.8,.2,1);
-    }
-
+      animation: floatIn .7s cubic-bezier(.2,.8,.2,1);} 
     @keyframes floatIn{from{opacity:0; transform:translateY(16px) scale(.98)} to{opacity:1; transform:translateY(0) scale(1)}}
 
-    .brand{
-      display:flex; align-items:center; gap:12px; margin-bottom:10px;
-    }
-    .logo{
-      width:44px; height:44px; border-radius:12px; display:grid; place-items:center;
+    .brand{display:flex; align-items:center; gap:12px; margin-bottom:10px;}
+    .logo{width:44px; height:44px; border-radius:12px; display:grid; place-items:center;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       box-shadow: 0 10px 20px rgba(56,189,248,.25), 0 10px 30px rgba(167,139,250,.18);
-      font-weight:700; color:#0b1220; letter-spacing:.5px;
-    }
-    .brand h1{
-      font-size: clamp(20px, 3.5vw, 28px);
-      margin:0; font-weight:700;
-    }
+      font-weight:700; color:#0b1220; letter-spacing:.5px;}
+    .brand h1{font-size: clamp(20px, 3.5vw, 28px); margin:0; font-weight:700;}
 
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
+    .badge{display:inline-flex; align-items:center; gap:8px;
       background: rgba(56,189,248,.12);
       color:#e0f2fe;
       border:1px solid rgba(56,189,248,.35);
-      padding:6px 10px; border-radius:999px; font-size:13px; margin:8px 0 14px;
-    }
+      padding:6px 10px; border-radius:999px; font-size:13px; margin:8px 0 14px;}
     .badge .dot{width:8px; height:8px; border-radius:50%; background:#eab308; box-shadow:0 0 0 4px rgba(234,179,8,.15)}
 
     h2.title{font-size: clamp(24px, 4vw, 32px); margin:6px 0 10px;}
     p.lead{font-size: clamp(15px, 2.6vw, 18px); color:var(--muted); line-height:1.7; margin:0 0 18px}
+    .list{margin:0 0 16px; padding-left:18px; color:#cbd5e1; line-height:1.8; font-size:15px;}
 
-    .list{
-      margin:0 0 16px; padding-left:18px; color:#cbd5e1; line-height:1.8; font-size:15px;
+    .notice{
+      background:var(--notice-bg); border:1px solid var(--notice-border);
+      color:var(--text); padding:12px 14px; border-radius:12px; margin:12px 0; line-height:1.6;
+      display:flex; gap:12px; align-items:flex-start;
     }
+    .notice .icon{font-size:20px}
+    .notice strong{color:var(--success)}
 
-    .actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:14px}
-    .btn{
-      appearance:none; border:none; cursor:pointer; padding:12px 16px; border-radius:14px; font-weight:600;
-      transition:.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
-    }
-    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1220}
-    .btn.primary:hover{transform: translateY(-1px); filter:saturate(1.1)}
-    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(148,163,184,.35)}
-    .btn.ghost:hover{background:rgba(148,163,184,.08)}
+    .actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:6px}
+    .btn{appearance:none; border:none; cursor:pointer; padding:12px 16px; border-radius:14px; font-weight:600;
+      transition:.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:8px;}
+    .btn.whatsapp{background:linear-gradient(135deg, #25D366, #128C7E); color:#fff;}
+    .btn.whatsapp:hover{transform: translateY(-1px); filter:saturate(1.1)}
 
     footer{margin-top:18px; color:var(--muted); font-size:12.5px; text-align:center}
-    footer a{color:#bae6fd; text-decoration:none}
 
-    /* Small helper for RTL-like feel in Bengali */
-    .bn{letter-spacing:.1px}
+    @media (max-width:560px){
+      .card{padding:18px}
+    }
   </style>
 </head>
 <body>
@@ -114,37 +91,45 @@
     <div class="glow" aria-hidden="true"></div>
     <main class="card" role="dialog" aria-labelledby="title" aria-describedby="desc">
       <div class="brand">
-        <div class="logo" aria-hidden="true">APP</div>
-        <h1 class="bn">আমাদের অ্যাপ</h1>
+        <div class="logo" aria-hidden="true">FF</div>
+        <h1>FF Kingdom</h1>
       </div>
 
-      <span class="badge" aria-live="polite"><span class="dot" aria-hidden="true"></span> সাময়িক আপডেট</span>
+      <span class="badge"><span class="dot"></span> সাময়িক আপডেট</span>
 
-      <h2 id="title" class="title bn">পর্যাপ্ত সমর্থন না পাওয়ায় সেবা সাময়িকভাবে বন্ধ</h2>
-      <p id="desc" class="lead bn">
+      <h2 id="title" class="title">পর্যাপ্ত সমর্থন না পাওয়ায় সেবা সাময়িকভাবে বন্ধ</h2>
+      <p id="desc" class="lead">
         আমাদের প্রতি আপনার আগ্রহের জন্য ধন্যবাদ। পর্যাপ্ত সমর্থন না পাওয়ার কারণে
-        <strong>আমাদের অ্যাপটি সাময়িকভাবে বন্ধ রাখা হয়েছে</strong>। আমরা উন্নত অভিজ্ঞতা নিয়ে
-        দ্রুত ফিরে আসার জন্য কাজ করছি।
+        <strong>FF Kingdom</strong> সাময়িকভাবে বন্ধ রাখা হয়েছে। আমরা উন্নত অভিজ্ঞতা নিয়ে দ্রুত ফিরে আসার জন্য কাজ করছি।
       </p>
 
-      <ul class="list bn">
+      <ul class="list">
         <li>আপনার সহায়তা ও ধৈর্যের জন্য আন্তরিক কৃতজ্ঞতা।</li>
         <li>শীঘ্রই অগ্রগতি সম্পর্কে আপডেট জানানো হবে।</li>
       </ul>
 
-      <div class="actions">
-        <a class="btn primary" href="#" target="_blank" rel="noopener">আপডেট দেখুন</a>
-        <a class="btn ghost" href="mailto:support@example.com">যোগাযোগ করুন</a>
+      <div class="notice">
+        <div class="icon">💡</div>
+        <div>
+          <div style="margin-bottom:6px"><strong>নোট:</strong></div>
+          <div>
+            আপনি যদি পূর্বে ডিপোজিট করে থাকেন, তাহলে আপনার ডিপোজিট ব্যালান্স আপনার অ্যাকাউন্ট থেকে কেটে নেওয়া হয়েছে।
+            অ্যাপটি পুনরায় চালু হলে আপনি সেই ব্যালান্স ব্যবহার করতে পারবেন।
+          </div>
+        </div>
       </div>
 
-      <footer class="bn">
-        © <span id="year"></span> FF KINDOM BD  • সকল অধিকার সংরক্ষিত
+      <div class="actions">
+        <a class="btn whatsapp" href="https://wa.me/8801767882562?text=হ্যালো%20FF%20Kingdom%20টীম%2C%20আমার%20এসি%20বিষয়ে%20কিছু%20জিজ্ঞাসা%20আছে।" target="_blank" rel="noopener">📲 হোয়াটসঅ্যাপে যোগাযোগ করুন</a>
+      </div>
+
+      <footer>
+        © <span id="year"></span> FF Kingdom • সকল অধিকার সংরক্ষিত
       </footer>
     </main>
   </div>
 
   <script>
-    // Year auto-fill
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
